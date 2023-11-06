@@ -1,0 +1,136 @@
+.subsystemDetailsPage {
+      display: flex;
+      width: 100%;
+      height: 100vh;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      z-index: -2;
+      background-color: #fdfcfa;
+      .headerSection {
+            display: flex;
+            width: 100%;
+            height: 25%;
+            .mainDiv {
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  flex-direction: column;
+                  width: 100%;
+                  height: 100%;
+                  border-radius: 0px 0px 3.5rem 3.5rem;
+                  background: #eaecee;
+                  .back {
+                        position: fixed;
+                        top: 1.2rem;
+                        left: 2rem;
+                        bottom: calc(100vh - 5rem);
+                        right: calc(100vw - 5rem);
+                        background: transparent;
+                        outline: none;
+                        border: none;
+                        font-size: 2rem;
+                        font-weight: 700;
+                  }
+                  .innerSection1 {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 80%;
+                        height: 40%;
+                        border-bottom: 0.1rem solid #c2d2db;
+                  }
+                  .innerSection2 {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        width: 80%;
+                        height: 60%;
+                        .infoSection {
+                              display: flex;
+                              width: 100%;
+                              height: 80%;
+                              border-radius: 25px;
+                              background: #fdfcfa;
+                              box-shadow: 2px 2px 8px 1px rgba(0, 0, 0, 0.15);
+                              .infoText {
+                                    display: flex;
+                                    align-items: center;
+                                    color: #626b70;
+                                    text-align: center;
+                                    font-size: 1.2rem;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    line-height: normal;
+                              }
+                        }
+                  }
+            }
+      }
+      .billsSection {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 70%;
+            .unpaidBills {
+                  display: flex;
+                  padding-top: 3rem;
+                  align-items: center;
+                  width: 100%;
+                  height: 100%;
+                  flex-direction: column;
+                  .billPreview {
+                        display: flex;
+                        width: 31.4rem;
+                        height: 11.6rem;
+                        justify-content: center;
+                        align-items: center;
+                        flex-direction: column;
+                        border-radius: 25px;
+                        background: #ebf5f8;
+                        box-shadow: 2px 2px 4px 1px rgba(0, 0, 0, 0.25);
+                        .part1 {
+                              display: flex;
+                              align-items: center;
+                              gap: 0.5rem;
+                              width: 100%;
+                              padding-top: 0.5rem;
+                              padding-right: 1rem;
+                              height: 30%;
+                              .addressStyle {
+                                    color: #3c3c3c;
+                                    text-align: right;
+                                    font-size: 1.4rem;
+                                    font-style: normal;
+                                    font-weight: 600;
+                                    line-height: normal;
+                              }
+                        }
+                        .part2 {
+                              display: flex;
+                              width: 100%;
+                              height: 80%;
+                        }
+                  }
+            }
+      }
+      .footerSection {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 5%;
+            background: #f4f4f4;
+            box-shadow: 0px -2px 6px 0px rgba(0, 0, 0, 0.25);
+            .footerDetails {
+                  color: #000;
+                  text-align: center;
+                  font-family: Inter;
+                  font-size: 7px;
+                  font-style: normal;
+                  font-weight: 400;
+                  line-height: normal;
+            }
+      }
+}

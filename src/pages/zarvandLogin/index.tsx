@@ -2,8 +2,10 @@ import React from "react";
 import { LogInProps } from "./index.interface";
 import './style/index.scss';
 import background from './image 3.png'
+import { useHistory } from 'react-router-dom';
 const ZarvandLogIn: React.FC<LogInProps> = () =>
 {
+      const history = useHistory();
     return <div className="logInSection">
         <div className="dataSection">
             <div className="section1">
@@ -12,14 +14,16 @@ const ZarvandLogIn: React.FC<LogInProps> = () =>
             </div>
             <div className="section2">
                 <div className="inerSec">
-                <p className="textStyle2">لطفا شماره همراه خود را وارد کنید</p>
+                <p className="textStyle2">لطفا کد ملی  خود را وارد کنید.</p>
                 </div>
                 <div className="textBox">
-                    <input type="number" className="inpClass" placeholder="0913..." />
+                    <input type="number" className="inpClass"  maxLength={10} minLength={10}/>
                 </div>
             </div>
             <div className="section3">
-                <button className="buttonStyle">دریافت کد موقت</button>
+                <button className="buttonStyle" onClick={ () => {
+            history.push('/verfication-code');
+          }}>دریافت کد موقت</button>
             </div>
         </div>
     </div>

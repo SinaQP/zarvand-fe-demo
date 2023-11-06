@@ -2,10 +2,19 @@ import React from 'react';
 import { LogInProps } from './index.interface';
 import './style/index.scss';
 import background from './image 3.png';
-const VerificationCode: React.FC<LogInProps> = () => {
+import { useHistory } from 'react-router-dom';
+
+const VerificationCode: React.FC<LogInProps> = () =>
+{
+      
+  const history = useHistory();
+
+
       return (
             <div className="CodeSection">
-                  <button className="back">&gt;</button>
+                  <button className="back" onClick={ () => {
+            history.push('/');
+          }}>&gt;</button>
                   <div className="dataSection">
                         <div className="section1">
                               <img src={require(`${'./LOGO 4.png'}`)} alt="" />
@@ -16,7 +25,7 @@ const VerificationCode: React.FC<LogInProps> = () => {
                         <div className="section2">
                               <div className="inerSec">
                                     <p className="textStyle2">
-                                          لطفا کد ارسال شده را وارد نمایید
+                                          لطفا کد ارسال شده به شماره 535****0913 را وارد نمایید
                                     </p>
                               </div>
                               <div className="codeArea">
@@ -71,15 +80,20 @@ const VerificationCode: React.FC<LogInProps> = () => {
                                           در صورت عدم دریافت کد می‌توانید نسبت
                                           به تغییر شماره همراه خود اقدام کنید
                                     </p>
-                                    <div className="changeNumber">
-                                          <p className="changeNumberP">
+                              </div>
+                        </div>
+                                    <div className="section3" onClick={ () => {
+            history.push('/change-phone-number');
+          }}>
+                                          {/* <a href="/change-phone-number">تغییر شماره تلفن</a> */}
+                                          <p className="changeNumberP" >
                                                 تغییر شماره تلفن
                                           </p>
                                     </div>
-                              </div>
-                        </div>
-                        <div className="section3">
-                              <button className="buttonStyle">ورود</button>
+                        <div className="section4">
+                              <button className="buttonStyle" onClick={ () => {
+            history.push('/subsystem');
+          }}>ورود</button>
                         </div>
                   </div>
             </div>
