@@ -45,7 +45,16 @@ const SubsystemDetais: React.FC<subsystemDetailsProps> = () => {
                                           />
                                           <p className='addressStyle'>بلوار مصلی -کوچه شماره 23-پلاک 3</p>
                                     </div>
-                                    <div className="part2"></div>
+                                    <div className="part2">
+                                          <div className='renovaitionData'>
+                                                <div className="mainTitle">
+                                                      <p className='mainTitleStyle'>شماره شناسنامه ملک</p>
+                                                </div>
+                                                <div className="BoxCard">
+                                                      
+                                                      </div>
+                                          </div>
+                                    </div>
                               </div>
                         </div>
                         <div className="paidBills"></div>
