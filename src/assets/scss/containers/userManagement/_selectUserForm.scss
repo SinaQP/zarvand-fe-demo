@@ -1,0 +1,57 @@
+.userManagement-selectUser-form {
+  display: flex;
+  flex-direction: column;
+  &__main {
+    display: flex;
+    margin-top: 5.6rem;
+  }
+
+  &__uploader {
+    flex: 0.3;
+    display: flex;
+    justify-content: center;
+  }
+  &__selectBox {
+    .MuiAutocomplete-inputRoot {
+      height: 5.6rem;
+    }
+    .MuiInputBase-input {
+      height: 0;
+    }
+  }
+  &__inputs-container {
+    flex: 0.7;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+
+    row-gap: 5rem;
+    justify-items: end;
+  }
+
+  &__input {
+    width: 30.8rem;
+    .MuiInputBase-input {
+      height: 1.7rem;
+    }
+    &--checkbox {
+      .MuiAutocomplete-inputRoot {
+        height: 5.6rem;
+      }
+      .MuiInputBase-input {
+        height: 0;
+      }
+    }
+  }
+
+  &__checkboxes {
+    width: 100%;
+    grid-column: 1/3;
+  }
+
+  .MuiFormGroup-root {
+    display: flex;
+    justify-content: space-between;
+  }
+}

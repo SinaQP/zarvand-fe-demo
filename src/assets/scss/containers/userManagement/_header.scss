@@ -1,0 +1,16 @@
+.userManagement-header {
+      display: flex;
+      align-items: end;
+      margin-right: 2rem;
+
+      &__icon {
+            width: 8.5rem;
+            height: 8.5rem;
+      }
+
+      &__title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+      }
+}

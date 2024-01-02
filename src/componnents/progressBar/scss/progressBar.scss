@@ -1,0 +1,74 @@
+.progress-bar {
+  display: flex;
+  align-items: center;
+  width: 100%;
+
+  direction: ltr;
+
+  &__main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  &__arrow {
+    border: solid #0f3bde;
+    border-width: 0 5px 5px 0;
+    display: inline-block;
+    padding: 5px;
+    margin: 0 4rem;
+
+    cursor: pointer;
+
+    &--previous {
+      transform: rotate(135deg);
+      -webkit-transform: rotate(135deg);
+    }
+
+    &--next {
+      transform: rotate(-45deg);
+      -webkit-transform: rotate(-45deg);
+    }
+  }
+
+  &__option {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-size: 2rem;
+    color: #d9d9d9;
+    background-color: transparent;
+    border: 1px solid #d9d9d9;
+
+    cursor: pointer;
+  }
+  &__option--current {
+    color: #ffffff;
+    background-color: #0f3bde;
+    border: none;
+  }
+
+  &__option--done {
+    color: #0f3bde;
+    background-color: #ffffff;
+    border: 1px solid #0f3bde;
+  }
+
+  &__connect-line {
+    max-width: 21.6rem;
+    min-width: 4rem;
+    width: 20%;
+    height: 6px;
+    background-color: #d9d9d9;
+  }
+
+  &__connect-line--progressed {
+    background-color: #0f3bde;
+  }
+}

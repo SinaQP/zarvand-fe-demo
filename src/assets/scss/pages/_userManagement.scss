@@ -1,0 +1,23 @@
+.userManagement {
+      height: 100vh;
+      position: relative;    
+      &__main {
+            width: 77%;
+            height: calc(100% - 13rem);
+
+            margin: 0 auto;  
+      }
+
+      &__progress-bar {
+            width: 21vw;
+            min-width: 41rem;
+            position: absolute;
+            bottom: 8%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            
+            &--invisible {
+                  visibility: hidden;
+            }
+      }
+}
