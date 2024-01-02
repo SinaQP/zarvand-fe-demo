@@ -1,0 +1,16 @@
+.staticHeader {
+  display: flex;
+  margin: 2rem;
+  gap: 3rem;
+  align-items: flex-end;
+  .searchLogo {
+    width: 5.9rem;
+    height: auto;
+  }
+  .searchTitle {
+    font-family: 'Vazirmatn';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+  }
+}

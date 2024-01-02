@@ -14,7 +14,7 @@ $grid-breakpoints: (
   md: 768px,
   lg: 992px,
   xl: 1200px,
-  xxl: 1400px
+  xxl: 1400px,
 ) !default;
 
 $container-max-widths: (
@@ -22,15 +22,13 @@ $container-max-widths: (
   md: 720px,
   lg: 960px,
   xl: 1140px,
-  xxl: 1320px
+  xxl: 1320px,
 ) !default;
 
-$enable-grid-classes:         true !default;
-$grid-gutter-width:           1.5rem !default;
-$variable-prefix:             bs- !default;
-$grid-columns:                12 !default;
-$grid-row-columns:            6 !default;
+$enable-grid-classes: true !default;
+$grid-gutter-width: 1.5rem !default;
+$variable-prefix: bs- !default;
+$grid-columns: 12 !default;
+$grid-row-columns: 6 !default;
 
 $direction: rtl;
-
-

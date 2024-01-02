@@ -1,0 +1,24 @@
+.crossover,
+.theAmountOfAgentsAndSalesAgents,
+.regionalAverage {
+  &.outerTableContainer {
+    width: 100%;
+    height: calc(100% - 13rem);
+    overflow: hidden;
+  }
+  &.topSection {
+    display: flex;
+    height: 12rem;
+    justify-content: flex-start;
+    align-items: flex-end;
+    gap: 5rem;
+    margin-right: 2rem;
+    margin-bottom: 2rem;
+    .selectBoxStyle {
+      width: 30.8rem;
+    }
+    .inputStyle {
+      width: 30.8rem;
+    }
+  }
+}

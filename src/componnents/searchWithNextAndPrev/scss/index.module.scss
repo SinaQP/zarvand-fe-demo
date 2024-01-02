@@ -1,0 +1,40 @@
+.mainSearchWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  &.disabled {
+    color: gray !important;
+    * {
+      cursor: not-allowed !important;
+    }
+  }
+  .paginationContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    .pagination {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .disabled {
+        color: gray !important;
+      }
+      & > span {
+        font-size: 1.4rem !important;
+        word-break: break-all;
+        padding: 0.5rem;
+      }
+      & > span:not(:nth-child(2)) {
+        font-size: 2rem !important;
+        font-weight: 600;
+        cursor: pointer;
+      }
+    }
+  }
+  img {
+    width: 6.6rem;
+    cursor: pointer;
+  }
+}

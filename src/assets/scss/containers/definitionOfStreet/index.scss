@@ -1,0 +1,43 @@
+.definitionOfStreetModalWrapper {
+  position: relative;
+  width: 80vw;
+  height: 80vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding: 4rem 0;
+  hr {
+    position: absolute;
+    top: 3rem;
+    width: 100%;
+    border: 0.2rem solid #0f3bde;
+  }
+  .coefficientTitle {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 4rem;
+    gap: 1.5rem;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%);
+    background-color: #fff;
+    z-index: 1;
+    font-size: 2.4rem;
+    font-weight: 700;
+    padding: 0 1.5rem;
+    overflow: hidden;
+    & > img {
+      width: 3.5rem;
+      height: 3.5rem;
+    }
+  }
+  &.outerTableContainer {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    margin-bottom: 3rem;
+  }
+}
