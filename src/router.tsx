@@ -7,7 +7,8 @@ import VerificationCode from './pages/Mobile/verificationCode';
 import ChangePhoneNumber from './pages/Mobile/changeNumber';
 import ZarvandSubsystem from './pages/Mobile/subsystem';
 import SubsystemDetais from './pages/Mobile/subsystemDetails';
-import Login from './pages/Desktop/login';
+import Login from './pages/desktop/login';
+import Welcome from './pages/desktop/welcome';
 
 /**
  * Router Container
@@ -20,7 +21,8 @@ function Router() {
                   <Route path="/change-phone-number" exact component={ ChangePhoneNumber } />
                   <Route path="/subsystem" exact component={ ZarvandSubsystem } />
                   <Route path="/subsystem-info" exact component={ SubsystemDetais } />
-                  <Route path="/Login-Desktop" exact component={Login} />
+                  <Route path="/login-desktop" exact component={Login} />
+                  <Route path="/welcome" exact component={Welcome} />
                   
             </BrowserRouter>
       );

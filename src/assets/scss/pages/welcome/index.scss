@@ -1,0 +1,28 @@
+.welcome {
+      display: flex;
+      flex-direction: column;
+
+      &__information {
+            display: flex;
+            flex-direction: column;
+            margin-top: 8.7vh;
+            margin-right: 11.5rem;
+            span:first-of-type {
+                  font-weight: 700;
+                  margin-top: 0;
+            }
+            span {
+                  font-family: Kalameh;
+                  font-size: 3.2rem;
+                  font-weight: 500;
+                  color: white;
+                  margin-top: 2rem;
+            }
+      }
+
+      &__button {
+            font-family: Kalameh;
+            font-size: 3.6rem;
+            font-weight: 500;
+      }
+}

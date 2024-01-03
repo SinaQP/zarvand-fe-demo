@@ -1,7 +1,8 @@
-import { ReactElement } from 'react';
+import { ReactNode } from 'react';
 
 interface Props {
-      children: ReactElement | ReactElement[];
+      children: ReactNode;
+      className?: string;
 }
 
 export default Props;
