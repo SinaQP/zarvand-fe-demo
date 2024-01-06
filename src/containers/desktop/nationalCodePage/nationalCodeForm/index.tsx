@@ -11,9 +11,14 @@ const NationalCodeForm = () => {
                         tabIndex={10}
                         maxLength={1}
                         id="national-code-10"
+                        autoComplete="off"
                         onFocus={(event) => inputOnFocus(event)}
-                        onKeyDown={(event) => {
-                              moveToPriviousInput(event, 'national-code-9');
+                        onKeyUp={(event) => {
+                              moveToPriviousInput(
+                                    event,
+                                    'national-code-9',
+                                    true,
+                              );
                         }}
                   />
                   <Input
@@ -21,11 +26,10 @@ const NationalCodeForm = () => {
                         tabIndex={9}
                         maxLength={1}
                         id="national-code-9"
+                        autoComplete="off"
                         onFocus={(event) => inputOnFocus(event)}
-                        onKeyUp={(event) =>
-                              moveToNextInput(event, 'national-code-10')
-                        }
-                        onKeyDown={(event) => {
+                        onKeyUp={(event) => {
+                              moveToNextInput(event, 'national-code-10');
                               moveToPriviousInput(event, 'national-code-8');
                         }}
                   />
@@ -34,11 +38,10 @@ const NationalCodeForm = () => {
                         tabIndex={8}
                         maxLength={1}
                         id="national-code-8"
+                        autoComplete="off"
                         onFocus={(event) => inputOnFocus(event)}
-                        onKeyUp={(event) =>
-                              moveToNextInput(event, 'national-code-9')
-                        }
-                        onKeyDown={(event) => {
+                        onKeyUp={(event) => {
+                              moveToNextInput(event, 'national-code-9');
                               moveToPriviousInput(event, 'national-code-7');
                         }}
                   />
@@ -47,11 +50,10 @@ const NationalCodeForm = () => {
                         tabIndex={7}
                         maxLength={1}
                         id="national-code-7"
+                        autoComplete="off"
                         onFocus={(event) => inputOnFocus(event)}
-                        onKeyUp={(event) =>
-                              moveToNextInput(event, 'national-code-8')
-                        }
-                        onKeyDown={(event) => {
+                        onKeyUp={(event) => {
+                              moveToNextInput(event, 'national-code-8');
                               moveToPriviousInput(event, 'national-code-6');
                         }}
                   />
@@ -60,11 +62,10 @@ const NationalCodeForm = () => {
                         tabIndex={6}
                         maxLength={1}
                         id="national-code-6"
+                        autoComplete="off"
                         onFocus={(event) => inputOnFocus(event)}
-                        onKeyUp={(event) =>
-                              moveToNextInput(event, 'national-code-7')
-                        }
-                        onKeyDown={(event) => {
+                        onKeyUp={(event) => {
+                              moveToNextInput(event, 'national-code-7');
                               moveToPriviousInput(event, 'national-code-5');
                         }}
                   />
@@ -73,11 +74,10 @@ const NationalCodeForm = () => {
                         tabIndex={5}
                         maxLength={1}
                         id="national-code-5"
+                        autoComplete="off"
                         onFocus={(event) => inputOnFocus(event)}
-                        onKeyUp={(event) =>
-                              moveToNextInput(event, 'national-code-6')
-                        }
-                        onKeyDown={(event) => {
+                        onKeyUp={(event) => {
+                              moveToNextInput(event, 'national-code-6');
                               moveToPriviousInput(event, 'national-code-4');
                         }}
                   />
@@ -86,11 +86,10 @@ const NationalCodeForm = () => {
                         tabIndex={4}
                         maxLength={1}
                         id="national-code-4"
+                        autoComplete="off"
                         onFocus={(event) => inputOnFocus(event)}
-                        onKeyUp={(event) =>
-                              moveToNextInput(event, 'national-code-5')
-                        }
-                        onKeyDown={(event) => {
+                        onKeyUp={(event) => {
+                              moveToNextInput(event, 'national-code-5');
                               moveToPriviousInput(event, 'national-code-3');
                         }}
                   />
@@ -99,11 +98,10 @@ const NationalCodeForm = () => {
                         tabIndex={3}
                         maxLength={1}
                         id="national-code-3"
+                        autoComplete="off"
                         onFocus={(event) => inputOnFocus(event)}
-                        onKeyUp={(event) =>
-                              moveToNextInput(event, 'national-code-4')
-                        }
-                        onKeyDown={(event) => {
+                        onKeyUp={(event) => {
+                              moveToNextInput(event, 'national-code-4');
                               moveToPriviousInput(event, 'national-code-2');
                         }}
                   />
@@ -112,11 +110,10 @@ const NationalCodeForm = () => {
                         tabIndex={2}
                         maxLength={1}
                         id="national-code-2"
+                        autoComplete="off"
                         onFocus={(event) => inputOnFocus(event)}
-                        onKeyUp={(event) =>
-                              moveToNextInput(event, 'national-code-3')
-                        }
-                        onKeyDown={(event) => {
+                        onKeyUp={(event) => {
+                              moveToNextInput(event, 'national-code-3');
                               moveToPriviousInput(event, 'national-code-1');
                         }}
                   />
@@ -125,6 +122,7 @@ const NationalCodeForm = () => {
                         tabIndex={1}
                         maxLength={1}
                         id="national-code-1"
+                        autoComplete="off"
                         onFocus={(event) => inputOnFocus(event)}
                         onKeyUp={(event) =>
                               moveToNextInput(event, 'national-code-2')

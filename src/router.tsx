@@ -9,23 +9,28 @@ import ZarvandSubsystem from './pages/Mobile/subsystem';
 import SubsystemDetais from './pages/Mobile/subsystemDetails';
 import Login from './pages/desktop/login';
 import Welcome from './pages/desktop/welcome';
+import RenewalCharges from './pages/desktop/renewalCharges';
 
 /**
  * Router Container
  */
 function Router() {
-      return (
-            <BrowserRouter>
-                  <Route path="/" exact component={ ZarvandLogIn } />
-                  <Route path="/verfication-code" exact component={ VerificationCode } />
-                  <Route path="/change-phone-number" exact component={ ChangePhoneNumber } />
-                  <Route path="/subsystem" exact component={ ZarvandSubsystem } />
-                  <Route path="/subsystem-info" exact component={ SubsystemDetais } />
-                  <Route path="/login-desktop" exact component={Login} />
-                  <Route path="/welcome" exact component={Welcome} />
-                  
-            </BrowserRouter>
-      );
+   return (
+      <BrowserRouter>
+         <Route path="/" exact component={ZarvandLogIn} />
+         <Route path="/verfication-code" exact component={VerificationCode} />
+         <Route
+            path="/change-phone-number"
+            exact
+            component={ChangePhoneNumber}
+         />
+         <Route path="/subsystem" exact component={ZarvandSubsystem} />
+         <Route path="/subsystem-info" exact component={SubsystemDetais} />
+         <Route path="/login-desktop" exact component={Login} />
+         <Route path="/welcome" exact component={Welcome} />
+         <Route path="/renewal-charges" exact component={RenewalCharges} />
+      </BrowserRouter>
+   );
 }
 
 export default Router;
