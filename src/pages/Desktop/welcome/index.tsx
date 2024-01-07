@@ -17,7 +17,7 @@ const Welcome = () => {
 
             <div className="welcome__buttons">
                <Button className="welcome__button welcome__button--outline">
-                  <Link to="">عوارض نوسازی</Link>
+                  <Link to="renewal-charges">عوارض نوسازی</Link>
                </Button>
                <Button className="welcome__button welcome__button--active">
                   <Link to="">عوارض کسب پیشه</Link>
