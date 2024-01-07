@@ -1,0 +1,36 @@
+.slider {
+      flex: 0.5;
+      display: flex;
+
+      overflow-x: hidden;
+      &__slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            img {
+                  width: 30rem;
+                  height: 30rem;
+            }
+
+            span:first-of-type {
+                  margin-top: 12rem;
+            }
+            span {
+                  font-family: Kalameh;
+                  font-size: 2.4rem;
+                  font-weight: 600;
+                  color: white;
+                  margin-top: 2.7rem;
+            }
+            transform: translateX(-100%);
+            transition: transform 1000ms ease-in-out;
+      }
+      &__slide:first-child {
+            transform: translateX(0%);
+
+      }
+      
+}

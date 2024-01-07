@@ -1,3 +1,16 @@
+$media-query-breakpoints: (  
+  "medium": 1024px,
+  "large": 1440px,
+  "extra-large": 1920px
+);
+
+@mixin media-query($breakpoint) {
+  $max-width: map-get($media-query-breakpoints, $breakpoint);
+  @media (max-width: $max-width) {
+    @content;
+  }
+}
+
 // Breakpoint viewport sizes and media queries.
 //
 // Breakpoints are defined as a map of (name: minimum width), order from small to large:

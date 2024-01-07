@@ -26,7 +26,7 @@
             "web-vitals": "^2.1.4"
       },
       "scripts": {
-            "start": "cp ./src/.env.dev ./src/.env && react-scripts --openssl-legacy-provider start",
+            "start": "react-scripts --openssl-legacy-provider start",
             "build": "cp ./src/.env.pro ./src/.env && react-scripts --openssl-legacy-provider build",
             "test": "react-scripts --openssl-legacy-provider test",
             "eject": "react-scripts --openssl-legacy-provider eject",
@@ -51,6 +51,7 @@
             ]
       },
       "devDependencies": {
+            "@types/react-slick": "^0.23.13",
             "coverage": "^0.4.1",
             "sass": "^1.58.0",
             "sass-loader": "^13.2.0",
