@@ -3,6 +3,7 @@ import Button from '../../button';
 import Props from './props.interface';
 import ContainerCard from '../../../../componnents/containerCard';
 import Input from '../../input';
+import Fieldset from '../../fieldset';
 
 const Card: FC<Props> = ({ isPayed = false }) => {
    const [inp, setInp] = useState<string[]>(['', '', '', '', '']);
@@ -31,71 +32,76 @@ const Card: FC<Props> = ({ isPayed = false }) => {
             title="شماره شناسنامه ملک"
          >
             <section className={`SSNNumberStyle_firstSection`}>
-               <Input
+               <Fieldset
                   label="فرعی"
-                  value={inp[0]}
-                  className="card__input"
-                  onChange={(event) =>
-                     setInp((prevState) => {
-                        let value = [...prevState];
-                        value[0] = event.target.value;
-                        return value;
-                     })
-                  }
-                  maxLength={3}
-               ></Input>
-               <Input
+                  inputProps={{
+                     value: inp[0],
+                     className: 'card__input',
+                     maxLength: 3,
+                     onChange: (event) =>
+                        setInp((prevState) => {
+                           let value = [...prevState];
+                           value[0] = event.target.value;
+                           return value;
+                        }),
+                  }}
+               />
+               <Fieldset
                   label="ملک"
-                  value={inp[1]}
-                  maxLength={4}
-                  className="card__input"
-                  onChange={(event) =>
-                     setInp((prevState) => {
-                        let value = [...prevState];
-                        value[1] = event.target.value;
-                        return value;
-                     })
-                  }
-               ></Input>
-               <Input
+                  inputProps={{
+                     value: inp[1],
+                     maxLength: 4,
+                     className: 'card__input',
+                     onChange: (event) =>
+                        setInp((prevState) => {
+                           let value = [...prevState];
+                           value[1] = event.target.value;
+                           return value;
+                        }),
+                  }}
+               />
+               <Fieldset
                   label="بلوک"
-                  value={inp[2]}
-                  maxLength={7}
-                  className="card__input"
-                  onChange={(event) =>
-                     setInp((prevState) => {
-                        let value = [...prevState];
-                        value[2] = event.target.value;
-                        return value;
-                     })
-                  }
-               ></Input>
-               <Input
+                  inputProps={{
+                     value: inp[2],
+                     maxLength: 7,
+                     className: 'card__input',
+                     onChange: (event) =>
+                        setInp((prevState) => {
+                           let value = [...prevState];
+                           value[2] = event.target.value;
+                           return value;
+                        }),
+                  }}
+               />
+               <Fieldset
                   label="محله"
-                  value={inp[3]}
-                  maxLength={2}
-                  className="card__input"
-                  onChange={(event) =>
-                     setInp((prevState) => {
-                        let value = [...prevState];
-                        value[3] = event.target.value;
-                        return value;
-                     })
-                  }
-               ></Input>
-               <Input
-                  maxLength={3}
+                  inputProps={{
+                     value: inp[3],
+                     maxLength: 2,
+                     className: 'card__input',
+                     onChange: (event) =>
+                        setInp((prevState) => {
+                           let value = [...prevState];
+                           value[3] = event.target.value;
+                           return value;
+                        }),
+                  }}
+               />
+               <Fieldset
                   label="منطقه"
-                  value={inp[4]}
-                  className="card__input"
-                  onChange={(event) =>
-                     setInp((prevState) => {
-                        let value = [...prevState];
-                        value[4] = event.target.value;
-                        return value;
-                     })
-                  }
-               ></Input>
+                  inputProps={{
+                     maxLength: 3,
+                     value: inp[4],
+                     className: 'card__input',
+                     onChange: (event) =>
+                        setInp((prevState) => {
+                           let value = [...prevState];
+                           value[4] = event.target.value;
+                           return value;
+                        }),
+                  }}
+               />
             </section>
             <section className={`SSNNumberStyle_secondSection`}>
                <span>{inp[0].length ? inp[0] : '---'}</span>/
