@@ -1,9 +1,12 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import Button from '../../button';
-import Input from '../../input';
 import Props from './props.interface';
+import ContainerCard from '../../../../componnents/containerCard';
+import Input from '../../input';
 
 const Card: FC<Props> = ({ isPayed = false }) => {
+   const [inp, setInp] = useState<string[]>(['', '', '', '', '']);
+
    return (
       <div className={`card ${isPayed && 'card--payed'}`}>
          <div className="card__header">
@@ -22,10 +25,89 @@ const Card: FC<Props> = ({ isPayed = false }) => {
 
             <h3>خیابان مطهری -کوچه شماره 56 -پلاک 13 </h3>
          </div>
-         <Input className="card__input" />
+         <ContainerCard
+            className={`SSNNumberStyle card__input-wrapper`}
+            isInner={true}
+            title="شماره شناسنامه ملک"
+         >
+            <section className={`SSNNumberStyle_firstSection`}>
+               <Input
+                  label="فرعی"
+                  value={inp[0]}
+                  className="card__input"
+                  onChange={(event) =>
+                     setInp((prevState) => {
+                        let value = [...prevState];
+                        value[0] = event.target.value;
+                        return value;
+                     })
+                  }
+                  maxLength={3}
+               ></Input>
+               <Input
+                  label="ملک"
+                  value={inp[1]}
+                  maxLength={4}
+                  className="card__input"
+                  onChange={(event) =>
+                     setInp((prevState) => {
+                        let value = [...prevState];
+                        value[1] = event.target.value;
+                        return value;
+                     })
+                  }
+               ></Input>
+               <Input
+                  label="بلوک"
+                  value={inp[2]}
+                  maxLength={7}
+                  className="card__input"
+                  onChange={(event) =>
+                     setInp((prevState) => {
+                        let value = [...prevState];
+                        value[2] = event.target.value;
+                        return value;
+                     })
+                  }
+               ></Input>
+               <Input
+                  label="محله"
+                  value={inp[3]}
+                  maxLength={2}
+                  className="card__input"
+                  onChange={(event) =>
+                     setInp((prevState) => {
+                        let value = [...prevState];
+                        value[3] = event.target.value;
+                        return value;
+                     })
+                  }
+               ></Input>
+               <Input
+                  maxLength={3}
+                  label="منطقه"
+                  value={inp[4]}
+                  className="card__input"
+                  onChange={(event) =>
+                     setInp((prevState) => {
+                        let value = [...prevState];
+                        value[4] = event.target.value;
+                        return value;
+                     })
+                  }
+               ></Input>
+            </section>
+            <section className={`SSNNumberStyle_secondSection`}>
+               <span>{inp[0].length ? inp[0] : '---'}</span>/
+               <span>{inp[1].length ? inp[1] : '----'}</span>/
+               <span>{inp[2].length ? inp[2] : '-------'}</span>/
+               <span>{inp[3].length ? inp[3] : '--'}</span>/
+               <span>{inp[4].length ? inp[4] : '---'}</span>
+            </section>
+         </ContainerCard>
 
          {isPayed ? (
-            <span className='card__caption'>پرداخت شده</span>
+            <span className="card__caption">پرداخت شده</span>
          ) : (
             <Button className="card__button">مشاهده جزئیات قبض</Button>
          )}
