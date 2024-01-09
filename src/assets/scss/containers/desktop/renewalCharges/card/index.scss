@@ -71,9 +71,11 @@
       .card__button {
          background: black;
       }
-      .card__input-wrapper,
-      .card__input {
-         border-color: #e3fe55;
+      .card__property-number--payed {
+         border: 1px solid #e3fe55;
+         .SSNNumberStyle__fieldset {
+            border: 1px solid #e3fe55;
+         }
       }
    }
 

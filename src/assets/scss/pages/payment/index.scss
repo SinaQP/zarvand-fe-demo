@@ -1,0 +1,38 @@
+.payment {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   &__header {
+      display: flex;
+      justify-content: space-between;
+      width: 95rem;
+      border: 1px solid #e3fe55;
+      border-radius: 7rem;
+      padding: 2rem 10rem 3rem 2.6rem;
+      margin-top: 6.2rem;
+   }
+
+   &__info-colume {
+      display: flex;
+      flex-direction: column;
+      h4 {
+         font-family: Kalameh;
+         font-size: 1.6rem;
+         font-weight: 600;
+         color: #e3fe55;
+      }
+
+      span {
+         font-family: Kalameh;
+         font-size: 2.4rem;
+         font-weight: 600;
+         color: white;
+      }
+      &:first-of-type,
+      &:last-of-type {
+         h4 {
+            margin-right: -6rem;
+         }
+      }
+   }
+}

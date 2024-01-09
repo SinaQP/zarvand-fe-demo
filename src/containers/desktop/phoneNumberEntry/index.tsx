@@ -1,4 +1,4 @@
-import Input from '../input';
+import Input from '../../../componnents/input';
 import Button from '../button';
 import Slider from './slider';
 import { FC, useContext } from 'react';

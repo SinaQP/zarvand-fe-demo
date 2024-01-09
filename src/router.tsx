@@ -10,6 +10,7 @@ import SubsystemDetais from './pages/Mobile/subsystemDetails';
 import Login from './pages/desktop/login';
 import Welcome from './pages/desktop/welcome';
 import RenewalCharges from './pages/desktop/renewalCharges';
+import Payment from './pages/desktop/payment';
 
 /**
  * Router Container
@@ -28,7 +29,8 @@ function Router() {
          <Route path="/subsystem-info" exact component={SubsystemDetais} />
          <Route path="/login-desktop" exact component={Login} />
          <Route path="/welcome" exact component={Welcome} />
-         <Route path="/renewal-charges" exact component={RenewalCharges} />
+         <Route path="/charges" exact component={RenewalCharges} />
+         <Route path="/payment" exact component={Payment} />
       </BrowserRouter>
    );
 }

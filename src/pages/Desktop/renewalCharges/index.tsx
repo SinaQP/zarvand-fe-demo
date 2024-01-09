@@ -1,11 +1,7 @@
-import { useState } from 'react';
-import ContainerCard from '../../../componnents/containerCard';
-import Input from '../../../componnents/input';
 import Layout from '../../../containers/desktop/layout';
 import Card from '../../../containers/desktop/renwalCharges/card';
 
 const RenewalCharges = () => {
-
    return (
       <Layout>
          <div className="renwal-charges">
@@ -15,13 +11,13 @@ const RenewalCharges = () => {
             </p>
 
             <section className="renwal-charges__cards">
-               <Card isPayed />
+               <Card isPayed className='renwal-charges__card--active'/>
                <Card />
                <Card />
                <Card />
                <Card />
                <Card />
-          
+
                {/* <Card />
                <Card /> */}
             </section>

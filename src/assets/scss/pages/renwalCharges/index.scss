@@ -5,17 +5,7 @@
    display: flex;
    flex-direction: column;
    overflow-y: scroll;
-   .SSNNumberStyle {
-      flex-direction: column;
-      padding: 1.5rem;
-      &_firstSection,
-      &_secondSection {
-         display: flex;
-      }
-      label {
-         font-size: 1.3rem !important;
-      }
-   }
+
    p:first-child {
       font-family: Kalameh;
       font-size: 2.4rem;

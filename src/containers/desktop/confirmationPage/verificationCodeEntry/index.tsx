@@ -1,5 +1,5 @@
 import { FC, useContext } from 'react';
-import Input from '../../input';
+import Input from '../../../../componnents/input';
 import Button from '../../button';
 import moveToNextInput from './moveToNextInput';
 import inputOnFocus from './inputOnFocus';

@@ -1,15 +1,18 @@
 import { FC, useState } from 'react';
 import Button from '../../button';
 import Props from './props.interface';
-import ContainerCard from '../../../../componnents/containerCard';
-import Input from '../../input';
-import Fieldset from '../../fieldset';
+import PropertyNumberInput from '../../../../componnents/propertyNumberInput';
 
-const Card: FC<Props> = ({ isPayed = false }) => {
-   const [inp, setInp] = useState<string[]>(['', '', '', '', '']);
-
+const Card: FC<Props> = ({ isPayed = false, className = '' }) => {
+   const [propertyNumber, setPropertyNumber] = useState<string[]>([
+      '',
+      '',
+      '',
+      '',
+      '',
+   ]);
    return (
-      <div className={`card ${isPayed && 'card--payed'}`}>
+      <div className={`card ${isPayed && 'card--payed'} ${className}`}>
          <div className="card__header">
             <svg
                width="30"
@@ -26,91 +29,7 @@ const Card: FC<Props> = ({ isPayed = false }) => {
 
             <h3>خیابان مطهری -کوچه شماره 56 -پلاک 13 </h3>
          </div>
-         <ContainerCard
-            className={`SSNNumberStyle card__input-wrapper`}
-            isInner={true}
-            title="شماره شناسنامه ملک"
-         >
-            <section className={`SSNNumberStyle_firstSection`}>
-               <Fieldset
-                  label="فرعی"
-                  inputProps={{
-                     value: inp[0],
-                     className: 'card__input',
-                     maxLength: 3,
-                     onChange: (event) =>
-                        setInp((prevState) => {
-                           let value = [...prevState];
-                           value[0] = event.target.value;
-                           return value;
-                        }),
-                  }}
-               />
-               <Fieldset
-                  label="ملک"
-                  inputProps={{
-                     value: inp[1],
-                     maxLength: 4,
-                     className: 'card__input',
-                     onChange: (event) =>
-                        setInp((prevState) => {
-                           let value = [...prevState];
-                           value[1] = event.target.value;
-                           return value;
-                        }),
-                  }}
-               />
-               <Fieldset
-                  label="بلوک"
-                  inputProps={{
-                     value: inp[2],
-                     maxLength: 7,
-                     className: 'card__input',
-                     onChange: (event) =>
-                        setInp((prevState) => {
-                           let value = [...prevState];
-                           value[2] = event.target.value;
-                           return value;
-                        }),
-                  }}
-               />
-               <Fieldset
-                  label="محله"
-                  inputProps={{
-                     value: inp[3],
-                     maxLength: 2,
-                     className: 'card__input',
-                     onChange: (event) =>
-                        setInp((prevState) => {
-                           let value = [...prevState];
-                           value[3] = event.target.value;
-                           return value;
-                        }),
-                  }}
-               />
-               <Fieldset
-                  label="منطقه"
-                  inputProps={{
-                     maxLength: 3,
-                     value: inp[4],
-                     className: 'card__input',
-                     onChange: (event) =>
-                        setInp((prevState) => {
-                           let value = [...prevState];
-                           value[4] = event.target.value;
-                           return value;
-                        }),
-                  }}
-               />
-            </section>
-            <section className={`SSNNumberStyle_secondSection`}>
-               <span>{inp[0].length ? inp[0] : '---'}</span>/
-               <span>{inp[1].length ? inp[1] : '----'}</span>/
-               <span>{inp[2].length ? inp[2] : '-------'}</span>/
-               <span>{inp[3].length ? inp[3] : '--'}</span>/
-               <span>{inp[4].length ? inp[4] : '---'}</span>
-            </section>
-         </ContainerCard>
+         <PropertyNumberInput inp={propertyNumber} setInp={setPropertyNumber} className={`${isPayed && "card__property-number--payed"}`}/>
 
          {isPayed ? (
             <span className="card__caption">پرداخت شده</span>

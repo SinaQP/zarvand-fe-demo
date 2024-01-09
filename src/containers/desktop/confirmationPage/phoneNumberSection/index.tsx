@@ -1,5 +1,5 @@
 import { FC, useContext } from 'react';
-import Input from '../../input';
+import Input from '../../../../componnents/input';
 import { LoginContext } from '../../../../pages/desktop/login/context';
 import LoginStage from '../../../../pages/desktop/login/loginStageEnum';
 import Swal from 'sweetalert2';
