@@ -4,25 +4,26 @@ import { LoginContext } from '../../../../pages/desktop/login/context';
 import LoginStage from '../../../../pages/desktop/login/loginStageEnum';
 import handleResendCodeClick from './handleResendCodeClick';
 
-const PhoneNumberSection: FC = () => {
+const NationalCodeSection: FC = () => {
    const { nationalCode, setLoginStage } =
       useContext(LoginContext);
+
    return (
-      <section className="phone-number-section">
-         <span className="phone-number-section__title">
-            شماره همراه وارد شده
+      <section className="national-code-section">
+         <span className="national-code-section__title">
+            کدملی وارد شده
          </span>
          <Input
             value={nationalCode.join('')}
             disabled
-            className="phone-number-section__input"
+            className="national-code-section__input"
          />
-         <div className="phone-number-section__caption">
+         <div className="national-code-section__caption">
             <span
-               className="phone-number-section__edit-phone-number"
+               className="national-code-section__edit-national-code"
                onClick={() => setLoginStage(LoginStage.NationalCodeEntry)}
             >
-               ویرایش شماره تلفن
+               ویرایش کدملی
             </span>
             <span onClick={() => handleResendCodeClick()}>ارسال مجدد کد</span>
          </div>
@@ -30,4 +31,4 @@ const PhoneNumberSection: FC = () => {
    );
 };
 
-export default PhoneNumberSection;
+export default NationalCodeSection;

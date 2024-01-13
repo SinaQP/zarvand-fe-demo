@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import PhoneNumberSection from './phoneNumberSection';
+import PhoneNumberSection from './nationalCodeSection';
 import VerificationCodeEntry from './verificationCodeEntry';
 
 const ConfirmationPage: FC = () => {
