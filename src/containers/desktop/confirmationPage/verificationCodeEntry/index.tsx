@@ -82,7 +82,7 @@ const VerificationCodeEntry: FC = () => {
             </div>
             <Button
                className="verification-code-entry__submit-button"
-               onClick={() => setLoginStage(LoginStage.NationalCodePage)}
+               onClick={() => setLoginStage(LoginStage.ConfirmationPage)}
             >
                تائید
             </Button>

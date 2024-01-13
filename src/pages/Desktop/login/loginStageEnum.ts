@@ -1,6 +1,5 @@
 enum LoginStage {
-      PhoneNumberEntry,
-      ConfirmationPage,
-      NationalCodePage
+      NationalCodeEntry,
+      ConfirmationPage,      
 }
 export default LoginStage;
