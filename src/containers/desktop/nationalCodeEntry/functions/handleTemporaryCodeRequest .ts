@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction, MouseEvent } from 'react';
 import LoginStage from '../../../../pages/desktop/login/loginStageEnum';
 import Swal from 'sweetalert2';
+import { sendVerificationCode } from '../../../../apis/login/send-verification-code';
 
 interface Props {
    event: MouseEvent<HTMLButtonElement>;
@@ -12,6 +13,8 @@ const handleTemporaryCodeRequest = ({
    setLoginStage,
    phoneNumber,
 }: Props) => {
+   const response = sendVerificationCode({ national_code: '2981532571' });
+   console.log(response);
    // let isFormValid = true;
    // if (phoneNumber.length !== 11) {
    //       const Toast = Swal.mixin({
