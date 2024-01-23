@@ -1,0 +1,23 @@
+import { Fetch } from '../fetch';
+import { FetchResult } from '../fetch.interface';
+
+export async function validateSmsCode(body: {
+   national_code: string;
+   code: string;
+}): Promise<any> {
+   try {
+      const url: string =
+         process.env.REACT_APP_BACKEND + `/zarvand/validate-sms-code/`;
+
+      const result: FetchResult = await Fetch(url, {
+         method: 'POST',
+         headers: {
+            'Content-Type': 'application/json',
+         },
+         body: JSON.stringify(body),
+      });
+      return result;
+   } catch (error) {
+      return error;
+   }
+}
