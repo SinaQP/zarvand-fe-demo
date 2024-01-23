@@ -1,6 +1,6 @@
 // node libraries
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route } from 'react-router-dom';
 // pages
 import ZarvandLogIn from './pages/Mobile/zarvandLogin';
 import VerificationCode from './pages/Mobile/verificationCode';
@@ -16,18 +16,41 @@ import Payment from './pages/desktop/payment';
  * Router Container
  */
 function Router() {
+   const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
    return (
       <BrowserRouter>
-         <Route path="/" exact component={ZarvandLogIn} />
-         <Route path="/verfication-code" exact component={VerificationCode} />
-         <Route
-            path="/change-phone-number"
-            exact
-            component={ChangePhoneNumber}
-         />
-         <Route path="/subsystem" exact component={ZarvandSubsystem} />
-         <Route path="/subsystem-info" exact component={SubsystemDetais} />
+         <Route path="/" exact>
+            {isMobile ? (
+               <Redirect to="/login-mobile" />
+            ) : (
+               <Redirect to="/login-desktop" />
+            )}
+         </Route>
+         <Route path="/login-mobile" exact component={ZarvandLogIn} />
          <Route path="/login-desktop" exact component={Login} />
+
+         {isMobile && (
+            <>
+               <Route
+                  path="/verfication-code"
+                  exact
+                  component={VerificationCode}
+               />
+               <Route
+                  path="/change-phone-number"
+                  exact
+                  component={ChangePhoneNumber}
+               />
+               <Route path="/subsystem" exact component={ZarvandSubsystem} />
+               <Route
+                  path="/subsystem-info"
+                  exact
+                  component={SubsystemDetais}
+               />
+            </>
+         )}
+
          <Route path="/welcome" exact component={Welcome} />
          <Route path="/charges" exact component={RenewalCharges} />
          <Route path="/payment" exact component={Payment} />
