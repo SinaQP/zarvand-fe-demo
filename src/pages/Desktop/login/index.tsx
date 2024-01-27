@@ -9,24 +9,18 @@ const Login = () => {
    const [currentStage, setLoginStage] = useState<LoginStage>(
       LoginStage.NationalCodeEntry,
    );
-   const [nationalCode, setNationalCode] = useState<
-      [
-         string,
-         string,
-         string,
-         string,
-         string,
-         string,
-         string,
-         string,
-         string,
-         string,
-      ]
-   >(['', '', '', '', '', '', '', '', '', '']);
+   const [nationalCode, setNationalCode] = useState<string>('         ');
+   const [phoneNumber, setPhoneNumber] = useState<string>('');
 
    return (
       <LoginContext.Provider
-         value={{ setLoginStage, setNationalCode, nationalCode }}
+         value={{
+            setLoginStage,
+            setNationalCode,
+            nationalCode,
+            phoneNumber,
+            setPhoneNumber,
+         }}
       >
          <Layout>
             {currentStage === LoginStage.NationalCodeEntry ? (

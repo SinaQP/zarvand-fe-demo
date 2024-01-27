@@ -51,7 +51,7 @@ function Router() {
             </>
          )}
 
-         <Route path="/welcome" exact component={Welcome} />
+         <Route path="/subsystem" exact component={Welcome} />
          <Route path="/charges" exact component={RenewalCharges} />
          <Route path="/payment" exact component={Payment} />
       </BrowserRouter>

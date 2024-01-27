@@ -1,18 +1,25 @@
-import { FC, useState } from 'react';
+import { FC, useContext, useState } from 'react';
 import Button from '../../button';
 import Props from './props.interface';
 import PropertyNumberInput from '../../../../componnents/propertyNumberInput';
+import { useHistory } from 'react-router-dom';
+import handleChargeDetailButton from './handleChargeDetailButton';
+import { AppContext } from '../../../../App.context';
 
-const Card: FC<Props> = ({ isPayed = false, className = '' }) => {
+const Card: FC<Props> = ({ className = '', renovation }) => {
    const [propertyNumber, setPropertyNumber] = useState<string[]>([
-      '',
-      '',
-      '',
-      '',
-      '',
+      renovation.certificate_number.slice(0, 3),
+      renovation.certificate_number.slice(3, 7),
+      renovation.certificate_number.slice(7, 14),
+      renovation.certificate_number.slice(14, 16),
+      renovation.certificate_number.slice(16, 19),
    ]);
+   const history = useHistory();
+   const { setSelectedChargeIdToView } = useContext(AppContext);
    return (
-      <div className={`card ${isPayed && 'card--payed'} ${className}`}>
+      <div
+         className={`card ${renovation.is_paid && 'card--payed'} ${className}`}
+      >
          <div className="card__header">
             <svg
                width="30"
@@ -27,14 +34,31 @@ const Card: FC<Props> = ({ isPayed = false, className = '' }) => {
                />
             </svg>
 
-            <h3>خیابان مطهری -کوچه شماره 56 -پلاک 13 </h3>
+            <h3>{renovation.address}</h3>
          </div>
-         <PropertyNumberInput inp={propertyNumber} setInp={setPropertyNumber} className={`${isPayed && "card__property-number--payed"}`}/>
+         <PropertyNumberInput
+            inp={propertyNumber}
+            setInp={setPropertyNumber}
+            className={`${
+               renovation.is_paid && 'card__property-number--payed'
+            }`}
+         />
 
-         {isPayed ? (
+         {renovation.is_paid ? (
             <span className="card__caption">پرداخت شده</span>
          ) : (
-            <Button className="card__button">مشاهده جزئیات قبض</Button>
+            <Button
+               className="card__button"
+               onClick={() =>
+                  handleChargeDetailButton(
+                     setSelectedChargeIdToView,
+                     renovation.master_id,
+                     history,
+                  )
+               }
+            >
+               مشاهده جزئیات قبض
+            </Button>
          )}
       </div>
    );

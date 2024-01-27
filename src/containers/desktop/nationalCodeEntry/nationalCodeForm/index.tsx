@@ -6,7 +6,7 @@ import moveToPriviousInput from '../../../../componnents/input/moveToPreviousInp
 import { LoginContext } from '../../../../pages/desktop/login/context';
 
 const NationalCodeForm = () => {
-   const { setNationalCode } = useContext(LoginContext);
+   const { setNationalCode, nationalCode } = useContext(LoginContext);
    return (
       <div className="national-code-entry__wrapper">
          <Input
@@ -15,16 +15,20 @@ const NationalCodeForm = () => {
             maxLength={1}
             id="national-code-10"
             autoComplete="off"
-            onChange={(event) =>
+            onChange={(event) => {
                setNationalCode((prevState) => {
-                  prevState[9] = event.target.value;
-                  return prevState;
-               })
-            }
+                  let newNationalCode =
+                     prevState.slice(0, 9) +
+                     event.target.value +
+                     prevState.slice(9 + 1);
+                  return newNationalCode;
+               });
+            }}
             onFocus={(event) => inputOnFocus(event)}
             onKeyUp={(event) => {
                moveToPriviousInput(event, 'national-code-9', true);
             }}
+            value={nationalCode[9]}
          />
          <Input
             className="national-code-entry__input"
@@ -34,8 +38,11 @@ const NationalCodeForm = () => {
             autoComplete="off"
             onChange={(event) => {
                setNationalCode((prevState) => {
-                  prevState[8] = event.target.value;
-                  return prevState;
+                  let newNationalCode =
+                     prevState.slice(0, 8) +
+                     event.target.value +
+                     prevState.slice(8 + 1);
+                  return newNationalCode;
                });
             }}
             onFocus={(event) => inputOnFocus(event)}
@@ -43,6 +50,7 @@ const NationalCodeForm = () => {
                moveToNextInput(event, 'national-code-10');
                moveToPriviousInput(event, 'national-code-8');
             }}
+            value={nationalCode[8]}
          />
          <Input
             className="national-code-entry__input"
@@ -52,8 +60,11 @@ const NationalCodeForm = () => {
             autoComplete="off"
             onChange={(event) => {
                setNationalCode((prevState) => {
-                  prevState[7] = event.target.value;
-                  return prevState;
+                  let newNationalCode =
+                     prevState.slice(0, 7) +
+                     event.target.value +
+                     prevState.slice(7 + 1);
+                  return newNationalCode;
                });
             }}
             onFocus={(event) => inputOnFocus(event)}
@@ -61,6 +72,7 @@ const NationalCodeForm = () => {
                moveToNextInput(event, 'national-code-9');
                moveToPriviousInput(event, 'national-code-7');
             }}
+            value={nationalCode[7]}
          />
          <Input
             className="national-code-entry__input"
@@ -70,8 +82,11 @@ const NationalCodeForm = () => {
             autoComplete="off"
             onChange={(event) => {
                setNationalCode((prevState) => {
-                  prevState[6] = event.target.value;
-                  return prevState;
+                  let newNationalCode =
+                     prevState.slice(0, 6) +
+                     event.target.value +
+                     prevState.slice(6 + 1);
+                  return newNationalCode;
                });
             }}
             onFocus={(event) => inputOnFocus(event)}
@@ -79,6 +94,7 @@ const NationalCodeForm = () => {
                moveToNextInput(event, 'national-code-8');
                moveToPriviousInput(event, 'national-code-6');
             }}
+            value={nationalCode[6]}
          />
          <Input
             className="national-code-entry__input"
@@ -88,8 +104,11 @@ const NationalCodeForm = () => {
             autoComplete="off"
             onChange={(event) => {
                setNationalCode((prevState) => {
-                  prevState[5] = event.target.value;
-                  return prevState;
+                  let newNationalCode =
+                     prevState.slice(0, 5) +
+                     event.target.value +
+                     prevState.slice(5 + 1);
+                  return newNationalCode;
                });
             }}
             onFocus={(event) => inputOnFocus(event)}
@@ -97,6 +116,7 @@ const NationalCodeForm = () => {
                moveToNextInput(event, 'national-code-7');
                moveToPriviousInput(event, 'national-code-5');
             }}
+            value={nationalCode[5]}
          />
          <Input
             className="national-code-entry__input"
@@ -106,8 +126,11 @@ const NationalCodeForm = () => {
             autoComplete="off"
             onChange={(event) => {
                setNationalCode((prevState) => {
-                  prevState[4] = event.target.value;
-                  return prevState;
+                  let newNationalCode =
+                     prevState.slice(0, 4) +
+                     event.target.value +
+                     prevState.slice(4 + 1);
+                  return newNationalCode;
                });
             }}
             onFocus={(event) => inputOnFocus(event)}
@@ -115,6 +138,7 @@ const NationalCodeForm = () => {
                moveToNextInput(event, 'national-code-6');
                moveToPriviousInput(event, 'national-code-4');
             }}
+            value={nationalCode[4]}
          />
          <Input
             className="national-code-entry__input"
@@ -124,8 +148,11 @@ const NationalCodeForm = () => {
             autoComplete="off"
             onChange={(event) => {
                setNationalCode((prevState) => {
-                  prevState[3] = event.target.value;
-                  return prevState;
+                  let newNationalCode =
+                     prevState.slice(0, 3) +
+                     event.target.value +
+                     prevState.slice(3 + 1);
+                  return newNationalCode;
                });
             }}
             onFocus={(event) => inputOnFocus(event)}
@@ -133,6 +160,7 @@ const NationalCodeForm = () => {
                moveToNextInput(event, 'national-code-5');
                moveToPriviousInput(event, 'national-code-3');
             }}
+            value={nationalCode[3]}
          />
          <Input
             className="national-code-entry__input"
@@ -142,8 +170,11 @@ const NationalCodeForm = () => {
             autoComplete="off"
             onChange={(event) => {
                setNationalCode((prevState) => {
-                  prevState[2] = event.target.value;
-                  return prevState;
+                  let newNationalCode =
+                     prevState.slice(0, 2) +
+                     event.target.value +
+                     prevState.slice(2 + 1);
+                  return newNationalCode;
                });
             }}
             onFocus={(event) => inputOnFocus(event)}
@@ -151,6 +182,7 @@ const NationalCodeForm = () => {
                moveToNextInput(event, 'national-code-4');
                moveToPriviousInput(event, 'national-code-2');
             }}
+            value={nationalCode[2]}
          />
          <Input
             className="national-code-entry__input"
@@ -160,8 +192,11 @@ const NationalCodeForm = () => {
             autoComplete="off"
             onChange={(event) => {
                setNationalCode((prevState) => {
-                  prevState[1] = event.target.value;
-                  return prevState;
+                  let newNationalCode =
+                     prevState.slice(0, 1) +
+                     event.target.value +
+                     prevState.slice(2);
+                  return newNationalCode;
                });
             }}
             onFocus={(event) => inputOnFocus(event)}
@@ -169,6 +204,7 @@ const NationalCodeForm = () => {
                moveToNextInput(event, 'national-code-3');
                moveToPriviousInput(event, 'national-code-1');
             }}
+            value={nationalCode[1]}
          />
          <Input
             className="national-code-entry__input"
@@ -178,13 +214,13 @@ const NationalCodeForm = () => {
             autoComplete="off"
             onChange={(event) => {
                setNationalCode((prevState) => {
-                  prevState[0] = event.target.value;
-                  console.log(prevState);
-                  return prevState;
+                  let newNationalCode = event.target.value + prevState.slice(1);
+                  return newNationalCode;
                });
             }}
             onFocus={(event) => inputOnFocus(event)}
             onKeyUp={(event) => moveToNextInput(event, 'national-code-2')}
+            value={nationalCode[0]}
          />
       </div>
    );

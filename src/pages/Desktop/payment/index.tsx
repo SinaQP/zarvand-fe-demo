@@ -1,5 +1,3 @@
-import { useState } from 'react';
-import PropertyNumberInput from '../../../componnents/propertyNumberInput';
 import Button from '../../../containers/desktop/button';
 import Layout from '../../../containers/desktop/layout';
 import Amounts from './amounts';
@@ -7,6 +5,7 @@ import Header from './header';
 import Card from './card';
 
 const Payment = () => {
+   
    return (
       <Layout>
          <div className="payment">

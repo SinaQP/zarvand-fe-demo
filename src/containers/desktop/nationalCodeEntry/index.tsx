@@ -6,7 +6,8 @@ import { LoginContext } from '../../../pages/desktop/login/context';
 import NationalCodeForm from './nationalCodeForm';
 
 const NationalCodeEntry: FC = () => {
-   const { setLoginStage, nationalCode } = useContext(LoginContext);
+   const { setLoginStage, nationalCode, setPhoneNumber } =
+      useContext(LoginContext);
 
    return (
       <div className="national-code-entry">
@@ -20,7 +21,8 @@ const NationalCodeEntry: FC = () => {
                   handleTemporaryCodeRequest({
                      event,
                      setLoginStage,
-                     phoneNumber: nationalCode.join(),
+                     nationalCode: nationalCode,
+                     setPhoneNumber,
                   })
                }
             >

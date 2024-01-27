@@ -16,7 +16,8 @@
    &__header {
       display: flex;
       align-items: center;
-
+      justify-self: flex-end;
+      width: 100%;
       svg {
          margin-left: 1.2rem;
       }

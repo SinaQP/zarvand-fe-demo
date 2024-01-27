@@ -1,7 +1,6 @@
 import React from "react";
 import { LogInProps } from "./index.interface";
 import './style/index.scss';
-import background from './image 3.png'
 import { useHistory } from 'react-router-dom';
 const ZarvandLogIn: React.FC<LogInProps> = () =>
 {
