@@ -1,52 +1,22 @@
 stages:
   - build
   - run
-.build:
+build-front-prod:
+  stage: build
+  only:
+    - front-prod
   script:
     - hostname
-    - echo "${ENVS}" > .env
     - docker compose build;
+  tags: [front-prod]
 
-.run:
+run-front-prod:
+  stage: run
+  only:
+    - front-prod
   script:
     - hostname
     - docker compose up -d;
     - sleep 4;
+  tags: [front-prod]
 
-Pre-Prod-build:
-  extends:
-    - .build
-  stage: build
-  variables:
-    ENVS: ${PP_ENV}
-  only:
-    - pre-production
-    - test-pipeline
-  tags:
-    - pre-prod
-
-Pre-Prod-run:
-  extends:
-    - .run
-  stage: run
-  only:
-    - pre-production
-    - test-pipeline
-  tags:
-    - pre-prod
-
-test-build:
-  extends:
-    - .build
-  stage: build
-  variables:
-    ENVS: ${TEST_ENV}
-  only:
-    - test
-
-test-run:
-  extends:
-    - .run
-  stage: run
-  only:
-    - test

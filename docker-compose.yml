@@ -2,6 +2,5 @@ version: '3.4'
 services:
   front:
     build: .
-    restart: always
     ports:
       - 8001:3000
