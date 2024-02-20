@@ -1,0 +1,22 @@
+stages:
+  - build
+  - run
+build-front-prod:
+  stage: build
+  only:
+    - front-prod
+  script:
+    - hostname
+    - docker compose build;
+  tags: [front-prod]
+
+run-front-prod:
+  stage: run
+  only:
+    - front-prod
+  script:
+    - hostname
+    - docker compose up -d;
+    - sleep 4;
+  tags: [front-prod]
+
