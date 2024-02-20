@@ -27,11 +27,11 @@ function Router() {
                <Redirect to="/login-desktop" />
             )}
          </Route>
-         <Route path="/login-mobile" exact component={ZarvandLogIn} />
          <Route path="/login-desktop" exact component={Login} />
 
          {isMobile && (
             <>
+               <Route path="/login-mobile" exact component={ZarvandLogIn} />
                <Route
                   path="/verfication-code"
                   exact
