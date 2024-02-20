@@ -4,7 +4,12 @@ import ContainerCard from '../containerCard';
 import './_index.scss';
 import Props from './props.interface';
 
-const PropertyNumberInput: FC<Props> = ({ inp, setInp, className }) => {
+const PropertyNumberInput: FC<Props> = ({
+   inp,
+   setInp,
+   className,
+   lock = false,
+}) => {
    return (
       <ContainerCard
          className={`SSNNumberStyle ${className}`}
@@ -24,6 +29,7 @@ const PropertyNumberInput: FC<Props> = ({ inp, setInp, className }) => {
                         value[0] = event.target.value;
                         return value;
                      }),
+                  disabled: lock,
                }}
                className="SSNNumberStyle__fieldset"
             />
@@ -39,6 +45,7 @@ const PropertyNumberInput: FC<Props> = ({ inp, setInp, className }) => {
                         value[1] = event.target.value;
                         return value;
                      }),
+                  disabled: lock,
                }}
                className="SSNNumberStyle__fieldset"
             />
@@ -54,6 +61,7 @@ const PropertyNumberInput: FC<Props> = ({ inp, setInp, className }) => {
                         value[2] = event.target.value;
                         return value;
                      }),
+                  disabled: lock,
                }}
                className="SSNNumberStyle__fieldset SSNNumberStyle__fieldset--large"
             />
@@ -69,6 +77,7 @@ const PropertyNumberInput: FC<Props> = ({ inp, setInp, className }) => {
                         value[3] = event.target.value;
                         return value;
                      }),
+                  disabled: lock,
                }}
                className="SSNNumberStyle__fieldset"
             />
@@ -84,6 +93,7 @@ const PropertyNumberInput: FC<Props> = ({ inp, setInp, className }) => {
                         value[4] = event.target.value;
                         return value;
                      }),
+                  disabled: lock,
                }}
                className="SSNNumberStyle__fieldset"
             />

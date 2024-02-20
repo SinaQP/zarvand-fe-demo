@@ -1,10 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
 import Layout from '../../../containers/desktop/layout';
-import Card from '../../../containers/desktop/renwalCharges/card';
+import Card from '../../../componnents/card';
 import { getRenovationMasters } from './getPersonRenovationMasters';
-import { AppContext } from '../../../App.context';
+import { AppContext, Renovation } from '../../../App.context';
 import { useHistory } from 'react-router-dom';
-import { Renovation } from './renovation.interface';
 
 const RenewalCharges = () => {
    const { token } = useContext(AppContext);
@@ -15,7 +14,7 @@ const RenewalCharges = () => {
       if (!token) history.push('');
 
       const fetch = async function () {
-         const renovations = await getRenovationMasters(token);
+         const renovations = await getRenovationMasters(token);         
          setRenovations(renovations);
       };
       fetch();
@@ -31,17 +30,8 @@ const RenewalCharges = () => {
 
             <section className="renwal-charges__cards">
                {renovations.map((renovation) => (
-                  <Card renovation={renovation} />
+                  <Card renovation={renovation} lock={true} />
                ))}
-               {/* <Card isPayed className='renwal-charges__card--active'/>
-               <Card />
-               <Card />
-               <Card />
-               <Card />
-               <Card /> */}
-
-               {/* <Card />
-               <Card /> */}
             </section>
          </div>
       </Layout>

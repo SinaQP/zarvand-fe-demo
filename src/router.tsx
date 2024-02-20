@@ -1,6 +1,6 @@
 // node libraries
-import React from 'react';
-import { BrowserRouter, Redirect, Route } from 'react-router-dom';
+import React, { useContext, useEffect } from 'react';
+import { BrowserRouter, Redirect, Route, useHistory } from 'react-router-dom';
 // pages
 import ZarvandLogIn from './pages/Mobile/zarvandLogin';
 import VerificationCode from './pages/Mobile/verificationCode';
@@ -11,13 +11,13 @@ import Login from './pages/desktop/login';
 import Welcome from './pages/desktop/welcome';
 import RenewalCharges from './pages/desktop/renewalCharges';
 import Payment from './pages/desktop/payment';
+import { AppContext } from './App.context';
 
 /**
  * Router Container
  */
 function Router() {
    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
    return (
       <BrowserRouter>
          <Route path="/" exact>

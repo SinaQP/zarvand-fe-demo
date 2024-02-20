@@ -23,7 +23,6 @@ const handleConfirmationButton: Function = async ({
       national_code: nationalCode,
       code: verificationCode,
    });
-   console.log(response);
    const responseBody = response.body;
 
    if (response.status === 200) {

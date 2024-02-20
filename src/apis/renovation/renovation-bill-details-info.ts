@@ -1,9 +1,12 @@
 import { Fetch } from '../fetch';
 import { FetchResult } from '../fetch.interface';
 
-export async function getPersonRenovationMasters(body: {
-   master_id: string;
-}): Promise<any> {
+export async function getRenovationBillDetailsInfo(
+   body: {
+      master_id: string;
+   },
+   token: string,
+): Promise<any> {
    try {
       const url: string =
          process.env.REACT_APP_BACKEND +
@@ -13,6 +16,7 @@ export async function getPersonRenovationMasters(body: {
          method: 'POST',
          headers: {
             'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
          },
          body: JSON.stringify(body),
       });

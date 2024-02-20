@@ -1,17 +1,23 @@
-const Amounts = () => {
+import { FC } from 'react';
+
+const Amounts: FC<{
+   bill_no: string;
+   payment_no: string;
+   value_to_pay: number;
+}> = ({ bill_no, payment_no, value_to_pay }) => {
    return (
       <div className="payment__amounts">
          <div className="payment__amount">
             <span>شناسه قبض</span>
-            <span>1676905439</span>
+            <span>{bill_no}</span>
          </div>
          <div className="payment__amount">
             <span>شناسه پرداخت</span>
-            <span>65780742875</span>
+            <span>{payment_no}</span>
          </div>
          <div className="payment__amount">
             <span>مبلغ کل</span>
-            <span>15550000</span>
+            <span>{value_to_pay}</span>
          </div>
       </div>
    );

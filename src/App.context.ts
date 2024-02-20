@@ -11,24 +11,39 @@ export interface SubSystem {
    flag: boolean;
 }
 
+export interface Renovation {
+   address: string;
+   certificate_number: string;
+   is_paid: boolean;
+   master_id: string;
+}
+
 export interface AppContextProps {
    setToken: Dispatch<SetStateAction<string>>;
    setUser: Dispatch<SetStateAction<User | null>>;
    setSubsystems: Dispatch<SetStateAction<SubSystem[]>>;
-   setSelectedChargeIdToView: Dispatch<SetStateAction<string>>;
+   setSelectedCharge: Dispatch<SetStateAction<Renovation | null>>;
+   setLoginEnteredNationalCode: Dispatch<SetStateAction<string>>;
+   setMaskedPhoneNumber:Dispatch<SetStateAction<string>>;
    token: string;
    user: User | null;
    subSystems: SubSystem[];
-   selectedChargeIdToView: string;
+   selectedCharge: Renovation | null;
+   loginEnteredNationalCode: string;
+   maskedPhoneNumber:string;
 }
 
 export const AppContext = createContext<AppContextProps>({
    setToken: () => {},
    setUser: () => {},
    setSubsystems: () => {},
-   setSelectedChargeIdToView: () => {},
+   setSelectedCharge: () => {},
+   setLoginEnteredNationalCode: () => {},
+   setMaskedPhoneNumber:() => {},
    token: '',
-   selectedChargeIdToView: '',
+   selectedCharge: null,
    user: null,
    subSystems: [],
+   loginEnteredNationalCode: '',
+   maskedPhoneNumber:''
 });

@@ -1,11 +1,12 @@
 import { Dispatch, SetStateAction } from 'react';
+import { Renovation } from '../../App.context';
 
 const handleChargeDetailButton = (
-   setSelectedChargeIdToView: Dispatch<SetStateAction<string>>,
-   masterId: string,
+   setSelectedCharge: Dispatch<SetStateAction<Renovation | null>>,
+   charge: Renovation,
    history: { push: (url: string) => void },
 ) => {
-   setSelectedChargeIdToView(masterId);
+   setSelectedCharge(charge);
    history.push('/payment');
 };
 

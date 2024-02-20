@@ -17,9 +17,9 @@ const Login = () => {
          value={{
             setLoginStage,
             setNationalCode,
+            setPhoneNumber,
             nationalCode,
             phoneNumber,
-            setPhoneNumber,
          }}
       >
          <Layout>

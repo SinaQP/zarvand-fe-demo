@@ -1,21 +1,23 @@
 import { FC, useContext, useState } from 'react';
-import Button from '../../button';
+import Button from '../../containers/desktop/button';
 import Props from './props.interface';
-import PropertyNumberInput from '../../../../componnents/propertyNumberInput';
+import PropertyNumberInput from '../propertyNumberInput';
 import { useHistory } from 'react-router-dom';
 import handleChargeDetailButton from './handleChargeDetailButton';
-import { AppContext } from '../../../../App.context';
+import { AppContext } from '../../App.context';
+import './index.scss';
 
-const Card: FC<Props> = ({ className = '', renovation }) => {
+const Card: FC<Props> = ({ className = '', renovation, lock, viewOnly=false }) => {
    const [propertyNumber, setPropertyNumber] = useState<string[]>([
       renovation.certificate_number.slice(0, 3),
       renovation.certificate_number.slice(3, 7),
       renovation.certificate_number.slice(7, 14),
       renovation.certificate_number.slice(14, 16),
       renovation.certificate_number.slice(16, 19),
-   ]);
+   ]);   
    const history = useHistory();
-   const { setSelectedChargeIdToView } = useContext(AppContext);
+   const { setSelectedCharge } = useContext(AppContext);
+
    return (
       <div
          className={`card ${renovation.is_paid && 'card--payed'} ${className}`}
@@ -38,27 +40,31 @@ const Card: FC<Props> = ({ className = '', renovation }) => {
          </div>
          <PropertyNumberInput
             inp={propertyNumber}
-            setInp={setPropertyNumber}
+            setInp={lock ? () => {} : setPropertyNumber}
             className={`${
                renovation.is_paid && 'card__property-number--payed'
             }`}
+            lock={lock}
          />
-
-         {renovation.is_paid ? (
-            <span className="card__caption">پرداخت شده</span>
+         {!viewOnly ? (
+            renovation.is_paid ? (
+               <span className="card__caption">پرداخت شده</span>
+            ) : (
+               <Button
+                  className="card__button"
+                  onClick={() =>
+                     handleChargeDetailButton(
+                        setSelectedCharge,
+                        renovation,
+                        history,
+                     )
+                  }
+               >
+                  مشاهده جزئیات قبض
+               </Button>
+            )
          ) : (
-            <Button
-               className="card__button"
-               onClick={() =>
-                  handleChargeDetailButton(
-                     setSelectedChargeIdToView,
-                     renovation.master_id,
-                     history,
-                  )
-               }
-            >
-               مشاهده جزئیات قبض
-            </Button>
+            ''
          )}
       </div>
    );
