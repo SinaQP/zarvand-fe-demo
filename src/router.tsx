@@ -11,6 +11,7 @@ import Login from './pages/desktop/login';
 import Welcome from './pages/desktop/welcome';
 import RenewalCharges from './pages/desktop/renewalCharges';
 import Payment from './pages/desktop/payment';
+import PaymentMobile from './pages/Mobile/payment'
 import { AppContext } from './App.context';
 
 /**
@@ -51,9 +52,9 @@ function Router() {
             </>
          )}
 
+         <Route path="/payment" exact component={isMobile ? PaymentMobile: Payment} />
          <Route path="/subsystem" exact component={Welcome} />
          <Route path="/charges" exact component={RenewalCharges} />
-         <Route path="/payment" exact component={Payment} />
       </BrowserRouter>
    );
 }

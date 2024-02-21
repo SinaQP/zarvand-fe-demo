@@ -9,7 +9,7 @@ const NationalCodeSection: FC = () => {
 
    return (
       <section className="national-code-section">
-         <span className="national-code-section__title">شماره همراه وارد شده</span>
+         <span className="national-code-section__title">شماره همراه ثبت شده</span>
          <Input value={phoneNumber} className="national-code-section__input" />
          <div className="national-code-section__caption">
             <span

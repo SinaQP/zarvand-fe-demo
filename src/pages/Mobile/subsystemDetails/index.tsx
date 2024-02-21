@@ -6,7 +6,7 @@ import { FC, useContext, useEffect, useState } from 'react';
 import { getRenovationMasters } from './getPersonRenovationMasters';
 import { AppContext, Renovation } from '../../../App.context';
 import Button from '../../../containers/desktop/button';
-import handleChargeDetailButton from '../../../componnents/card/handleChargeDetailButton';
+import handleChargeDetailButton from './handleChargeDetailButton';
 
 const SubsystemDetais: FC<subsystemDetailsProps> = () => {
    const history = useHistory();
@@ -66,13 +66,13 @@ const SubsystemDetais: FC<subsystemDetailsProps> = () => {
                   ) : (
                      <Button
                         className="card__button"
-                        onClick={() =>
+                        onClick={() => {
                            handleChargeDetailButton(
                               setSelectedCharge,
                               renovation,
                               history,
-                           )
-                        }
+                           );
+                        }}
                      >
                         مشاهده جزئیات قبض
                      </Button>

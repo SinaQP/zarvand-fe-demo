@@ -1,0 +1,21 @@
+.mobile-payment__header {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    .mobile-payment__person-info {
+      
+    }
+    .mobile-payment__navigation {
+       display: flex;
+       width: 100%;
+       justify-content: space-around;
+       align-items: center;
+    }
+    .mobile-payment__back-button {
+       background-color: transparent;
+       padding: 0;
+       border: none;
+       color: #706a62;
+       font-size: 2.5rem;
+    }
+ }

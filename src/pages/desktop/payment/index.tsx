@@ -43,6 +43,7 @@ const Payment = () => {
                   <Card
                      className="payment__card"
                      lock
+                     viewOnly
                      renovation={
                         selectedCharge ? selectedCharge : emptyRenovation
                      }
