@@ -1,8 +1,19 @@
-import { Dispatch, FC, SetStateAction } from 'react';
+import {
+   ChangeEvent,
+   Dispatch,
+   FC,
+   KeyboardEvent,
+   SetStateAction,
+   useEffect,
+   useRef,
+   useState,
+} from 'react';
 import Input from '../../../../../componnents/input';
 import inputOnFocus from '../../../../../componnents/input/inputOnFocus';
 import moveToPriviousInput from '../../../../../componnents/input/moveToPreviousInput';
 import moveToNextInput from '../../../../../componnents/input/moveToNextInput';
+import focusOnFirstVeificationCodeEntry from './focusOnFirstVeificationCodeEntry';
+import SeparatedInput from '../../../../../componnents/speratedInput';
 
 interface Props {
    verificationCode: string;
@@ -10,6 +21,10 @@ interface Props {
 }
 
 const Form: FC<Props> = ({ setVerificationCode, verificationCode }) => {
+   useEffect(() => {
+      focusOnFirstVeificationCodeEntry();
+   }, []);
+
    return (
       <form>
          <div className="verification-code-entry__sperated-input">

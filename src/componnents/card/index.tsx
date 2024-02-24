@@ -10,9 +10,9 @@ import './index.scss';
 const Card: FC<Props> = ({ className = '', renovation, lock, viewOnly=false }) => {
    const [propertyNumber, setPropertyNumber] = useState<string[]>([
       renovation.certificate_number.slice(0, 3),
-      renovation.certificate_number.slice(3, 7),
-      renovation.certificate_number.slice(7, 14),
-      renovation.certificate_number.slice(14, 16),
+      renovation.certificate_number.slice(3, 5),
+      renovation.certificate_number.slice(5, 12),
+      renovation.certificate_number.slice(12, 16),
       renovation.certificate_number.slice(16, 19),
    ]);   
    const history = useHistory();

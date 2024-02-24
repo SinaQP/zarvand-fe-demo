@@ -21,7 +21,7 @@ const RenewalCharges = () => {
    }, []);
 
    return (
-      <Layout>
+      <Layout backArrowUrl='subsystem'>
          <div className="renwal-charges">
             <p>
                ملک های زیر در سیستم به نام شما ثبت شده اند. شما با انتخاب هر یک
