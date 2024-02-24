@@ -8,6 +8,7 @@ import { AppContext } from '../../../App.context';
 import { getRenovationBillDetailsInfo } from '../../../apis/renovation/renovation-bill-details-info';
 import { Bill } from './index.interface';
 import Card from '../../../componnents/card';
+import { separateByThree } from '../../../utilities/separatetByThree';
 
 const Payment = () => {
    const emptyRenovation = {
@@ -35,7 +36,7 @@ const Payment = () => {
    }, []);
 
    return (
-      <Layout>
+      <Layout backArrowUrl="charges">
          <div className="payment">
             <Header />
             <div className="payment__container">
@@ -61,7 +62,7 @@ const Payment = () => {
                            ? bill.charges_by_year.map((charge) => (
                                 <div className="payment__charges-row">
                                    <span>{charge[0]}</span>
-                                   <span>{charge[1]}</span>
+                                   <span>{separateByThree(charge[1])}</span>
                                    <span>عوارض سالیانه</span>
                                 </div>
                              ))

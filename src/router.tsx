@@ -1,6 +1,5 @@
 // node libraries
-import React, { useContext, useEffect } from 'react';
-import { BrowserRouter, Redirect, Route, useHistory } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route } from 'react-router-dom';
 // pages
 import ZarvandLogIn from './pages/Mobile/zarvandLogin';
 import VerificationCode from './pages/Mobile/verificationCode';
