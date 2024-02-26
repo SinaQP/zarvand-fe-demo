@@ -10,8 +10,10 @@ import Login from './pages/desktop/login';
 import Welcome from './pages/desktop/welcome';
 import RenewalCharges from './pages/desktop/renewalCharges';
 import Payment from './pages/desktop/payment';
-import PaymentMobile from './pages/Mobile/payment'
+import PaymentMobile from './pages/Mobile/payment';
 import { AppContext } from './App.context';
+import GuildRenewalCharges from './pages/desktop/guildPhase/renewalCharges';
+import GuildPayment from './pages/desktop/guildPhase/payment';
 
 /**
  * Router Container
@@ -51,9 +53,19 @@ function Router() {
             </>
          )}
 
-         <Route path="/payment" exact component={isMobile ? PaymentMobile: Payment} />
+         <Route
+            path="/payment"
+            exact
+            component={isMobile ? PaymentMobile : Payment}
+         />
          <Route path="/subsystem" exact component={Welcome} />
          <Route path="/charges" exact component={RenewalCharges} />
+         <Route path="/guild-charges" exact component={GuildRenewalCharges} />
+         <Route
+            path="/payment-guild"
+            exact
+            component={isMobile ? PaymentMobile : GuildPayment}
+         />
       </BrowserRouter>
    );
 }

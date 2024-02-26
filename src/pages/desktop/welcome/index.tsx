@@ -23,8 +23,8 @@ const Welcome = () => {
                   <Link to="/charges">عوارض نوسازی</Link>
                </Button>
 
-               <Button className="welcome__button welcome__button--outline">
-                  <Link to="">عوارض کسب پیشه</Link>
+               <Button className="welcome__button welcome__button--active">
+                  <Link to="/guild-charges">عوارض کسب پیشه</Link>
                </Button>
             </div>
          </div>

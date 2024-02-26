@@ -18,19 +18,28 @@ export interface Renovation {
    master_id: string;
 }
 
+export interface Guild {
+   TradeType: string;
+   address: string;
+   is_paid: boolean;
+   master_id: string;
+}
+
 export interface AppContextProps {
    setToken: Dispatch<SetStateAction<string>>;
    setUser: Dispatch<SetStateAction<User | null>>;
    setSubsystems: Dispatch<SetStateAction<SubSystem[]>>;
    setSelectedCharge: Dispatch<SetStateAction<Renovation | null>>;
+   setSelectedGuildCharge: Dispatch<SetStateAction<Guild | null>>;
    setLoginEnteredNationalCode: Dispatch<SetStateAction<string>>;
-   setMaskedPhoneNumber:Dispatch<SetStateAction<string>>;
+   setMaskedPhoneNumber: Dispatch<SetStateAction<string>>;
    token: string;
    user: User | null;
    subSystems: SubSystem[];
    selectedCharge: Renovation | null;
+   selectedGuildCharge: Guild | null;
    loginEnteredNationalCode: string;
-   maskedPhoneNumber:string;
+   maskedPhoneNumber: string;
 }
 
 export const AppContext = createContext<AppContextProps>({
@@ -38,12 +47,14 @@ export const AppContext = createContext<AppContextProps>({
    setUser: () => {},
    setSubsystems: () => {},
    setSelectedCharge: () => {},
+   setSelectedGuildCharge: () => {},
    setLoginEnteredNationalCode: () => {},
-   setMaskedPhoneNumber:() => {},
+   setMaskedPhoneNumber: () => {},
    token: '',
    selectedCharge: null,
    user: null,
    subSystems: [],
    loginEnteredNationalCode: '',
-   maskedPhoneNumber:''
+   maskedPhoneNumber: '',
+   selectedGuildCharge: null,
 });

@@ -1,32 +1,32 @@
-import Button from '../../../containers/desktop/button';
-import Layout from '../../../containers/desktop/layout';
+import Button from '../../../../containers/desktop/button';
+import Layout from '../../../../containers/desktop/layout';
 import Amounts from './amounts';
 import Header from './header';
 import { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { AppContext } from '../../../App.context';
-import { getRenovationBillDetailsInfo } from '../../../apis/renovation/renovation-bill-details-info';
+import { AppContext } from '../../../../App.context';
 import { Bill } from './index.interface';
-import Card from '../../../componnents/card';
-import { separateByThree } from '../../../utilities/separatetByThree';
+import { separateByThree } from '../../../../utilities/separatetByThree';
+import GuildCard from '../../../../componnents/guildCard';
+import { getTradeBillDetailsInfo } from '../../../../apis/guildPhase/guild-bill-details-info';
 
-const Payment = () => {
-   const emptyRenovation = {
+const GuildPayment = () => {
+   const emptyGuild = {
       address: '',
-      certificate_number: '',
+      TradeType: '',
       is_paid: false,
       master_id: '',
    };
-   const { token, selectedCharge } = useContext(AppContext);
+   const { token, selectedGuildCharge } = useContext(AppContext);
    const history = useHistory();
    const [bill, setBill] = useState<Bill | null>(null);
 
    useEffect(() => {
       if (!token) history.push('');
       const fetch = async function () {
-         if (selectedCharge) {
-            const bill = await getRenovationBillDetailsInfo(
-               { master_id: selectedCharge.master_id },
+         if (selectedGuildCharge) {
+            const bill = await getTradeBillDetailsInfo(
+               { master_id: selectedGuildCharge.master_id },
                token,
             );
             setBill(bill.body);
@@ -36,17 +36,17 @@ const Payment = () => {
    }, []);
 
    return (
-      <Layout backArrowUrl="charges">
+      <Layout backArrowUrl="guild-charges">
          <div className="payment">
             <Header />
             <div className="payment__container">
                <div className="payment__colume">
-                  <Card
-                     className="payment__card"
+                  <GuildCard
+                     className="payment__guildCard"
                      lock
                      viewOnly
-                     renovation={
-                        selectedCharge ? selectedCharge : emptyRenovation
+                     guild={
+                        selectedGuildCharge ? selectedGuildCharge : emptyGuild
                      }
                   />
                </div>
@@ -84,4 +84,4 @@ const Payment = () => {
    );
 };
 
-export default Payment;
+export default GuildPayment;
