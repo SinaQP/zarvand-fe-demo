@@ -28,7 +28,7 @@ const Payment = () => {
             const bill = await getRenovationBillDetailsInfo(
                { master_id: selectedCharge.master_id },
                token,
-            );
+            );                        
             setBill(bill.body);
          }
       };
