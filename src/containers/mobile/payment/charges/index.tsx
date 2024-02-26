@@ -21,6 +21,27 @@ const Charges: FC<{ bill: Bill | null }> = ({ bill }) => {
                     </div>
                  ))
                : ''}
+            <div className="mobile-payment__charges-row">
+               <span>{'----'}</span>
+               <span>
+                  {separateByThree(bill ? bill.city_service_charges : 0)}
+               </span>
+               <span>خدمات شهری</span>
+            </div>
+            <div className="mobile-payment__charges-row">
+               <span>{'----'}</span>
+               <span>
+                  {separateByThree(bill ? bill.safety_service_charges : 0)}
+               </span>
+               <span>خدمات ایمنی</span>
+            </div>
+            <div className="mobile-payment__charges-row">
+               <span>{'----'}</span>
+               <span>
+                  {separateByThree(bill ? bill.garbage_collection_charges : 0)}
+               </span>
+               <span>خدمات زباله شهری</span>
+            </div>
          </div>
       </div>
    );
