@@ -9,7 +9,7 @@ const Layout: FC<Props> = ({ children, backArrowUrl }) => {
          {backArrowUrl && <Link to={backArrowUrl} className='layout__navigator'>&gt;</Link>}
          <header>
             <img src={Logo} alt="Logo" />
-            <span>سامانه پرداخت عوارض شهرداری کرمان</span>
+            <span>سامانه پرداخت عوارض شهرداری زرند</span>
          </header>
          {children}
          <footer></footer>
