@@ -86,14 +86,14 @@ const Payment = () => {
                            </span>
                            <span>خدمات ایمنی</span>
                         </div>
-                        <div className="mobile-payment__charges-row">
+                        <div className="payment__charges-row">
                            <span>{'----'}</span>
                            <span>
                               {separateByThree(
                                  bill ? bill.garbage_collection_charges : 0,
                               )}
                            </span>
-                           <span>خدمات زباله شهری</span>
+                           <span>خدمات پسماند</span>
                         </div>
                      </div>
                   </div>
