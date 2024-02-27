@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import logo from './../../../../../assets/images/zarvand-logo.png';
+import logo from './../../../../../../assets/images/zarvand-logo.png';
 import { useHistory } from 'react-router-dom';
 
 const Navigation: FC = () => {
@@ -18,7 +18,7 @@ const Navigation: FC = () => {
          <span
             className="mobile-payment__back-button"
             onClick={() => {
-               history.goBack();
+               history.push('/');
             }}
          >
             &gt;

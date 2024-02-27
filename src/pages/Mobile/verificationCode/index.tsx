@@ -12,7 +12,13 @@ import toast from '../../../utilities/toast';
 
 const VerificationCode: React.FC<LogInProps> = () => {
    const history = useHistory();
-   const { maskedPhoneNumber, setToken, setUser, setSubsystems, loginEnteredNationalCode } = useContext(AppContext);
+   const {
+      maskedPhoneNumber,
+      setToken,
+      setUser,
+      setSubsystems,
+      loginEnteredNationalCode,
+   } = useContext(AppContext);
    const [verificationCode, setVerificationCode] = useState('      ');
    return (
       <div className="CodeSection">
@@ -215,7 +221,7 @@ const VerificationCode: React.FC<LogInProps> = () => {
                      if (response.status === 200) {
                         setToken(responseBody.token);
                         setUser(responseBody.user);
-                        setSubsystems(responseBody.subsystems);
+                        setSubsystems(() => responseBody.subsystems);
                         history.push('subsystem');
                      } else {
                         toast.fire({

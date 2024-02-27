@@ -58,12 +58,14 @@ const GuildPayment = () => {
                         <span>توضیحات</span>
                      </div>
                      <div className="payment__charges-rows-container">
-                        {bill
-                           ? bill.charges_by_year.map((charge) => (
+                        {bill?.bill_details
+                           ? bill.bill_details?.map((charge) => (
                                 <div className="payment__charges-row">
-                                   <span>{charge[0]}</span>
-                                   <span>{separateByThree(charge[1])}</span>
-                                   <span>عوارض سالیانه</span>
+                                   <span>{charge.to_year}</span>
+                                   <span>
+                                      {separateByThree(charge.creditor)}
+                                   </span>
+                                   <span>{charge.desc}</span>
                                 </div>
                              ))
                            : ''}
@@ -72,9 +74,9 @@ const GuildPayment = () => {
                </div>
                <div className="payment__colume">
                   <Amounts
-                     bill_no={bill ? bill.bill_no : ''}
-                     payment_no={bill ? bill.payment_no : ''}
-                     value_to_pay={bill ? bill.value_to_pay : 0}
+                     bill_no={bill?.bill_no ? bill.bill_no : ''}
+                     payment_no={bill?.payment_no ? bill.payment_no : ''}
+                     value_to_pay={bill?.value_to_pay ? bill?.value_to_pay : 0}
                   />
                   <Button className="payment__button">پرداخت</Button>
                </div>

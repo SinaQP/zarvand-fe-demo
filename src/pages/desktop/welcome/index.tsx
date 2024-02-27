@@ -19,11 +19,11 @@ const Welcome = () => {
             </div>
 
             <div className="welcome__buttons">
-               <Button className="welcome__button welcome__button--active">
+               <Button className={'welcome__button welcome__button--active'}>
                   <Link to="/charges">عوارض نوسازی</Link>
                </Button>
 
-               <Button className="welcome__button welcome__button--active">
+               <Button className={'welcome__button welcome__button--active'}>
                   <Link to="/guild-charges">عوارض کسب پیشه</Link>
                </Button>
             </div>
