@@ -1,9 +1,9 @@
 import { Dispatch, SetStateAction } from 'react';
-import { Renovation } from '../../../App.context';
+import { RenovationMaster } from '../../../App.context';
 
 const handleChargeDetailButton = (
-   setSelectedCharge: Dispatch<SetStateAction<Renovation | null>>,
-   charge: Renovation,
+   setSelectedCharge: Dispatch<SetStateAction<RenovationMaster | null>>,
+   charge: RenovationMaster,
    history: { push: (url: string) => void },
 ) => {
    setSelectedCharge(charge);

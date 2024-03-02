@@ -1,9 +1,9 @@
-import { Renovation } from '../../App.context';
+import { RenovationMaster } from '../../App.context';
 
 interface Props {
    className?: string;
 
-   renovation: Renovation;
+   renovation: RenovationMaster;
    lock?: boolean;
    viewOnly?: boolean;
 }

@@ -1,11 +1,17 @@
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import Button from '../../../containers/desktop/button';
 import Layout from '../../../containers/desktop/layout';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AppContext } from '../../../App.context';
 
 const Welcome = () => {
-   const { subSystems } = useContext(AppContext);
+   const { subSystems, token } = useContext(AppContext);
+   const history = useHistory();
+
+   useEffect(() => {
+      if (!token) history.push('');
+   }, []);
+   
    return (
       <Layout>
          <div className="welcome">

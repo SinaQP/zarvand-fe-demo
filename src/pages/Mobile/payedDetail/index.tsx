@@ -7,7 +7,6 @@ import { Bill } from '../../desktop/payment/index.interface';
 import Charges from '../../../containers/mobile/payment/charges';
 import Button from '../../../componnents/button';
 import Amounts from '../../../containers/mobile/payment/amounts';
-import toMoneyFormat from '../../../utilities/toMoneyFormat';
 import RenovationCard from '../../../componnents/renovationCard';
 
 const Payment: FC = () => {
@@ -22,7 +21,6 @@ const Payment: FC = () => {
    const [bill, setBill] = useState<Bill | null>(null);
 
    useEffect(() => {
-      if (!token) history.push('');
       const fetch = async function () {
          if (selectedCharge) {
             const bill = await getRenovationBillDetailsInfo(
