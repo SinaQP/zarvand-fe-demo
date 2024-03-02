@@ -23,7 +23,7 @@ const RenovationPayedDetail = () => {
    }, []);
 
    return (
-      <Layout backArrowUrl="/payment">
+      <Layout backArrowUrl="/payment/renovation">
          <div className="payedDetail">
             <Header />
             <div className="payedDetail__container">

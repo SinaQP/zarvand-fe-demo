@@ -26,7 +26,7 @@ const Welcome = () => {
 
             <div className="welcome__buttons">
                <Button className={'welcome__button welcome__button--active'}>
-                  <Link to="/charges">عوارض نوسازی</Link>
+                  <Link to="/charges/renovation">عوارض نوسازی</Link>
                </Button>
 
                <Button className={'welcome__button welcome__button--active'}>

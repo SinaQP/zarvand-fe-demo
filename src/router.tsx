@@ -57,7 +57,7 @@ function Router() {
          )}
 
          <Route
-            path="/payment"
+            path="/payment/renovation/"
             exact
             component={isMobile ? PaymentMobile : Payment}
          />
@@ -73,7 +73,7 @@ function Router() {
             component={SubsystemGuildDetais}
          />
 
-         <Route path="/charges" exact component={RenewalCharges} />
+         <Route path="/charges/renovation" exact component={RenewalCharges} />
          <Route path="/guild-charges" exact component={GuildRenewalCharges} />
          <Route
             path="/payment-guild"

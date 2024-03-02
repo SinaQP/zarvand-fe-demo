@@ -17,23 +17,9 @@ const Payment: FC = () => {
       is_paid: false,
       master_id: '',
    };
-   const { token, selectedCharge } = useContext(AppContext);
+   const { token, selectedCharge, selectedRenovationBillDetail } =
+      useContext(AppContext);
    const history = useHistory();
-   const [bill, setBill] = useState<Bill | null>(null);
-
-   useEffect(() => {
-      if (!token) history.push('');
-      const fetch = async function () {
-         if (selectedCharge) {
-            const bill = await getRenovationBillDetailsInfo(
-               { master_id: selectedCharge.master_id },
-               token,
-            );
-            setBill(bill.body);
-         }
-      };
-      fetch();
-   }, []);
 
    useEffect(() => {
       if (!token) history.push('/');
@@ -48,19 +34,34 @@ const Payment: FC = () => {
             viewOnly
             className="mobile-payment__card"
          />
-         <Charges bill={bill} />
+         <Charges bill={selectedRenovationBillDetail} />
          <Amounts
-            bill_no={bill ? bill.bill_no : ''}
-            payment_no={bill ? bill.payment_no : ''}
-            value_to_pay={bill ? bill.value_to_pay : 0}
+            bill_no={
+               selectedRenovationBillDetail
+                  ? selectedRenovationBillDetail.bill_no
+                  : ''
+            }
+            payment_no={
+               selectedRenovationBillDetail
+                  ? selectedRenovationBillDetail.payment_no
+                  : ''
+            }
+            value_to_pay={
+               selectedRenovationBillDetail
+                  ? selectedRenovationBillDetail.value_to_pay
+                  : 0
+            }
          />
-         <Button
-            className="mobile-payment__button"
-            size="large"
-            onClick={() => history.push('payed-detail')}
-         >
-            مشاهده سابقه پرداخت
-         </Button>
+         {selectedRenovationBillDetail &&
+            selectedRenovationBillDetail.bill_details && (
+               <Button
+                  className="mobile-payment__button"
+                  size="large"
+                  onClick={() => history.push('/payed-detail/renovation')}
+               >
+                  مشاهده سابقه پرداخت
+               </Button>
+            )}
          <Button className="mobile-payment__button" size="large">
             پرداخت
          </Button>

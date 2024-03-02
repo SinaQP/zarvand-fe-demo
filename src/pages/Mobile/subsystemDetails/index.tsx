@@ -10,13 +10,16 @@ import RenovationCard from '../../../componnents/renovationCard';
 
 const SubsystemDetais: FC<subsystemDetailsProps> = () => {
    const history = useHistory();
-   const { token, setSelectedCharge } = useContext(AppContext);
+   const { token, setSelectedCharge, setSelectedRenovationBillDetail } =
+      useContext(AppContext);
    const [renovations, setRenovations] = useState<RenovationMaster[]>([]);
 
    useEffect(() => {
       if (!token) history.push('');
       async function loadRenovations() {
-         const renovations: RenovationMaster[] = await getRenovationMasters(token);
+         const renovations: RenovationMaster[] = await getRenovationMasters(
+            token,
+         );
          setRenovations(renovations);
       }
       loadRenovations();
@@ -62,7 +65,20 @@ const SubsystemDetais: FC<subsystemDetailsProps> = () => {
                      viewOnly
                   />
                   {renovation.is_paid ? (
-                     <span className="card__caption">پرداخت شده</span>
+                     <Button
+                        className="card__caption"
+                        onClick={() => {
+                           handleChargeDetailButton(
+                              setSelectedCharge,
+                              renovation,
+                              history,
+                              token,
+                              setSelectedRenovationBillDetail,
+                           );
+                        }}
+                     >
+                        پرداخت شده
+                     </Button>
                   ) : (
                      <Button
                         className="card__button"
@@ -71,6 +87,8 @@ const SubsystemDetais: FC<subsystemDetailsProps> = () => {
                               setSelectedCharge,
                               renovation,
                               history,
+                              token,
+                              setSelectedRenovationBillDetail,
                            );
                         }}
                      >

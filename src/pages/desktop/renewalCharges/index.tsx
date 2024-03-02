@@ -11,19 +11,17 @@ const RenewalCharges = () => {
    const history = useHistory();
 
    useEffect(() => {
-      console.log(token);
       if (!token) history.push('');
 
       const fetch = async function () {
          const renovations = await getRenovationMasters(token);      
-         console.log(renovations);   
          setRenovations(renovations);
       };
       fetch();
    }, []);
 
    return (
-      <Layout backArrowUrl='subsystem'>
+      <Layout backArrowUrl='/subsystem'>
          <div className="renwal-charges">
             <p>
                ملک های زیر در سیستم به نام شما ثبت شده اند. شما با انتخاب هر یک

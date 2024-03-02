@@ -20,7 +20,7 @@ const handleChargeDetailButton = async (
       const responseBody = billDetailsInfoResponse.body;
       if (billDetailsInfoResponse.status === 200) {
          setBillDetailsInfoResponse(responseBody);
-         history.push('/payment');
+         history.push('/payment/renovation/');
       } else toast.fire({ title: responseBody.message, icon: 'error' });
    }
 };
