@@ -6,6 +6,7 @@ import {
    User,
    Guild,
    RenovationBill,
+   GuildBill,
 } from './App.context';
 import { useState } from 'react';
 
@@ -16,14 +17,16 @@ const App = (props: AppProps) => {
    const [token, setToken] = useState<string>('');
    const [maskedPhoneNumber, setMaskedPhoneNumber] = useState<string>('');
    const [subSystems, setSubsystems] = useState<SubSystem[]>([]);
-   const [selectedCharge, setSelectedCharge] = useState<RenovationMaster | null>(
-      null,
-   );
+   const [selectedCharge, setSelectedCharge] =
+      useState<RenovationMaster | null>(null);
    const [selectedGuildCharge, setSelectedGuildCharge] = useState<Guild | null>(
       null,
    );
+   console.log('token', token);
    const [selectedRenovationBillDetail, setSelectedRenovationBillDetail] =
       useState<RenovationBill | null>(null);
+   const [selectedGuildBillDetail, setSelectedGuildBillDetail] =
+      useState<GuildBill | null>(null);
    return (
       <AppContext.Provider
          value={{
@@ -36,6 +39,7 @@ const App = (props: AppProps) => {
             setSelectedGuildCharge,
             selectedCharge,
             setSelectedRenovationBillDetail,
+            setSelectedGuildBillDetail,
             maskedPhoneNumber,
             subSystems,
             token,
@@ -43,6 +47,7 @@ const App = (props: AppProps) => {
             loginEnteredNationalCode,
             selectedGuildCharge,
             selectedRenovationBillDetail,
+            selectedGuildBillDetail,
          }}
       >
          {props.children}

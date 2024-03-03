@@ -12,9 +12,11 @@ const GuildCard: FC<Props> = ({
    guild,
    lock,
    viewOnly = false,
+   isFromMobile,
 }) => {
    const history = useHistory();
-   const { setSelectedGuildCharge } = useContext(AppContext);
+   const { setSelectedGuildCharge, token, setSelectedGuildBillDetail } =
+      useContext(AppContext);
 
    return (
       <div
@@ -38,13 +40,28 @@ const GuildCard: FC<Props> = ({
 
             <h3>{guild.address}</h3>
          </div>
-         <div className="guildCard__kind">
+         <div className={`guildCard__kind ${isFromMobile && 'mobileGuild'}`}>
             <span>نوع کسب : </span>
             <span>{guild.TradeType}</span>
          </div>
+
          {!viewOnly ? (
             guild.is_paid ? (
-               <span className="guildCard__caption">پرداخت شده</span>
+               <Button
+                  className="guildCard__button"
+                  onClick={() =>
+                     handleChargeDetailButton(
+                        setSelectedGuildCharge,
+                        guild,
+                        history,
+                        token,
+                        setSelectedGuildBillDetail,
+                        true,
+                     )
+                  }
+               >
+                  پرداخت شده
+               </Button>
             ) : (
                <Button
                   className="guildCard__button"
@@ -53,6 +70,9 @@ const GuildCard: FC<Props> = ({
                         setSelectedGuildCharge,
                         guild,
                         history,
+                        token,
+                        setSelectedGuildBillDetail,
+                        false,
                      )
                   }
                >

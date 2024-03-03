@@ -16,7 +16,6 @@ const Layout: FC<Props> = ({ children, showBackArrow = true }) => {
                &gt;
             </span>
          )}
-
          <header>
             <img src={Logo} alt="Logo" />
             <span>سامانه پرداخت عوارض شهرداری زرند</span>
