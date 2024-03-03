@@ -23,7 +23,7 @@ const GuildPayedDetail = () => {
    }, []);
 
    return (
-      <Layout backArrowUrl="/payment/guild">
+      <Layout>
          <div className="payedDetail">
             <Header />
             <div className="payedDetail__container">
