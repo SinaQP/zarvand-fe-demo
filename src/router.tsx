@@ -18,6 +18,8 @@ import SubsystemGuildDetais from './pages/Mobile/guildPhase/subsystemDetails';
 import MobilePaymentGuild from './pages/Mobile/guildPhase/payment';
 import PayedDetail from './pages/desktop/payedDetail';
 import MobilePayedDetail from './pages/Mobile/payedDetail';
+import GuildPayedDetail from './pages/desktop/guildPhase/payedDetail';
+import MobileGuildPayedDetail from './pages/Mobile/guildPhase/payedDetail';
 /**
  * Router Container
  */
@@ -66,6 +68,11 @@ function Router() {
             exact
             component={isMobile ? MobilePayedDetail : PayedDetail}
          />
+         <Route
+            path="/payed-detail/guild"
+            exact
+            component={isMobile ? MobileGuildPayedDetail : GuildPayedDetail}
+         />
          <Route path="/subsystem" exact component={Welcome} />
          <Route
             path="/subsystem-guild-info"
@@ -74,9 +81,9 @@ function Router() {
          />
 
          <Route path="/charges/renovation" exact component={RenewalCharges} />
-         <Route path="/guild-charges" exact component={GuildRenewalCharges} />
+         <Route path="/charges/guild" exact component={GuildRenewalCharges} />
          <Route
-            path="/payment-guild"
+            path="/payment/guild/"
             exact
             component={isMobile ? MobilePaymentGuild : DesktopPaymentGuild}
          />

@@ -1,12 +1,20 @@
 import { FC } from 'react';
 import Logo from '../../../assets/images/logo.png';
 import Props from './props.interface';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 const Layout: FC<Props> = ({ children, backArrowUrl }) => {
+   const history = useHistory();
    return (
       <div className="layout">
-         {backArrowUrl && <Link to={backArrowUrl} className='layout__navigator'>&gt;</Link>}
+         {backArrowUrl && (
+            <span
+               onClick={() => history.goBack()}
+               className="layout__navigator"
+            >
+               &gt;
+            </span>
+         )}
          <header>
             <img src={Logo} alt="Logo" />
             <span>سامانه پرداخت عوارض شهرداری زرند</span>

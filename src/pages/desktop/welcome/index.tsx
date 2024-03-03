@@ -11,7 +11,7 @@ const Welcome = () => {
    useEffect(() => {
       if (!token) history.push('');
    }, []);
-   
+
    return (
       <Layout>
          <div className="welcome">
@@ -30,7 +30,7 @@ const Welcome = () => {
                </Button>
 
                <Button className={'welcome__button welcome__button--active'}>
-                  <Link to="/guild-charges">عوارض کسب پیشه</Link>
+                  <Link to="/charges/guild">عوارض کسب پیشه</Link>
                </Button>
             </div>
          </div>

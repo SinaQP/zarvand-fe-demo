@@ -24,6 +24,30 @@ export interface Guild {
    is_paid: boolean;
    master_id: string;
 }
+
+export interface GuildBill {
+   payment_no: string;
+   bill_no: string;
+   value_to_pay: number;
+   bill_details: GuildBillDetail[];
+}
+
+export interface GuildBillDetail {
+   bill_id: number;
+   incomecode_code: string;
+   incomecode_desc: string;
+   penalty: number;
+   from_year: number;
+   creditor: number;
+   to_year: number;
+   notice: string;
+   bill_code: string;
+   city_name: string;
+   payment_date: string;
+   is_annual_charges: boolean;
+   desc: string;
+}
+
 export interface RenovationBillDetail {
    bill_id: number;
    incomecode_code: string;
@@ -31,7 +55,7 @@ export interface RenovationBillDetail {
    penalty: number;
    from_year: number;
    creditor: number;
-   to_year: number;   
+   to_year: number;
    bill_code: string;
    payment_date: string;
    is_annual_charges: true;
@@ -59,6 +83,7 @@ export interface AppContextProps {
    setSelectedRenovationBillDetail: Dispatch<
       SetStateAction<RenovationBill | null>
    >;
+   setSelectedGuildBillDetail: Dispatch<SetStateAction<GuildBill | null>>;
    token: string;
    user: User | null;
    subSystems: SubSystem[];
@@ -67,6 +92,7 @@ export interface AppContextProps {
    loginEnteredNationalCode: string;
    maskedPhoneNumber: string;
    selectedRenovationBillDetail: RenovationBill | null;
+   selectedGuildBillDetail: GuildBill | null;
 }
 
 export const AppContext = createContext<AppContextProps>({
@@ -78,6 +104,7 @@ export const AppContext = createContext<AppContextProps>({
    setLoginEnteredNationalCode: () => {},
    setMaskedPhoneNumber: () => {},
    setSelectedRenovationBillDetail: () => {},
+   setSelectedGuildBillDetail: () => {},
    token: '',
    selectedCharge: null,
    user: null,
@@ -86,4 +113,5 @@ export const AppContext = createContext<AppContextProps>({
    maskedPhoneNumber: '',
    selectedGuildCharge: null,
    selectedRenovationBillDetail: null,
+   selectedGuildBillDetail: null,
 });

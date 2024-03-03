@@ -10,7 +10,8 @@ import Button from '../../../../containers/desktop/button';
 
 const SubsystemGuildDetais: FC<subsystemDetailsProps> = () => {
    const history = useHistory();
-   const { token, setSelectedGuildCharge } = useContext(AppContext);
+   const { token, setSelectedGuildCharge, setSelectedGuildBillDetail } =
+      useContext(AppContext);
    const [guilds, setGuilds] = useState<Guild[]>([]);
 
    useEffect(() => {
@@ -61,9 +62,24 @@ const SubsystemGuildDetais: FC<subsystemDetailsProps> = () => {
                      guild={guild}
                      lock
                      viewOnly
+                     isFromMobile
                   />
                   {guild.is_paid ? (
-                     <span className="card__caption">پرداخت شده</span>
+                     <Button
+                        className="card__caption"
+                        onClick={() => {
+                           handleChargeDetailButton(
+                              setSelectedGuildCharge,
+                              guild,
+                              history,
+                              token,
+                              setSelectedGuildBillDetail,
+                              true,
+                           );
+                        }}
+                     >
+                        پرداخت شده
+                     </Button>
                   ) : (
                      <Button
                         className="card__button"
@@ -72,6 +88,9 @@ const SubsystemGuildDetais: FC<subsystemDetailsProps> = () => {
                               setSelectedGuildCharge,
                               guild,
                               history,
+                              token,
+                              setSelectedGuildBillDetail,
+                              false,
                            );
                         }}
                      >
