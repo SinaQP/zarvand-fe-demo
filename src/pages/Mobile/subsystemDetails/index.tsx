@@ -74,6 +74,7 @@ const SubsystemDetais: FC<subsystemDetailsProps> = () => {
                               history,
                               token,
                               setSelectedRenovationBillDetail,
+                              true
                            );
                         }}
                      >
@@ -89,6 +90,7 @@ const SubsystemDetais: FC<subsystemDetailsProps> = () => {
                               history,
                               token,
                               setSelectedRenovationBillDetail,
+                              false
                            );
                         }}
                      >
