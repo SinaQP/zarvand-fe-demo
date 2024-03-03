@@ -35,7 +35,7 @@ const GuildPayedDetail = () => {
                         selectedGuildCharge ? selectedGuildCharge : emptyGuild
                      }
                   />
-                  <Button className="payedDetail__button">چاپ</Button>
+                  {/* <Button className="payedDetail__button">چاپ</Button> */}
                </div>
                <div className="payedDetail__colume payedDetail__colume--charges">
                   <div className="payedDetail__charges">

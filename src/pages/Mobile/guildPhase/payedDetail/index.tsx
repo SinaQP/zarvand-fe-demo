@@ -54,9 +54,9 @@ const MobileGuildPayedDetail: FC = () => {
                : ''}
          </div>
 
-         <Button className="mobile-payed-detail__button" size="large">
+         {/* <Button className="mobile-payed-detail__button" size="large">
             چاپ
-         </Button>
+         </Button> */}
       </div>
    );
 };
