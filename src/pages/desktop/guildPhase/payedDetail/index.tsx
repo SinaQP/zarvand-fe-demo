@@ -1,20 +1,20 @@
-import Button from '../../../containers/desktop/button';
-import Layout from '../../../containers/desktop/layout';
+import Button from '../../../../containers/desktop/button';
+import Layout from '../../../../containers/desktop/layout';
 import Header from './header';
 import { useContext, useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { AppContext } from '../../../App.context';
-import { separateByThree } from '../../../utilities/separatetByThree';
-import RenovationCard from '../../../componnents/renovationCard';
+import { AppContext } from '../../../../App.context';
+import { separateByThree } from '../../../../utilities/separatetByThree';
+import GuildCard from '../../../../componnents/guildCard';
 
-const RenovationPayedDetail = () => {
-   const emptyRenovation = {
+const GuildPayedDetail = () => {
+   const emptyGuild = {
       address: '',
-      certificate_number: '',
+      TradeType: '',
       is_paid: false,
       master_id: '',
    };
-   const { token, selectedCharge, selectedRenovationBillDetail } =
+   const { token, selectedGuildCharge, selectedGuildBillDetail } =
       useContext(AppContext);
    const history = useHistory();
 
@@ -23,16 +23,16 @@ const RenovationPayedDetail = () => {
    }, []);
 
    return (
-      <Layout backArrowUrl="/payment/renovation">
+      <Layout>
          <div className="payedDetail">
             <Header />
             <div className="payedDetail__container">
                <div className="payedDetail__colume">
-                  <RenovationCard
+                  <GuildCard
                      lock
                      viewOnly
-                     renovation={
-                        selectedCharge ? selectedCharge : emptyRenovation
+                     guild={
+                        selectedGuildCharge ? selectedGuildCharge : emptyGuild
                      }
                   />
                   <Button className="payedDetail__button">چاپ</Button>
@@ -46,9 +46,9 @@ const RenovationPayedDetail = () => {
                         <span>شناسه قبض</span>
                         <span>تاریخ پرداخت</span>
                      </div>
-                     {selectedRenovationBillDetail
-                        ? selectedRenovationBillDetail.bill_details.map(
-                             (charge) => (
+                     {selectedGuildBillDetail?.bill_details
+                        ? selectedGuildBillDetail.bill_details.map(
+                             (charge: any) => (
                                 <div className="payedDetail__charges-row">
                                    <span>{charge.from_year}</span>
                                    <span>
@@ -69,4 +69,4 @@ const RenovationPayedDetail = () => {
    );
 };
 
-export default RenovationPayedDetail;
+export default GuildPayedDetail;

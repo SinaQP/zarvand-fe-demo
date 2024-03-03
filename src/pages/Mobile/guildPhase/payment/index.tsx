@@ -17,7 +17,8 @@ const PaymentGuild: FC = () => {
       is_paid: false,
       master_id: '',
    };
-   const { token, selectedGuildCharge } = useContext(AppContext);
+   const { token, selectedGuildCharge, selectedGuildBillDetail } =
+      useContext(AppContext);
    const history = useHistory();
    const [bill, setBill] = useState<Bill | null>(null);
 
@@ -47,6 +48,7 @@ const PaymentGuild: FC = () => {
             lock
             viewOnly
             className="mobile-payment__card"
+            isFromMobile
          />
          <Charges bill={bill} />
          <Amounts
@@ -54,6 +56,15 @@ const PaymentGuild: FC = () => {
             payment_no={bill?.payment_no ? bill.payment_no : ''}
             value_to_pay={bill?.value_to_pay ? bill.value_to_pay : 0}
          />
+         {selectedGuildBillDetail && selectedGuildBillDetail.bill_details && (
+            <Button
+               className="mobile-payment__button"
+               size="large"
+               onClick={() => history.push('/payed-detail/guild')}
+            >
+               مشاهده سابقه پرداخت
+            </Button>
+         )}
          <Button className="mobile-payment__button" size="large">
             پرداخت
          </Button>

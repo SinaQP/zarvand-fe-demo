@@ -1,6 +1,6 @@
 import { FC, useContext } from 'react';
-import { separateByThree } from '../../../../utilities/separatetByThree';
-import { AppContext } from '../../../../App.context';
+import { separateByThree } from '../../../../../utilities/separatetByThree';
+import { AppContext } from '../../../../../App.context';
 
 const ExtraDetails: FC = () => {
    const { selectedRenovationBillDetail } = useContext(AppContext);

@@ -6,6 +6,7 @@ interface Props {
    guild: Guild;
    lock?: boolean;
    viewOnly?: boolean;
+   isFromMobile?: boolean;
 }
 
 export default Props;

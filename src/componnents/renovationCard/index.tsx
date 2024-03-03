@@ -63,6 +63,7 @@ const RenovationCard: FC<Props> = ({
                         history,
                         token,
                         setSelectedRenovationBillDetail,
+                        true
                      )
                   }
                >
@@ -78,6 +79,7 @@ const RenovationCard: FC<Props> = ({
                         history,
                         token,
                         setSelectedRenovationBillDetail,
+                        false
                      )
                   }
                >

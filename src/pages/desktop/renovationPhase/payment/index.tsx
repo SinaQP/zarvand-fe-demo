@@ -1,13 +1,13 @@
-import Button from '../../../containers/desktop/button';
-import Layout from '../../../containers/desktop/layout';
+import Button from '../../../../containers/desktop/button';
+import Layout from '../../../../containers/desktop/layout';
 import Amounts from './amounts';
 import Header from './header';
 import { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import { AppContext } from '../../../App.context';
-import { separateByThree } from '../../../utilities/separatetByThree';
+import { AppContext } from '../../../../App.context';
+import { separateByThree } from '../../../../utilities/separatetByThree';
 import ExtraDetails from './extraDetails';
-import RenovationCard from '../../../componnents/renovationCard';
+import RenovationCard from '../../../../componnents/renovationCard';
 
 const Payment = () => {
    const emptyRenovation = {
@@ -25,7 +25,7 @@ const Payment = () => {
    }, []);
 
    return (
-      <Layout backArrowUrl="/charges/renovation">
+      <Layout>
          <div className="payment">
             <Header />
             <div className="payment__container">
@@ -54,7 +54,6 @@ const Payment = () => {
                                    <span>{separateByThree(charge[1])}</span>
                                    <span>عوارض سالیانه</span>
                                 </div>
-                                
                              ),
                           )
                         : ''}
@@ -82,10 +81,12 @@ const Payment = () => {
                   />
                   <div className="payment__buttons">
                      {selectedRenovationBillDetail &&
-                        selectedRenovationBillDetail.bill_details && (
+                        selectedRenovationBillDetail.bill_details.length > 0 && (
                            <Button
                               className="payment__button payment__button--outline"
-                              onClick={() => history.push('/payed-detail/renovation')}
+                              onClick={() =>
+                                 history.push('/payed-detail/renovation')
+                              }
                            >
                               مشاهده سابقه پرداخت
                            </Button>

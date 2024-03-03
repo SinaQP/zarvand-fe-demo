@@ -29,6 +29,9 @@
       gap: 3rem;
       padding: 4rem 1rem 0 1rem;
       color: #ffffff;
+      &.mobileGuild {
+         color: #000 !important;
+      }
    }
    &__input-wrapper {
       margin-top: 3rem;
@@ -71,14 +74,16 @@
       border: 1px solid #e3fe55;
       color: #e3fe55;
 
+      .guildCard__button {
+         background: #e3fe55;
+         color: black;
+      }
       .guildCard__icon {
          path {
             fill: #00ff0a;
          }
       }
-      .guildCard__button {
-         background: black;
-      }
+
       .guildCard__property-number--payed {
          border: 1px solid #e3fe55;
          .SSNNumberStyle__fieldset {

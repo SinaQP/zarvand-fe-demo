@@ -1,6 +1,5 @@
 import { FC } from 'react';
-import { Bill } from '../../../../pages/desktop/payment/index.interface';
-import toMoneyFormat from '../../../../utilities/toMoneyFormat';
+import { Bill } from '../../../../pages/desktop/renovationPhase/payment/index.interface';
 import { separateByThree } from '../../../../utilities/separatetByThree';
 
 const Charges: FC<{ bill: Bill | null }> = ({ bill }) => {
@@ -41,6 +40,13 @@ const Charges: FC<{ bill: Bill | null }> = ({ bill }) => {
                   {separateByThree(bill ? bill.garbage_collection_charges : 0)}
                </span>
                <span>خدمات زباله شهری</span>
+            </div>
+            <div className="mobile-payment__charges-row">
+               <span>{'----'}</span>
+               <span>
+                  {separateByThree(bill ? bill.total_penalty : 0)}
+               </span>
+               <span>جریمه دیرکرد</span>
             </div>
          </div>
       </div>
