@@ -9,6 +9,7 @@ const handleChargeDetailButton = async (
    history: { push: (url: string) => void },
    token: string,
    setBillDetailsInfoResponse: Dispatch<SetStateAction<RenovationBill | null>>,
+   isPaied: boolean,
 ) => {
    setSelectedCharge(charge);
 
@@ -20,7 +21,11 @@ const handleChargeDetailButton = async (
       const responseBody = billDetailsInfoResponse.body;
       if (billDetailsInfoResponse.status === 200) {
          setBillDetailsInfoResponse(responseBody);
-         history.push('/payment/renovation/');
+         if (isPaied) {
+            history.push('/payed-detail/renovation');
+         } else {
+            history.push('/payment/renovation/');
+         }
       } else toast.fire({ title: responseBody.message, icon: 'error' });
    }
 };

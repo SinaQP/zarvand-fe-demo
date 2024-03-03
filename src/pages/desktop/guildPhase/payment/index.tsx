@@ -36,7 +36,7 @@ const GuildPayment = () => {
    }, []);
 
    return (
-      <Layout backArrowUrl="guild-charges">
+      <Layout>
          <div className="payment">
             <Header />
             <div className="payment__container">

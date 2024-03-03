@@ -6,4 +6,5 @@ export interface Bill {
    city_service_charges: number;
    safety_service_charges: number;
    garbage_collection_charges:number
+   total_penalty:number
 }

@@ -31,7 +31,7 @@ export interface RenovationBillDetail {
    penalty: number;
    from_year: number;
    creditor: number;
-   to_year: number;   
+   to_year: number;
    bill_code: string;
    payment_date: string;
    is_annual_charges: true;
@@ -46,6 +46,7 @@ export interface RenovationBill {
    city_service_charges: number;
    safety_service_charges: number;
    garbage_collection_charges: number;
+   total_penalty: number;
 }
 
 export interface AppContextProps {

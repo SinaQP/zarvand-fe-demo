@@ -1,13 +1,10 @@
-import { FC, useContext, useEffect, useState } from 'react';
+import { FC, useContext, useEffect } from 'react';
 import Header from '../../../containers/mobile/payment/header';
 import { AppContext } from '../../../App.context';
 import { useHistory } from 'react-router-dom';
-import { getRenovationBillDetailsInfo } from '../../../apis/renovation/renovation-bill-details-info';
-import { Bill } from '../../desktop/payment/index.interface';
 import Charges from '../../../containers/mobile/payment/charges';
 import Button from '../../../componnents/button';
 import Amounts from '../../../containers/mobile/payment/amounts';
-import toMoneyFormat from '../../../utilities/toMoneyFormat';
 import RenovationCard from '../../../componnents/renovationCard';
 
 const Payment: FC = () => {
@@ -53,7 +50,7 @@ const Payment: FC = () => {
             }
          />
          {selectedRenovationBillDetail &&
-            selectedRenovationBillDetail.bill_details && (
+            selectedRenovationBillDetail.bill_details.length > 0 && (
                <Button
                   className="mobile-payment__button"
                   size="large"

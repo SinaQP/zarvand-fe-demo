@@ -1,9 +1,9 @@
 import { useContext, useEffect, useState } from 'react';
-import Layout from '../../../containers/desktop/layout';
+import Layout from '../../../../containers/desktop/layout';
 import { getRenovationMasters } from './getPersonRenovationMasters';
-import { AppContext, RenovationMaster } from '../../../App.context';
+import { AppContext, RenovationMaster } from '../../../../App.context';
 import { useHistory } from 'react-router-dom';
-import RenovationCard from '../../../componnents/renovationCard';
+import RenovationCard from '../../../../componnents/renovationCard';
 
 const RenewalCharges = () => {
    const { token } = useContext(AppContext);
@@ -21,7 +21,7 @@ const RenewalCharges = () => {
    }, []);
 
    return (
-      <Layout backArrowUrl='/subsystem'>
+      <Layout>
          <div className="renwal-charges">
             <p>
                ملک های زیر در سیستم به نام شما ثبت شده اند. شما با انتخاب هر یک

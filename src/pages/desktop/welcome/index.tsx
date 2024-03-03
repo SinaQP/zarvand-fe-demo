@@ -5,15 +5,15 @@ import { useContext, useEffect } from 'react';
 import { AppContext } from '../../../App.context';
 
 const Welcome = () => {
-   const { subSystems, token } = useContext(AppContext);
+   const { token } = useContext(AppContext);
    const history = useHistory();
 
    useEffect(() => {
       if (!token) history.push('');
    }, []);
-   
+
    return (
-      <Layout>
+      <Layout showBackArrow={false}>
          <div className="welcome">
             <div className="welcome__information">
                <span>شهروند گرامی</span>

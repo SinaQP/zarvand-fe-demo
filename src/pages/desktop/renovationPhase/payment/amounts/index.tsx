@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { separateByThree } from '../../../../utilities/separatetByThree';
+import { separateByThree } from '../../../../../utilities/separatetByThree';
 
 const Amounts: FC<{
    bill_no: string;
