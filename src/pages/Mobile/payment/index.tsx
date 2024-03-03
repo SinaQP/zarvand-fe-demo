@@ -2,13 +2,13 @@ import { FC, useContext, useEffect, useState } from 'react';
 import Header from '../../../containers/mobile/payment/header';
 import { AppContext } from '../../../App.context';
 import { useHistory } from 'react-router-dom';
-import Card from '../../../componnents/card';
 import { getRenovationBillDetailsInfo } from '../../../apis/renovation/renovation-bill-details-info';
 import { Bill } from '../../desktop/payment/index.interface';
 import Charges from '../../../containers/mobile/payment/charges';
 import Button from '../../../componnents/button';
 import Amounts from '../../../containers/mobile/payment/amounts';
 import toMoneyFormat from '../../../utilities/toMoneyFormat';
+import RenovationCard from '../../../componnents/renovationCard';
 
 const Payment: FC = () => {
    const emptyRenovation = {
@@ -17,23 +17,9 @@ const Payment: FC = () => {
       is_paid: false,
       master_id: '',
    };
-   const { token, selectedCharge } = useContext(AppContext);
+   const { token, selectedCharge, selectedRenovationBillDetail } =
+      useContext(AppContext);
    const history = useHistory();
-   const [bill, setBill] = useState<Bill | null>(null);
-
-   useEffect(() => {
-      if (!token) history.push('');
-      const fetch = async function () {
-         if (selectedCharge) {
-            const bill = await getRenovationBillDetailsInfo(
-               { master_id: selectedCharge.master_id },
-               token,
-            );
-            setBill(bill.body);
-         }
-      };
-      fetch();
-   }, []);
 
    useEffect(() => {
       if (!token) history.push('/');
@@ -42,19 +28,43 @@ const Payment: FC = () => {
    return (
       <div className="mobile-payment">
          <Header />
-         <Card
+         <RenovationCard
             renovation={selectedCharge ? selectedCharge : emptyRenovation}
             lock
             viewOnly
             className="mobile-payment__card"
          />
-         <Charges bill={bill} />
+         <Charges bill={selectedRenovationBillDetail} />
          <Amounts
-            bill_no={bill ? bill.bill_no : ''}
-            payment_no={bill ? bill.payment_no : ''}
-            value_to_pay={bill ? bill.value_to_pay : 0}
+            bill_no={
+               selectedRenovationBillDetail
+                  ? selectedRenovationBillDetail.bill_no
+                  : ''
+            }
+            payment_no={
+               selectedRenovationBillDetail
+                  ? selectedRenovationBillDetail.payment_no
+                  : ''
+            }
+            value_to_pay={
+               selectedRenovationBillDetail
+                  ? selectedRenovationBillDetail.value_to_pay
+                  : 0
+            }
          />
-         <Button className="mobile-payment__button" size='large'>پرداخت</Button>
+         {selectedRenovationBillDetail &&
+            selectedRenovationBillDetail.bill_details && (
+               <Button
+                  className="mobile-payment__button"
+                  size="large"
+                  onClick={() => history.push('/payed-detail/renovation')}
+               >
+                  مشاهده سابقه پرداخت
+               </Button>
+            )}
+         <Button className="mobile-payment__button" size="large">
+            پرداخت
+         </Button>
       </div>
    );
 };

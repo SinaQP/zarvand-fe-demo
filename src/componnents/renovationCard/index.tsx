@@ -7,16 +7,22 @@ import handleChargeDetailButton from './handleChargeDetailButton';
 import { AppContext } from '../../App.context';
 import './index.scss';
 
-const Card: FC<Props> = ({ className = '', renovation, lock, viewOnly=false }) => {
+const RenovationCard: FC<Props> = ({
+   className = '',
+   renovation,
+   lock,
+   viewOnly = false,
+}) => {
    const [propertyNumber, setPropertyNumber] = useState<string[]>([
       renovation.certificate_number.slice(0, 3),
       renovation.certificate_number.slice(3, 5),
       renovation.certificate_number.slice(5, 12),
       renovation.certificate_number.slice(12, 16),
       renovation.certificate_number.slice(16, 19),
-   ]);   
+   ]);
    const history = useHistory();
-   const { setSelectedCharge } = useContext(AppContext);
+   const { setSelectedCharge, token, setSelectedRenovationBillDetail } =
+      useContext(AppContext);
 
    return (
       <div
@@ -48,7 +54,20 @@ const Card: FC<Props> = ({ className = '', renovation, lock, viewOnly=false }) =
          />
          {!viewOnly ? (
             renovation.is_paid ? (
-               <span className="card__caption">پرداخت شده</span>
+               <Button
+                  className="card__button"
+                  onClick={() =>
+                     handleChargeDetailButton(
+                        setSelectedCharge,
+                        renovation,
+                        history,
+                        token,
+                        setSelectedRenovationBillDetail,
+                     )
+                  }
+               >
+                  پرداخت شده
+               </Button>
             ) : (
                <Button
                   className="card__button"
@@ -57,6 +76,8 @@ const Card: FC<Props> = ({ className = '', renovation, lock, viewOnly=false }) =
                         setSelectedCharge,
                         renovation,
                         history,
+                        token,
+                        setSelectedRenovationBillDetail,
                      )
                   }
                >
@@ -70,4 +91,4 @@ const Card: FC<Props> = ({ className = '', renovation, lock, viewOnly=false }) =
    );
 };
 
-export default Card;
+export default RenovationCard;

@@ -24,7 +24,6 @@ const handleConfirmationButton: Function = async ({
       code: verificationCode,
    });
    const responseBody = response.body;
-
    if (response.status === 200) {
       setToken(responseBody.token);
       setUser(responseBody.user);

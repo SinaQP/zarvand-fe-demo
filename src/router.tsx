@@ -13,10 +13,11 @@ import Payment from './pages/desktop/payment';
 import PaymentMobile from './pages/Mobile/payment';
 import { AppContext } from './App.context';
 import GuildRenewalCharges from './pages/desktop/guildPhase/renewalCharges';
-import GuildPayment from './pages/desktop/guildPhase/payment';
+import DesktopPaymentGuild from './pages/desktop/guildPhase/payment';
 import SubsystemGuildDetais from './pages/Mobile/guildPhase/subsystemDetails';
-import PaymentGuild from './pages/Mobile/guildPhase/payment';
-
+import MobilePaymentGuild from './pages/Mobile/guildPhase/payment';
+import PayedDetail from './pages/desktop/payedDetail';
+import MobilePayedDetail from './pages/Mobile/payedDetail';
 /**
  * Router Container
  */
@@ -56,9 +57,14 @@ function Router() {
          )}
 
          <Route
-            path="/payment"
+            path="/payment/renovation/"
             exact
             component={isMobile ? PaymentMobile : Payment}
+         />
+         <Route
+            path="/payed-detail/renovation"
+            exact
+            component={isMobile ? MobilePayedDetail : PayedDetail}
          />
          <Route path="/subsystem" exact component={Welcome} />
          <Route
@@ -67,12 +73,12 @@ function Router() {
             component={SubsystemGuildDetais}
          />
 
-         <Route path="/charges" exact component={RenewalCharges} />
+         <Route path="/charges/renovation" exact component={RenewalCharges} />
          <Route path="/guild-charges" exact component={GuildRenewalCharges} />
          <Route
             path="/payment-guild"
             exact
-            component={isMobile ? PaymentGuild : GuildPayment}
+            component={isMobile ? MobilePaymentGuild : DesktopPaymentGuild}
          />
       </BrowserRouter>
    );

@@ -1,27 +1,27 @@
 import { useContext, useEffect, useState } from 'react';
 import Layout from '../../../containers/desktop/layout';
-import Card from '../../../componnents/card';
 import { getRenovationMasters } from './getPersonRenovationMasters';
-import { AppContext, Renovation } from '../../../App.context';
+import { AppContext, RenovationMaster } from '../../../App.context';
 import { useHistory } from 'react-router-dom';
+import RenovationCard from '../../../componnents/renovationCard';
 
 const RenewalCharges = () => {
    const { token } = useContext(AppContext);
-   const [renovations, setRenovations] = useState<Renovation[]>([]);
+   const [renovations, setRenovations] = useState<RenovationMaster[]>([]);
    const history = useHistory();
 
    useEffect(() => {
       if (!token) history.push('');
 
       const fetch = async function () {
-         const renovations = await getRenovationMasters(token);         
+         const renovations = await getRenovationMasters(token);      
          setRenovations(renovations);
       };
       fetch();
    }, []);
 
    return (
-      <Layout backArrowUrl='subsystem'>
+      <Layout backArrowUrl='/subsystem'>
          <div className="renwal-charges">
             <p>
                ملک های زیر در سیستم به نام شما ثبت شده اند. شما با انتخاب هر یک
@@ -30,7 +30,7 @@ const RenewalCharges = () => {
 
             <section className="renwal-charges__cards">
                {renovations.map((renovation) => (
-                  <Card renovation={renovation} lock={true} />
+                  <RenovationCard renovation={renovation} lock={true} />
                ))}
             </section>
          </div>

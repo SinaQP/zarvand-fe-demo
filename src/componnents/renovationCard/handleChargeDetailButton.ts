@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
-import { RenovationBill, RenovationMaster } from '../../../App.context';
-import { getRenovationBillDetailsInfo } from '../../../apis/renovation/renovation-bill-details-info';
-import toast from '../../../utilities/toast';
+import { RenovationBill, RenovationMaster } from '../../App.context';
+import { getRenovationBillDetailsInfo } from '../../apis/renovation/renovation-bill-details-info';
+import toast from '../../utilities/toast';
 
 const handleChargeDetailButton = async (
    setSelectedCharge: Dispatch<SetStateAction<RenovationMaster | null>>,
