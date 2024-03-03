@@ -1,6 +1,6 @@
 import { FC, useContext } from 'react';
-import { separateByThree } from '../../../../utilities/separatetByThree';
-import { AppContext } from '../../../../App.context';
+import { separateByThree } from '../../../../../utilities/separatetByThree';
+import { AppContext } from '../../../../../App.context';
 
 const ExtraDetails: FC = () => {
    const { selectedRenovationBillDetail } = useContext(AppContext);
@@ -38,6 +38,17 @@ const ExtraDetails: FC = () => {
                )}
             </span>
             <span>خدمات پسماند</span>
+         </div>
+         <div className="payment__charges-row">
+            <span>{'----'}</span>
+            <span>
+               {separateByThree(
+                  selectedRenovationBillDetail
+                     ? selectedRenovationBillDetail.total_penalty
+                     : 0,
+               )}
+            </span>
+            <span>جریمه دیرکرد</span>
          </div>
       </>
    );

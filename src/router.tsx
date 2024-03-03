@@ -8,19 +8,23 @@ import ZarvandSubsystem from './pages/Mobile/subsystem';
 import SubsystemDetais from './pages/Mobile/subsystemDetails';
 import Login from './pages/desktop/login';
 import Welcome from './pages/desktop/welcome';
-import RenewalCharges from './pages/desktop/renewalCharges';
-import Payment from './pages/desktop/payment';
+import RenewalCharges from './pages/desktop/renovationPhase/charges';
+import RenovationPayment from './pages/desktop/renovationPhase/payment';
 import PaymentMobile from './pages/Mobile/payment';
-import { AppContext } from './App.context';
 import GuildRenewalCharges from './pages/desktop/guildPhase/renewalCharges';
 import DesktopPaymentGuild from './pages/desktop/guildPhase/payment';
 import SubsystemGuildDetais from './pages/Mobile/guildPhase/subsystemDetails';
 import MobilePaymentGuild from './pages/Mobile/guildPhase/payment';
-import PayedDetail from './pages/desktop/payedDetail';
-import MobilePayedDetail from './pages/Mobile/payedDetail';
+import RenovationPayedDetail from './pages/desktop/renovationPhase/payedDetail';
+import RenovationMobilePayedDetail from './pages/Mobile/payedDetail';
+import GuildPayedDetail from './pages/desktop/guildPhase/payedDetail';
+import MobileGuildPayedDetail from './pages/Mobile/guildPhase/payedDetail';
 /**
  * Router Container
  */
+const RenovationRoutes = () => {
+   return <></>
+}
 function Router() {
    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
    return (
@@ -55,16 +59,21 @@ function Router() {
                />
             </>
          )}
-
+         {/* RenovationRoutes */}
          <Route
             path="/payment/renovation/"
             exact
-            component={isMobile ? PaymentMobile : Payment}
+            component={isMobile ? PaymentMobile : RenovationPayment}
          />
          <Route
             path="/payed-detail/renovation"
             exact
-            component={isMobile ? MobilePayedDetail : PayedDetail}
+            component={isMobile ? RenovationMobilePayedDetail : RenovationPayedDetail}
+         />
+         <Route
+            path="/payed-detail/guild"
+            exact
+            component={isMobile ? MobileGuildPayedDetail : GuildPayedDetail}
          />
          <Route path="/subsystem" exact component={Welcome} />
          <Route
@@ -74,9 +83,9 @@ function Router() {
          />
 
          <Route path="/charges/renovation" exact component={RenewalCharges} />
-         <Route path="/guild-charges" exact component={GuildRenewalCharges} />
+         <Route path="/charges/guild" exact component={GuildRenewalCharges} />
          <Route
-            path="/payment-guild"
+            path="/payment/guild/"
             exact
             component={isMobile ? MobilePaymentGuild : DesktopPaymentGuild}
          />

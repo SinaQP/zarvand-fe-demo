@@ -57,8 +57,8 @@ const SubsystemDetais: FC<subsystemDetailsProps> = () => {
                   <RenovationCard
                      className={
                         renovation.is_paid
-                           ? 'subsystemDetailsPage__paied_card'
-                           : 'subsystemDetailsPage__card'
+                           ? 'subsystemDetailsPage__paied_card mobileGuild'
+                           : 'subsystemDetailsPage__card mobileGuild'
                      }
                      renovation={renovation}
                      lock

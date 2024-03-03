@@ -3,7 +3,7 @@ import { ReactNode } from 'react';
 interface Props {
    children: ReactNode;
    className?: string;
-   backArrowUrl?: string;
+   showBackArrow?: boolean;
 }
 
 export default Props;

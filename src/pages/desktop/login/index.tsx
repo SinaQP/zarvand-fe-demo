@@ -21,7 +21,7 @@ const Login = () => {
             phoneNumber,
          }}
       >
-         <Layout>
+         <Layout showBackArrow={false}>
             {currentStage === LoginStage.NationalCodeEntry ? (
                <NationalCodeEntry />
             ) : null}

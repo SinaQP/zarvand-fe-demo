@@ -1,5 +1,5 @@
-import { getPersonRenovationMasters as getPersonRenovationMastersApi } from '../../../apis/renovation/get-person-renovation-masters';
-import Toast from '../../../utilities/toast';
+import { getPersonRenovationMasters as getPersonRenovationMastersApi } from '../../../../apis/renovation/get-person-renovation-masters';
+import Toast from '../../../../utilities/toast';
 
 export const getRenovationMasters = async (token:string) => {
    const response = await getPersonRenovationMastersApi(token);

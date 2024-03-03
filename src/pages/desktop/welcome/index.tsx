@@ -5,15 +5,15 @@ import { useContext, useEffect } from 'react';
 import { AppContext } from '../../../App.context';
 
 const Welcome = () => {
-   const { subSystems, token } = useContext(AppContext);
+   const { token } = useContext(AppContext);
    const history = useHistory();
 
    useEffect(() => {
       if (!token) history.push('');
    }, []);
-   
+
    return (
-      <Layout>
+      <Layout showBackArrow={false}>
          <div className="welcome">
             <div className="welcome__information">
                <span>شهروند گرامی</span>
@@ -30,7 +30,7 @@ const Welcome = () => {
                </Button>
 
                <Button className={'welcome__button welcome__button--active'}>
-                  <Link to="/guild-charges">عوارض کسب پیشه</Link>
+                  <Link to="/charges/guild">عوارض کسب پیشه</Link>
                </Button>
             </div>
          </div>

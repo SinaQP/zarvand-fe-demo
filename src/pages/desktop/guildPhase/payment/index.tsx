@@ -17,7 +17,8 @@ const GuildPayment = () => {
       is_paid: false,
       master_id: '',
    };
-   const { token, selectedGuildCharge } = useContext(AppContext);
+   const { token, selectedGuildCharge, selectedGuildBillDetail } =
+      useContext(AppContext);
    const history = useHistory();
    const [bill, setBill] = useState<Bill | null>(null);
 
@@ -34,9 +35,8 @@ const GuildPayment = () => {
       };
       fetch();
    }, []);
-
    return (
-      <Layout backArrowUrl="guild-charges">
+      <Layout>
          <div className="payment">
             <Header />
             <div className="payment__container">
@@ -78,7 +78,20 @@ const GuildPayment = () => {
                      payment_no={bill?.payment_no ? bill.payment_no : ''}
                      value_to_pay={bill?.value_to_pay ? bill?.value_to_pay : 0}
                   />
-                  <Button className="payment__button">پرداخت</Button>
+                  <div className="payment__buttons">
+                     {selectedGuildBillDetail &&
+                        selectedGuildBillDetail.bill_details && (
+                           <Button
+                              className="payment__button payment__button--outline"
+                              onClick={() =>
+                                 history.push('/payed-detail/guild')
+                              }
+                           >
+                              مشاهده سابقه پرداخت
+                           </Button>
+                        )}
+                     <Button className="payment__button">پرداخت</Button>
+                  </div>
                </div>
             </div>
          </div>
