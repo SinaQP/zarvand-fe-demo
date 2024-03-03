@@ -42,7 +42,8 @@ const Payment = () => {
                <div className="payment__colume">
                   <div className="payment__charges">
                      <div className="payment__charges-header">
-                        <span>سال</span>
+                        <span>از سال</span>
+                        <span>تا سال</span>
                         <span>مبلغ(ريال)</span>
                         <span>توضیحات</span>
                      </div>
@@ -50,6 +51,7 @@ const Payment = () => {
                         ? selectedRenovationBillDetail.charges_by_year.map(
                              (charge) => (
                                 <div className="payment__charges-row">
+                                   <span>{charge[0]}</span>
                                    <span>{charge[0]}</span>
                                    <span>{separateByThree(charge[1])}</span>
                                    <span>عوارض سالیانه</span>
@@ -81,7 +83,8 @@ const Payment = () => {
                   />
                   <div className="payment__buttons">
                      {selectedRenovationBillDetail &&
-                        selectedRenovationBillDetail.bill_details.length > 0 && (
+                        selectedRenovationBillDetail.bill_details.length >
+                           0 && (
                            <Button
                               className="payment__button payment__button--outline"
                               onClick={() =>

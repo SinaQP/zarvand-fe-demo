@@ -30,6 +30,7 @@ export interface GuildBill {
    bill_no: string;
    value_to_pay: number;
    bill_details: GuildBillDetail[];
+   last_bill_details: GuildBillDetail[];
 }
 
 export interface GuildBillDetail {
@@ -71,6 +72,8 @@ export interface RenovationBill {
    safety_service_charges: number;
    garbage_collection_charges: number;
    total_penalty: number;
+   first_year: string;
+   last_year: string;
 }
 
 export interface AppContextProps {

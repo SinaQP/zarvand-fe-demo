@@ -32,7 +32,8 @@ const PayedDetail: FC = () => {
          />
          <div className="mobile-payed-detail__charges">
             <div className="mobile-payed-detail__charges-header">
-               <span>سال</span>
+               <span>از سال</span>
+               <span>تا سال</span>
                <span>مبلغ(ريال)</span>
                <span>توضیحات</span>
                <span>شناسه قبض</span>
@@ -43,6 +44,7 @@ const PayedDetail: FC = () => {
                     return (
                        <div className="mobile-payed-detail__charges-row">
                           <span>{charge.from_year}</span>
+                          <span>{charge.to_year}</span>
                           <span>
                              {separateByThree(
                                 charge.penalty > 0

@@ -1,6 +1,8 @@
 export interface Bill {
    bill_no: string;
    bill_details: BillDetailProps[];
+   last_bill_details: BillDetailProps[];
+
    payment_no: string;
    value_to_pay: number;
 }

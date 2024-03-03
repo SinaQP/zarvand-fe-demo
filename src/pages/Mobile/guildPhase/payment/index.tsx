@@ -56,7 +56,7 @@ const PaymentGuild: FC = () => {
             payment_no={bill?.payment_no ? bill.payment_no : ''}
             value_to_pay={bill?.value_to_pay ? bill.value_to_pay : 0}
          />
-         {selectedGuildBillDetail && selectedGuildBillDetail.bill_details && (
+         {selectedGuildBillDetail?.bill_details?.length ? (
             <Button
                className="mobile-payment__button"
                size="large"
@@ -64,7 +64,7 @@ const PaymentGuild: FC = () => {
             >
                مشاهده سابقه پرداخت
             </Button>
-         )}
+         ) : null}
          <Button className="mobile-payment__button" size="large">
             پرداخت
          </Button>
