@@ -43,8 +43,18 @@ const PayedDetail: FC = () => {
                     return (
                        <div className="mobile-payed-detail__charges-row">
                           <span>{charge.from_year}</span>
-                          <span>{separateByThree(charge.creditor)}</span>
-                          <span>{charge.incomecode_desc}</span>
+                          <span>
+                             {separateByThree(
+                                charge.penalty > 0
+                                   ? charge.penalty
+                                   : charge.creditor,
+                             )}
+                          </span>
+                          <span>
+                             {charge.penalty > 0
+                                ? 'جریمه دیرکرد'
+                                : charge.incomecode_desc}
+                          </span>
                           <span>{charge.bill_code}</span>
                           <span>{charge.payment_date}</span>
                        </div>
