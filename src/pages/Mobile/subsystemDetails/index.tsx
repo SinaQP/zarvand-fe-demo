@@ -1,22 +1,25 @@
 import { subsystemDetailsProps } from './index.interface';
 import './style/index.scss';
 import { useHistory } from 'react-router-dom';
-import Card from '../../../componnents/card';
 import { FC, useContext, useEffect, useState } from 'react';
 import { getRenovationMasters } from './getPersonRenovationMasters';
-import { AppContext, Renovation } from '../../../App.context';
+import { AppContext, RenovationMaster } from '../../../App.context';
 import Button from '../../../containers/desktop/button';
 import handleChargeDetailButton from './handleChargeDetailButton';
+import RenovationCard from '../../../componnents/renovationCard';
 
 const SubsystemDetais: FC<subsystemDetailsProps> = () => {
    const history = useHistory();
-   const { token, setSelectedCharge } = useContext(AppContext);
-   const [renovations, setRenovations] = useState<Renovation[]>([]);
+   const { token, setSelectedCharge, setSelectedRenovationBillDetail } =
+      useContext(AppContext);
+   const [renovations, setRenovations] = useState<RenovationMaster[]>([]);
 
    useEffect(() => {
       if (!token) history.push('');
       async function loadRenovations() {
-         const renovations: Renovation[] = await getRenovationMasters(token);
+         const renovations: RenovationMaster[] = await getRenovationMasters(
+            token,
+         );
          setRenovations(renovations);
       }
       loadRenovations();
@@ -51,7 +54,7 @@ const SubsystemDetais: FC<subsystemDetailsProps> = () => {
          <div className="mainBillSection">
             {renovations.map((renovation) => (
                <>
-                  <Card
+                  <RenovationCard
                      className={
                         renovation.is_paid
                            ? 'subsystemDetailsPage__paied_card'
@@ -62,7 +65,20 @@ const SubsystemDetais: FC<subsystemDetailsProps> = () => {
                      viewOnly
                   />
                   {renovation.is_paid ? (
-                     <span className="card__caption">پرداخت شده</span>
+                     <Button
+                        className="card__caption"
+                        onClick={() => {
+                           handleChargeDetailButton(
+                              setSelectedCharge,
+                              renovation,
+                              history,
+                              token,
+                              setSelectedRenovationBillDetail,
+                           );
+                        }}
+                     >
+                        پرداخت شده
+                     </Button>
                   ) : (
                      <Button
                         className="card__button"
@@ -71,6 +87,8 @@ const SubsystemDetais: FC<subsystemDetailsProps> = () => {
                               setSelectedCharge,
                               renovation,
                               history,
+                              token,
+                              setSelectedRenovationBillDetail,
                            );
                         }}
                      >

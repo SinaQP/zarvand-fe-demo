@@ -21,7 +21,7 @@ const GuildRenewalCharges = () => {
    }, []);
 
    return (
-      <Layout backArrowUrl="subsystem">
+      <Layout backArrowUrl="/subsystem">
          <div className="renwal-charges">
             <p>
                مشاغل زیر در سیستم به نام شما ثبت شده اند. شما با انتخاب هر یک از
