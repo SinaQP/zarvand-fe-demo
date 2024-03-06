@@ -44,7 +44,7 @@ const RenovationPayedDetail = () => {
                         <span>تا سال</span>
                         <span>مبلغ(ريال)</span>
                         <span>توضیحات</span>
-                        <span>شناسه قبض</span>
+                        <span>شماره قبض</span>
                         <span>تاریخ پرداخت</span>
                      </div>
                      {selectedRenovationBillDetail
