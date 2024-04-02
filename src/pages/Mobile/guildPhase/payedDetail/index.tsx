@@ -32,25 +32,39 @@ const MobileGuildPayedDetail: FC = () => {
             isFromMobile
          />
          <div className="mobile-payed-detail__charges">
-            <div className="mobile-payed-detail__charges-header">
-               <span>از سال</span>
-               <span>تا سال</span>
-               <span>مبلغ(ريال)</span>
-               <span>توضیحات</span>
-               <span>شناسه قبض</span>
-               <span>تاریخ پرداخت</span>
-            </div>
             {selectedGuildBillDetail
                ? selectedGuildBillDetail.bill_details.map((charge) => {
                     return (
-                       <div className="mobile-payed-detail__charges-row">
-                          <span>{charge.from_year}</span>
-                          <span>{charge.to_year}</span>
-                          <span>{separateByThree(charge.creditor)}</span>
-                          <span>{charge.desc}</span>
-                          <span>{charge.bill_code}</span>
-                          <span>{charge.payment_date}</span>
-                       </div>
+                       <>
+                          <div className="mobile-payed-detail__charges-header">
+                             <div className="mobile-payed-detail__charges-colume">
+                                <span>از سال: </span>
+                                <span>{charge.from_year}</span>
+                             </div>
+                             <div className="mobile-payed-detail__charges-colume">
+                                <span>تا سال: </span>
+                                <span>{charge.to_year}</span>
+                             </div>
+                          </div>
+                          <div className="mobile-payed-detail__charges-row">
+                             <div className="mobile-payed-detail__charges-colume">
+                                <span>مبلغ ريال: </span>
+                                <span>{separateByThree(charge.creditor)}</span>
+                             </div>
+                             <div className="mobile-payed-detail__charges-colume">
+                                <span>توضیحات: </span>
+                                <span>{charge.desc}</span>
+                             </div>
+                             <div className="mobile-payed-detail__charges-colume">
+                                <span>شماره قبض: </span>
+                                <span>{charge.bill_code}</span>
+                             </div>
+                             <div className="mobile-payed-detail__charges-colume">
+                                <span>کدقبض: </span>
+                                <span>{charge.payment_date}</span>
+                             </div>
+                          </div>
+                       </>
                     );
                  })
                : ''}
