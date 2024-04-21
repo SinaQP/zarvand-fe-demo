@@ -6,7 +6,10 @@ import handleResendCodeClick from './handleResendCodeClick';
 import { Props } from './index.interface';
 import { setTimer } from '../functions/setTimer';
 
-const NationalCodeSection: FC<Props> = ({ setTimerDuration }) => {
+const NationalCodeSection: FC<Props> = ({
+   setTimerDuration,
+   setTimerInterval,
+}) => {
    const { phoneNumber, setLoginStage, nationalCode } =
       useContext(LoginContext);
 
@@ -25,7 +28,7 @@ const NationalCodeSection: FC<Props> = ({ setTimerDuration }) => {
             </span>
             <span
                onClick={() => {
-                  handleResendCodeClick(nationalCode, setTimerDuration);
+                  handleResendCodeClick(nationalCode, setTimerDuration, setTimerInterval);
                }}
             >
                ارسال مجدد کد

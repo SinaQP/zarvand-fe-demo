@@ -10,6 +10,8 @@ import { Props } from './index.interface';
 const VerificationCodeEntry: FC<Props> = ({
    setTimerDuration,
    timerDuration,
+   setTimerIntervalLoop,
+   timerIntervalLoop,
 }) => {
    const { nationalCode, setLoginStage } = useContext(LoginContext);
    const { setSubsystems, setToken, setUser } = useContext(AppContext);
@@ -17,6 +19,7 @@ const VerificationCodeEntry: FC<Props> = ({
    const history = useHistory();
 
    useEffect(() => {
+      if (timerIntervalLoop) clearInterval(timerIntervalLoop);
       const progressBar: HTMLDivElement = document.getElementById(
          'progress-bar',
       )! as HTMLDivElement;
@@ -38,9 +41,12 @@ const VerificationCodeEntry: FC<Props> = ({
             progressBar.style.background = `conic-gradient(#E3FE55 0deg, #EBF5F8 0deg) `;
             clearInterval(timerInterval);
             setTimerDuration(0);
+            setTimerIntervalLoop(null);
          }
       }, 1000);
+      setTimerIntervalLoop(timerInterval);
    }, [timerDuration]);
+   
    return (
       <div className="verification-code-entry">
          <div className="verification-code-entry__timer">

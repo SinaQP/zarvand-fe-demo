@@ -6,10 +6,12 @@ import { setTimer } from '../functions/setTimer';
 const handleResendCodeClick: Function = async (
    nationalCode: string,
    setTimerDuration: Dispatch<SetStateAction<number>>,
+   setTimerInterval: Dispatch<SetStateAction<NodeJS.Timer | null>>,
 ) => {
    const response = await sendVerificationCode({ national_code: nationalCode });
    if (response.status === 200) {
-      setTimer(150, setTimerDuration);
+      setTimer(120, setTimerDuration);
+      setTimerInterval(null);
       Toast.fire({
          icon: 'success',
          title: 'کد با موفقیت برای شما ارسال شد.',
