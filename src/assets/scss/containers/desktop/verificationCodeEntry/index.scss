@@ -4,36 +4,17 @@
       align-items: center;
       justify-content: center;
 
-      &__timer {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            position: relative;
 
-            width: 63rem;
-            height: 63rem;
-
-            border-radius: 50%;
-            border: 1px solid #ebf5f8;
-
-            span {
-                  font-family: Kalameh;
-                  font-size: 2.4rem;
-                  font-weight: 600;
-                  color: white;
-                  margin-left: 8rem;
-            }
+      &__title {
+            font-family: Kalameh, sans-serif;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: white;
+            margin-left: 8rem;
+            z-index: 1;
       }
-      &__counter {
-            width: 3rem;
-            height: 3rem;
-            background-color: #e3fe55;
-            border-radius: 50%;
-            position: absolute;
-            top: 3%;
-            right: 24%;
-      }
+      
+ 
       &__sperated-input {
             margin-top: 4rem;
             text-align: center;
@@ -44,6 +25,7 @@
             text-align: center;
             width: 7.4rem;
             margin-right: 1.5rem;
+            z-index: 1;
             &:focus {
                   border-color: white;
             }
@@ -54,5 +36,6 @@
             padding-left: 0;
             width: 17.3rem;
             margin-top: 8rem;
+            z-index: 1;
       }
 }

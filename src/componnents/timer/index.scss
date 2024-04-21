@@ -1,0 +1,54 @@
+.timer {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+   position: relative;
+
+   width: 63rem;
+   height: 63rem;
+
+   border-radius: 50%;
+   z-index: 2;
+
+   &_progressBar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: conic-gradient(#e3fe55 0deg, #ebf5f8 0deg);
+      transform: rotate(30deg);
+      position: absolute;
+      z-index: 1;
+      &::before {
+         content: '';
+         width: 99%;
+         height: 99%;
+         border-radius: 50%;
+         position: absolute;
+         top: 50%;
+         left: 50%;
+         transform: translate(-50%, -50%);
+         background-color: #3c3c3c;
+      }
+   }
+   &_counter {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transform: rotate(0deg);
+      z-index: 1;
+      &::after {
+         content: '';
+         width: 3rem;
+         height: 3rem;
+         background-color: #e3fe55;
+         border-radius: 50%;
+         position: absolute;
+         top: 4%;
+         right: 24%;
+         z-index: 1;
+      }
+   }
+}
