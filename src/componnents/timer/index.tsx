@@ -29,11 +29,11 @@ const Timer: FC<Props> = ({
    return (
       <div className="timer">
          <div
-            className="timer__progress-bar"
+            className="timer_progressBar"
             ref={progressBarDiv}
             id="progress-bar"
          ></div>
-         <span className="timer__counter" ref={counterSpan} id="counter"></span>
+         <span className="timer_counter" ref={counterSpan} id="counter"></span>
          {children}
       </div>
    );

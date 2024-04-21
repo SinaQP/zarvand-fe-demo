@@ -22,7 +22,6 @@ export function startCountdownProgressBar(
             (100 - remainingPercentage) * 3.6
          }deg, #EBF5F8 0deg)`;
          if (remainingTime <= 0) {
-            progressBarDiv.current.style.background = `conic-gradient(#E3FE55 0deg, #EBF5F8 0deg) `;
             clearInterval(timerInterval);
             setTimerDuration(0);
             setTimerIntervalLoop(null);

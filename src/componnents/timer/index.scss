@@ -11,7 +11,7 @@
    border-radius: 50%;
    z-index: 2;
 
-   &__progress-bar {
+   &_progressBar {
       width: 100%;
       height: 100%;
       border-radius: 50%;
@@ -31,7 +31,7 @@
          background-color: #3c3c3c;
       }
    }
-   &__counter {
+   &_counter {
       width: 100%;
       height: 100%;
       position: absolute;
