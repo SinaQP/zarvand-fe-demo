@@ -53,14 +53,16 @@ const GuildPayment = () => {
                <div className="payment__colume">
                   <div className="payment__charges">
                      <div className="payment__charges-header">
-                        <span>سال</span>
+                        <span>از سال</span>
+                        <span>تا سال</span>
                         <span>مبلغ(ريال)</span>
                         <span>توضیحات</span>
                      </div>
                      <div className="payment__charges-rows-container">
-                        {bill?.bill_details
-                           ? bill.bill_details?.map((charge) => (
+                        {bill?.last_bill_details
+                           ? bill.last_bill_details?.map((charge) => (
                                 <div className="payment__charges-row">
+                                   <span>{charge.from_year}</span>
                                    <span>{charge.to_year}</span>
                                    <span>
                                       {separateByThree(charge.creditor)}
@@ -79,17 +81,14 @@ const GuildPayment = () => {
                      value_to_pay={bill?.value_to_pay ? bill?.value_to_pay : 0}
                   />
                   <div className="payment__buttons">
-                     {selectedGuildBillDetail &&
-                        selectedGuildBillDetail.bill_details && (
-                           <Button
-                              className="payment__button payment__button--outline"
-                              onClick={() =>
-                                 history.push('/payed-detail/guild')
-                              }
-                           >
-                              مشاهده سابقه پرداخت
-                           </Button>
-                        )}
+                     {selectedGuildBillDetail?.bill_details?.length ? (
+                        <Button
+                           className="payment__button payment__button--outline"
+                           onClick={() => history.push('/payed-detail/guild')}
+                        >
+                           مشاهده سابقه پرداخت
+                        </Button>
+                     ) : null}
                      <Button className="payment__button">پرداخت</Button>
                   </div>
                </div>

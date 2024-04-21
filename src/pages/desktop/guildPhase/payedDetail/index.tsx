@@ -35,15 +35,16 @@ const GuildPayedDetail = () => {
                         selectedGuildCharge ? selectedGuildCharge : emptyGuild
                      }
                   />
-                  <Button className="payedDetail__button">چاپ</Button>
+                  {/* <Button className="payedDetail__button">چاپ</Button> */}
                </div>
                <div className="payedDetail__colume payedDetail__colume--charges">
                   <div className="payedDetail__charges">
                      <div className="payedDetail__charges-row payedDetail__charges-header">
-                        <span>سال</span>
+                        <span>از سال</span>
+                        <span>تا سال</span>
                         <span>مبلغ(ريال)</span>
                         <span>توضیحات</span>
-                        <span>شناسه قبض</span>
+                        <span>شماره قبض</span>
                         <span>تاریخ پرداخت</span>
                      </div>
                      {selectedGuildBillDetail?.bill_details
@@ -51,10 +52,11 @@ const GuildPayedDetail = () => {
                              (charge: any) => (
                                 <div className="payedDetail__charges-row">
                                    <span>{charge.from_year}</span>
+                                   <span>{charge.to_year}</span>
                                    <span>
                                       {separateByThree(charge.creditor)}
                                    </span>
-                                   <span>{charge.incomecode_desc}</span>
+                                   <span>{charge.desc}</span>
                                    <span>{charge.bill_code}</span>
                                    <span>{charge.payment_date}</span>
                                 </div>

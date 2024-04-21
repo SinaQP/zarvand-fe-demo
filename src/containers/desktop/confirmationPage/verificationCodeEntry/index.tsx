@@ -1,12 +1,19 @@
-import { FC, useContext, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import Button from '../../button';
 import { LoginContext } from '../../../../pages/desktop/login/context';
 import handleConfirmationButton from './handleConfirmationButton';
 import Form from './Form';
-import { useHistory } from 'react-router-dom';
 import { AppContext } from '../../../../App.context';
+import { Props } from './index.interface';
+import Timer from '../../../../componnents/timer';
 
-const VerificationCodeEntry: FC = () => {
+const VerificationCodeEntry: FC<Props> = ({
+   setTimerDuration,
+   timerDuration,
+   setTimerIntervalLoop,
+   timerIntervalLoop,
+}) => {
    const { nationalCode, setLoginStage } = useContext(LoginContext);
    const { setSubsystems, setToken, setUser } = useContext(AppContext);
    const [verificationCode, setVerificationCode] = useState('      ');
@@ -14,16 +21,22 @@ const VerificationCodeEntry: FC = () => {
 
    return (
       <div className="verification-code-entry">
-         <div className="verification-code-entry__timer">
-            <span className="verification-code-entry__counter"></span>
-            <span>لطفا کد ارسال شده را وارد نمایید</span>
+         <Timer
+            setTimerDuration={setTimerDuration}
+            timerDuration={timerDuration}
+            setTimerIntervalLoop={setTimerIntervalLoop}
+            timerIntervalLoop={timerIntervalLoop}
+         >
+            <span className="verification-code-entry__title">
+               لطفا کد ارسال شده را وارد نمایید
+            </span>
             <Form
                setVerificationCode={setVerificationCode}
                verificationCode={verificationCode}
             />
             <Button
                className="verification-code-entry__submit-button"
-               onClick={() =>
+               onClick={() => {
                   handleConfirmationButton({
                      nationalCode,
                      verificationCode,
@@ -32,12 +45,12 @@ const VerificationCodeEntry: FC = () => {
                      setSubsystems,
                      setToken,
                      setUser,
-                  })
-               }
+                  });
+               }}
             >
                تائید
             </Button>
-         </div>
+         </Timer>
       </div>
    );
 };

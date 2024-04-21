@@ -7,7 +7,8 @@ const ExtraDetails: FC = () => {
    return (
       <>
          <div className="payment__charges-row">
-            <span>{'----'}</span>
+            <span>{selectedRenovationBillDetail?.first_year}</span>
+            <span>{selectedRenovationBillDetail?.last_year}</span>
             <span>
                {separateByThree(
                   selectedRenovationBillDetail
@@ -18,7 +19,8 @@ const ExtraDetails: FC = () => {
             <span>خدمات شهری</span>
          </div>
          <div className="payment__charges-row">
-            <span>{'----'}</span>
+            <span>{selectedRenovationBillDetail?.first_year}</span>
+            <span>{selectedRenovationBillDetail?.last_year}</span>
             <span>
                {separateByThree(
                   selectedRenovationBillDetail
@@ -29,7 +31,8 @@ const ExtraDetails: FC = () => {
             <span>خدمات ایمنی</span>
          </div>
          <div className="payment__charges-row">
-            <span>{'----'}</span>
+            <span>{selectedRenovationBillDetail?.first_year}</span>
+            <span>{selectedRenovationBillDetail?.last_year}</span>
             <span>
                {separateByThree(
                   selectedRenovationBillDetail
@@ -40,7 +43,8 @@ const ExtraDetails: FC = () => {
             <span>خدمات پسماند</span>
          </div>
          <div className="payment__charges-row">
-            <span>{'----'}</span>
+            <span>{selectedRenovationBillDetail?.first_year}</span>
+            <span>{selectedRenovationBillDetail?.last_year}</span>
             <span>
                {separateByThree(
                   selectedRenovationBillDetail
