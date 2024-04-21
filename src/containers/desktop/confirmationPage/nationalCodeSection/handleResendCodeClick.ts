@@ -1,7 +1,7 @@
 import Toast from './toast';
 import { sendVerificationCode } from '../../../../apis/login/send-verification-code';
 import { Dispatch, SetStateAction } from 'react';
-import { setTimer } from '../functions/setTimer';
+import { setTimer } from '../../../../componnents/timer/functions/setTimer';
 
 const handleResendCodeClick: Function = async (
    nationalCode: string,

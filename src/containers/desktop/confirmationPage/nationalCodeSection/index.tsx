@@ -4,7 +4,7 @@ import { LoginContext } from '../../../../pages/desktop/login/context';
 import LoginStage from '../../../../pages/desktop/login/loginStageEnum';
 import handleResendCodeClick from './handleResendCodeClick';
 import { Props } from './index.interface';
-import { setTimer } from '../functions/setTimer';
+import { setTimer } from '../../../../componnents/timer/functions/setTimer';
 
 const NationalCodeSection: FC<Props> = ({
    setTimerDuration,
