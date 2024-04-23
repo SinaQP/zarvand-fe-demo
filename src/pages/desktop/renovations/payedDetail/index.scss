@@ -1,0 +1,142 @@
+.rnv-payed-detail {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   height: 100%;
+   &__header {
+      display: flex;
+      justify-content: space-between;
+      width: 95rem;
+      border: 1px solid #e3fe55;
+      border-radius: 7rem;
+      padding: 2rem 10rem 3rem 2.6rem;
+      margin-top: 6.2rem;
+   }
+
+   &__info-colume {
+      display: flex;
+      flex-direction: column;
+      h4 {
+         font-family: Kalameh;
+         font-size: 1.6rem;
+         font-weight: 600;
+         color: #e3fe55;
+      }
+
+      span {
+         font-family: Kalameh;
+         font-size: 2.4rem;
+         font-weight: 600;
+         color: white;
+      }
+      &:first-of-type,
+      &:last-of-type {
+         h4 {
+            margin-right: -6rem;
+         }
+      }
+   }
+
+   &__container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+   }
+   &__colume {
+      flex: 0.3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 0 3rem;
+   }
+   &__colume--charges {
+      flex: 0.65;
+   }
+   &__amounts {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border: 1px solid #ffffff;
+      border-radius: 2.5rem;
+      width: 100%;
+      padding: 6.6rem 0;
+   }
+   &__amount {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      span {
+         font-family: Kalameh;
+         font-size: 2.4rem;
+         font-weight: 600;
+         color: white;
+      }
+      &:not(:first-of-type) {
+         margin-top: 2.7rem;
+      }
+   }
+   &__buttons {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+   }
+   &__button {
+      width: 24rem;
+      margin-top: 4.7rem;
+   }
+   &__button--outline {
+      width: 22rem;
+      background-color: transparent;
+      color: white;
+      &:hover {
+         color: black;
+      }
+   }
+   &__property-number {
+      color: white;
+   }
+
+   &__charges {
+      width: 100%;
+      height: 54vh;
+      border: 1px solid #ffffff;
+      border-radius: 2.5rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-y: scroll;
+      &-row {
+         display: flex;
+         width: 100%;
+         justify-content: space-around;
+      }
+
+      &-row {
+         span {
+            font-family: Kalameh;
+            font-size: 2.4rem;
+            font-weight: 600;
+            color: white;
+            flex: 1;
+            text-align: center;
+         }
+      }
+      &-row:not(:last-of-type) {
+         margin-bottom: 1.7vh;
+      }
+
+      &-header {
+         padding: 4.2rem 0 2.9rem 0;
+         border-bottom: 1px solid #ffffff;
+         margin-bottom: 4vh;
+         span {
+            font-family: Kalameh;
+            font-size: 2rem;
+            font-weight: 600;
+            color: white;
+         }
+      }
+   }
+}
