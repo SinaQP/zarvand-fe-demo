@@ -1,6 +1,6 @@
 import { FC } from 'react';
-import Props from './props.interface';
-import './_input.scss';
+import { Props } from './index.interface';
+import './index.scss';
 
 const Input: FC<Props> = (props) => {
    return <input {...props} className={`${props.className} input`} />;

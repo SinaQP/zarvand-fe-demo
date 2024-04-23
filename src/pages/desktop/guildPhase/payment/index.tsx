@@ -1,5 +1,4 @@
-import Button from '../../../../containers/desktop/button';
-import Layout from '../../../../containers/desktop/layout';
+import Layout from '../../containers/layout';
 import Amounts from './amounts';
 import Header from './header';
 import { useContext, useEffect, useState } from 'react';
@@ -9,6 +8,7 @@ import { Bill } from './index.interface';
 import { separateByThree } from '../../../../utilities/separatetByThree';
 import GuildCard from '../../../../componnents/guildCard';
 import { getTradeBillDetailsInfo } from '../../../../apis/guildPhase/guild-bill-details-info';
+import Button from '../../../../componnents/button';
 
 const GuildPayment = () => {
    const emptyGuild = {
@@ -34,7 +34,7 @@ const GuildPayment = () => {
          }
       };
       fetch();
-   }, []);
+   }, [token, history]);
    return (
       <Layout>
          <div className="payment">

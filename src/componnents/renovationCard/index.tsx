@@ -1,11 +1,11 @@
 import { FC, useContext, useState } from 'react';
-import Button from '../../containers/desktop/button';
 import Props from './props.interface';
 import PropertyNumberInput from '../propertyNumberInput';
 import { useHistory } from 'react-router-dom';
 import handleChargeDetailButton from './handleChargeDetailButton';
 import { AppContext } from '../../App.context';
 import './index.scss';
+import Button from '../button';
 
 const RenovationCard: FC<Props> = ({
    className = '',

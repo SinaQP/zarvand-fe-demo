@@ -1,5 +1,4 @@
-import Button from '../../../../containers/desktop/button';
-import Layout from '../../../../containers/desktop/layout';
+import Layout from '../../containers/layout';
 import Amounts from './amounts';
 import Header from './header';
 import { useContext, useEffect } from 'react';
@@ -8,6 +7,7 @@ import { AppContext } from '../../../../App.context';
 import { separateByThree } from '../../../../utilities/separatetByThree';
 import ExtraDetails from './extraDetails';
 import RenovationCard from '../../../../componnents/renovationCard';
+import Button from '../../../../componnents/button';
 
 const Payment = () => {
    const emptyRenovation = {
@@ -22,7 +22,7 @@ const Payment = () => {
 
    useEffect(() => {
       if (!token) history.push('');
-   }, []);
+   }, [token, history]);
 
    return (
       <Layout>

@@ -4,9 +4,9 @@ import { useHistory } from 'react-router-dom';
 import { FC, useContext, useEffect, useState } from 'react';
 import { getRenovationMasters } from './getPersonRenovationMasters';
 import { AppContext, RenovationMaster } from '../../../App.context';
-import Button from '../../../containers/desktop/button';
 import handleChargeDetailButton from './handleChargeDetailButton';
 import RenovationCard from '../../../componnents/renovationCard';
+import Button from '../../../componnents/button';
 
 const SubsystemDetais: FC<subsystemDetailsProps> = () => {
    const history = useHistory();

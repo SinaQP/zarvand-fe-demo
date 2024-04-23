@@ -1,5 +1,5 @@
 import { FieldsetHTMLAttributes } from 'react';
-import InputProps from '../input/props.interface';
+import {Props as InputProps} from '../input/index.interface';
 
 interface Props extends FieldsetHTMLAttributes<HTMLFieldSetElement> {
    inputProps?: InputProps;

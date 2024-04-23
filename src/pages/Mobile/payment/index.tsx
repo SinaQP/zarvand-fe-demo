@@ -53,13 +53,12 @@ const Payment: FC = () => {
             selectedRenovationBillDetail.bill_details.length > 0 && (
                <Button
                   className="mobile-payment__button"
-                  size="large"
                   onClick={() => history.push('/payed-detail/renovation')}
                >
                   مشاهده سابقه پرداخت
                </Button>
             )}
-         <Button className="mobile-payment__button" size="large">
+         <Button className="mobile-payment__button">
             پرداخت
          </Button>
       </div>

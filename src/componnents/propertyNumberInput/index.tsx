@@ -23,7 +23,7 @@ const PropertyNumberInput: FC<Props> = ({
                   maxLength: 3,
                   value: inp[4],
                   className: 'SSNNumberStyle__input',
-                  onChange: (event) =>
+                  onChange: (event: { target: { value: string; }; }) =>
                      setInp((prevState) => {
                         let value = [...prevState];
                         value[4] = event.target.value;
@@ -39,7 +39,7 @@ const PropertyNumberInput: FC<Props> = ({
                   value: inp[3],
                   maxLength: 2,
                   className: 'SSNNumberStyle__input',
-                  onChange: (event) =>
+                  onChange: (event: { target: { value: string; }; }) =>
                      setInp((prevState) => {
                         let value = [...prevState];
                         value[3] = event.target.value;
@@ -55,7 +55,7 @@ const PropertyNumberInput: FC<Props> = ({
                   value: inp[2],
                   maxLength: 7,
                   className: 'SSNNumberStyle__input',
-                  onChange: (event) =>
+                  onChange: (event: { target: { value: string; }; }) =>
                      setInp((prevState) => {
                         let value = [...prevState];
                         value[2] = event.target.value;
@@ -71,7 +71,7 @@ const PropertyNumberInput: FC<Props> = ({
                   value: inp[1],
                   maxLength: 4,
                   className: 'SSNNumberStyle__input',
-                  onChange: (event) =>
+                  onChange: (event: { target: { value: string; }; }) =>
                      setInp((prevState) => {
                         let value = [...prevState];
                         value[1] = event.target.value;
@@ -87,7 +87,7 @@ const PropertyNumberInput: FC<Props> = ({
                   value: inp[0],
                   className: 'SSNNumberStyle__input',
                   maxLength: 3,
-                  onChange: (event) =>
+                  onChange: (event: { target: { value: string; }; }) =>
                      setInp((prevState) => {
                         let value = [...prevState];
                         value[0] = event.target.value;

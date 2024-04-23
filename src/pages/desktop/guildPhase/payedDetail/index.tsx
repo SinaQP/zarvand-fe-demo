@@ -1,7 +1,6 @@
-import Button from '../../../../containers/desktop/button';
-import Layout from '../../../../containers/desktop/layout';
+import Layout from '../../containers/layout';
 import Header from './header';
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import { AppContext } from '../../../../App.context';
 import { separateByThree } from '../../../../utilities/separatetByThree';
@@ -20,7 +19,7 @@ const GuildPayedDetail = () => {
 
    useEffect(() => {
       if (!token) history.push('');
-   }, []);
+   }, [token, history]);
 
    return (
       <Layout>

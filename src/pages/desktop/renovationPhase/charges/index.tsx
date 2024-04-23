@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import Layout from '../../../../containers/desktop/layout';
+import Layout from '../../containers/layout';
 import { getRenovationMasters } from './getPersonRenovationMasters';
 import { AppContext, RenovationMaster } from '../../../../App.context';
 import { useHistory } from 'react-router-dom';

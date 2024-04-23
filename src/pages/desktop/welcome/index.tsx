@@ -1,8 +1,8 @@
 import { Link, useHistory } from 'react-router-dom';
-import Button from '../../../containers/desktop/button';
-import Layout from '../../../containers/desktop/layout';
+import Layout from '../containers/layout';
 import { useContext, useEffect } from 'react';
 import { AppContext } from '../../../App.context';
+import Button from '../../../componnents/button';
 
 const Welcome = () => {
    const { token } = useContext(AppContext);
@@ -10,7 +10,7 @@ const Welcome = () => {
 
    useEffect(() => {
       if (!token) history.push('');
-   }, []);
+   }, [token, history]);
 
    return (
       <Layout showBackArrow={false}>

@@ -4,9 +4,9 @@ import './style/index.scss';
 import { useHistory } from 'react-router-dom';
 import { AppContext } from '../../../App.context';
 import Input from '../../../componnents/input';
-import inputOnFocus from '../../../componnents/input/inputOnFocus';
-import moveToNextInput from '../../../componnents/input/moveToNextInput';
-import moveToPriviousInput from '../../../componnents/input/moveToPreviousInput';
+import inputOnFocus from '../../../componnents/input/functions/inputOnFocus';
+import moveToNextInput from '../../../componnents/input/functions/moveToNextInput';
+import moveToPriviousInput from '../../../componnents/input/functions/moveToPreviousInput';
 import { validateSmsCode } from '../../../apis/login/validate-sms-code';
 import toast from '../../../utilities/toast';
 

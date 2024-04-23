@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from 'react';
-import Layout from '../../../../containers/desktop/layout';
+import Layout from '../../containers/layout';
 import { getTradeMasters } from './getPersonTradeMasters';
 import { AppContext, Guild } from '../../../../App.context';
 import { useHistory } from 'react-router-dom';

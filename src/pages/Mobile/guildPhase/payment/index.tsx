@@ -59,13 +59,12 @@ const PaymentGuild: FC = () => {
          {selectedGuildBillDetail?.bill_details?.length ? (
             <Button
                className="mobile-payment__button"
-               size="large"
                onClick={() => history.push('/payed-detail/guild')}
             >
                مشاهده سابقه پرداخت
             </Button>
          ) : null}
-         <Button className="mobile-payment__button" size="large">
+         <Button className="mobile-payment__button">
             پرداخت
          </Button>
       </div>
