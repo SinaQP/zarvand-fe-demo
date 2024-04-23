@@ -1,6 +1,6 @@
 import { FC } from 'react';
 import { separateByThree } from '../../../../../utilities/separatetByThree';
-import { Bill } from '../../../../../pages/desktop/guildPhase/payment/index.interface';
+import { Bill } from '../../../../../pages/desktop/trades/payment/index.interface';
 
 const Charges: FC<{ bill: Bill | null }> = ({ bill }) => {
    return (

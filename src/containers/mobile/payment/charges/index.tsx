@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { Bill } from '../../../../pages/desktop/renovationPhase/payment/index.interface';
+import { Bill } from '../../../../pages/desktop/renovations/payment/index.interface';
 import { separateByThree } from '../../../../utilities/separatetByThree';
 
 const Charges: FC<{ bill: Bill | null }> = ({ bill }) => {

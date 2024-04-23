@@ -1,24 +1,24 @@
 // node libraries
 import { BrowserRouter, Redirect, Route } from 'react-router-dom';
 // pages
-import ZarvandLogIn from './pages/Mobile/zarvandLogin';
-import VerificationCode from './pages/Mobile/verificationCode';
-import ChangePhoneNumber from './pages/Mobile/changeNumber';
-import ZarvandSubsystem from './pages/Mobile/subsystem';
-import SubsystemDetais from './pages/Mobile/subsystemDetails';
+import ZarvandLogIn from './pages/mobile/login';
+import VerificationCode from './pages/mobile/verificationCode';
+import ChangePhoneNumber from './pages/mobile/changeNumber';
+import ZarvandSubsystem from './pages/mobile/subsystem';
+import SubsystemDetais from './pages/mobile/subsystemDetails';
 import Login from './pages/desktop/login';
-import Welcome from './pages/desktop/welcome';
-import RenewalCharges from './pages/desktop/renovationPhase/charges';
-import RenovationPayment from './pages/desktop/renovationPhase/payment';
-import PaymentMobile from './pages/Mobile/payment';
-import GuildRenewalCharges from './pages/desktop/guildPhase/renewalCharges';
-import DesktopPaymentGuild from './pages/desktop/guildPhase/payment';
-import SubsystemGuildDetais from './pages/Mobile/guildPhase/subsystemDetails';
-import MobilePaymentGuild from './pages/Mobile/guildPhase/payment';
-import RenovationPayedDetail from './pages/desktop/renovationPhase/payedDetail';
-import RenovationMobilePayedDetail from './pages/Mobile/payedDetail';
-import GuildPayedDetail from './pages/desktop/guildPhase/payedDetail';
-import MobileGuildPayedDetail from './pages/Mobile/guildPhase/payedDetail';
+import Welcome from './pages/desktop/subsystems';
+import RenewalCharges from './pages/desktop/renovations/charges';
+import RenovationPayment from './pages/desktop/renovations/payment';
+import PaymentMobile from './pages/mobile/payment';
+import GuildRenewalCharges from './pages/desktop/trades/renewalCharges';
+import DesktopPaymentGuild from './pages/desktop/trades/payment';
+import SubsystemGuildDetais from './pages/mobile/guildPhase/subsystemDetails';
+import MobilePaymentGuild from './pages/mobile/guildPhase/payment';
+import RenovationPayedDetail from './pages/desktop/renovations/payedDetail';
+import RenovationMobilePayedDetail from './pages/mobile/payedDetail';
+import GuildPayedDetail from './pages/desktop/trades/payedDetail';
+import MobileGuildPayedDetail from './pages/mobile/guildPhase/payedDetail';
 /**
  * Router Container
  */
