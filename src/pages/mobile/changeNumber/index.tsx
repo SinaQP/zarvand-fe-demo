@@ -7,7 +7,7 @@ const ChangePhoneNumber: FC = () => {
 
       return (
             <div className="changeNumberSection">
-                  <button
+                   <button
                         className="back"
                         onClick={() => {
                               history.push('/');
