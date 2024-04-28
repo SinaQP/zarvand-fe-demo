@@ -5,7 +5,7 @@ export function startCountdownProgressBar(
    setTimerDuration: Dispatch<SetStateAction<number>>,
    progressBarDiv: React.RefObject<HTMLDivElement>,
    counterSpan: React.RefObject<HTMLSpanElement>,
-   timerIntervalLoop: NodeJS.Timer | null,
+   timerIntervalLoop: any,
    setTimerIntervalLoop: Dispatch<SetStateAction<NodeJS.Timer | null>>,
 ): void {
    if (timerIntervalLoop) clearInterval(timerIntervalLoop);
