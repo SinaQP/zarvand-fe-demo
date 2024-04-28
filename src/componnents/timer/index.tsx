@@ -1,7 +1,7 @@
 import { FC, useEffect, useRef } from 'react';
 import { Props } from './index.interface';
 import './index.scss';
-import { startCountdownProgressBar } from './functions/_startCountdown';
+import { startCountdownProgressBar } from './functions/startCountdown';
 
 const Timer: FC<Props> = ({
    children,
