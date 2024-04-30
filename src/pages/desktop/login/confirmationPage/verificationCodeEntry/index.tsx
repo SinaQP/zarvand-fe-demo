@@ -11,7 +11,7 @@ import "./index.scss";
 
 const VerificationCodeEntry: FC<Props> = ({
    setTimerDuration,
-   timerDuration,
+   timerDuration, 
    setTimerIntervalLoop,
    timerIntervalLoop,
 }) => {
