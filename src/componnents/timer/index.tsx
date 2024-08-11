@@ -13,18 +13,16 @@ const Timer: FC<Props> = ({
    const progressBarDiv = useRef<HTMLDivElement>(null);
    const counterSpan = useRef<HTMLSpanElement>(null);
 
-   useEffect(
-      () =>
-         startCountdownProgressBar(
-            timerDuration,
-            setTimerDuration,
-            progressBarDiv,
-            counterSpan,
-            timerIntervalLoop,
-            setTimerIntervalLoop,
-         ),
-      [timerDuration],
-   );
+   useEffect(() => {
+      startCountdownProgressBar(
+         timerDuration,
+         setTimerDuration,
+         progressBarDiv,
+         counterSpan,
+         timerIntervalLoop,
+         setTimerIntervalLoop,
+      );
+   }, [timerDuration]);
 
    return (
       <div className="timer">

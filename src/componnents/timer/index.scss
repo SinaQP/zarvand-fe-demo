@@ -16,7 +16,6 @@
       height: 100%;
       border-radius: 50%;
       background: conic-gradient(#e3fe55 0deg, #ebf5f8 0deg);
-      transform: rotate(30deg);
       position: absolute;
       z-index: 1;
       &::before {
@@ -46,8 +45,8 @@
          background-color: #e3fe55;
          border-radius: 50%;
          position: absolute;
-         top: 4%;
-         right: 24%;
+         top: -2%;
+         right: 47%;
          z-index: 1;
       }
    }
