@@ -1,10 +1,10 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import Input from '../../../../../componnents/input';
 import moveToPriviousInput from '../../../../../componnents/input/functions/moveToPreviousInput';
 import inputOnFocus from '../../../../../componnents/input/functions/inputOnFocus';
 import moveToNextInput from '../../../../../componnents/input/functions/moveToNextInput';
 import { LoginContext } from '../../context';
-import "./index.scss";
+import './index.scss';
 
 const NationalCodeForm = () => {
    const { setNationalCode, nationalCode } = useContext(LoginContext);
@@ -211,6 +211,7 @@ const NationalCodeForm = () => {
             className="national-code-entry__input"
             tabIndex={1}
             maxLength={1}
+            autoFocus
             id="national-code-1"
             autoComplete="off"
             onChange={(event) => {
