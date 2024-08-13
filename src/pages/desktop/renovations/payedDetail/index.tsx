@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Layout from '../../containers/layout';
 import Header from './header';
@@ -9,6 +9,7 @@ import TableHeader from './tableHeader';
 import TableRow from './tableRow';
 import Button from '../../../../componnents/button';
 import RnvChargePdf from '../rnvChargePdf';
+import { useReactToPrint } from 'react-to-print';
 
 const RenovationPayedDetail = () => {
    const emptyRenovation = {
@@ -20,13 +21,19 @@ const RenovationPayedDetail = () => {
    const { token, selectedCharge, selectedRenovationBillDetail } =
       useContext(AppContext);
    const componentRef = useRef<HTMLDivElement>(null);
-
+   const handlePrint = useReactToPrint({
+      content: () => componentRef.current,
+   });
    const history = useHistory();
    const [printCharge, setPrintCharge] = useState<boolean>(false);
    useEffect(() => {
       if (!token) history.push('');
    }, [token, history]);
-
+   const ComponentToPrint = React.forwardRef((props, ref: any) => (
+      <div ref={ref}>
+         <h1>Hello, world!</h1>
+      </div>
+   ));
    return (
       <Layout>
          <div className="rnv-payed-detail">
@@ -42,13 +49,17 @@ const RenovationPayedDetail = () => {
                   />
                   <Button
                      className="rnv-payed-detail__print-button"
-                     onClick={() => setPrintCharge(true)}
+                     onClick={handlePrint}
                   >
                      چاپ
                   </Button>
-                  {printCharge && (
-                     <RnvChargePdf data={undefined} onlyShow={false} />
-                  )}
+
+                  {/* <RnvChargePdf
+                     componentRef={componentRef}
+                     data={undefined}
+                     onlyShow={true}
+                  /> */}
+                  <ComponentToPrint ref={componentRef} />
                </div>
                <div className="rnv-payed-detail__colume rnv-payed-detail__colume--charges">
                   <div className="rnv-payed-detail__charges">

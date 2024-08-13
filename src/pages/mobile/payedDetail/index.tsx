@@ -2,7 +2,6 @@ import { FC, useContext, useEffect } from 'react';
 import Header from '../../../containers/mobile/payment/header';
 import { AppContext } from '../../../App.context';
 import { useHistory } from 'react-router-dom';
-import Button from '../../../componnents/button';
 import RenovationCard from '../../../componnents/renovationCard';
 import { separateByThree } from '../../../utilities/separatetByThree';
 
@@ -19,7 +18,7 @@ const PayedDetail: FC = () => {
 
    useEffect(() => {
       if (!token) history.push('/');
-   }, [token]);
+   }, [token, history]);
 
    return (
       <div className="mobile-payed-detail">

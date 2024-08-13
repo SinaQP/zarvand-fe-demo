@@ -23,6 +23,7 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
         );
    return (
       <div style={{ display: onlyShow ? '' : 'none' }}>
+         SINA
          {/* <div
             id="printRenovationInfo"
             className={styles['printRenovationInfo']}
