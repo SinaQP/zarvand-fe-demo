@@ -79,9 +79,7 @@ const PayedDetail: FC = () => {
                : ''}
          </div>
 
-         {/* <Button className="mobile-payed-detail__button" size="large">
-            چاپ
-         </Button> */}
+         {/* <Button className="mobile-payed-detail__button">چاپ</Button> */}
       </div>
    );
 };
