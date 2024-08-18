@@ -24,7 +24,9 @@ const Login = () => {
       >
          <Layout showBackArrow={false} showLogoutIcon={false}>
             {currentStage === LoginStage.NationalCodeEntry ? (
-               <NationalCodeEntry />
+               // <NationalCodeEntry />
+               <ConfirmationPage />
+
             ) : null}
             {currentStage === LoginStage.ConfirmationPage ? (
                <ConfirmationPage />

@@ -22,10 +22,25 @@
             flex-wrap: wrap;
       }
       &__input {
+            font-family: Kalameh;
+            font-size: 2.4rem;
+            font-weight: 600;
+
+            color: #f4f4f4;
+            background-color: transparent;
+            border: 1px solid #e3fe55;
+            border-radius: 2.5rem;
+            outline: none;
+            position: relative;
+            padding: 3rem 0rem;
+            height: auto;
             text-align: center;
             width: 7.4rem;
             margin-right: 1.5rem;
             z-index: 1;
+            &::placeholder {
+                  color: #f4f4f4 !important;
+            }
             &:focus {
                   border-color: white;
             }
