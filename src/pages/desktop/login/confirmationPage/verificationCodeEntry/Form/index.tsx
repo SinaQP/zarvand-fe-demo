@@ -1,14 +1,5 @@
-import {
-   Dispatch,
-   FC,
-   SetStateAction,
-   useEffect,
-} from 'react';
+import { Dispatch, FC, SetStateAction, useEffect } from 'react';
 import focusOnFirstVeificationCodeEntry from './focusOnFirstVeificationCodeEntry';
-import moveToPriviousInput from '../../../../../../componnents/input/functions/moveToPreviousInput';
-import inputOnFocus from '../../../../../../componnents/input/functions/inputOnFocus';
-import Input from '../../../../../../componnents/input';
-import moveToNextInput from '../../../../../../componnents/input/functions/moveToNextInput';
 import OtpInput from '../../../../../../componnents/otpInput';
 
 interface Props {
