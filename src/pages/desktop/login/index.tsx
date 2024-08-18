@@ -9,7 +9,7 @@ const Login = () => {
    const [currentStage, setLoginStage] = useState<LoginStage>(
       LoginStage.NationalCodeEntry,
    );
-   const [nationalCode, setNationalCode] = useState<string>('         ');
+   const [nationalCode, setNationalCode] = useState<string[]>([]);
    const [phoneNumber, setPhoneNumber] = useState<string>('');
 
    return (
