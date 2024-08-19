@@ -39,8 +39,8 @@ const VerificationCodeEntry: FC<Props> = ({
                className="verification-code-entry__submit-button"
                onClick={() => {
                   handleConfirmationButton({
-                     nationalCode,
-                     verificationCode,
+                     nationalCode: nationalCode.join(''),
+                     verificationCode: verificationCode.join(""),
                      setLoginStage,
                      history,
                      setSubsystems,
