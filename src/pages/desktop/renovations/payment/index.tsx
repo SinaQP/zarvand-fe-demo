@@ -22,6 +22,7 @@ const RnvPayment = () => {
    const history = useHistory();
 
    useEffect(() => {
+      console.log("token", token)
       if (!token) history.push('');
    }, [token, history]);
 

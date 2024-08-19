@@ -5,7 +5,7 @@ import NationalCodeForm from './nationalCodeForm';
 import { LoginContext } from '../context';
 import './index.scss';
 import Button from '../../../../componnents/button';
-import "./index.scss";
+import './index.scss';
 
 const NationalCodeEntry: FC = () => {
    const { setLoginStage, nationalCode, setPhoneNumber } =
@@ -23,7 +23,7 @@ const NationalCodeEntry: FC = () => {
                   handleTemporaryCodeRequest({
                      event,
                      setLoginStage,
-                     nationalCode: nationalCode,
+                     nationalCode: nationalCode.join(''),
                      setPhoneNumber,
                   })
                }

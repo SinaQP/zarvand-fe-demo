@@ -11,10 +11,10 @@ interface Props {
 }
 
 const handleTemporaryCodeRequest = async ({
-                                             setLoginStage,
-                                             nationalCode,
-                                             setPhoneNumber,
-                                          }: Props) => {
+   setLoginStage,
+   nationalCode,
+   setPhoneNumber,
+}: Props) => {
    let isFormValid = true;
    if (nationalCode.length !== 10) {
       Toast.fire({
@@ -27,6 +27,7 @@ const handleTemporaryCodeRequest = async ({
       const response = await sendVerificationCode({
          national_code: nationalCode,
       });
+      console.log('response', response);
       if (response.status === 200) {
          setLoginStage(LoginStage.ConfirmationPage);
          const responseBody = response.body;

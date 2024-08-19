@@ -7,17 +7,17 @@ import { LoginContext } from '../../context';
 import { AppContext } from '../../../../../App.context';
 import Timer from '../../../../../componnents/timer';
 import Button from '../../../../../componnents/button';
-import "./index.scss";
+import './index.scss';
 
 const VerificationCodeEntry: FC<Props> = ({
    setTimerDuration,
-   timerDuration, 
+   timerDuration,
    setTimerIntervalLoop,
    timerIntervalLoop,
 }) => {
    const { nationalCode, setLoginStage } = useContext(LoginContext);
    const { setSubsystems, setToken, setUser } = useContext(AppContext);
-   const [verificationCode, setVerificationCode] = useState('      ');
+   const [verificationCode, setVerificationCode] = useState<string[]>([]);
    const history = useHistory();
 
    return (

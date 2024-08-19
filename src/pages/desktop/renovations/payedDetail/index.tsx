@@ -1,11 +1,15 @@
-import { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Layout from '../../containers/layout';
 import Header from './header';
 import { AppContext } from '../../../../App.context';
-import { separateByThree } from '../../../../utilities/separatetByThree';
 import RenovationCard from '../../../../componnents/renovationCard';
-import "./index.scss";
+import './index.scss';
+import TableHeader from './tableHeader';
+import TableRow from './tableRow';
+import Button from '../../../../componnents/button';
+import RnvChargePdf from '../rnvChargePdf';
+import { useReactToPrint } from 'react-to-print';
 
 const RenovationPayedDetail = () => {
    const emptyRenovation = {
@@ -16,12 +20,20 @@ const RenovationPayedDetail = () => {
    };
    const { token, selectedCharge, selectedRenovationBillDetail } =
       useContext(AppContext);
+   const componentRef = useRef<HTMLDivElement>(null);
+   const handlePrint = useReactToPrint({
+      content: () => componentRef.current,
+   });
    const history = useHistory();
-
+   const [printCharge, setPrintCharge] = useState<boolean>(false);
    useEffect(() => {
       if (!token) history.push('');
    }, [token, history]);
-
+   const ComponentToPrint = React.forwardRef((props, ref: any) => (
+      <div ref={ref}>
+         <h1>Hello, world!</h1>
+      </div>
+   ));
    return (
       <Layout>
          <div className="rnv-payed-detail">
@@ -35,39 +47,26 @@ const RenovationPayedDetail = () => {
                         selectedCharge ? selectedCharge : emptyRenovation
                      }
                   />
+                  <Button
+                     className="rnv-payed-detail__print-button"
+                     onClick={handlePrint}
+                  >
+                     چاپ
+                  </Button>
+
+                  {/* <RnvChargePdf
+                     componentRef={componentRef}
+                     data={undefined}
+                     onlyShow={true}
+                  /> */}
+                  <ComponentToPrint ref={componentRef} />
                </div>
                <div className="rnv-payed-detail__colume rnv-payed-detail__colume--charges">
                   <div className="rnv-payed-detail__charges">
-                     <div className="rnv-payed-detail__charges-row rnv-payed-detail__charges-header">
-                        <span>از سال</span>
-                        <span>تا سال</span>
-                        <span>مبلغ(ريال)</span>
-                        <span>توضیحات</span>
-                        <span>شماره قبض</span>
-                        <span>تاریخ پرداخت</span>
-                     </div>
+                     <TableHeader />
                      {selectedRenovationBillDetail
                         ? selectedRenovationBillDetail.bill_details.map(
-                             (charge) => (
-                                <div className="rnv-payed-detail__charges-row">
-                                   <span>{charge.from_year}</span>
-                                   <span>{charge.to_year}</span>
-                                   <span>
-                                      {separateByThree(
-                                         charge.penalty > 0
-                                            ? charge.penalty
-                                            : charge.creditor,
-                                      )}
-                                   </span>
-                                   <span>
-                                      {charge.penalty > 0
-                                         ? 'جریمه دیرکرد'
-                                         : charge.incomecode_desc}
-                                   </span>
-                                   <span>{charge.bill_code}</span>
-                                   <span>{charge.payment_date}</span>
-                                </div>
-                             ),
+                             (charge) => <TableRow charge={charge} />,
                           )
                         : ''}
                   </div>
