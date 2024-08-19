@@ -11,6 +11,18 @@ const OtpInput: FC<Props> = ({
 }) => {
    const [otp, setOtp] = useState(new Array(numberOfInputs).fill(''));
    const inputRefs = useRef<HTMLInputElement[]>([]);
+
+   const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+      const pasteData = e.clipboardData.getData('text');
+      const newOtp = [...otp];
+      for (let i = 0; i < numberOfInputs; i++) {
+         if (pasteData[i]) {
+            newOtp[i] = pasteData[i];
+         }
+      }
+      setOtp(newOtp);
+      setValue(newOtp);
+   };
    return (
       <div className="otp-container">
          {otp.map((data, index) => (
@@ -19,6 +31,7 @@ const OtpInput: FC<Props> = ({
                type="text"
                maxLength={1}
                value={data}
+               onPaste={handlePaste}
                onChange={(e) =>
                   handleChange(e.target, index, otp, setOtp, value, setValue)
                }
