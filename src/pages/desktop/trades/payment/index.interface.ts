@@ -11,6 +11,7 @@ export interface BillDetailProps {
    bill_code: number;
    creditor: number;
    desc: string;
+   type_desc: string;
    from_year: number;
    id: number;
    income_code_id: number;

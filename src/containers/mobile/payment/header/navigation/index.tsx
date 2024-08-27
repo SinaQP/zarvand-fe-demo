@@ -1,5 +1,6 @@
 import { FC, useContext } from 'react';
 import logo from './../../../../../assets/images/zarvand-logo.png';
+import municipalityLogo from './../../../../../assets/images/municipality-logo.bmp';
 import { useHistory } from 'react-router-dom';
 import { AppContext } from '../../../../../App.context';
 
@@ -23,8 +24,11 @@ const Navigation: FC = () => {
                fill="#706A62"
             />
          </svg>
+         <div className='logoes'>
+            <img src={municipalityLogo} alt="Zarand" />
+            <img src={logo} alt="LOGO" />
+         </div>
 
-         <img src={logo} alt="LOGO" />
          <span
             className="mobile-payment__back-button"
             onClick={() => {

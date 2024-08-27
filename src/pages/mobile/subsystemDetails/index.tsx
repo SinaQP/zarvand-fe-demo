@@ -7,6 +7,7 @@ import { AppContext, RenovationMaster } from '../../../App.context';
 import handleChargeDetailButton from './handleChargeDetailButton';
 import RenovationCard from '../../../componnents/renovationCard';
 import Button from '../../../componnents/button';
+import municipalityLogo from './../../../assets/images/municipality-logo.bmp';
 
 const SubsystemDetais: FC<subsystemDetailsProps> = () => {
    const history = useHistory();
@@ -38,7 +39,10 @@ const SubsystemDetais: FC<subsystemDetailsProps> = () => {
                   &gt;
                </button>
                <div className="innerSection1">
-                  <img src={require(`${'./LOGO 4.png'}`)} alt="" />
+                  <div className="logoes">
+                     <img src={municipalityLogo} alt="Zarand" />
+                     <img src={require(`${'./LOGO 4.png'}`)} alt="" />
+                  </div>
                </div>
                <div className="innerSection2">
                   <div className="infoSection">
@@ -74,7 +78,7 @@ const SubsystemDetais: FC<subsystemDetailsProps> = () => {
                               history,
                               token,
                               setSelectedRenovationBillDetail,
-                              true
+                              true,
                            );
                         }}
                      >
@@ -90,7 +94,7 @@ const SubsystemDetais: FC<subsystemDetailsProps> = () => {
                               history,
                               token,
                               setSelectedRenovationBillDetail,
-                              false
+                              false,
                            );
                         }}
                      >

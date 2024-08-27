@@ -46,21 +46,14 @@ interface UsageType {
   is_service_calculate: boolean;
 }
 interface Person {
-  address: string;
-  birth_date: string;
-  father_name: string;
-  first_name: string;
-  id: number;
-  issue_place: string;
-  last_name: string;
+  name: string;
   mobile_Number: string;
   national_code: string;
-  phone_number: string;
 }
 export interface RnvChargePdfProps {
    componentRef?: RefObject<HTMLDivElement>;
    data: RnvCharge | undefined;
-   printBill?: BillPrintProps;
+   printBill: BillPrintProps;
    onlyShow: boolean;
 }
 export interface BillPrintProps {

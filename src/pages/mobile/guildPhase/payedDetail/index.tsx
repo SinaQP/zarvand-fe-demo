@@ -1,10 +1,12 @@
-import { FC, useContext, useEffect } from 'react';
+import { FC, useContext, useEffect, useRef, useState } from 'react';
 import Header from '../../../../containers/mobile/payment/header';
 import { AppContext } from '../../../../App.context';
 import { useHistory } from 'react-router-dom';
 import Button from '../../../../componnents/button';
 import { separateByThree } from '../../../../utilities/separatetByThree';
 import GuildCard from '../../../../componnents/guildCard';
+import { useReactToPrint } from 'react-to-print';
+import TrdChargePdf from '../../../../componnents/pdfs/trdChargePdf';
 
 const MobileGuildPayedDetail: FC = () => {
    const emptyGuild = {
@@ -13,14 +15,23 @@ const MobileGuildPayedDetail: FC = () => {
       is_paid: false,
       master_id: '',
    };
-   const { token, selectedGuildCharge, selectedGuildBillDetail } =
+   const { token, selectedGuildCharge, selectedGuildBillDetail, user } =
       useContext(AppContext);
    const history = useHistory();
-
+   const [printCharge, setPrintCharge] = useState<boolean>(false);
+   const componentRef = useRef<HTMLDivElement>(null);
+   const handlePrint = useReactToPrint({
+      content: () => componentRef.current,
+   });
    useEffect(() => {
       if (!token) history.push('/');
    }, [token]);
-
+   useEffect(() => {
+      const trdChargePdfButton = document.getElementById(
+         'trd-charge-pdf-button',
+      )! as HTMLButtonElement;
+      if (printCharge) trdChargePdfButton.click();
+   }, [printCharge]);
    return (
       <div className="mobile-payed-detail">
          <Header />
@@ -70,9 +81,52 @@ const MobileGuildPayedDetail: FC = () => {
                : ''}
          </div>
 
-         {/* <Button className="mobile-payed-detail__button" size="large">
-            چاپ
-         </Button> */}
+         <Button
+            className="trd-payed-detail__button"
+            onClick={() => {
+               setPrintCharge(true);
+               handlePrint();
+            }}
+            id="trd-charge-pdf-button"
+         >
+            نمایش قبض
+         </Button>
+         {printCharge &&
+            selectedGuildCharge &&
+            selectedGuildBillDetail &&
+            user && (
+               <TrdChargePdf
+                  componentRef={componentRef}
+                  data={{
+                     bill_details: selectedGuildBillDetail.bill_details,
+                     person: {
+                        name: user.name,
+                        mobile_Number: user.mobile_number,
+                        national_code: user.national_code,
+                     },
+                     place_address: selectedGuildCharge.address,
+                  }}
+                  printBill={{
+                     penalty: 0,
+                     city: 'تست',
+                     bill_code: selectedGuildBillDetail.bill_details
+                        ? selectedGuildBillDetail.bill_details[0].bill_code
+                        : '',
+                     income_unit_bill_subtitle: '',
+                     bill_no: selectedGuildBillDetail.bill_no,
+                     payment_no: selectedGuildBillDetail.payment_no,
+                     total_amount: selectedGuildBillDetail.value_to_pay,
+                     total_amount_in_words: '',
+                     annual_charges: [
+                        { amount: 99, type_desc: 'TEST', type_id: 1 },
+                        { amount: 99, type_desc: 'TEST', type_id: 1 },
+                        { amount: 99, type_desc: 'TEST', type_id: 1 },
+                     ],
+                     trade_type_name: selectedGuildCharge.TradeType,
+                  }}
+                  onlyShow={false}
+               />
+            )}
       </div>
    );
 };

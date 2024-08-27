@@ -1,10 +1,11 @@
-import React, { FC, useContext } from 'react';
+import { FC, useContext } from 'react';
 import { LogInProps } from './index.interface';
 import './index.scss';
 import { useHistory } from 'react-router-dom';
 import { AppContext } from '../../../App.context';
 import toast from '../../../utilities/toast';
 import { sendVerificationCode } from '../../../apis/login/send-verification-code';
+import municipalityLogo from './../../../assets/images/municipality-logo.bmp';
 
 const Login: FC<LogInProps> = () => {
    const history = useHistory();
@@ -18,7 +19,11 @@ const Login: FC<LogInProps> = () => {
       <div className="logInSection">
          <div className="dataSection">
             <div className="section1">
-               <img src={require(`${'./LOGO 4.png'}`)} alt="" />
+               <div className="logInSectionLogoes">
+                  <img src={municipalityLogo} alt="Zarand" />
+                  <img src={require(`${'./LOGO 4.png'}`)} alt="" />
+               </div>
+
                <p className="textStyle">سامانه پرداخت عوارض شهرداری زرند</p>
             </div>
             <div className="section2">
@@ -66,7 +71,6 @@ const Login: FC<LogInProps> = () => {
                            });
                         }
                      }
-                     
                   }}
                >
                   دریافت کد موقت

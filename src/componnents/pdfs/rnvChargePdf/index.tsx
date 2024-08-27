@@ -1,7 +1,7 @@
 import styles from './scss/index.module.scss';
-import convertNumberPersian from '../../../../utilities/convertNumberPersian';
+import convertNumberToPersian from '../../../utilities/convertNumberToPersian';
 import { RnvChargePdfProps } from './index.interface';
-import toMoneyFormat from '../../../../utilities/toMoneyFormat';
+import toMoneyFormat from '../../../utilities/toMoneyFormat';
 
 const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
    componentRef,
@@ -23,44 +23,28 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
         );
    return (
       <div style={{ display: onlyShow ? '' : 'none' }}>
-         SINA
-         {/* <div
+         <div
             id="printRenovationInfo"
             className={styles['printRenovationInfo']}
             ref={componentRef}
          >
             <section className={styles['municipality']}>
-               <div className={styles['header']}>
-                  <p>
-                     کدشناسایی :{' '}
-                     {convertNumberPersian(data?.id ? data.id?.toString() : '')}
-                  </p>
+               <div className={styles['top-header']}>
                   <h2>شهرداری {printBill?.city}</h2>
-                  <p>
-                     تاریخ صدور :{' '}
-                     {convertNumberPersian(printBill?.issue_date)
-                        .split('-')
-                        .reverse()
-                        .join('-')}
-                  </p>
                </div>
-               <div className={styles['header']}>
-                  <p>نام اپراتور : {printBill?.created_by_user_full_name}</p>
+               <div className={styles['top-header']}>
                   <p style={{ fontWeight: 'bold' }}>
                      عوارض نوسازی(از سال{' '}
-                     {convertNumberPersian(
+                     {convertNumberToPersian(
                         filterList?.[0]?.from_year?.toString() || '',
                      )}{' '}
                      تا سال{' '}
-                     {convertNumberPersian(
+                     {convertNumberToPersian(
                         filterList?.[
                            filterList.length - 1
                         ]?.to_year?.toString() || '',
                      )}
                      )
-                  </p>
-                  <p>
-                     شماره قبض : {convertNumberPersian(printBill?.bill_code)}
                   </p>
                </div>
                <table className={styles['mainTable']}>
@@ -69,7 +53,7 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                         <div className={styles['header']}>
                            <p>
                               شناسه ملک :{' '}
-                              {convertNumberPersian(
+                              {convertNumberToPersian(
                                  data?.certificate_number
                                     ? data.certificate_number?.toString()
                                     : '',
@@ -77,13 +61,13 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                            </p>
                            <p>
                               آدرس:{' '}
-                              {convertNumberPersian(
+                              {convertNumberToPersian(
                                  data?.address ? data.address?.toString() : '',
                               )}
                            </p>
                            <p>
                               کدپستی :{' '}
-                              {convertNumberPersian(
+                              {convertNumberToPersian(
                                  data?.postal_code ? data.postal_code : '',
                               )}
                            </p>
@@ -93,23 +77,16 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                   <tr>
                      <td colSpan={12}>
                         <div className={styles['header']}>
-                           <p>
-                              مالک :{' '}
-                              {data?.person
-                                 ? data.person?.first_name +
-                                   ' ' +
-                                   data.person?.last_name
-                                 : ''}
-                           </p>
+                           <p>مالک : {data?.person ? data?.person.name : ''}</p>
                            <p>
                               شماره ملی :{' '}
-                              {convertNumberPersian(
+                              {convertNumberToPersian(
                                  data?.person ? data.person?.national_code : '',
                               )}
                            </p>
                            <p>
                               متراژ زمین :{' '}
-                              {convertNumberPersian(
+                              {convertNumberToPersian(
                                  printBill
                                     ? printBill?.land_area?.toString()
                                     : '',
@@ -117,7 +94,7 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                            </p>
                            <p>
                               متراژ ساختمان :{' '}
-                              {convertNumberPersian(
+                              {convertNumberToPersian(
                                  printBill
                                     ? printBill?.building_area?.toString()
                                     : '',
@@ -139,7 +116,7 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                               <tr>
                                  <td>عوارض سالیانه</td>
                                  <td>
-                                    {convertNumberPersian(
+                                    {convertNumberToPersian(
                                        toMoneyFormat(
                                           printBill?.annual_charges?.toString(),
                                        ),
@@ -149,7 +126,7 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                               <tr>
                                  <td>خدمات ایمنی</td>
                                  <td>
-                                    {convertNumberPersian(
+                                    {convertNumberToPersian(
                                        toMoneyFormat(
                                           printBill?.safety_service?.toString(),
                                        ),
@@ -159,7 +136,7 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                               <tr>
                                  <td>خدمات زباله</td>
                                  <td>
-                                    {convertNumberPersian(
+                                    {convertNumberToPersian(
                                        toMoneyFormat(
                                           printBill?.garbage_collection_service?.toString(),
                                        ),
@@ -169,7 +146,7 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                               <tr>
                                  <td>خدمات شهری</td>
                                  <td>
-                                    {convertNumberPersian(
+                                    {convertNumberToPersian(
                                        toMoneyFormat(
                                           printBill?.city_service?.toString(),
                                        ),
@@ -179,7 +156,7 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                               <tr>
                                  <td>جریمه دیرکرد</td>
                                  <td>
-                                    {convertNumberPersian(
+                                    {convertNumberToPersian(
                                        toMoneyFormat(
                                           printBill?.penalty?.toString(),
                                        ),
@@ -189,7 +166,7 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                               <tr>
                                  <td>جایزه خوش حسابی</td>
                                  <td>
-                                    {convertNumberPersian(
+                                    {convertNumberToPersian(
                                        toMoneyFormat(
                                           printBill?.reward?.toString(),
                                        ),
@@ -212,12 +189,12 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                                     return (
                                        <tr key={item.id}>
                                           <td>
-                                             {convertNumberPersian(
+                                             {convertNumberToPersian(
                                                 item.to_year?.toString(),
                                              )}
                                           </td>
                                           <td>
-                                             {convertNumberPersian(
+                                             {convertNumberToPersian(
                                                 toMoneyFormat(
                                                    item.creditor?.toString(),
                                                 ),
@@ -251,12 +228,12 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                                           return (
                                              <tr>
                                                 <td>
-                                                   {convertNumberPersian(
+                                                   {convertNumberToPersian(
                                                       item.to_year?.toString(),
                                                    )}
                                                 </td>
                                                 <td>
-                                                   {convertNumberPersian(
+                                                   {convertNumberToPersian(
                                                       toMoneyFormat(
                                                          item.creditor?.toString(),
                                                       ),
@@ -291,12 +268,12 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                                           return (
                                              <tr>
                                                 <td>
-                                                   {convertNumberPersian(
+                                                   {convertNumberToPersian(
                                                       item.to_year?.toString(),
                                                    )}
                                                 </td>
                                                 <td>
-                                                   {convertNumberPersian(
+                                                   {convertNumberToPersian(
                                                       toMoneyFormat(
                                                          item.creditor?.toString(),
                                                       ),
@@ -331,12 +308,12 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                                           return (
                                              <tr>
                                                 <td>
-                                                   {convertNumberPersian(
+                                                   {convertNumberToPersian(
                                                       item.to_year?.toString(),
                                                    )}
                                                 </td>
                                                 <td>
-                                                   {convertNumberPersian(
+                                                   {convertNumberToPersian(
                                                       toMoneyFormat(
                                                          item.creditor?.toString(),
                                                       ),
@@ -371,12 +348,12 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                                           return (
                                              <tr>
                                                 <td>
-                                                   {convertNumberPersian(
+                                                   {convertNumberToPersian(
                                                       item.to_year?.toString(),
                                                    )}
                                                 </td>
                                                 <td>
-                                                   {convertNumberPersian(
+                                                   {convertNumberToPersian(
                                                       toMoneyFormat(
                                                          item.creditor?.toString(),
                                                       ),
@@ -411,12 +388,12 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                                           return (
                                              <tr>
                                                 <td>
-                                                   {convertNumberPersian(
+                                                   {convertNumberToPersian(
                                                       item.to_year?.toString(),
                                                    )}
                                                 </td>
                                                 <td>
-                                                   {convertNumberPersian(
+                                                   {convertNumberToPersian(
                                                       toMoneyFormat(
                                                          item.creditor?.toString(),
                                                       ),
@@ -433,9 +410,13 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                   </tr>
                   <tr>
                      <td colSpan={12} className={styles['barcodeStyle']}>
-                        {`مبلغ : ${convertNumberPersian(
+                        {`مبلغ : ${convertNumberToPersian(
                            toMoneyFormat(printBill?.total_amount?.toString()),
                         )} ریال - ${printBill?.total_amount_in_words} ریال`}
+                        <p>
+                           شماره قبض :{' '}
+                           {convertNumberToPersian(printBill?.bill_code)}
+                        </p>
                      </td>
                   </tr>
                </table>
@@ -444,22 +425,22 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                      <>
                         <p>
                            شناسه قبض :{' '}
-                           {convertNumberPersian(printBill?.bill_no)}
+                           {convertNumberToPersian(printBill?.bill_no)}
                         </p>
                         <p>
                            شناسه پرداخت :{' '}
-                           {convertNumberPersian(printBill?.payment_no)}
+                           {convertNumberToPersian(printBill?.payment_no)}
                         </p>
                      </>
                   ) : null}
                   <p>
-                     {convertNumberPersian(
+                     {convertNumberToPersian(
                         printBill?.income_unit_bill_subtitle,
                      )}
                   </p>
                </div>
             </section>
-         </div> */}
+         </div>
       </div>
    );
 };

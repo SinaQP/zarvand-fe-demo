@@ -12,7 +12,7 @@ export function setTimer(
    )! as HTMLSpanElement;
    counter.style.transform = `rotate(0deg)`;
    progressBar.style.background = `conic-gradient(#E3FE55 0deg, #EBF5F8 0deg)`;
-   progressBar.style.transform = `rotate(30deg)`;
+   progressBar.style.transform = `rotate(0deg)`;
 
    setTimerDuration(time);
 }

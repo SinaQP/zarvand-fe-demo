@@ -83,8 +83,11 @@
    &__button {
       margin-top: 4.7rem;
       flex: 1;
-      margin-right: 1rem; /* Adjust the margin value as desired */
-      margin-left: 1rem; /* Adjust the margin value as desired */
+      margin-right: 1rem;
+      margin-left: 1rem;
+   }
+   &__button--print {
+      width: 70%;
    }
    &__button--outline {
       width: 22rem;

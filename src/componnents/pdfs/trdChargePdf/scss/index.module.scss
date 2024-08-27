@@ -1,4 +1,4 @@
-.printRenovationInfo {
+.printGuildJobsInfo {
   * {
     padding: 0;
     margin: 0;
@@ -7,7 +7,7 @@
   display: flex;
   width: 210mm;
   height: 275mm;
-  padding: 0 5mm;
+  padding: 5mm;
   font-size: 14px;
   flex-direction: column;
   text-align: right;
@@ -16,8 +16,6 @@
     width: 100%;
     min-height: 105mm;
     max-height: 105mm;
-    border-bottom: 1px dashed black;
-    // padding-top: 5mm;
     .header {
       display: flex;
       justify-content: space-between;
@@ -28,6 +26,25 @@
         justify-content: center;
         align-items: center;
       }
+      .minWidth {
+        min-width: 33%;
+        max-width: 33%;
+        width: 33%;
+      }
+      .centeredText {
+        text-align: center;
+      }
+      .endText {
+        text-align: end;
+      }
+      .bold {
+        font-weight: bold;
+      }
+    }
+    .top-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .mainTable {
       width: 100%;
@@ -47,12 +64,6 @@
           }
           &.textLeft {
             text-align: start;
-          }
-          &.barcodeStyle{
-            width:100%;
-            display: flex;
-            justify-content: space-between;
-            align-items:center;
           }
         }
       }
@@ -78,9 +89,9 @@
         width: 20%;
         max-width: 25%;
         height: 100% !important;
-        // td {
-        //   padding: 1mm;
-        // }
+        td {
+          padding: 1mm;
+        }
       }
       .innerTableLeft {
         width: 25%;

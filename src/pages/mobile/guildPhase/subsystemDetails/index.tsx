@@ -7,6 +7,7 @@ import { AppContext, Guild } from '../../../../App.context';
 import { getPersonTradeMasters } from '../../../../apis/guildPhase/get-person-trade-master';
 import GuildCard from '../../../../componnents/guildCard';
 import Button from '../../../../componnents/button';
+import municipalityLogo from './../../../../assets/images/municipality-logo.bmp';
 
 const SubsystemGuildDetais: FC<subsystemDetailsProps> = () => {
    const history = useHistory();
@@ -37,7 +38,10 @@ const SubsystemGuildDetais: FC<subsystemDetailsProps> = () => {
                   &gt;
                </button>
                <div className="innerSection1">
-                  <img src={require(`${'./LOGO 4.png'}`)} alt="" />
+                  <div className="logoes">
+                     <img src={municipalityLogo} alt="Zarand" />
+                     <img src={require(`${'./LOGO 4.png'}`)} alt="" />
+                  </div>
                </div>
                <div className="innerSection2">
                   <div className="infoSection">

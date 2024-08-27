@@ -1,9 +1,10 @@
 import { FC, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Logo from '../../../../assets/images/logo.png';
+import MunicipalityLogo from '../../../../assets/images/municipality-logo.bmp';
 import { Props } from './index.interface';
 import { AppContext } from '../../../../App.context';
-import "./index.scss";
+import './index.scss';
 
 const Layout: FC<Props> = ({
    children,
@@ -47,7 +48,10 @@ const Layout: FC<Props> = ({
                   />
                </svg>
             )}
-            <img src={Logo} alt="Logo" />
+            <div className="layout__logoes">
+               <img src={MunicipalityLogo} alt="Zarand" />
+               <img src={Logo} alt="Logo" />
+            </div>
             <span>سامانه پرداخت عوارض شهرداری زرند</span>
          </header>
          {children}

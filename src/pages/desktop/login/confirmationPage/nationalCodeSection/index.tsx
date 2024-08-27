@@ -28,7 +28,7 @@ const NationalCodeSection: FC<Props> = ({
             </span>
             <span
                onClick={() => {
-                  handleResendCodeClick(nationalCode, setTimerDuration, setTimerInterval);
+                  handleResendCodeClick(nationalCode.join(""), setTimerDuration, setTimerInterval);
                }}
             >
                ارسال مجدد کد

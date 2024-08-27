@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import logo from './../../../../../../assets/images/zarvand-logo.png';
+import municipalityLogo from './../../../../../assets/images/municipality-logo.bmp';
 import { useHistory } from 'react-router-dom';
 
 const Navigation: FC = () => {
@@ -13,7 +14,7 @@ const Navigation: FC = () => {
                fill="#706A62"
             />
          </svg>
-
+         <img src={municipalityLogo} alt="Zarand" />
          <img src={logo} alt="LOGO" />
          <span
             className="mobile-payment__back-button"

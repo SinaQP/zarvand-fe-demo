@@ -3,14 +3,17 @@ import { subsystemProp } from './index.interface';
 import './style/index.scss';
 import { useHistory } from 'react-router-dom';
 import { AppContext } from '../../../App.context';
+import municipalityLogo from './../../../assets/images/municipality-logo.bmp';
 
 const ZarvandSubsystem: React.FC<subsystemProp> = () => {
    const history = useHistory();
-   const { subSystems } = React.useContext(AppContext);
    return (
       <div className="subsystemPage">
          <div className="headerSection">
-            <img src={require(`${'./LOGO 4.png'}`)} alt="" />
+            <div className="logoes">
+               <img src={municipalityLogo} alt="Zarand" />
+               <img src={require(`${'./LOGO 4.png'}`)} alt="" />
+            </div>
             <button
                className="back"
                onClick={() => {
