@@ -1,4 +1,4 @@
-import { getPersonTradeMasters } from '../../../../apis/guildPhase/get-person-trade-master';
+import { getPersonTradeMasters } from '../../../../apis/trade/get-person-trade-master';
 import Toast from '../../../../utilities/toast';
 
 export const getTradeMasters = async (token: string) => {

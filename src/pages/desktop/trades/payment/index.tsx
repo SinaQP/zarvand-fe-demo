@@ -7,48 +7,56 @@ import { AppContext } from '../../../../App.context';
 import { Bill } from './index.interface';
 import { separateByThree } from '../../../../utilities/separatetByThree';
 import GuildCard from '../../../../componnents/guildCard';
-import { getTradeBillDetailsInfo } from '../../../../apis/guildPhase/guild-bill-details-info';
+import { getTradeBillDetailsInfo } from '../../../../apis/trade/guild-bill-details-info';
 import Button from '../../../../componnents/button';
 import './index.scss';
 import { useReactToPrint } from 'react-to-print';
 import TrdChargePdf from '../../../../componnents/pdfs/trdChargePdf';
 
 const TradePayment = () => {
-   const emptyGuild = {
-      address: '',
-      TradeType: '',
-      is_paid: false,
-      master_id: '',
-   };
    const { token, selectedGuildCharge, selectedGuildBillDetail, user } =
       useContext(AppContext);
    const history = useHistory();
-   const [printCharge, setPrintCharge] = useState<boolean>(false);
+   const [bill, setBill] = useState<Bill | null>(null);
+   const [isPrinting, setIsPrinting] = useState(false);
    const componentRef = useRef<HTMLDivElement>(null);
+
    const handlePrint = useReactToPrint({
       content: () => componentRef.current,
+      onAfterPrint: () => setIsPrinting(false),
    });
-   const [bill, setBill] = useState<Bill | null>(null);
-
    useEffect(() => {
-      if (!token) history.push('');
-      const fetch = async function () {
+      if (!token) {
+         history.push('');
+         return;
+      }
+      const fetchBillDetails = async () => {
          if (selectedGuildCharge) {
-            const bill = await getTradeBillDetailsInfo(
+            const { body } = await getTradeBillDetailsInfo(
                { master_id: selectedGuildCharge.master_id },
                token,
             );
-            setBill(bill.body);
+            setBill(body);
          }
       };
-      fetch();
-   }, [token, history]);
-   useEffect(() => {
-      const trdChargePdfButton = document.getElementById(
-         'trd-charge-pdf-button',
-      )! as HTMLButtonElement;
-      if (printCharge) trdChargePdfButton.click();
-   }, [printCharge]);
+      fetchBillDetails();
+   }, [token, history, selectedGuildCharge]);
+
+   const printChargeHandler = () => {
+      setIsPrinting(true);
+      handlePrint();
+   };
+   const renderChargeRows = () => {
+      if (!bill?.last_bill_details) return null;
+      return bill.last_bill_details.map((charge, index) => (
+         <div key={index} className="trd-payment__charges-row">
+            <span>{charge.from_year}</span>
+            <span>{charge.to_year}</span>
+            <span>{separateByThree(charge.creditor)}</span>
+            <span>{charge.type_desc}</span>
+         </div>
+      ));
+   };
    return (
       <Layout>
          <div className="trd-payment">
@@ -60,25 +68,21 @@ const TradePayment = () => {
                      lock
                      viewOnly
                      guild={
-                        selectedGuildCharge ? selectedGuildCharge : emptyGuild
+                        selectedGuildCharge || {
+                           address: '',
+                           TradeType: '',
+                           is_paid: false,
+                           master_id: '',
+                        }
                      }
                   />
                   <Button
                      className="trd-payment__button trd-payment__button--print"
-                     onClick={() => {
-                        console.log(
-                           'selectedGuildBillDetail',
-                           selectedGuildBillDetail,
-                        );
-                        console.log('selectedGuildCharge', selectedGuildCharge);
-                        setPrintCharge(true);
-                        handlePrint();
-                     }}
-                     id="trd-charge-pdf-button"
+                     onClick={printChargeHandler}
                   >
                      چاپ
                   </Button>
-                  {printCharge &&
+                  {isPrinting &&
                      selectedGuildCharge &&
                      selectedGuildBillDetail &&
                      user && (
@@ -97,10 +101,9 @@ const TradePayment = () => {
                            printBill={{
                               penalty: 0,
                               city: 'تست',
-                              bill_code: selectedGuildBillDetail.bill_details
-                                 ? selectedGuildBillDetail.bill_details[0]
-                                      .bill_code
-                                 : '',
+                              bill_code:
+                                 selectedGuildBillDetail.bill_details?.[0]
+                                    ?.bill_code || '',
                               income_unit_bill_subtitle: '',
                               bill_no: selectedGuildBillDetail.bill_no,
                               payment_no: selectedGuildBillDetail.payment_no,
@@ -127,36 +130,25 @@ const TradePayment = () => {
                         <span>توضیحات</span>
                      </div>
                      <div className="trd-payment__charges-rows-container">
-                        {bill?.last_bill_details
-                           ? bill.last_bill_details?.map((charge) => (
-                                <div className="trd-payment__charges-row">
-                                   <span>{charge.from_year}</span>
-                                   <span>{charge.to_year}</span>
-                                   <span>
-                                      {separateByThree(charge.creditor)}
-                                   </span>
-                                   <span>{charge.type_desc}</span>
-                                </div>
-                             ))
-                           : ''}
+                        {renderChargeRows()}
                      </div>
                   </div>
                </div>
                <div className="trd-payment__colume">
                   <Amounts
-                     bill_no={bill?.bill_no ? bill.bill_no : ''}
-                     payment_no={bill?.payment_no ? bill.payment_no : ''}
-                     value_to_pay={bill?.value_to_pay ? bill?.value_to_pay : 0}
+                     bill_no={bill?.bill_no || ''}
+                     payment_no={bill?.payment_no || ''}
+                     value_to_pay={bill?.value_to_pay || 0}
                   />
                   <div className="trd-payment__buttons">
-                     {selectedGuildBillDetail?.bill_details?.length ? (
+                     {selectedGuildBillDetail?.bill_details?.length && (
                         <Button
                            className="trd-payment__button trd-payment__button--outline"
                            onClick={() => history.push('/payed-detail/guild')}
                         >
                            مشاهده سابقه پرداخت
                         </Button>
-                     ) : null}
+                     )}
                      <Button className="trd-payment__button">پرداخت</Button>
                   </div>
                </div>

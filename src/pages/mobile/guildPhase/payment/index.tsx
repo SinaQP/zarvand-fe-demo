@@ -4,7 +4,7 @@ import { AppContext } from '../../../../App.context';
 import { useHistory } from 'react-router-dom';
 import Button from '../../../../componnents/button';
 import toMoneyFormat from '../../../../utilities/toMoneyFormat';
-import { getTradeBillDetailsInfo } from '../../../../apis/guildPhase/guild-bill-details-info';
+import { getTradeBillDetailsInfo } from '../../../../apis/trade/guild-bill-details-info';
 import { Bill } from '../../../desktop/trades/payment/index.interface';
 import GuildCard from '../../../../componnents/guildCard';
 import Charges from '../../../../containers/mobile/guildPhase/payment/charges';

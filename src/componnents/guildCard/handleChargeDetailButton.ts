@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
 import { GuildBill, Guild } from '../../App.context';
 import toast from '../../utilities/toast';
-import { getTradeBillDetailsInfo } from '../../apis/guildPhase/guild-bill-details-info';
+import { getTradeBillDetailsInfo } from '../../apis/trade/guild-bill-details-info';
 
 const handleChargeDetailButton = async (
    setSelectedCharge: Dispatch<SetStateAction<Guild | null>>,

@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { FC, useContext, useEffect, useState } from 'react';
 import handleChargeDetailButton from './handleChargeDetailButton';
 import { AppContext, Guild } from '../../../../App.context';
-import { getPersonTradeMasters } from '../../../../apis/guildPhase/get-person-trade-master';
+import { getPersonTradeMasters } from '../../../../apis/trade/get-person-trade-master';
 import GuildCard from '../../../../componnents/guildCard';
 import Button from '../../../../componnents/button';
 import municipalityLogo from './../../../../assets/images/municipality-logo.bmp';
