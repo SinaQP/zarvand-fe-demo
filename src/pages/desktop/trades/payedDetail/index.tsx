@@ -9,6 +9,8 @@ import './index.scss';
 import Button from '../../../../componnents/button';
 import { useReactToPrint } from 'react-to-print';
 import TrdChargePdf from '../../../../componnents/pdfs/trdChargePdf';
+import { getTradePrintData } from '../../../../apis/trade/print';
+import { PrintBill } from '../../../../componnents/pdfs/trdChargePdf/index.interface';
 
 const TradePayedDetail = () => {
    const emptyGuild = {
@@ -22,10 +24,25 @@ const TradePayedDetail = () => {
    const componentRef = useRef<HTMLDivElement>(null);
    const handlePrint = useReactToPrint({
       content: () => componentRef.current,
+      onAfterPrint: () => setIsPrinting(false),
    });
-   const [printCharge, setPrintCharge] = useState<boolean>(false);
    const history = useHistory();
-
+   const [isPrinting, setIsPrinting] = useState(false);
+   const [printBill, setPrintBill] = useState<PrintBill | null>(null);
+   const printChargeHandler = async () => {
+      if (selectedGuildCharge) {
+         const { body, status } = await getTradePrintData(
+            {
+               last_paid_bill: true,
+               master_id: selectedGuildCharge.master_id,
+            },
+            token,
+         );
+         if (status === 200) setPrintBill(body);
+      }
+      setIsPrinting(true);
+      handlePrint();
+   };
    useEffect(() => {
       if (!token) history.push('');
    }, [token, history]);
@@ -33,8 +50,8 @@ const TradePayedDetail = () => {
       const trdChargePdfButton = document.getElementById(
          'trd-charge-pdf-button',
       )! as HTMLButtonElement;
-      if (printCharge) trdChargePdfButton.click();
-   }, [printCharge]);
+      if (isPrinting) trdChargePdfButton.click();
+   }, [isPrinting]);
    return (
       <Layout>
          <div className="trd-payed-detail">
@@ -50,15 +67,12 @@ const TradePayedDetail = () => {
                   />
                   <Button
                      className="trd-payed-detail__button"
-                     onClick={() => {
-                        setPrintCharge(true);
-                        handlePrint();
-                     }}
+                     onClick={printChargeHandler}
                      id="trd-charge-pdf-button"
                   >
                      نمایش قبض
                   </Button>
-                  {printCharge &&
+                  {isPrinting &&
                      selectedGuildCharge &&
                      selectedGuildBillDetail &&
                      user && (
@@ -74,26 +88,7 @@ const TradePayedDetail = () => {
                               },
                               place_address: selectedGuildCharge.address,
                            }}
-                           printBill={{
-                              penalty: 0,
-                              city: 'تست',
-                              bill_code: selectedGuildBillDetail.bill_details
-                                 ? selectedGuildBillDetail.bill_details[0]
-                                      .bill_code
-                                 : '',
-                              income_unit_bill_subtitle: '',
-                              bill_no: selectedGuildBillDetail.bill_no,
-                              payment_no: selectedGuildBillDetail.payment_no,
-                              total_amount:
-                                 selectedGuildBillDetail.value_to_pay,
-                              total_amount_in_words: '',
-                              annual_charges: [
-                                 { amount: 99, type_desc: 'TEST', type_id: 1 },
-                                 { amount: 99, type_desc: 'TEST', type_id: 1 },
-                                 { amount: 99, type_desc: 'TEST', type_id: 1 },
-                              ],
-                              trade_type_name: selectedGuildCharge.TradeType,
-                           }}
+                           printBill={printBill}
                            onlyShow={false}
                         />
                      )}

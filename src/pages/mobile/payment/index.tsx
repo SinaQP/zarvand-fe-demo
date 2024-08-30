@@ -24,7 +24,7 @@ const Payment: FC = () => {
 
    return (
       <div className="mobile-payment">
-          <Header />
+         <Header />
          <RenovationCard
             renovation={selectedCharge ? selectedCharge : emptyRenovation}
             lock
@@ -48,7 +48,7 @@ const Payment: FC = () => {
                   ? selectedRenovationBillDetail.value_to_pay
                   : 0
             }
-         /> 
+         />
          {selectedRenovationBillDetail &&
             selectedRenovationBillDetail.bill_details.length > 0 && (
                <Button
@@ -58,9 +58,7 @@ const Payment: FC = () => {
                   مشاهده سابقه پرداخت
                </Button>
             )}
-         <Button className="mobile-payment__button">
-            پرداخت
-         </Button>
+         <Button className="mobile-payment__button">پرداخت</Button>
       </div>
    );
 };

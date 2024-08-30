@@ -4,7 +4,7 @@ import { Props } from './index.interface';
 import './index.scss';
 
 const Button: FC<Props> = (props) => (
-   <button {...props} className={`${props.className} button`}>
+   <button {...props}  className={`${props.className} button`}>
       {props.children}
    </button>
 );

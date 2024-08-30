@@ -23,8 +23,8 @@ import MobileGuildPayedDetail from './pages/mobile/guildPhase/payedDetail';
  * Router Container
  */
 const RenovationRoutes = () => {
-   return <></>
-}
+   return <></>;
+};
 function Router() {
    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
    return (
@@ -66,9 +66,16 @@ function Router() {
             component={isMobile ? PaymentMobile : RenovationPayment}
          />
          <Route
+            path="/payment/guild/"
+            exact
+            component={isMobile ? MobilePaymentGuild : DesktopPaymentGuild}
+         />
+         <Route
             path="/payed-detail/renovation"
             exact
-            component={isMobile ? RenovationMobilePayedDetail : RenovationPayedDetail}
+            component={
+               isMobile ? RenovationMobilePayedDetail : RenovationPayedDetail
+            }
          />
          <Route
             path="/payed-detail/guild"
@@ -84,11 +91,6 @@ function Router() {
 
          <Route path="/charges/renovation" exact component={RenewalCharges} />
          <Route path="/charges/guild" exact component={GuildRenewalCharges} />
-         <Route
-            path="/payment/guild/"
-            exact
-            component={isMobile ? MobilePaymentGuild : DesktopPaymentGuild}
-         />
       </BrowserRouter>
    );
 }

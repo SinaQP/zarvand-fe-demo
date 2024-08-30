@@ -64,7 +64,7 @@ export interface RenovationBillDetail {
 }
 export interface RenovationBill {
    bill_no: string;
-   charges_by_year: [];
+   charges_by_year: [number, number][];
    bill_details: RenovationBillDetail[];
    payment_no: string;
    value_to_pay: number;

@@ -10,6 +10,8 @@ import TableRow from './tableRow';
 import Button from '../../../../componnents/button';
 import { useReactToPrint } from 'react-to-print';
 import RnvChargePdf from '../../../../componnents/pdfs/rnvChargePdf';
+import { BillPrintProps } from '../../../../componnents/pdfs/rnvChargePdf/index.interface';
+import { getRnvPrintData } from '../../../../apis/renovation/print';
 
 const RenovationPayedDetail = () => {
    const emptyRenovation = {
@@ -20,15 +22,38 @@ const RenovationPayedDetail = () => {
    };
    const { token, selectedCharge, selectedRenovationBillDetail, user } =
       useContext(AppContext);
+   const [isPrinting, setIsPrinting] = useState(false);
+   const [printBill, setPrintBill] = useState<BillPrintProps | null>(null);
    const componentRef = useRef<HTMLDivElement>(null);
    const handlePrint = useReactToPrint({
       content: () => componentRef.current,
+      onAfterPrint: () => setIsPrinting(false),
    });
-   const [printCharge, setPrintCharge] = useState<boolean>(false);
+   const printChargeHandler = async () => {
+      if (selectedCharge) {
+         const { body, status } = await getRnvPrintData(
+            {
+               last_paid_bill: true,
+               master_id: selectedCharge.master_id,
+            },
+            token,
+         );
+
+         if (status === 200) setPrintBill(body);
+      }
+      setIsPrinting(true);
+      handlePrint();
+   };
    const history = useHistory();
    useEffect(() => {
       if (!token) history.push('');
    }, [token, history]);
+   useEffect(() => {
+      const rnvChargePdfButton = document.getElementById(
+         'rnv-charge-pdf-button',
+      )! as HTMLButtonElement;
+      if (isPrinting) rnvChargePdfButton.click();
+   }, [isPrinting]);
    return (
       <Layout>
          <div className="rnv-payed-detail">
@@ -44,80 +69,44 @@ const RenovationPayedDetail = () => {
                   />
                   <Button
                      className="rnv-payed-detail__print-button"
-                     onClick={() => {
-                        console.log(
-                           'selectedRenovationBillDetail',
-                           selectedRenovationBillDetail,
-                        );
-                        console.log('selectedCharge', selectedCharge);
-                        setPrintCharge(true);
-                        handlePrint();
-                     }}
+                     id="rnv-charge-pdf-button"
+                     onClick={printChargeHandler}
                   >
                      نمایش قبض
                   </Button>
 
-                  {printCharge && selectedCharge && user && (
-                     <RnvChargePdf
-                        componentRef={componentRef}
-                        data={{
-                           address: selectedCharge.address,
-                           physical_state_id: { desc: '', id: 1 },
-                           plate_number: 1,
-                           postal_code: '',
-                           special_services_cost: 1,
-                           subdivision_date: '',
-                           taking_possession_date: '',
-                           usage_type_id: {
-                              desc: '',
-                              id: 1,
-                              is_service_calculate: true,
-                           },
-                           bill_details: [],
-                           certificate_number: '',
-                           debt: 0,
-                           exemption_percentage: 0,
-                           first_year_of_calculation: 0,
-                           id: selectedCharge.master_id,
-                           is_deleted: false,
-                           last_bill_id: 1,
-                           last_year_of_payment: '1',
-                           notice: '1',
-                           penalty_percentage: 1,
-                           person: {
-                              name: user.name,
-                              mobile_Number: user.mobile_number,
-                              national_code: user.national_code,
-                           },
-                        }}
-                        printBill={{
-                           account_number: '',
-                           annual_charges: 1,
-                           bank_name: '',
-                           bank_bill_subtitle: '',
-                           bill_code: selectedRenovationBillDetail
-                              ? selectedRenovationBillDetail?.bill_no
-                              : 's',
-                           bill_no: '',
-                           building_area: 1,
-                           city: '',
-                           city_service: 1,
-                           created_by_user_full_name: '',
-                           dual_bill: true,
-                           garbage_collection_service: 1,
-                           income_unit_bill_subtitle: '',
-                           issue_date: '',
-                           land_area: 1,
-                           payment_no: '',
-                           penalty: 1,
-                           reward: 1,
-                           safety_service: 1,
-                           total_amount: 1,
-                           total_amount_in_words: '',
-                        }}
-                        onlyShow={false}
-                     />
-                  )}
+                  {isPrinting &&
+                     selectedCharge &&
+                     selectedRenovationBillDetail &&
+                     printBill &&
+                     user && (
+                        <RnvChargePdf
+                           componentRef={componentRef}
+                           data={{
+                              address: selectedCharge.address,
+                              postal_code: '',
+                              bill_details:
+                                 selectedRenovationBillDetail.bill_details
+                                    .filter((bd) => bd.is_annual_charges)
+                                    .map((bd) => {
+                                       return [
+                                          `${bd.from_year} تا ${bd.to_year}`,
+                                          bd.creditor,
+                                       ];
+                                    }),
+                              certificate_number: '',
+                              id: selectedCharge.master_id,
+                              last_bill_id: 1,
+                              person: {
+                                 name: user.name,
+                                 mobile_Number: user.mobile_number,
+                                 national_code: user.national_code,
+                              },
+                           }}
+                           printBill={printBill}
+                           onlyShow={false}
+                        />
+                     )}
                </div>
                <div className="rnv-payed-detail__colume rnv-payed-detail__colume--charges">
                   <div className="rnv-payed-detail__charges">

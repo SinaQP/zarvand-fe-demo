@@ -17,7 +17,7 @@ const TrdChargePdf: FC<PrintProps> = ({
            (item) => item.to_year !== null && item.creditor !== 0,
         )
       : [];
-    return (
+   return (
       <div style={{ display: onlyShow ? '' : 'none' }}>
          <div
             id="printGuildJobsInfo"
@@ -56,7 +56,9 @@ const TrdChargePdf: FC<PrintProps> = ({
                            )}
                            <p>
                               شماره قبض :{' '}
-                              {convertNumberToPersian(printBill?.bill_code)}
+                              {convertNumberToPersian(
+                                 printBill ? printBill.bill_code : '',
+                              )}
                            </p>
                         </div>
                      </td>
@@ -193,7 +195,9 @@ const TrdChargePdf: FC<PrintProps> = ({
                      <td colSpan={12} className={styles['textLeft']}>
                         {`مبلغ :
                   ${convertNumberToPersian(
-                     toMoneyFormat(printBill?.total_amount?.toString()),
+                     toMoneyFormat(
+                        printBill ? printBill?.total_amount?.toString() : '',
+                     ),
                   )} ریال`}
                         {/* - ${printBill?.total_amount_in_words} ریال */}
                      </td>
@@ -225,13 +229,6 @@ const TrdChargePdf: FC<PrintProps> = ({
                      </tr>
                   ) : null}
                </table>
-               <div className={styles['header']}>
-                  <p className={styles['centered']}>
-                     {convertNumberToPersian(
-                        printBill?.income_unit_bill_subtitle,
-                     )}
-                  </p>
-               </div>
             </section>
          </div>
       </div>

@@ -12,6 +12,8 @@ import Button from '../../../../componnents/button';
 import './index.scss';
 import { useReactToPrint } from 'react-to-print';
 import TrdChargePdf from '../../../../componnents/pdfs/trdChargePdf';
+import { getTradePrintData } from '../../../../apis/trade/print';
+import { PrintBill } from '../../../../componnents/pdfs/trdChargePdf/index.interface';
 
 const TradePayment = () => {
    const { token, selectedGuildCharge, selectedGuildBillDetail, user } =
@@ -19,7 +21,9 @@ const TradePayment = () => {
    const history = useHistory();
    const [bill, setBill] = useState<Bill | null>(null);
    const [isPrinting, setIsPrinting] = useState(false);
+   const [printBill, setPrintBill] = useState<PrintBill | null>(null);
    const componentRef = useRef<HTMLDivElement>(null);
+   const printButton = useRef<HTMLButtonElement>(null);
 
    const handlePrint = useReactToPrint({
       content: () => componentRef.current,
@@ -30,19 +34,32 @@ const TradePayment = () => {
          history.push('');
          return;
       }
+      if (isPrinting) {
+         printButton.current?.click();
+      }
       const fetchBillDetails = async () => {
          if (selectedGuildCharge) {
-            const { body } = await getTradeBillDetailsInfo(
+            const { body, status } = await getTradeBillDetailsInfo(
                { master_id: selectedGuildCharge.master_id },
                token,
             );
-            setBill(body);
+            if (status === 200) setBill(body);
          }
       };
       fetchBillDetails();
-   }, [token, history, selectedGuildCharge]);
+   }, [token, history, selectedGuildCharge, isPrinting]);
 
-   const printChargeHandler = () => {
+   const printChargeHandler = async () => {
+      if (selectedGuildCharge) {
+         const { body, status } = await getTradePrintData(
+            {
+               last_paid_bill: false,
+               master_id: selectedGuildCharge.master_id,
+            },
+            token,
+         );
+         if (status === 200) setPrintBill(body);
+      }
       setIsPrinting(true);
       handlePrint();
    };
@@ -57,6 +74,12 @@ const TradePayment = () => {
          </div>
       ));
    };
+   useEffect(() => {
+      const trdChargePdfButton = document.getElementById(
+         'trd-charge-pdf-button',
+      )! as HTMLButtonElement;
+      if (isPrinting) trdChargePdfButton.click();
+   }, [isPrinting]);
    return (
       <Layout>
          <div className="trd-payment">
@@ -79,6 +102,8 @@ const TradePayment = () => {
                   <Button
                      className="trd-payment__button trd-payment__button--print"
                      onClick={printChargeHandler}
+                     ref={printButton}
+                     id="trd-charge-pdf-button"
                   >
                      چاپ
                   </Button>
@@ -98,25 +123,7 @@ const TradePayment = () => {
                               },
                               place_address: selectedGuildCharge.address,
                            }}
-                           printBill={{
-                              penalty: 0,
-                              city: 'تست',
-                              bill_code:
-                                 selectedGuildBillDetail.bill_details?.[0]
-                                    ?.bill_code || '',
-                              income_unit_bill_subtitle: '',
-                              bill_no: selectedGuildBillDetail.bill_no,
-                              payment_no: selectedGuildBillDetail.payment_no,
-                              total_amount:
-                                 selectedGuildBillDetail.value_to_pay,
-                              total_amount_in_words: '',
-                              annual_charges: [
-                                 { amount: 99, type_desc: 'TEST', type_id: 1 },
-                                 { amount: 99, type_desc: 'TEST', type_id: 1 },
-                                 { amount: 99, type_desc: 'TEST', type_id: 1 },
-                              ],
-                              trade_type_name: selectedGuildCharge.TradeType,
-                           }}
+                           printBill={printBill}
                            onlyShow={false}
                         />
                      )}

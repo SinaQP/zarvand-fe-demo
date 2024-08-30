@@ -59,10 +59,10 @@ export interface CloseDatesModel {
 export interface PrintProps {
    componentRef?: RefObject<HTMLDivElement>;
    data: GuildJobsResultModel | undefined;
-   printBill: BillPrintProps;
+   printBill: PrintBill | null;
    onlyShow: boolean;
 }
-export interface BillPrintProps {
+export interface PrintBill {
    annual_charges: {
       type_desc: string;
       amount: number;
@@ -70,11 +70,11 @@ export interface BillPrintProps {
    }[];
    bill_code: string;
    bill_no: string;
-   payment_no: string;
+   city: string;
+   exemption_amount: 0;
    penalty: number;
+   payment_no: string;
    total_amount: number;
    total_amount_in_words: string;
    trade_type_name: string;
-   income_unit_bill_subtitle: string;
-   city: string;
 }

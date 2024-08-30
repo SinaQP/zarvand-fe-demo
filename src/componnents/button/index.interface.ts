@@ -1,7 +1,10 @@
-import { ButtonHTMLAttributes, ReactElement } from 'react';
+import { ButtonHTMLAttributes, DetailedHTMLProps, ReactElement } from 'react';
 
-export interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-  children?: ReactElement | ReactElement[] | string;
-  className?: string;
+export interface Props
+   extends DetailedHTMLProps<
+      ButtonHTMLAttributes<HTMLButtonElement>,
+      HTMLButtonElement
+   > {
+   children?: ReactElement | ReactElement[] | string;
+   className?: string;
 }
-

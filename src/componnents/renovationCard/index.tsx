@@ -6,6 +6,7 @@ import handleChargeDetailButton from './handleChargeDetailButton';
 import { AppContext } from '../../App.context';
 import './index.scss';
 import Button from '../button';
+import { getRnvPrintData } from '../../apis/renovation/print';
 
 const RenovationCard: FC<Props> = ({
    className = '',
@@ -21,8 +22,12 @@ const RenovationCard: FC<Props> = ({
       renovation.certificate_number.slice(16, 19),
    ]);
    const history = useHistory();
-   const { setSelectedCharge, token, setSelectedRenovationBillDetail } =
-      useContext(AppContext);
+   const {
+      setSelectedCharge,
+      selectedCharge,
+      token,
+      setSelectedRenovationBillDetail,
+   } = useContext(AppContext);
 
    return (
       <div
@@ -63,7 +68,7 @@ const RenovationCard: FC<Props> = ({
                         history,
                         token,
                         setSelectedRenovationBillDetail,
-                        true
+                        true,
                      )
                   }
                >
@@ -79,7 +84,7 @@ const RenovationCard: FC<Props> = ({
                         history,
                         token,
                         setSelectedRenovationBillDetail,
-                        false
+                        false,
                      )
                   }
                >

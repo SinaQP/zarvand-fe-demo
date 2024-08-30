@@ -9,18 +9,6 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
    printBill,
    onlyShow,
 }) => {
-   let filterList = !onlyShow
-      ? data?.bill_details?.filter(
-           (item) =>
-              item.to_year !== null &&
-              item.is_annual_charges &&
-              item.creditor !== 0 &&
-              (item.payment_date === '' || item.payment_date === null),
-        )
-      : data?.bill_details?.filter(
-           (item) =>
-              item.is_annual_charges && data.last_bill_id === item.bill_id,
-        );
    return (
       <div style={{ display: onlyShow ? '' : 'none' }}>
          <div
@@ -36,13 +24,13 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                   <p style={{ fontWeight: 'bold' }}>
                      عوارض نوسازی(از سال{' '}
                      {convertNumberToPersian(
-                        filterList?.[0]?.from_year?.toString() || '',
+                        data?.bill_details[0][0]?.toString() || '',
                      )}{' '}
                      تا سال{' '}
                      {convertNumberToPersian(
-                        filterList?.[
-                           filterList.length - 1
-                        ]?.to_year?.toString() || '',
+                        data?.bill_details[
+                           data?.bill_details.length - 1
+                        ][0]?.toString() || '',
                      )}
                      )
                   </p>
@@ -175,7 +163,7 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                               </tr>
                            </tbody>
                         </table>
-                        {filterList && filterList?.length && (
+                        {data && data.bill_details?.length && (
                            <table className={styles['innerTableLeft']}>
                               <thead>
                                  <tr>
@@ -184,29 +172,31 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                                  </tr>
                               </thead>
                               <tbody>
-                                 {filterList?.slice(0, 6).map((item: any) => {
-                                    //if (item.to_year === null) return null;
-                                    return (
-                                       <tr key={item.id}>
-                                          <td>
-                                             {convertNumberToPersian(
-                                                item.to_year?.toString(),
-                                             )}
-                                          </td>
-                                          <td>
-                                             {convertNumberToPersian(
-                                                toMoneyFormat(
-                                                   item.creditor?.toString(),
-                                                ),
-                                             )}
-                                          </td>
-                                       </tr>
-                                    );
-                                 })}
+                                 {data?.bill_details
+                                    .slice(0, 6)
+                                    .map((item: any) => {
+                                       //if (item.to_year === null) return null;
+                                       return (
+                                          <tr>
+                                             <td>
+                                                {convertNumberToPersian(
+                                                   item[0]?.toString(),
+                                                )}
+                                             </td>
+                                             <td>
+                                                {convertNumberToPersian(
+                                                   toMoneyFormat(
+                                                      item[1]?.toString(),
+                                                   ),
+                                                )}
+                                             </td>
+                                          </tr>
+                                       );
+                                    })}
                               </tbody>
                            </table>
                         )}
-                        {filterList && filterList?.length > 6 && (
+                        {data && data.bill_details?.length > 6 && (
                            <table className={styles['innerTableLeft']}>
                               <thead>
                                  <tr>
@@ -215,38 +205,31 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                                  </tr>
                               </thead>
                               <tbody>
-                                 {filterList
+                                 {data.bill_details
                                     ?.slice(6, 12)
-                                    .map(
-                                       (item: {
-                                          payment_date: any;
-                                          to_year: { toString: () => string };
-                                          creditor: { toString: () => string };
-                                          penalty: { toString: () => string };
-                                       }) => {
-                                          //if (item.to_year === null) return null;
-                                          return (
-                                             <tr>
-                                                <td>
-                                                   {convertNumberToPersian(
-                                                      item.to_year?.toString(),
-                                                   )}
-                                                </td>
-                                                <td>
-                                                   {convertNumberToPersian(
-                                                      toMoneyFormat(
-                                                         item.creditor?.toString(),
-                                                      ),
-                                                   )}
-                                                </td>
-                                             </tr>
-                                          );
-                                       },
-                                    )}
+                                    .map((item) => {
+                                       //if (item.to_year === null) return null;
+                                       return (
+                                          <tr>
+                                             <td>
+                                                {convertNumberToPersian(
+                                                   item[0]?.toString(),
+                                                )}
+                                             </td>
+                                             <td>
+                                                {convertNumberToPersian(
+                                                   toMoneyFormat(
+                                                      item[1]?.toString(),
+                                                   ),
+                                                )}
+                                             </td>
+                                          </tr>
+                                       );
+                                    })}
                               </tbody>
                            </table>
                         )}
-                        {filterList && filterList?.length > 12 && (
+                        {data && data.bill_details?.length > 12 && (
                            <table className={styles['innerTableLeft']}>
                               <thead>
                                  <tr>
@@ -255,38 +238,31 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                                  </tr>
                               </thead>
                               <tbody>
-                                 {filterList
+                                 {data.bill_details
                                     ?.slice(12, 18)
-                                    .map(
-                                       (item: {
-                                          payment_date: any;
-                                          to_year: { toString: () => string };
-                                          creditor: { toString: () => string };
-                                          penalty: { toString: () => string };
-                                       }) => {
-                                          //if (item.to_year === null) return null;
-                                          return (
-                                             <tr>
-                                                <td>
-                                                   {convertNumberToPersian(
-                                                      item.to_year?.toString(),
-                                                   )}
-                                                </td>
-                                                <td>
-                                                   {convertNumberToPersian(
-                                                      toMoneyFormat(
-                                                         item.creditor?.toString(),
-                                                      ),
-                                                   )}
-                                                </td>
-                                             </tr>
-                                          );
-                                       },
-                                    )}
+                                    .map((item) => {
+                                       //if (item.to_year === null) return null;
+                                       return (
+                                          <tr>
+                                             <td>
+                                                {convertNumberToPersian(
+                                                   item[0]?.toString(),
+                                                )}
+                                             </td>
+                                             <td>
+                                                {convertNumberToPersian(
+                                                   toMoneyFormat(
+                                                      item[1]?.toString(),
+                                                   ),
+                                                )}
+                                             </td>
+                                          </tr>
+                                       );
+                                    })}
                               </tbody>
                            </table>
                         )}
-                        {filterList && filterList?.length > 18 && (
+                        {data && data.bill_details?.length > 18 && (
                            <table className={styles['innerTableLeft']}>
                               <thead>
                                  <tr>
@@ -295,38 +271,31 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                                  </tr>
                               </thead>
                               <tbody>
-                                 {filterList
+                                 {data.bill_details
                                     ?.slice(18, 24)
-                                    .map(
-                                       (item: {
-                                          payment_date: any;
-                                          to_year: { toString: () => string };
-                                          creditor: { toString: () => string };
-                                          penalty: { toString: () => string };
-                                       }) => {
-                                          //if (item.to_year === null) return null;
-                                          return (
-                                             <tr>
-                                                <td>
-                                                   {convertNumberToPersian(
-                                                      item.to_year?.toString(),
-                                                   )}
-                                                </td>
-                                                <td>
-                                                   {convertNumberToPersian(
-                                                      toMoneyFormat(
-                                                         item.creditor?.toString(),
-                                                      ),
-                                                   )}
-                                                </td>
-                                             </tr>
-                                          );
-                                       },
-                                    )}
+                                    .map((item) => {
+                                       //if (item.to_year === null) return null;
+                                       return (
+                                          <tr>
+                                             <td>
+                                                {convertNumberToPersian(
+                                                   item[0]?.toString(),
+                                                )}
+                                             </td>
+                                             <td>
+                                                {convertNumberToPersian(
+                                                   toMoneyFormat(
+                                                      item[1]?.toString(),
+                                                   ),
+                                                )}
+                                             </td>
+                                          </tr>
+                                       );
+                                    })}
                               </tbody>
                            </table>
                         )}
-                        {filterList && filterList?.length > 24 && (
+                        {data && data.bill_details?.length > 24 && (
                            <table className={styles['innerTableLeft']}>
                               <thead>
                                  <tr>
@@ -335,38 +304,31 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                                  </tr>
                               </thead>
                               <tbody>
-                                 {filterList
+                                 {data.bill_details
                                     ?.slice(24, 30)
-                                    .map(
-                                       (item: {
-                                          payment_date: any;
-                                          to_year: { toString: () => string };
-                                          creditor: { toString: () => string };
-                                          penalty: { toString: () => string };
-                                       }) => {
-                                          //if (item.to_year === null) return null;
-                                          return (
-                                             <tr>
-                                                <td>
-                                                   {convertNumberToPersian(
-                                                      item.to_year?.toString(),
-                                                   )}
-                                                </td>
-                                                <td>
-                                                   {convertNumberToPersian(
-                                                      toMoneyFormat(
-                                                         item.creditor?.toString(),
-                                                      ),
-                                                   )}
-                                                </td>
-                                             </tr>
-                                          );
-                                       },
-                                    )}
+                                    .map((item) => {
+                                       //if (item.to_year === null) return null;
+                                       return (
+                                          <tr>
+                                             <td>
+                                                {convertNumberToPersian(
+                                                   item[0]?.toString(),
+                                                )}
+                                             </td>
+                                             <td>
+                                                {convertNumberToPersian(
+                                                   toMoneyFormat(
+                                                      item[1]?.toString(),
+                                                   ),
+                                                )}
+                                             </td>
+                                          </tr>
+                                       );
+                                    })}
                               </tbody>
                            </table>
                         )}
-                        {filterList && filterList?.length > 30 && (
+                        {data && data.bill_details?.length > 30 && (
                            <table className={styles['innerTableLeft']}>
                               <thead>
                                  <tr>
@@ -375,34 +337,27 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                                  </tr>
                               </thead>
                               <tbody>
-                                 {filterList
+                                 {data.bill_details
                                     ?.slice(30, 36)
-                                    .map(
-                                       (item: {
-                                          payment_date: any;
-                                          to_year: { toString: () => string };
-                                          creditor: { toString: () => string };
-                                          penalty: { toString: () => string };
-                                       }) => {
-                                          //if (item.to_year === null) return null;
-                                          return (
-                                             <tr>
-                                                <td>
-                                                   {convertNumberToPersian(
-                                                      item.to_year?.toString(),
-                                                   )}
-                                                </td>
-                                                <td>
-                                                   {convertNumberToPersian(
-                                                      toMoneyFormat(
-                                                         item.creditor?.toString(),
-                                                      ),
-                                                   )}
-                                                </td>
-                                             </tr>
-                                          );
-                                       },
-                                    )}
+                                    .map((item) => {
+                                       //if (item.to_year === null) return null;
+                                       return (
+                                          <tr>
+                                             <td>
+                                                {convertNumberToPersian(
+                                                   item[0]?.toString(),
+                                                )}
+                                             </td>
+                                             <td>
+                                                {convertNumberToPersian(
+                                                   toMoneyFormat(
+                                                      item[1]?.toString(),
+                                                   ),
+                                                )}
+                                             </td>
+                                          </tr>
+                                       );
+                                    })}
                               </tbody>
                            </table>
                         )}
