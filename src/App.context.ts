@@ -16,6 +16,7 @@ export interface RenovationMaster {
    certificate_number: string;
    is_paid: boolean;
    master_id: string;
+   postal_code: string;
 }
 
 export interface Guild {

@@ -1,9 +1,14 @@
-import { FC, useContext, useEffect } from 'react';
+import { FC, useContext, useEffect, useRef, useState } from 'react';
 import Header from '../../../containers/mobile/payment/header';
 import { AppContext } from '../../../App.context';
 import { useHistory } from 'react-router-dom';
 import RenovationCard from '../../../componnents/renovationCard';
 import { separateByThree } from '../../../utilities/separatetByThree';
+import { useReactToPrint } from 'react-to-print';
+import { BillPrintProps } from '../../../componnents/pdfs/rnvChargePdf/index.interface';
+import { getRnvPrintData } from '../../../apis/renovation/print';
+import Button from '../../../componnents/button';
+import RnvChargePdf from '../../../componnents/pdfs/rnvChargePdf';
 
 const PayedDetail: FC = () => {
    const emptyRenovation = {
@@ -11,15 +16,44 @@ const PayedDetail: FC = () => {
       certificate_number: '',
       is_paid: false,
       master_id: '',
+      postal_code: '',
    };
-   const { token, selectedCharge, selectedRenovationBillDetail } =
+   const { token, selectedCharge, selectedRenovationBillDetail, user } =
       useContext(AppContext);
    const history = useHistory();
+   const [isPrinting, setIsPrinting] = useState(false);
+   const [printBill, setPrintBill] = useState<BillPrintProps | null>(null);
+   const componentRef = useRef<HTMLDivElement>(null);
+   const handlePrint = useReactToPrint({
+      content: () => componentRef.current,
+      onAfterPrint: () => setIsPrinting(false),
+   });
+   const printChargeHandler = async () => {
+      if (selectedCharge) {
+         console.log(selectedCharge);
+         console.log(selectedCharge);
+         const { body, status } = await getRnvPrintData(
+            {
+               last_paid_bill: true,
+               master_id: selectedCharge.master_id,
+            },
+            token,
+         );
 
+         if (status === 200) setPrintBill(body);
+      }
+      setIsPrinting(true);
+      handlePrint();
+   };
    useEffect(() => {
       if (!token) history.push('/');
    }, [token, history]);
-
+   useEffect(() => {
+      const rnvChargePdfButton = document.getElementById(
+         'rnv-charge-pdf-button',
+      )! as HTMLButtonElement;
+      if (isPrinting) rnvChargePdfButton.click();
+   }, [isPrinting]);
    return (
       <div className="mobile-payed-detail">
          <Header />
@@ -78,7 +112,45 @@ const PayedDetail: FC = () => {
                : ''}
          </div>
 
-         {/* <Button className="mobile-payed-detail__button">چاپ</Button> */}
+         <Button
+            className="mobile-payed-detail__button"
+            id="rnv-charge-pdf-button"
+            onClick={printChargeHandler}
+         >
+            چاپ
+         </Button>
+
+         {isPrinting &&
+            selectedCharge &&
+            selectedRenovationBillDetail &&
+            printBill &&
+            user && (
+               <RnvChargePdf
+                  componentRef={componentRef}
+                  data={{
+                     address: selectedCharge.address,
+                     postal_code: selectedCharge.postal_code,
+                     bill_details: selectedRenovationBillDetail.bill_details
+                        .filter((bd) => bd.is_annual_charges)
+                        .map((bd) => {
+                           return [
+                              `${bd.from_year} تا ${bd.to_year}`,
+                              bd.creditor,
+                           ];
+                        }),
+                     certificate_number: '',
+                     id: selectedCharge.master_id,
+                     last_bill_id: 1,
+                     person: {
+                        name: user.name,
+                        mobile_Number: user.mobile_number,
+                        national_code: user.national_code,
+                     },
+                  }}
+                  printBill={printBill}
+                  onlyShow={false}
+               />
+            )}
       </div>
    );
 };

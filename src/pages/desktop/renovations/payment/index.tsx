@@ -21,6 +21,7 @@ const RnvPayment = () => {
       certificate_number: '',
       is_paid: false,
       master_id: '',
+      postal_code: '',
    };
    const { token, selectedCharge, selectedRenovationBillDetail, user } =
       useContext(AppContext);

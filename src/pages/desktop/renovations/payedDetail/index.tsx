@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import Layout from '../../containers/layout';
 import Header from './header';
@@ -19,6 +19,7 @@ const RenovationPayedDetail = () => {
       certificate_number: '',
       is_paid: false,
       master_id: '',
+      postal_code: '',
    };
    const { token, selectedCharge, selectedRenovationBillDetail, user } =
       useContext(AppContext);
