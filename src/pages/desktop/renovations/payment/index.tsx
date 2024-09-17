@@ -6,14 +6,14 @@ import { useHistory } from 'react-router-dom';
 import { AppContext } from '../../../../App.context';
 import { separateByThree } from '../../../../utilities/separatetByThree';
 import ExtraDetails from './extraDetails';
-import RenovationCard from '../../../../componnents/renovationCard';
-import Button from '../../../../componnents/button';
+import RenovationCard from '../../../../components/renovationCard';
+import Button from '../../../../components/button';
 import './index.scss';
-import { PrintBill } from '../../../../componnents/pdfs/trdChargePdf/index.interface';
+import { PrintBill } from '../../../../components/pdfs/trdChargePdf/index.interface';
 import { useReactToPrint } from 'react-to-print';
-import { BillPrintProps } from '../../../../componnents/pdfs/rnvChargePdf/index.interface';
+import { BillPrintProps } from '../../../../components/pdfs/rnvChargePdf/index.interface';
 import { getRnvPrintData } from '../../../../apis/renovation/print';
-import RnvChargePdf from '../../../../componnents/pdfs/rnvChargePdf';
+import RnvChargePdf from '../../../../components/pdfs/rnvChargePdf';
 
 const RnvPayment = () => {
    const emptyRenovation = {

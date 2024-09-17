@@ -1,11 +1,12 @@
+// constants
+@import './constants/all';
 //base
 @import './base/base';
 // fonts
 @import "./fonts/kalameh.scss";
 @import './fonts/Vazirmatn.scss';
 @import './fonts/VazirmatnVariableFontFace.scss';
-// constants
-@import './constants/all';
+
 // mixin
 @import './mixin/all';
 // utils

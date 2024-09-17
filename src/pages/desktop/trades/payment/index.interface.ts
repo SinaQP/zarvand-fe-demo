@@ -17,4 +17,5 @@ export interface BillDetailProps {
    income_code_id: number;
    penalty: number;
    to_year: number;
+   incomecode_desc: string;
 }

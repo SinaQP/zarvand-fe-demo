@@ -2,6 +2,8 @@ import styles from './scss/index.module.scss';
 import convertNumberToPersian from '../../../utilities/convertNumberToPersian';
 import { RnvChargePdfProps } from './index.interface';
 import toMoneyFormat from '../../../utilities/toMoneyFormat';
+import Barcode from 'react-barcode';
+import calcBarcode from '../../../utilities/calcBarcode';
 
 const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
    componentRef,
@@ -370,8 +372,20 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                         )} ریال - ${printBill?.total_amount_in_words} ریال`}
                         <p>
                            شماره قبض :{' '}
-                           {convertNumberToPersian(printBill?.bill_code)}
+                           {convertNumberToPersian(printBill?.bill_code)}                           
                         </p>
+                        {printBill?.bill_no && printBill?.payment_no ? (
+                           <Barcode
+                              value={calcBarcode(
+                                 printBill?.bill_no,
+                                 printBill?.payment_no,
+                              )}
+                              width={0.75}
+                              height={40}
+                              displayValue={false}
+                              margin={5}
+                           />
+                        ) : null}
                      </td>
                   </tr>
                </table>

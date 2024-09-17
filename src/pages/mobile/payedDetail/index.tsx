@@ -2,13 +2,13 @@ import { FC, useContext, useEffect, useRef, useState } from 'react';
 import Header from '../../../containers/mobile/payment/header';
 import { AppContext } from '../../../App.context';
 import { useHistory } from 'react-router-dom';
-import RenovationCard from '../../../componnents/renovationCard';
+import RenovationCard from '../../../components/renovationCard';
 import { separateByThree } from '../../../utilities/separatetByThree';
 import { useReactToPrint } from 'react-to-print';
-import { BillPrintProps } from '../../../componnents/pdfs/rnvChargePdf/index.interface';
+import { BillPrintProps } from '../../../components/pdfs/rnvChargePdf/index.interface';
 import { getRnvPrintData } from '../../../apis/renovation/print';
-import Button from '../../../componnents/button';
-import RnvChargePdf from '../../../componnents/pdfs/rnvChargePdf';
+import Button from '../../../components/button';
+import RnvChargePdf from '../../../components/pdfs/rnvChargePdf';
 
 const PayedDetail: FC = () => {
    const emptyRenovation = {

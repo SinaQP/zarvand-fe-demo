@@ -2,7 +2,7 @@ import { Link, useHistory } from 'react-router-dom';
 import Layout from '../containers/layout';
 import { useContext, useEffect } from 'react';
 import { AppContext } from '../../../App.context';
-import Button from '../../../componnents/button';
+import Button from '../../../components/button';
 import "./index.scss";
 
 const SubSystems = () => {

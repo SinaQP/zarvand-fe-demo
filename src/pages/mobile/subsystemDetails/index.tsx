@@ -5,8 +5,8 @@ import { FC, useContext, useEffect, useState } from 'react';
 import { getRenovationMasters } from './getPersonRenovationMasters';
 import { AppContext, RenovationMaster } from '../../../App.context';
 import handleChargeDetailButton from './handleChargeDetailButton';
-import RenovationCard from '../../../componnents/renovationCard';
-import Button from '../../../componnents/button';
+import RenovationCard from '../../../components/renovationCard';
+import Button from '../../../components/button';
 import municipalityLogo from './../../../assets/images/municipality-logo.bmp';
 
 const SubsystemDetais: FC<subsystemDetailsProps> = () => {

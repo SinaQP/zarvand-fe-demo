@@ -3,7 +3,7 @@ import Layout from '../../containers/layout';
 import { getTradeMasters } from './getPersonTradeMasters';
 import { AppContext, Guild } from '../../../../App.context';
 import { useHistory } from 'react-router-dom';
-import GuildCard from '../../../../componnents/guildCard';
+import GuildCard from '../../../../components/guildCard';
 import "./index.scss";
 
 const TrdRenewalCharges = () => {

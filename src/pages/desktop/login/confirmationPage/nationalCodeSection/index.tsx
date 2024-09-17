@@ -2,7 +2,7 @@ import { FC, useContext } from 'react';
 import handleResendCodeClick from './handleResendCodeClick';
 import { Props } from './index.interface';
 import { LoginContext } from '../../context';
-import Input from '../../../../../componnents/input';
+import Input from '../../../../../components/input';
 import LoginStage from '../../loginStageEnum';
 import "./index.scss";
 

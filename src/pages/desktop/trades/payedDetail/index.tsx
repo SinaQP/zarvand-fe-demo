@@ -4,13 +4,13 @@ import { useContext, useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { AppContext } from '../../../../App.context';
 import { separateByThree } from '../../../../utilities/separatetByThree';
-import GuildCard from '../../../../componnents/guildCard';
+import GuildCard from '../../../../components/guildCard';
 import './index.scss';
-import Button from '../../../../componnents/button';
+import Button from '../../../../components/button';
 import { useReactToPrint } from 'react-to-print';
-import TrdChargePdf from '../../../../componnents/pdfs/trdChargePdf';
+import TrdChargePdf from '../../../../components/pdfs/trdChargePdf';
 import { getTradePrintData } from '../../../../apis/trade/print';
-import { PrintBill } from '../../../../componnents/pdfs/trdChargePdf/index.interface';
+import { PrintBill } from '../../../../components/pdfs/trdChargePdf/index.interface';
 
 const TradePayedDetail = () => {
    const emptyGuild = {

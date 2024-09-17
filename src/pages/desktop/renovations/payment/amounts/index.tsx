@@ -17,7 +17,7 @@ const Amounts: FC<{
             <span>{payment_no}</span>
          </div>
          <div className="payment__amount">
-            <span>مبلغ کل</span>
+            <span>مبلغ کل (ریال)</span>
             <span>{separateByThree(value_to_pay)}</span>
          </div>
       </div>

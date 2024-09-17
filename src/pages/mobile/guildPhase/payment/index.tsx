@@ -2,16 +2,16 @@ import { FC, useContext, useEffect, useRef, useState } from 'react';
 import Header from '../../../../containers/mobile/payment/header';
 import { AppContext } from '../../../../App.context';
 import { useHistory } from 'react-router-dom';
-import Button from '../../../../componnents/button';
+import Button from '../../../../components/button';
 import { getTradeBillDetailsInfo } from '../../../../apis/trade/guild-bill-details-info';
 import { Bill } from '../../../desktop/trades/payment/index.interface';
-import GuildCard from '../../../../componnents/guildCard';
+import GuildCard from '../../../../components/guildCard';
 import Charges from '../../../../containers/mobile/guildPhase/payment/charges';
 import Amounts from '../../../../containers/mobile/guildPhase/payment/amounts';
 import { useReactToPrint } from 'react-to-print';
-import TrdChargePdf from '../../../../componnents/pdfs/trdChargePdf';
+import TrdChargePdf from '../../../../components/pdfs/trdChargePdf';
 import { getTradePrintData } from '../../../../apis/trade/print';
-import { PrintBill } from '../../../../componnents/pdfs/trdChargePdf/index.interface';
+import { PrintBill } from '../../../../components/pdfs/trdChargePdf/index.interface';
 
 const PaymentGuild: FC = () => {
    const emptyGuild = {

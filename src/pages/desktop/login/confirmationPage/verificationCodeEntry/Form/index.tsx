@@ -1,6 +1,6 @@
 import { Dispatch, FC, SetStateAction, useEffect } from 'react';
 import focusOnFirstVeificationCodeEntry from './focusOnFirstVeificationCodeEntry';
-import OtpInput from '../../../../../../componnents/otpInput';
+import OtpInput from '../../../../../../components/otpInput';
 
 interface Props {
    verificationCode: string[];
