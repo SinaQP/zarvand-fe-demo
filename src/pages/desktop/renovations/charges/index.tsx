@@ -3,7 +3,7 @@ import Layout from '../../containers/layout';
 import { getRenovationMasters } from './getPersonRenovationMasters';
 import { AppContext, RenovationMaster } from '../../../../App.context';
 import { useHistory } from 'react-router-dom';
-import RenovationCard from '../../../../componnents/renovationCard';
+import RenovationCard from '../../../../components/renovationCard';
 import "./index.scss"
 
 const RnvRenewalCharges = () => {

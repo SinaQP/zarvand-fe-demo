@@ -199,7 +199,7 @@ const TrdChargePdf: FC<PrintProps> = ({
                         printBill ? printBill?.total_amount?.toString() : '',
                      ),
                   )} ریال`}
-                        {/* - ${printBill?.total_amount_in_words} ریال */}
+                        - {printBill?.total_amount_in_words} ریال
                      </td>
                   </tr>
                   {printBill?.bill_no && printBill?.payment_no ? (

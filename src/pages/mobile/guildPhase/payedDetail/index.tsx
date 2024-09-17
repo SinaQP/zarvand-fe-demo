@@ -2,12 +2,12 @@ import { FC, useContext, useEffect, useRef, useState } from 'react';
 import Header from '../../../../containers/mobile/payment/header';
 import { AppContext } from '../../../../App.context';
 import { useHistory } from 'react-router-dom';
-import Button from '../../../../componnents/button';
+import Button from '../../../../components/button';
 import { separateByThree } from '../../../../utilities/separatetByThree';
-import GuildCard from '../../../../componnents/guildCard';
+import GuildCard from '../../../../components/guildCard';
 import { useReactToPrint } from 'react-to-print';
-import TrdChargePdf from '../../../../componnents/pdfs/trdChargePdf';
-import { PrintBill } from '../../../../componnents/pdfs/trdChargePdf/index.interface';
+import TrdChargePdf from '../../../../components/pdfs/trdChargePdf';
+import { PrintBill } from '../../../../components/pdfs/trdChargePdf/index.interface';
 import { getTradePrintData } from '../../../../apis/trade/print';
 
 const MobileGuildPayedDetail: FC = () => {

@@ -54,6 +54,9 @@ body {
    font-size: 1.6rem;
    font-family: Vazirmatn;
    background-color: rgba($color: #d9d9d9, $alpha: 0.1);
+   overflow: hidden;
+   direction: $direction;
+   font-family: Vazirmatn;
    .swal2-popup,
    .swal2-confirm,
    .swal2-cancel,
@@ -73,5 +76,3 @@ body {
       border: 1px solid #e05d5d !important;
    }
 }
-
-@import './media';

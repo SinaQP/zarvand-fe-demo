@@ -3,14 +3,14 @@ import { useHistory } from 'react-router-dom';
 import Layout from '../../containers/layout';
 import Header from './header';
 import { AppContext } from '../../../../App.context';
-import RenovationCard from '../../../../componnents/renovationCard';
+import RenovationCard from '../../../../components/renovationCard';
 import './index.scss';
 import TableHeader from './tableHeader';
 import TableRow from './tableRow';
-import Button from '../../../../componnents/button';
+import Button from '../../../../components/button';
 import { useReactToPrint } from 'react-to-print';
-import RnvChargePdf from '../../../../componnents/pdfs/rnvChargePdf';
-import { BillPrintProps } from '../../../../componnents/pdfs/rnvChargePdf/index.interface';
+import RnvChargePdf from '../../../../components/pdfs/rnvChargePdf';
+import { BillPrintProps } from '../../../../components/pdfs/rnvChargePdf/index.interface';
 import { getRnvPrintData } from '../../../../apis/renovation/print';
 
 const RenovationPayedDetail = () => {
@@ -90,10 +90,12 @@ const RenovationPayedDetail = () => {
                                  selectedRenovationBillDetail.bill_details
                                     .filter((bd) => bd.is_annual_charges)
                                     .map((bd) => {
-                                       return [
-                                          `${bd.from_year} تا ${bd.to_year}`,
-                                          bd.creditor,
-                                       ];
+                                       return bd.from_year !== bd.to_year
+                                          ? [
+                                               `${bd.from_year} تا ${bd.to_year}`,
+                                               bd.creditor,
+                                            ]
+                                          : [bd.from_year, bd.creditor];
                                     }),
                               certificate_number: '',
                               id: selectedCharge.master_id,

@@ -6,14 +6,14 @@ import { useHistory } from 'react-router-dom';
 import { AppContext } from '../../../../App.context';
 import { Bill } from './index.interface';
 import { separateByThree } from '../../../../utilities/separatetByThree';
-import GuildCard from '../../../../componnents/guildCard';
+import GuildCard from '../../../../components/guildCard';
 import { getTradeBillDetailsInfo } from '../../../../apis/trade/guild-bill-details-info';
-import Button from '../../../../componnents/button';
+import Button from '../../../../components/button';
 import './index.scss';
 import { useReactToPrint } from 'react-to-print';
-import TrdChargePdf from '../../../../componnents/pdfs/trdChargePdf';
+import TrdChargePdf from '../../../../components/pdfs/trdChargePdf';
 import { getTradePrintData } from '../../../../apis/trade/print';
-import { PrintBill } from '../../../../componnents/pdfs/trdChargePdf/index.interface';
+import { PrintBill } from '../../../../components/pdfs/trdChargePdf/index.interface';
 
 const TradePayment = () => {
    const { token, selectedGuildCharge, selectedGuildBillDetail, user } =
@@ -70,7 +70,7 @@ const TradePayment = () => {
             <span>{charge.from_year}</span>
             <span>{charge.to_year}</span>
             <span>{separateByThree(charge.creditor)}</span>
-            <span>{charge.type_desc}</span>
+            <span>{charge.desc}</span>
          </div>
       ));
    };

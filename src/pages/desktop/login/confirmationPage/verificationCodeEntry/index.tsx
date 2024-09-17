@@ -5,8 +5,8 @@ import Form from './Form';
 import { Props } from './index.interface';
 import { LoginContext } from '../../context';
 import { AppContext } from '../../../../../App.context';
-import Timer from '../../../../../componnents/timer';
-import Button from '../../../../../componnents/button';
+import Timer from '../../../../../components/timer';
+import Button from '../../../../../components/button';
 import './index.scss';
 
 const VerificationCodeEntry: FC<Props> = ({

@@ -5,8 +5,8 @@ import { FC, useContext, useEffect, useState } from 'react';
 import handleChargeDetailButton from './handleChargeDetailButton';
 import { AppContext, Guild } from '../../../../App.context';
 import { getPersonTradeMasters } from '../../../../apis/trade/get-person-trade-master';
-import GuildCard from '../../../../componnents/guildCard';
-import Button from '../../../../componnents/button';
+import GuildCard from '../../../../components/guildCard';
+import Button from '../../../../components/button';
 import municipalityLogo from './../../../../assets/images/municipality-logo.bmp';
 
 const SubsystemGuildDetais: FC<subsystemDetailsProps> = () => {

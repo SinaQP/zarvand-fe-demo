@@ -6,7 +6,6 @@ import handleChargeDetailButton from './handleChargeDetailButton';
 import { AppContext } from '../../App.context';
 import './index.scss';
 import Button from '../button';
-import { getRnvPrintData } from '../../apis/renovation/print';
 
 const RenovationCard: FC<Props> = ({
    className = '',
@@ -24,7 +23,6 @@ const RenovationCard: FC<Props> = ({
    const history = useHistory();
    const {
       setSelectedCharge,
-      selectedCharge,
       token,
       setSelectedRenovationBillDetail,
    } = useContext(AppContext);

@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { LoginContext } from '../../context';
-import OtpInput from '../../../../../componnents/otpInput';
+import OtpInput from '../../../../../components/otpInput';
 import './index.scss';
 
 const NationalCodeForm = () => {

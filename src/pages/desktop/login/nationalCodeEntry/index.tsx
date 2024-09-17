@@ -4,7 +4,7 @@ import handleTemporaryCodeRequest from './functions/handleTemporaryCodeRequest '
 import NationalCodeForm from './nationalCodeForm';
 import { LoginContext } from '../context';
 import './index.scss';
-import Button from '../../../../componnents/button';
+import Button from '../../../../components/button';
 import './index.scss';
 
 const NationalCodeEntry: FC = () => {
