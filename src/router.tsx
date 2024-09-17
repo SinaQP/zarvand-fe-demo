@@ -19,12 +19,7 @@ import RenovationPayedDetail from './pages/desktop/renovations/payedDetail';
 import RenovationMobilePayedDetail from './pages/mobile/payedDetail';
 import GuildPayedDetail from './pages/desktop/trades/payedDetail';
 import MobileGuildPayedDetail from './pages/mobile/guildPhase/payedDetail';
-/**
- * Router Container
- */
-const RenovationRoutes = () => {
-   return <></>;
-};
+
 function Router() {
    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
    return (
