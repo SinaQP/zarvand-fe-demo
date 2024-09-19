@@ -4,10 +4,8 @@ import Header from './header';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { AppContext } from '../../../../App.context';
-import { Bill } from './index.interface';
 import { separateByThree } from '../../../../utilities/separatetByThree';
 import GuildCard from '../../../../components/guildCard';
-import { getTradeBillDetailsInfo } from '../../../../apis/trade/guild-bill-details-info';
 import Button from '../../../../components/button';
 import './index.scss';
 import { useReactToPrint } from 'react-to-print';
@@ -19,7 +17,6 @@ const TradePayment = () => {
    const { token, selectedGuildCharge, selectedGuildBillDetail, user } =
       useContext(AppContext);
    const history = useHistory();
-   const [bill, setBill] = useState<Bill | null>(null);
    const [isPrinting, setIsPrinting] = useState(false);
    const [printBill, setPrintBill] = useState<PrintBill | null>(null);
    const componentRef = useRef<HTMLDivElement>(null);
@@ -37,20 +34,11 @@ const TradePayment = () => {
       if (isPrinting) {
          printButton.current?.click();
       }
-      const fetchBillDetails = async () => {
-         if (selectedGuildCharge) {
-            const { body, status } = await getTradeBillDetailsInfo(
-               { master_id: selectedGuildCharge.master_id },
-               token,
-            );
-            if (status === 200) setBill(body);
-         }
-      };
-      fetchBillDetails();
-   }, [token, history, selectedGuildCharge, isPrinting]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [selectedGuildCharge]);
 
    const printChargeHandler = async () => {
-      if (selectedGuildCharge) {
+      if (selectedGuildCharge && !printBill) {
          const { body, status } = await getTradePrintData(
             {
                last_paid_bill: false,
@@ -64,8 +52,8 @@ const TradePayment = () => {
       handlePrint();
    };
    const renderChargeRows = () => {
-      if (!bill?.last_bill_details) return null;
-      return bill.last_bill_details.map((charge, index) => (
+      if (!selectedGuildBillDetail?.last_bill_details) return null;
+      return selectedGuildBillDetail.last_bill_details.map((charge, index) => (
          <div key={index} className="trd-payment__charges-row">
             <span>{charge.from_year}</span>
             <span>{charge.to_year}</span>
@@ -143,19 +131,19 @@ const TradePayment = () => {
                </div>
                <div className="trd-payment__colume">
                   <Amounts
-                     bill_no={bill?.bill_no || ''}
-                     payment_no={bill?.payment_no || ''}
-                     value_to_pay={bill?.value_to_pay || 0}
+                     bill_no={selectedGuildBillDetail?.bill_no || ''}
+                     payment_no={selectedGuildBillDetail?.payment_no || ''}
+                     value_to_pay={selectedGuildBillDetail?.value_to_pay || 0}
                   />
                   <div className="trd-payment__buttons">
-                     {selectedGuildBillDetail?.bill_details?.length && (
+                     {selectedGuildBillDetail?.bill_details?.length ? (
                         <Button
                            className="trd-payment__button trd-payment__button--outline"
                            onClick={() => history.push('/payed-detail/guild')}
                         >
                            مشاهده سابقه پرداخت
                         </Button>
-                     )}
+                     ) : null}
                      <Button className="trd-payment__button">پرداخت</Button>
                   </div>
                </div>

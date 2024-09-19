@@ -9,7 +9,6 @@ import ExtraDetails from './extraDetails';
 import RenovationCard from '../../../../components/renovationCard';
 import Button from '../../../../components/button';
 import './index.scss';
-import { PrintBill } from '../../../../components/pdfs/trdChargePdf/index.interface';
 import { useReactToPrint } from 'react-to-print';
 import { BillPrintProps } from '../../../../components/pdfs/rnvChargePdf/index.interface';
 import { getRnvPrintData } from '../../../../apis/renovation/print';
@@ -34,7 +33,7 @@ const RnvPayment = () => {
       onAfterPrint: () => setIsPrinting(false),
    });
    const printChargeHandler = async () => {
-      if (selectedCharge) {
+      if (selectedCharge && !printBill) {
          const { body, status } = await getRnvPrintData(
             {
                last_paid_bill: false,

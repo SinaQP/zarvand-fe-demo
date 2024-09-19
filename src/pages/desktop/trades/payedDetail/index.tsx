@@ -30,7 +30,7 @@ const TradePayedDetail = () => {
    const [isPrinting, setIsPrinting] = useState(false);
    const [printBill, setPrintBill] = useState<PrintBill | null>(null);
    const printChargeHandler = async () => {
-      if (selectedGuildCharge) {
+      if (selectedGuildCharge && !printBill) {
          const { body, status } = await getTradePrintData(
             {
                last_paid_bill: true,
