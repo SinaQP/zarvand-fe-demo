@@ -31,7 +31,7 @@ const RenovationPayedDetail = () => {
       onAfterPrint: () => setIsPrinting(false),
    });
    const printChargeHandler = async () => {
-      if (selectedCharge) {
+      if (selectedCharge && !printBill) {
          const { body, status } = await getRnvPrintData(
             {
                last_paid_bill: true,
