@@ -1,6 +1,6 @@
 import { FC, useEffect, useRef } from 'react';
 import { Props } from './index.interface';
-import './index.scss';
+import styles from './index.module.scss';
 import { startCountdownProgressBar } from './functions/startCountdown';
 
 const Timer: FC<Props> = ({
@@ -25,13 +25,13 @@ const Timer: FC<Props> = ({
    }, [timerDuration]);
 
    return (
-      <div className={'timer'}>
+      <div className={styles.timer}>
          <div
-            className="timer__progress-bar"
+            className={styles['timer__progress-bar']}
             ref={progressBarDiv}
             id="progress-bar"
          ></div>
-         <span className="timer__counter" ref={counterSpan} id="counter"></span>
+         <span className={styles['timer__counter']} ref={counterSpan} id="counter"></span>
          {children}
       </div>
    );

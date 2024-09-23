@@ -1,12 +1,23 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './index.module.scss';
 import { useLayoutContext } from '../layout.context';
 import HeaderBadge from './headerBadge';
 
 const Header: FC = () => {
-   const { headerBadge } = useLayoutContext();
-   return <header className={styles.header}>
+   const { headerBadge, extraHeaderContent } = useLayoutContext();
+   const [isExpanded, setIsExpanded] = useState(false);
+
+   useEffect(() => {
+      if (extraHeaderContent) {
+         setIsExpanded(true);
+      } else {
+         setIsExpanded(false);
+      }
+   }, [extraHeaderContent]);
+
+   return <header className={`${styles.header} ${isExpanded ? styles.expanded : ''}`}>
       <h1>سامانه پرداخت عوارض شهرداری زرند</h1>
+      {extraHeaderContent && <div className={styles.extraContent}>{extraHeaderContent}</div>}
       {!headerBadge ? <HeaderBadge /> : headerBadge}
    </header>;
 };
