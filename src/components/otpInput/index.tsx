@@ -4,11 +4,9 @@ import { handleChange, handleKeyDown } from './handlers.function';
 import './_index.scss';
 
 const OtpInput: FC<Props> = ({
-   inputsClassName,
-   numberOfInputs,
-   value,
-   setValue,
-}) => {
+                                inputsClassName, numberOfInputs,
+                                value, setValue, otpClassName,
+                             }) => {
    const [otp, setOtp] = useState(new Array(numberOfInputs).fill(''));
    const inputRefs = useRef<HTMLInputElement[]>([]);
 
@@ -24,11 +22,13 @@ const OtpInput: FC<Props> = ({
       setValue(newOtp);
    };
    return (
-      <div className="otp-container">
+      <div className={`${otpClassName} otp-container `}>
          {otp.map((data, index) => (
             <input
                key={index}
                type="text"
+               inputMode="numeric" // This ensures the numeric keyboard shows up on mobile
+
                maxLength={1}
                value={data}
                onPaste={handlePaste}

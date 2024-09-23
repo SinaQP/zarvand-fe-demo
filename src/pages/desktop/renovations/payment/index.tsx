@@ -1,4 +1,3 @@
-import Layout from '../../containers/layout';
 import Amounts from './amounts';
 import Header from './header';
 import { useContext, useEffect, useRef, useState } from 'react';
@@ -13,6 +12,7 @@ import { useReactToPrint } from 'react-to-print';
 import { BillPrintProps } from '../../../../components/pdfs/rnvChargePdf/index.interface';
 import { getRnvPrintData } from '../../../../apis/renovation/print';
 import RnvChargePdf from '../../../../components/pdfs/rnvChargePdf';
+import Layout from '../../layout';
 
 const RnvPayment = () => {
    const emptyRenovation = {

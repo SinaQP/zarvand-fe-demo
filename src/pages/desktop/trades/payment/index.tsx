@@ -1,4 +1,3 @@
-import Layout from '../../containers/layout';
 import Amounts from './amounts';
 import Header from './header';
 import { useContext, useEffect, useRef, useState } from 'react';
@@ -12,6 +11,7 @@ import { useReactToPrint } from 'react-to-print';
 import TrdChargePdf from '../../../../components/pdfs/trdChargePdf';
 import { getTradePrintData } from '../../../../apis/trade/print';
 import { PrintBill } from '../../../../components/pdfs/trdChargePdf/index.interface';
+import Layout from '../../layout';
 
 const TradePayment = () => {
    const { token, selectedGuildCharge, selectedGuildBillDetail, user } =

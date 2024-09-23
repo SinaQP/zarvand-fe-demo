@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import Layout from '../containers/layout';
 import LoginStage from './loginStageEnum';
 import { LoginContext } from './context';
 import NationalCodeEntry from './nationalCodeEntry';
 import ConfirmationPage from './confirmationPage';
+import Layout from '../layout';
 
 const Login = () => {
    const [currentStage, setLoginStage] = useState<LoginStage>(
@@ -11,7 +11,6 @@ const Login = () => {
    );
    const [nationalCode, setNationalCode] = useState<string[]>([]);
    const [phoneNumber, setPhoneNumber] = useState<string>('');
-
    return (
       <LoginContext.Provider
          value={{

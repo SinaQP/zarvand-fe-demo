@@ -1,9 +1,9 @@
 import { Link, useHistory } from 'react-router-dom';
-import Layout from '../containers/layout';
 import { useContext, useEffect } from 'react';
 import { AppContext } from '../../../App.context';
 import Button from '../../../components/button';
 import "./index.scss";
+import Layout from '../layout';
 
 const SubSystems = () => {
    const { token } = useContext(AppContext);

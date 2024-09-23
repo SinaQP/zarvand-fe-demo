@@ -1,0 +1,22 @@
+@import "../../../assets/scss/all";
+
+$badge-height: 7rem;
+
+.header-badge {
+  width: 7rem;
+  height: $badge-height;
+  background-color: $bg-color;
+  box-shadow: $primary-box-shadow;
+  border-radius: 50%;
+  border: 0.15em solid $secondary-color;
+  margin-top: auto;
+  margin-bottom: -($badge-height / 2);
+  @include center-flex;
+
+  img {
+    width: 4.7rem;
+    height: 3.5rem;
+    //margin: auto auto;
+    margin: 0 auto;
+  }
+}

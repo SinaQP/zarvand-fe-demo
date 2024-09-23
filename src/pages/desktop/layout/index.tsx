@@ -1,16 +1,16 @@
 import { FC, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
-import Logo from '../../../../assets/images/logo.png';
-import MunicipalityLogo from '../../../../assets/images/municipality-logo.bmp';
+import Logo from '../../../assets/images/logo.png';
+import MunicipalityLogo from '../../../assets/images/municipality-logo.bmp';
 import { Props } from './index.interface';
-import { AppContext } from '../../../../App.context';
+import { AppContext } from '../../../App.context';
 import './index.scss';
 
 const Layout: FC<Props> = ({
-   children,
-   showBackArrow = true,
-   showLogoutIcon = true,
-}) => {
+                              children,
+                              showBackArrow = true,
+                              showLogoutIcon = true,
+                           }) => {
    const history = useHistory();
    const { setToken } = useContext(AppContext);
    return (
