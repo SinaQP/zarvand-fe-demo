@@ -4,11 +4,11 @@ import styles from './index.module.scss';
 import Header from './header';
 import { LayoutContext } from './layout.context';
 
-const Layout: FC<Props> = ({ headerBadge, children, extraHeaderContent }) => {
+const Layout: FC<Props> = ({ headerBadge, children, extraHeaderContent, headerClassName }) => {
    return (
       <LayoutContext.Provider value={{ headerBadge, extraHeaderContent }}>
          <div className={styles.layout}>
-            <Header />
+            <Header className={headerClassName}/>
             <main>{children}</main>
          </div>
       </LayoutContext.Provider>

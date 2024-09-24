@@ -1,5 +1,5 @@
 // node libraries
-import { BrowserRouter, Redirect, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 // pages
 import ZarvandSubsystem from './pages/mobile/subsystem';
 import SubsystemDetais from './pages/mobile/subsystemDetails';
@@ -16,22 +16,26 @@ import RenovationPayedDetail from './pages/desktop/renovations/payedDetail';
 import RenovationMobilePayedDetail from './pages/mobile/payedDetail';
 import GuildPayedDetail from './pages/desktop/trades/payedDetail';
 import MobileGuildPayedDetail from './pages/mobile/guildPhase/payedDetail';
-import { useContext } from 'react';
-import { AppContext } from './App.context';
+// import { useContext } from 'react';
+// import { AppContext } from './App.context';
 import Login from './pages/login';
+import Home from './pages/home';
+import Renovation from './pages/renovation';
 
 const Router = () => {
-   const { token } = useContext(AppContext);
+   // const { token } = useContext(AppContext);
    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
    return (
       <BrowserRouter>
-         {!token && <Redirect to="/login" />}
+         {/* {!token && <Redirect to="/login" />} */}
          <Route
             path="/login"
             exact
             component={isMobile ? Login : CurrentDesktopLogin}
          />
+         <Route path="/home" component={Home}/>
+         <Route path="/renovation" component={Renovation}/>
          {isMobile && (
             <>
                <Route path="/subsystem" exact component={ZarvandSubsystem} />
