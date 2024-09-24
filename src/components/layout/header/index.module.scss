@@ -11,6 +11,9 @@
   align-items: center;
   border-radius: 0 0 1.5em 1.5em;
   box-shadow: $primary-box-shadow;
+  position: fixed;
+  top: 0;
+  left: 0;
 
   h1 {
     font-family: SBaran, Kalameh, sans-serif;
