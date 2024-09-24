@@ -19,8 +19,10 @@ const Login: FC = () => {
       }}
    >
       <Layout extraHeaderContent={showConfirmationForm && <ConfirmationEntry />}
-              headerBadge={showConfirmationForm && <CounterBadge initialCount={45} />}>
-         <NationalCodeEntry setShowConfirmationForm={setShowConfirmationForm} />
+              headerBadge={showConfirmationForm &&
+                 <CounterBadge initialCount={120} setShowConfirmationForm={setShowConfirmationForm} />}>
+         <NationalCodeEntry setShowConfirmationForm={setShowConfirmationForm}
+                            showConfirmationForm={showConfirmationForm} />
       </Layout>
    </LoginContext.Provider>;
 };

@@ -1,3 +1,6 @@
+import { Dispatch, SetStateAction } from 'react';
+
 export interface Props {
-   initialCount: number; // Prop to receive the initial count
+   initialCount: number;
+   setShowConfirmationForm: Dispatch<SetStateAction<boolean>>;
 }

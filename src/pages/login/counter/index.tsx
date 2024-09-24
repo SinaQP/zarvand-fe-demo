@@ -3,7 +3,7 @@ import styles from './index.module.scss';
 import { Props } from './index.interface';
 import Timer from './timer';
 
-const CounterBadge: FC<Props> = ({ initialCount }) => {
+const CounterBadge: FC<Props> = ({ initialCount, setShowConfirmationForm }) => {
    const [timerDuration, setTimerDuration] = useState(initialCount);
    const [count, setCount] = useState(initialCount);
    const [timerIntervalLoop, setTimerIntervalLoop] = useState<NodeJS.Timer | null>(null);
@@ -14,9 +14,10 @@ const CounterBadge: FC<Props> = ({ initialCount }) => {
          if (count > 0) {
             setCount(prev => prev - 1);
          } else {
+            setShowConfirmationForm(false);
             clearInterval(interval);
          }
-      }, 1000); // Adjust the interval as needed
+      }, 1000);
 
       return () => clearInterval(interval);
    }, [count]);

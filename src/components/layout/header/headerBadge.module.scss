@@ -12,6 +12,8 @@ $badge-height: 7rem;
   margin-top: auto;
   margin-bottom: -($badge-height / 2);
   @include center-flex;
+  //position: absolute;
+  //bottom: 0;
 
   img {
     width: 4.7rem;

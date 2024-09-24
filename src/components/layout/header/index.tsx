@@ -17,7 +17,7 @@ const Header: FC = () => {
 
    return <header className={`${styles.header} ${isExpanded ? styles.expanded : ''}`}>
       <h1>سامانه پرداخت عوارض شهرداری زرند</h1>
-      {extraHeaderContent && <div className={styles.extraContent}>{extraHeaderContent}</div>}
+      <div className={styles.extraContent}>{extraHeaderContent && extraHeaderContent}</div>
       {!headerBadge ? <HeaderBadge /> : headerBadge}
    </header>;
 };
