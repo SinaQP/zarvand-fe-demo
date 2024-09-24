@@ -1,4 +1,3 @@
-import Layout from '../../containers/layout';
 import Header from './header';
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -11,6 +10,7 @@ import { useReactToPrint } from 'react-to-print';
 import TrdChargePdf from '../../../../components/pdfs/trdChargePdf';
 import { getTradePrintData } from '../../../../apis/trade/print';
 import { PrintBill } from '../../../../components/pdfs/trdChargePdf/index.interface';
+import Layout from '../../layout';
 
 const TradePayedDetail = () => {
    const emptyGuild = {
@@ -30,7 +30,7 @@ const TradePayedDetail = () => {
    const [isPrinting, setIsPrinting] = useState(false);
    const [printBill, setPrintBill] = useState<PrintBill | null>(null);
    const printChargeHandler = async () => {
-      if (selectedGuildCharge) {
+      if (selectedGuildCharge && !printBill) {
          const { body, status } = await getTradePrintData(
             {
                last_paid_bill: true,

@@ -1,0 +1,45 @@
+@import "../../../assets/scss/all";
+
+.form {
+  width: 89vw;
+  border: 2px solid #FFFFFF;
+  box-shadow: $primary-box-shadow;
+  border-radius: 1.5rem;
+  @include center-flex;
+  flex-direction: column;
+  padding: 5vh 0;
+  margin-top: 5.4vh;
+
+  span {
+    font-family: BNazanin, Kalameh, sans-serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    text-align: center;
+    color: $font-white-color;
+  }
+
+  .otp-input {
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .input {
+    font-family: BNazanin, sans-serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    text-align: center;
+    color: $font-white-color;
+    border: 1px solid #FFFFFF;
+    margin-right: 1rem;
+    border-radius: 0.5rem;
+    width: 2.5rem;
+    height: 3rem;
+    background-color: transparent;
+    padding: 0;
+  }
+
+  .submit-button {
+    width: 56.25%;
+    border: none;
+  }
+}

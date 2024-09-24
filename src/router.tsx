@@ -1,12 +1,9 @@
 // node libraries
-import { BrowserRouter, Redirect, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 // pages
-import ZarvandLogIn from './pages/mobile/login';
-import VerificationCode from './pages/mobile/verificationCode';
-import ChangePhoneNumber from './pages/mobile/changeNumber';
 import ZarvandSubsystem from './pages/mobile/subsystem';
 import SubsystemDetais from './pages/mobile/subsystemDetails';
-import Login from './pages/desktop/login';
+import CurrentDesktopLogin from './pages/desktop/login';
 import Welcome from './pages/desktop/subsystems';
 import RenewalCharges from './pages/desktop/renovations/charges';
 import RenovationPayment from './pages/desktop/renovations/payment';
@@ -19,33 +16,28 @@ import RenovationPayedDetail from './pages/desktop/renovations/payedDetail';
 import RenovationMobilePayedDetail from './pages/mobile/payedDetail';
 import GuildPayedDetail from './pages/desktop/trades/payedDetail';
 import MobileGuildPayedDetail from './pages/mobile/guildPhase/payedDetail';
+// import { useContext } from 'react';
+// import { AppContext } from './App.context';
+import Login from './pages/login';
+import Home from './pages/home';
+import Renovation from './pages/renovation';
 
-function Router() {
+const Router = () => {
+   // const { token } = useContext(AppContext);
    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
    return (
       <BrowserRouter>
-         <Route path="/" exact>
-            {isMobile ? (
-               <Redirect to="/login-mobile" />
-            ) : (
-               <Redirect to="/login-desktop" />
-            )}
-         </Route>
-         <Route path="/login-desktop" exact component={Login} />
-
+         {/* {!token && <Redirect to="/login" />} */}
+         <Route
+            path="/login"
+            exact
+            component={isMobile ? Login : CurrentDesktopLogin}
+         />
+         <Route path="/home" component={Home}/>
+         <Route path="/renovation" component={Renovation}/>
          {isMobile && (
             <>
-               <Route path="/login-mobile" exact component={ZarvandLogIn} />
-               <Route
-                  path="/verfication-code"
-                  exact
-                  component={VerificationCode}
-               />
-               <Route
-                  path="/change-phone-number"
-                  exact
-                  component={ChangePhoneNumber}
-               />
                <Route path="/subsystem" exact component={ZarvandSubsystem} />
                <Route
                   path="/subsystem-info"
@@ -88,6 +80,6 @@ function Router() {
          <Route path="/charges/guild" exact component={GuildRenewalCharges} />
       </BrowserRouter>
    );
-}
+};
 
 export default Router;
