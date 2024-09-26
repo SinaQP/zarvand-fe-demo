@@ -29,7 +29,7 @@ const handleConfirmationButton: Function = async ({
       setToken(responseBody.token);
       setUser(responseBody.user);
       setSubsystems(() => responseBody.subsystems);
-      history.push('subsystem');
+      history.push('home');
    }
 };
 

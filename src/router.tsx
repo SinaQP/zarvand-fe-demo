@@ -1,5 +1,5 @@
 // node libraries
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route } from 'react-router-dom';
 // pages
 import ZarvandSubsystem from './pages/mobile/subsystem';
 import SubsystemDetais from './pages/mobile/subsystemDetails';
@@ -21,14 +21,19 @@ import MobileGuildPayedDetail from './pages/mobile/guildPhase/payedDetail';
 import Login from './pages/login';
 import Home from './pages/home';
 import Renovation from './pages/renovation';
+import Profile from './pages/profile';
+import Support from './pages/support';
+import Trade from './pages/trade';
+import { useContext } from 'react';
+import { AppContext } from './App.context';
 
 const Router = () => {
-   // const { token } = useContext(AppContext);
+   const { token } = useContext(AppContext);
    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
    return (
       <BrowserRouter>
-         {/* {!token && <Redirect to="/login" />} */}
+         {!token && <Redirect to="/login" />}
          <Route
             path="/login"
             exact
@@ -36,6 +41,9 @@ const Router = () => {
          />
          <Route path="/home" component={Home}/>
          <Route path="/renovation" component={Renovation}/>
+         <Route path="/profile" component={Profile}/>
+         <Route path="/support" component={Support}/>
+         <Route path="/trade" component={Trade}/>
          {isMobile && (
             <>
                <Route path="/subsystem" exact component={ZarvandSubsystem} />
