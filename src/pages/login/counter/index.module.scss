@@ -1,0 +1,32 @@
+@import "../../../assets/scss/all";
+
+$badge-height: 7rem;
+
+.badge {
+  width: 7rem;
+  height: $badge-height;
+  background-color: $bg-color;
+  margin-bottom: -($badge-height / 2);
+  border: 2px solid $primary-color;
+  border-radius: 50%;
+  @include center-flex;
+
+  flex-direction: column;
+  font-size: 2.5rem;
+  font-weight: 400;
+  text-align: center;
+  line-height: 2rem;
+  transition: transform 0.3s ease;
+  opacity: 0;
+  animation: fadeIn 0.3s 300ms forwards;
+  margin-top: auto;
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+

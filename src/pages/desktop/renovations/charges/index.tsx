@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
-import Layout from '../../containers/layout';
 import { getRenovationMasters } from './getPersonRenovationMasters';
 import { AppContext, RenovationMaster } from '../../../../App.context';
 import { useHistory } from 'react-router-dom';
 import RenovationCard from '../../../../components/renovationCard';
 import "./index.scss"
+import Layout from '../../layout';
 
 const RnvRenewalCharges = () => {
    const { token } = useContext(AppContext);

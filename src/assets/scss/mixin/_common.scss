@@ -1,0 +1,13 @@
+@mixin center-flex {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+@mixin small-header {
+   height: 12.5vh;
+   h1 {
+      margin-top: 2vh;
+      margin-bottom: 0;
+   }
+}

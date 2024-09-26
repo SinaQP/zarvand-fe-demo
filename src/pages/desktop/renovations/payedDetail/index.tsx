@@ -1,6 +1,5 @@
 import { useContext, useEffect, useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import Layout from '../../containers/layout';
 import Header from './header';
 import { AppContext } from '../../../../App.context';
 import RenovationCard from '../../../../components/renovationCard';
@@ -12,6 +11,7 @@ import { useReactToPrint } from 'react-to-print';
 import RnvChargePdf from '../../../../components/pdfs/rnvChargePdf';
 import { BillPrintProps } from '../../../../components/pdfs/rnvChargePdf/index.interface';
 import { getRnvPrintData } from '../../../../apis/renovation/print';
+import Layout from '../../layout';
 
 const RenovationPayedDetail = () => {
    const emptyRenovation = {

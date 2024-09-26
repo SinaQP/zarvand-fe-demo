@@ -1,0 +1,45 @@
+@import "../../../assets/scss/all";
+
+.header {
+  width: 100%;
+  height: 12.5rem;
+  transition: height 0.5s ease-in-out;
+  background-color: $primary-color;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0 0 1.5em 1.5em;
+  box-shadow: $primary-box-shadow;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  h1 {
+    font-family: SBaran, Kalameh, sans-serif;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: $font-white-color;
+
+    margin-top: 3.4rem;
+    margin-bottom: 1.8rem;
+  }
+
+  .extraContent {
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.expanded {
+  height: 70vh;
+}

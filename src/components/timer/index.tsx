@@ -4,12 +4,12 @@ import './index.scss';
 import { startCountdownProgressBar } from './functions/startCountdown';
 
 const Timer: FC<Props> = ({
-   children,
-   setTimerDuration,
-   timerDuration,
-   setTimerIntervalLoop,
-   timerIntervalLoop,
-}) => {
+                             children,
+                             setTimerDuration,
+                             timerDuration,
+                             setTimerIntervalLoop,
+                             timerIntervalLoop,
+                          }) => {
    const progressBarDiv = useRef<HTMLDivElement>(null);
    const counterSpan = useRef<HTMLSpanElement>(null);
 
@@ -25,7 +25,7 @@ const Timer: FC<Props> = ({
    }, [timerDuration]);
 
    return (
-      <div className="timer">
+      <div className={'timer'}>
          <div
             className="timer__progress-bar"
             ref={progressBarDiv}

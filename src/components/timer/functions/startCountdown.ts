@@ -18,9 +18,9 @@ export function startCountdownProgressBar(
          counterSpan.current.style.transform = `rotate(${
             (100 - remainingPercentage) * 3.6
          }deg)`;
-         progressBarDiv.current.style.background = `conic-gradient(#E3FE55 ${
+         progressBarDiv.current.style.background = `conic-gradient(white ${
             (100 - remainingPercentage) * 3.6
-         }deg, #EBF5F8 0deg)`;
+         }deg, white 0deg)`;
          if (remainingTime <= 0) {
             clearInterval(timerInterval);
             setTimerDuration(0);
