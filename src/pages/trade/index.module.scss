@@ -1,0 +1,5 @@
+@import '../../assets/scss/all';
+
+.header {
+   @include small-header;
+}
