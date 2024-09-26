@@ -1,8 +1,9 @@
-import { FC } from "react"
-import Layout from "../../components/layout"
+import { FC } from 'react';
+import Layout from '../../components/layout';
+import styles from './index.module.scss';
 
-const Home:FC = () => {
-    return <Layout>HOME</Layout>
-}
+const Home: FC = () => {
+   return <Layout headerClassName={styles.header}>HOME</Layout>;
+};
 
-export default Home
+export default Home;
