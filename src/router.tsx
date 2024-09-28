@@ -16,8 +16,6 @@ import RenovationPayedDetail from './pages/desktop/renovations/payedDetail';
 import RenovationMobilePayedDetail from './pages/mobile/payedDetail';
 import GuildPayedDetail from './pages/desktop/trades/payedDetail';
 import MobileGuildPayedDetail from './pages/mobile/guildPhase/payedDetail';
-// import { useContext } from 'react';
-// import { AppContext } from './App.context';
 import Login from './pages/login';
 import Home from './pages/home';
 import Renovation from './pages/renovation';

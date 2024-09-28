@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import toMoneyFormat from '../../../../../utilities/toMoneyFormat';
 import { separateByThree } from '../../../../../utilities/separatetByThree';
 
 const Amounts: FC<{
