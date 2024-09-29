@@ -5,7 +5,7 @@
 }
 
 @mixin small-header {
-   height: 12.5vh;
+   height: $small-header-height;
    h1 {
       margin-top: 2vh;
       margin-bottom: 0;

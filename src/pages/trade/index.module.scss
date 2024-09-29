@@ -1,5 +1,19 @@
 @import '../../assets/scss/all';
 
 .header {
-   @include small-header;
+  @include small-header;
+}
+
+.layout {
+  margin-top: calc($small-header-height + 6rem);
+
+  .info-card-title {
+    @include center-flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem 0.5rem 2rem;
+
+    img {
+      margin-left: 1.2rem;
+    }
+  }
 }

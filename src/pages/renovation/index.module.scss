@@ -7,4 +7,17 @@
 .cards {
    margin-top: 25vh;
    padding: 0 2rem;
+
+   .certification-number-section {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(2, auto);
+      column-gap: 1.5rem;
+      padding: 0 2rem;
+      text-align: center;
+
+      font-size: 1.4rem;
+   }
+
+
 }

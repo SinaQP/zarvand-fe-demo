@@ -4,7 +4,8 @@ export interface Props {
    children: ReactNode;
    headerBadge?: ReactNode;
    extraHeaderContent?: ReactNode;
-   headerClassName?:string;
+   headerClassName?: string;
+   className?: string;
 }
 
 export interface LayoutContextProps {

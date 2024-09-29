@@ -1,8 +1,6 @@
 import { ReactNode } from 'react';
 
 export interface Props {
-   title: ReactNode;
+   isPayed?: boolean;
    children?: ReactNode;
-   className?: string;
-   isPrimary?: boolean;
 }

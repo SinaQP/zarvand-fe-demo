@@ -29,7 +29,7 @@ const RenovationCard: FC<Props> = ({
 
    return (
       <div
-         className={`card ${renovation.is_paid && 'card--payed'} ${className}`}
+         className={`card ${renovation.is_paid && 'masterCard--payed'} ${className}`}
       >
          <div className="card__header">
             <svg

@@ -6,6 +6,7 @@ import HomeIcon from './components/homeIcon';
 import BrickWallsIcon from './components/brickWallsIcon';
 import ShopIcon from './components/shop';
 import { FC } from 'react';
+import { useHistory } from 'react-router-dom';
 
 const Footer = () => {
    const footerIconsList: { title: string; icon: FC<any>; route: string }[] = [
@@ -38,9 +39,9 @@ const Footer = () => {
 
    const hideBtns = location.pathname === '/login';
    const currentRoute = location.pathname.toLowerCase();
-
+   const history = useHistory();
    const handleRedirect = (route: string) => {
-      location.assign(route);
+      history.push(route);
    };
    return (
       <footer id={styles.footerStyleWrapper}>
