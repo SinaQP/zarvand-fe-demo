@@ -7,6 +7,7 @@ import downloadIcon from '../../../assets/images/download.svg';
 import detailIcon from '../../../assets/images/detail.svg';
 import { NewButton as Button } from '../../../components/button';
 import { Props } from './index.interface';
+import InfoCard from '../../../components/infoCard';
 
 const Card: FC<Props> = ({ isPayed }) => {
    return (
@@ -16,25 +17,19 @@ const Card: FC<Props> = ({ isPayed }) => {
             <span>خیابان مصلی _کوچه 22_ پلاک 4</span>
          </div>
 
-         <div className={styles['certification-number-section']}>
-            <span className={styles['certification-number-title']}>
-               شماره شناسنامه ملک
-            </span>
-            <div className={styles['certification-number']}>
-               <span>فرعی</span>
-               <span>ملک</span>
-               <span>بلوک</span>
-               <span>محله</span>
-               <span>منطقه</span>
+         <InfoCard title={'شماره شناسنامه ملک'} className={styles['certification-number-section']} isPrimary={isPayed}>
+            <span>فرعی</span>
+            <span>ملک</span>
+            <span>بلوک</span>
+            <span>محله</span>
+            <span>منطقه</span>
 
-               <span>000</span>
-               <span>0046</span>
-               <span>0000201</span>
-               <span>04</span>
-               <span>000</span>
-            </div>
-         </div>
-
+            <span>000</span>
+            <span>0046</span>
+            <span>0000201</span>
+            <span>04</span>
+            <span>000</span>
+         </InfoCard>
          <div className={styles.buttons}>
             <Button className={styles.button}>
                <span>اشتراک گزاری</span>
