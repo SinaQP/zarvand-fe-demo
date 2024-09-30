@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM node:18.14.0-alpine3.17 as build
+FROM nexus.zaraamad.ir:5006/repository/docker-zaraamad/node:18.14.0-alpine3.17 as build
 
 WORKDIR /app
 COPY ["package.json", "package-lock.json*", "./"]
@@ -13,7 +13,7 @@ RUN yarn build
 # CMD [ "yarn", "start" ]
 
 # Use a lightweight production image
-FROM nginx:alpine
+FROM nexus.zaraamad.ir:5006/repository/docker-zaraamad/nginx:alpine
 
 # Copy custom Nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
