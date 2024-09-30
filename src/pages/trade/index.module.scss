@@ -10,8 +10,13 @@
   padding: 2rem;
   overflow-y: scroll;
 
-  .trade-type-card {
-    font-size: 1.8rem;
+  .info-card {
+    margin-bottom: 1.5rem;
+
+    .trade-type-card {
+      font-size: 1.8rem;
+      margin-bottom: 1.3rem;
+    }
   }
 
   .info-card-title {
