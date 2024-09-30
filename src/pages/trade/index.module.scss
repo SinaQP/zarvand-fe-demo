@@ -5,9 +5,17 @@
 }
 
 .layout {
-  margin-top: calc($small-header-height + 6rem);
+  margin-top: calc($small-header-height + 4rem);
+  margin-bottom: $footer-height;
+  padding: 2rem;
+  overflow-y: scroll;
+
+  .trade-type-card {
+    font-size: 1.8rem;
+  }
 
   .info-card-title {
+    font-size: 1.5rem;
     @include center-flex;
     justify-content: space-between;
     padding: 0.5rem 1rem 0.5rem 2rem;

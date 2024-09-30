@@ -4,12 +4,12 @@ import { Props } from './index.interface';
 import AddressSection from './addressSection';
 import ButtonGroup from './buttonGroup';
 
-const MasterCard: FC<Props> = ({ isPayed, children }) => {
+const MasterCard: FC<Props> = ({ isPayed, children, address }) => {
    const badgeText = isPayed ? 'پرداخت شده' : 'پرداخت نشده';
 
    return (
       <div className={`${styles.card} ${isPayed && styles['is-payed']}`}>
-         <AddressSection address={''} />
+         <AddressSection address={address ? address : ''} />
 
          {children}
 

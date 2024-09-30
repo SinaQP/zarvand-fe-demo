@@ -1,4 +1,5 @@
-import { Dispatch, SetStateAction, createContext } from 'react';
+import { createContext, Dispatch, SetStateAction } from 'react';
+import { TradeCharge } from './App.interface';
 
 export interface User {
    name: string;
@@ -63,6 +64,7 @@ export interface RenovationBillDetail {
    is_annual_charges: true;
    desc: string;
 }
+
 export interface RenovationBill {
    bill_no: string;
    charges_by_year: [number, number][];
@@ -81,6 +83,7 @@ export interface AppContextProps {
    setToken: Dispatch<SetStateAction<string>>;
    setUser: Dispatch<SetStateAction<User | null>>;
    setSubsystems: Dispatch<SetStateAction<SubSystem[]>>;
+   setSelectedTradeCharge: Dispatch<SetStateAction<TradeCharge | null>>;
    setSelectedCharge: Dispatch<SetStateAction<RenovationMaster | null>>;
    setSelectedGuildCharge: Dispatch<SetStateAction<Guild | null>>;
    setLoginEnteredNationalCode: Dispatch<SetStateAction<string>>;
@@ -98,18 +101,30 @@ export interface AppContextProps {
    maskedPhoneNumber: string;
    selectedRenovationBillDetail: RenovationBill | null;
    selectedGuildBillDetail: GuildBill | null;
+   selectedTradeCharge: TradeCharge | null;
 }
 
 export const AppContext = createContext<AppContextProps>({
-   setToken: () => {},
-   setUser: () => {},
-   setSubsystems: () => {},
-   setSelectedCharge: () => {},
-   setSelectedGuildCharge: () => {},
-   setLoginEnteredNationalCode: () => {},
-   setMaskedPhoneNumber: () => {},
-   setSelectedRenovationBillDetail: () => {},
-   setSelectedGuildBillDetail: () => {},
+   setToken: () => {
+   },
+   setUser: () => {
+   },
+   setSubsystems: () => {
+   },
+   setSelectedCharge: () => {
+   },
+   setSelectedGuildCharge: () => {
+   },
+   setLoginEnteredNationalCode: () => {
+   },
+   setMaskedPhoneNumber: () => {
+   },
+   setSelectedRenovationBillDetail: () => {
+   },
+   setSelectedGuildBillDetail: () => {
+   },
+   setSelectedTradeCharge: () => {
+   },
    token: '',
    selectedCharge: null,
    user: null,
@@ -119,4 +134,5 @@ export const AppContext = createContext<AppContextProps>({
    selectedGuildCharge: null,
    selectedRenovationBillDetail: null,
    selectedGuildBillDetail: null,
+   selectedTradeCharge: null,
 });
