@@ -31,7 +31,7 @@ const Router = () => {
 
    return (
       <BrowserRouter>
-         {/*{!token && <Redirect to="/login" />}*/}
+         {!token && <Redirect to="/login" />}
          <Route
             path="/login"
             exact

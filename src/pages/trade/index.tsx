@@ -29,17 +29,6 @@ const Trade: FC = () => {
          {charge.TradeType}
       </InfoCard>
    );
-   const data = [
-      { fromYear: '1360', toYear: '1360', amount: '26,205,000', description: 'عوارض سالیانه' },
-      { fromYear: '1360', toYear: '1360', amount: '26,205,000', description: 'عوارض سالیانه' },
-      { fromYear: '1360', toYear: '1360', amount: '26,205,000', description: 'عوارض سالیانه' },
-      { fromYear: '1360', toYear: '1360', amount: '26,205,000', description: 'عوارض سالیانه' },
-      { fromYear: '1360', toYear: '1360', amount: '26,205,000', description: 'عوارض سالیانه' },
-      { fromYear: '1360', toYear: '1360', amount: '26,205,000', description: 'عوارض سالیانه' },
-      { fromYear: '1360', toYear: '1360', amount: '26,205,000', description: 'عوارض سالیانه' },
-      { fromYear: '1360', toYear: '1360', amount: '26,205,000', description: 'عوارض سالیانه' },
-      { fromYear: '1360', toYear: '1360', amount: '26,205,000', description: 'عوارض سالیانه' },
-   ];
    const renderMasterCard = (charge: TradeCharge) => (
       <MasterCard key={charge.master_id} address={charge.address} isPayed={charge.is_paid} master={charge}>
          {renderInfoCard(charge)}

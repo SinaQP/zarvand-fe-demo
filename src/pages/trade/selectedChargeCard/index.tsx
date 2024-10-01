@@ -14,12 +14,12 @@ const SelectedChargeCard: FC = () => {
       selectedTradeCharge,
       token,
       setSelectedTradeChargeBillDetails,
-      selectedTradeChargeBillDetails,
+      selectedTradeChargeBillDetails, setSelectedChargeBillInfo,
    } = useContext(AppContext);
 
    useEffect(() => {
       if (selectedTradeCharge)
-         getSelectedChargeBillDetails(token, selectedTradeCharge, setSelectedTradeChargeBillDetails);
+         getSelectedChargeBillDetails(token, selectedTradeCharge, setSelectedTradeChargeBillDetails, setSelectedChargeBillInfo);
    }, []);
 
    if (!selectedTradeCharge) return null;

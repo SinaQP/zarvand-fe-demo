@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import styles from './index.module.scss';
 import { AnnualChargeTableProps } from './index.interface';
+import toMoneyFormat from '../../utilities/toMoneyFormat';
 
 const AnnualChargeTable: FC<AnnualChargeTableProps> = ({ data, className }) => {
    return (
@@ -19,7 +20,7 @@ const AnnualChargeTable: FC<AnnualChargeTableProps> = ({ data, className }) => {
                >
                   <div className={styles.tableCell}>{row.from_year}</div>
                   <div className={styles.tableCell}>{row.to_year}</div>
-                  <div className={styles.tableCell}>{row.creditor}</div>
+                  <div className={styles.tableCell}>{toMoneyFormat(row.creditor.toString())}</div>
                   <div className={styles.tableCell}>{row.desc}</div>
                </div>
             ))}

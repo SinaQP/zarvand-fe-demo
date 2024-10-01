@@ -1,7 +1,8 @@
 import { getTradeBillDetailsInfo } from '../../../apis/trade/guild-bill-details-info';
-import { TradeCharge } from '../../../App.interface';
+import { BillDetail, BillInfo, TradeCharge } from '../../../App.interface';
+import { Dispatch, SetStateAction } from 'react';
 
-async function getSelectedChargeBillDetails(token: string, charge: TradeCharge, setBillDetailsInfoResponse: any) {
+async function getSelectedChargeBillDetails(token: string, charge: TradeCharge, setBillDetailsInfoResponse: Dispatch<SetStateAction<BillDetail[] | null>>, setBillInfo: Dispatch<SetStateAction<BillInfo | null>>) {
    const billDetailsInfoResponse = await getTradeBillDetailsInfo(
       { master_id: charge.master_id },
       token,
@@ -9,6 +10,7 @@ async function getSelectedChargeBillDetails(token: string, charge: TradeCharge, 
    const responseBody = billDetailsInfoResponse.body;
    if (billDetailsInfoResponse.status === 200) {
       setBillDetailsInfoResponse(responseBody.last_bill_details);
+      setBillInfo(responseBody);
    } else {
       setBillDetailsInfoResponse([]);
    } //toast.fire({ title: responseBody.message, icon: 'error' });

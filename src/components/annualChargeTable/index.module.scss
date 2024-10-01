@@ -35,7 +35,9 @@
     grid-template-columns: repeat(4, 1fr);
 
     .tableCell {
+      @include center-flex;
       border-left: 1px solid rgba(#000000, 0.2);
+
       &:last-child {
         border-left: none;
       }
