@@ -5,10 +5,7 @@
 }
 
 .layout {
-  margin-top: calc($small-header-height + 4rem);
-  margin-bottom: $footer-height;
-  padding: 0 1rem;
-
+  @include default-layout;
   .welcome-text {
     font-size: 1.7rem;
     font-weight: 400;

@@ -1,9 +1,21 @@
 @import '../../../assets/scss/all';
 
-.message-box {
-  font-size: 1.5rem;
-  font-weight: 400;
-  text-align: center;
-  border-bottom: 2px solid $secondary-color;
-  padding-bottom: 0.5rem;
+.container {
+  .message-box {
+    width: 100%;
+    @include center-flex;
+    flex-direction: column;
+
+    font-size: 1.5rem;
+    font-weight: 400;
+    text-align: center;
+    border-bottom: 2px solid $secondary-color;
+    padding-bottom: 0.5rem;
+
+
+  }
+
+  img {
+    width: 100%;
+  }
 }

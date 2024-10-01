@@ -1,21 +1,20 @@
 @import '../../assets/scss/all';
 
 .header {
-   @include small-header;
+  @include small-header;
 }
-.layout {
-   margin-top: calc($small-header-height + 4rem);
-   margin-bottom: $footer-height;
-   padding: 2rem;
-   overflow-y: scroll;
-   .certification-number-section {
-      display: grid;
-      grid-template-columns: repeat(5, 1fr);
-      grid-template-rows: repeat(2, auto);
-      column-gap: 1.5rem;
-      padding: 0 2rem;
-      text-align: center;
 
-      font-size: 1.4rem;
-   }
+.layout {
+  @include default-layout;
+
+  .certification-number-section {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, auto);
+    column-gap: 1.5rem;
+    padding: 0 2rem;
+    text-align: center;
+
+    font-size: 1.4rem;
+  }
 }
