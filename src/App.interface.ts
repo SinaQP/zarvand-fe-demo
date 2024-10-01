@@ -5,6 +5,13 @@ export interface TradeCharge {
    'is_paid': false
 }
 
+export interface RenovationCharge {
+   'master_id': string,
+   'address': string,
+   'certificate_number': string,
+   'is_paid': boolean
+}
+
 export interface AppProps {
    children?: any;
 }

@@ -1,5 +1,5 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
-import { TradeCharge } from './App.interface';
+import { RenovationCharge, TradeCharge } from './App.interface';
 
 export interface User {
    name: string;
@@ -84,6 +84,7 @@ export interface AppContextProps {
    setUser: Dispatch<SetStateAction<User | null>>;
    setSubsystems: Dispatch<SetStateAction<SubSystem[]>>;
    setSelectedTradeCharge: Dispatch<SetStateAction<TradeCharge | null>>;
+   setSelectedRenovationCharge: Dispatch<SetStateAction<RenovationCharge | null>>;
    setSelectedCharge: Dispatch<SetStateAction<RenovationMaster | null>>;
    setSelectedGuildCharge: Dispatch<SetStateAction<Guild | null>>;
    setLoginEnteredNationalCode: Dispatch<SetStateAction<string>>;
@@ -102,6 +103,7 @@ export interface AppContextProps {
    selectedRenovationBillDetail: RenovationBill | null;
    selectedGuildBillDetail: GuildBill | null;
    selectedTradeCharge: TradeCharge | null;
+   selectedRenovationCharge: RenovationCharge | null;
 }
 
 export const AppContext = createContext<AppContextProps>({
@@ -124,6 +126,7 @@ export const AppContext = createContext<AppContextProps>({
    setSelectedGuildBillDetail: () => {
    },
    setSelectedTradeCharge: () => {
+   }, setSelectedRenovationCharge: () => {
    },
    token: '',
    selectedCharge: null,
@@ -135,4 +138,5 @@ export const AppContext = createContext<AppContextProps>({
    selectedRenovationBillDetail: null,
    selectedGuildBillDetail: null,
    selectedTradeCharge: null,
+   selectedRenovationCharge: null,
 });

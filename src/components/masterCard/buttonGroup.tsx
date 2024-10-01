@@ -6,10 +6,10 @@ import detailIcon from '../../assets/images/detail.svg';
 import { NewButton as Button } from '../button';
 import styles from './index.module.scss';
 import { AppContext } from '../../App.context';
-import { TradeCharge } from '../../App.interface';
+import { RenovationCharge, TradeCharge } from '../../App.interface';
 
-const ButtonGroup: FC<{ isPayed?: boolean, charge: TradeCharge }> = ({ isPayed, charge }) => {
-   const { setSelectedTradeCharge } = useContext(AppContext);
+const ButtonGroup: FC<{ isPayed?: boolean, charge: TradeCharge | RenovationCharge }> = ({ isPayed, charge }) => {
+   const { setSelectedTradeCharge, setSelectedRenovationCharge } = useContext(AppContext);
    const buttons = [
       { label: 'اشتراک گزاری', icon: shareIcon, alt: 'Share' },
       {
@@ -19,7 +19,11 @@ const ButtonGroup: FC<{ isPayed?: boolean, charge: TradeCharge }> = ({ isPayed, 
       },
       {
          label: 'جزییات', icon: detailIcon, alt: 'Detail', onClick: () => {
-            setSelectedTradeCharge(charge);
+            if ('certificate_number' in charge) {
+               setSelectedRenovationCharge(charge);
+            } else if ('TradeType' in charge) {
+               setSelectedTradeCharge(charge);
+            }
             console.log(charge);
          },
       },

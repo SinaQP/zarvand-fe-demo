@@ -3,11 +3,11 @@
 .header {
    @include small-header;
 }
-
-.cards {
-   margin-top: 25vh;
-   padding: 0 2rem;
-
+.layout {
+   margin-top: calc($small-header-height + 4rem);
+   margin-bottom: $footer-height;
+   padding: 2rem;
+   overflow-y: scroll;
    .certification-number-section {
       display: grid;
       grid-template-columns: repeat(5, 1fr);
