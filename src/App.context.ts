@@ -81,7 +81,7 @@ export interface RenovationBill {
 
 export interface AppContextProps {
    setToken: Dispatch<SetStateAction<string>>;
-   setSelectedTradeChargeBillDetails: Dispatch<SetStateAction<BillDetail[] | null>>;
+   setSelectedChargeBillDetails: Dispatch<SetStateAction<BillDetail[] | null>>;
    setUser: Dispatch<SetStateAction<User | null>>;
    setSubsystems: Dispatch<SetStateAction<SubSystem[]>>;
    setSelectedTradeCharge: Dispatch<SetStateAction<TradeCharge | null>>;
@@ -105,7 +105,7 @@ export interface AppContextProps {
    selectedRenovationBillDetail: RenovationBill | null;
    selectedGuildBillDetail: GuildBill | null;
    selectedTradeCharge: TradeCharge | null;
-   selectedTradeChargeBillDetails: BillDetail[] | null;
+   selectedChargeBillDetails: BillDetail[] | null;
    selectedRenovationCharge: RenovationCharge | null;
    selectedChargeBillInfo: BillInfo | null;
 
@@ -133,7 +133,7 @@ export const AppContext = createContext<AppContextProps>({
    setSelectedTradeCharge: () => {
    }, setSelectedRenovationCharge: () => {
    },
-   setSelectedTradeChargeBillDetails: () => {
+   setSelectedChargeBillDetails: () => {
    },
    setSelectedChargeBillInfo: () => {
    },
@@ -142,7 +142,7 @@ export const AppContext = createContext<AppContextProps>({
    selectedCharge: null,
    user: null,
    subSystems: [],
-   selectedTradeChargeBillDetails: null,
+   selectedChargeBillDetails: null,
    loginEnteredNationalCode: '',
    maskedPhoneNumber: '',
    selectedGuildCharge: null,

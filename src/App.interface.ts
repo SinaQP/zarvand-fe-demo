@@ -27,6 +27,7 @@ export interface BillInfo {
    bill_no: string;
    payment_no: string;
    value_to_pay: number;
+   bill_details: BillDetail[];
 }
 
 export interface AppProps {

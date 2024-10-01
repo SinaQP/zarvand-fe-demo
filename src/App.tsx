@@ -21,7 +21,7 @@ const App = (props: AppProps) => {
       useState<GuildBill | null>(null);
    const [selectedTradeCharge, setSelectedTradeCharge] =
       useState<TradeCharge | null>(null);
-   const [selectedTradeChargeBillDetails, setSelectedTradeChargeBillDetails] =
+   const [selectedChargeBillDetails, setSelectedChargeBillDetails] =
       useState<BillDetail[] | null>(null);
    const [selectedRenovationCharge, setSelectedRenovationCharge] =
       useState<RenovationCharge | null>(null);
@@ -31,8 +31,8 @@ const App = (props: AppProps) => {
          value={{
             selectedChargeBillInfo,
             setSelectedChargeBillInfo,
-            setSelectedTradeChargeBillDetails,
-            selectedTradeChargeBillDetails,
+            setSelectedChargeBillDetails,
+            selectedChargeBillDetails,
             setSubsystems,
             selectedTradeCharge,
             setSelectedTradeCharge,

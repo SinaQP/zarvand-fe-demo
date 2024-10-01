@@ -13,13 +13,13 @@ const SelectedChargeCard: FC = () => {
    const {
       selectedTradeCharge,
       token,
-      setSelectedTradeChargeBillDetails,
-      selectedTradeChargeBillDetails, setSelectedChargeBillInfo,
+      selectedChargeBillDetails,
+      setSelectedChargeBillDetails, setSelectedChargeBillInfo,
    } = useContext(AppContext);
 
    useEffect(() => {
       if (selectedTradeCharge)
-         getSelectedChargeBillDetails(token, selectedTradeCharge, setSelectedTradeChargeBillDetails, setSelectedChargeBillInfo);
+         getSelectedChargeBillDetails(token, selectedTradeCharge, setSelectedChargeBillDetails, setSelectedChargeBillInfo);
    }, []);
 
    if (!selectedTradeCharge) return null;
@@ -36,8 +36,8 @@ const SelectedChargeCard: FC = () => {
          {selectedTradeCharge.TradeType}
       </InfoCard>
 
-      {selectedTradeChargeBillDetails === null ? <Loading /> :
-         <AnnualChargeTable data={selectedTradeChargeBillDetails ? selectedTradeChargeBillDetails : []}
+      {selectedChargeBillDetails === null ? <Loading /> :
+         <AnnualChargeTable data={selectedChargeBillDetails ? selectedChargeBillDetails : []}
                             className={styles.table} />}
 
       <BillInfo />

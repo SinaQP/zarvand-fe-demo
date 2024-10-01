@@ -9,16 +9,19 @@ import { AppContext } from '../../App.context';
 import { RenovationCharge, TradeCharge } from '../../App.interface';
 
 const ButtonGroup: FC<{ isPayed?: boolean, charge: TradeCharge | RenovationCharge }> = ({ isPayed, charge }) => {
-   const { setSelectedTradeCharge, setSelectedRenovationCharge } = useContext(AppContext);
+   const { setSelectedTradeCharge, selectedChargeBillInfo, setSelectedRenovationCharge } = useContext(AppContext);
    const buttons = [
-      { label: ' گزاری', icon: shareIcon, alt: 'Share', style: { display: 'none' } },
+      false ? { label: 'اشتراک گزاری', icon: shareIcon, alt: 'Share' } : null,
       {
          label: isPayed ? 'دانلود' : 'پرداخت',
          icon: isPayed ? downloadIcon : payIcon,
          alt: isPayed ? 'Download' : 'Pay',
       },
-      {
-         label: 'جزییات', icon: detailIcon, alt: 'Detail', onClick: () => {
+      !selectedChargeBillInfo ? {
+         label: 'جزئیات',
+         icon: detailIcon,
+         alt: 'Detail',
+         onClick: () => {
             if ('certificate_number' in charge) {
                setSelectedRenovationCharge(charge);
             } else if ('TradeType' in charge) {
@@ -26,13 +29,14 @@ const ButtonGroup: FC<{ isPayed?: boolean, charge: TradeCharge | RenovationCharg
             }
             console.log(charge);
          },
-      },
+      } : null,
    ];
+   const visibleButtons = buttons.filter(button => button !== null);
 
    return (
-      <div className={styles.buttons}>
-         {buttons.map((button, index) => (
-            <Button key={index} className={styles.button} onClick={button.onClick} style={button.style}>
+      <div className={`${styles.buttons} ${visibleButtons.length === 1 ? styles.center : styles.spaceBetween}`}>
+         {buttons.map((button, index) => button && (
+            <Button key={index} className={styles.button} onClick={button.onClick}>
                <span>{button.label}</span>
                <img src={button.icon} alt={button.alt} />
             </Button>

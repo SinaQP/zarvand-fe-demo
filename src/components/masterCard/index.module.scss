@@ -44,9 +44,15 @@
 
   .buttons {
     display: flex;
-    justify-content: space-between;
     margin-top: 1rem;
 
+    &.spaceBetween {
+      justify-content: space-between;
+    }
+
+    &.center {
+      justify-content: center;
+    }
     .button {
       width: 9rem;
       font-size: 1.2rem;
@@ -55,6 +61,8 @@
       justify-content: space-between;
     }
   }
+
+
 
   .badge {
     font-size: 1.3rem;
