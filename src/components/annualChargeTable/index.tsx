@@ -2,9 +2,9 @@ import React, { FC } from 'react';
 import styles from './index.module.scss';
 import { AnnualChargeTableProps } from './index.interface';
 
-const AnnualChargeTable: FC<AnnualChargeTableProps> = ({ data }) => {
+const AnnualChargeTable: FC<AnnualChargeTableProps> = ({ data, className }) => {
    return (
-      <div className={styles.tableContainer}>
+      <div className={`${styles.tableContainer} ${className}`}>
          <div className={styles.tableHeader}>
             <div className={styles.tableCell}>از سال</div>
             <div className={styles.tableCell}>تا سال</div>
@@ -17,10 +17,10 @@ const AnnualChargeTable: FC<AnnualChargeTableProps> = ({ data }) => {
                   key={index}
                   className={`${styles.tableRow} ${index % 2 === 0 ? styles.evenRow : styles.oddRow}`}
                >
-                  <div className={styles.tableCell}>{row.fromYear}</div>
-                  <div className={styles.tableCell}>{row.toYear}</div>
-                  <div className={styles.tableCell}>{row.amount}</div>
-                  <div className={styles.tableCell}>{row.description}</div>
+                  <div className={styles.tableCell}>{row.from_year}</div>
+                  <div className={styles.tableCell}>{row.to_year}</div>
+                  <div className={styles.tableCell}>{row.creditor}</div>
+                  <div className={styles.tableCell}>{row.desc}</div>
                </div>
             ))}
          </div>

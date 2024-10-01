@@ -1,4 +1,4 @@
-import { AppProps, RenovationCharge, TradeCharge } from './App.interface';
+import { AppProps, BillDetail, BillInfo, RenovationCharge, TradeCharge } from './App.interface';
 import { AppContext, Guild, GuildBill, RenovationBill, RenovationMaster, SubSystem, User } from './App.context';
 import { useState } from 'react';
 
@@ -21,11 +21,18 @@ const App = (props: AppProps) => {
       useState<GuildBill | null>(null);
    const [selectedTradeCharge, setSelectedTradeCharge] =
       useState<TradeCharge | null>(null);
+   const [selectedTradeChargeBillDetails, setSelectedTradeChargeBillDetails] =
+      useState<BillDetail[] | null>(null);
    const [selectedRenovationCharge, setSelectedRenovationCharge] =
       useState<RenovationCharge | null>(null);
+   const [selectedChargeBillInfo, setSelectedChargeBillInfo] = useState<BillInfo | null>(null);
    return (
       <AppContext.Provider
          value={{
+            selectedChargeBillInfo,
+            setSelectedChargeBillInfo,
+            setSelectedTradeChargeBillDetails,
+            selectedTradeChargeBillDetails,
             setSubsystems,
             selectedTradeCharge,
             setSelectedTradeCharge,

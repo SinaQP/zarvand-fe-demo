@@ -11,7 +11,7 @@ import { RenovationCharge, TradeCharge } from '../../App.interface';
 const ButtonGroup: FC<{ isPayed?: boolean, charge: TradeCharge | RenovationCharge }> = ({ isPayed, charge }) => {
    const { setSelectedTradeCharge, setSelectedRenovationCharge } = useContext(AppContext);
    const buttons = [
-      { label: 'اشتراک گزاری', icon: shareIcon, alt: 'Share' },
+      { label: ' گزاری', icon: shareIcon, alt: 'Share', style: { display: 'none' } },
       {
          label: isPayed ? 'دانلود' : 'پرداخت',
          icon: isPayed ? downloadIcon : payIcon,
@@ -32,7 +32,7 @@ const ButtonGroup: FC<{ isPayed?: boolean, charge: TradeCharge | RenovationCharg
    return (
       <div className={styles.buttons}>
          {buttons.map((button, index) => (
-            <Button key={index} className={styles.button} onClick={button.onClick}>
+            <Button key={index} className={styles.button} onClick={button.onClick} style={button.style}>
                <span>{button.label}</span>
                <img src={button.icon} alt={button.alt} />
             </Button>

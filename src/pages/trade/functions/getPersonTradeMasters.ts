@@ -1,4 +1,4 @@
-import { getPersonTradeMasters } from '../../apis/trade/get-person-trade-master';
+import { getPersonTradeMasters } from '../../../apis/trade/get-person-trade-master';
 import { Dispatch, SetStateAction } from 'react';
 
 export const getUserTradeMasters = async (token: string, setState: Dispatch<SetStateAction<any>>,

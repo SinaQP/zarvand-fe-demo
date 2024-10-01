@@ -1,5 +1,5 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
-import { RenovationCharge, TradeCharge } from './App.interface';
+import { BillDetail, BillInfo, RenovationCharge, TradeCharge } from './App.interface';
 
 export interface User {
    name: string;
@@ -81,6 +81,7 @@ export interface RenovationBill {
 
 export interface AppContextProps {
    setToken: Dispatch<SetStateAction<string>>;
+   setSelectedTradeChargeBillDetails: Dispatch<SetStateAction<BillDetail[] | null>>;
    setUser: Dispatch<SetStateAction<User | null>>;
    setSubsystems: Dispatch<SetStateAction<SubSystem[]>>;
    setSelectedTradeCharge: Dispatch<SetStateAction<TradeCharge | null>>;
@@ -92,6 +93,7 @@ export interface AppContextProps {
    setSelectedRenovationBillDetail: Dispatch<
       SetStateAction<RenovationBill | null>
    >;
+   setSelectedChargeBillInfo: Dispatch<SetStateAction<BillInfo | null>>;
    setSelectedGuildBillDetail: Dispatch<SetStateAction<GuildBill | null>>;
    token: string;
    user: User | null;
@@ -103,7 +105,10 @@ export interface AppContextProps {
    selectedRenovationBillDetail: RenovationBill | null;
    selectedGuildBillDetail: GuildBill | null;
    selectedTradeCharge: TradeCharge | null;
+   selectedTradeChargeBillDetails: BillDetail[] | null;
    selectedRenovationCharge: RenovationCharge | null;
+   selectedChargeBillInfo: BillInfo | null;
+
 }
 
 export const AppContext = createContext<AppContextProps>({
@@ -128,10 +133,16 @@ export const AppContext = createContext<AppContextProps>({
    setSelectedTradeCharge: () => {
    }, setSelectedRenovationCharge: () => {
    },
+   setSelectedTradeChargeBillDetails: () => {
+   },
+   setSelectedChargeBillInfo: () => {
+   },
+   selectedChargeBillInfo: null,
    token: '',
    selectedCharge: null,
    user: null,
    subSystems: [],
+   selectedTradeChargeBillDetails: null,
    loginEnteredNationalCode: '',
    maskedPhoneNumber: '',
    selectedGuildCharge: null,

@@ -1,10 +1,13 @@
+import { BillDetail } from '../../App.interface';
+
 export interface TableRow {
-   fromYear: string;
-   toYear: string;
-   amount: string;
-   description: string;
+   from_year: string;
+   to_year: string;
+   creditor: string;
+   desc: string;
 }
 
 export interface AnnualChargeTableProps {
-   data: TableRow[];
+   data: BillDetail[];
+   className?: string;
 }

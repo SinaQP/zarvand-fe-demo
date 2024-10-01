@@ -1,20 +1,20 @@
-import { FC, memo, useContext, useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useState } from 'react';
 import Layout from '../../components/layout';
 import styles from './index.module.scss';
 import { AppContext } from '../../App.context';
-import { getUserTradeMasters } from './getPersonTradeMasters';
+import { getUserTradeMasters } from './functions/getPersonTradeMasters';
 import InfoCard from '../../components/infoCard';
 import InfoCardTitle from './infoCardTitle';
 import MasterCard from '../../components/masterCard';
 import { TradeCharge } from '../../App.interface';
-import AnnualChargeTable from '../../components/annualChargeTable';
 import NoTradeChargesMessage from './noTradeChargeMessage';
+import SelectedChargeCard from './selectedChargeCard';
 
 const Trade: FC = () => {
    const [tradeCharges, setTradeCharges] = useState<TradeCharge[]>([]);
    const { token, selectedTradeCharge, setSelectedTradeCharge } = useContext(AppContext);
-   const MemoizedInfoCardTitle = memo(InfoCardTitle);
-   const MemoizedMasterCard = memo(MasterCard);
+   // const MemoizedInfoCardTitle = memo(InfoCardTitle);
+   // const MemoizedMasterCard = memo(MasterCard);
 
    useEffect(() => {
       setSelectedTradeCharge(null);
@@ -23,7 +23,7 @@ const Trade: FC = () => {
 
    const renderInfoCard = (charge: TradeCharge) => (
       <InfoCard isPrimary={charge.is_paid}
-                title={<MemoizedInfoCardTitle />}
+                title={<InfoCardTitle />}
                 className={styles['trade-type-card']}
                 containerClassName={styles['info-card']}>
          {charge.TradeType}
@@ -41,17 +41,15 @@ const Trade: FC = () => {
       { fromYear: '1360', toYear: '1360', amount: '26,205,000', description: 'عوارض سالیانه' },
    ];
    const renderMasterCard = (charge: TradeCharge) => (
-      <MemoizedMasterCard key={charge.master_id} address={charge.address} isPayed={charge.is_paid} master={charge}>
+      <MasterCard key={charge.master_id} address={charge.address} isPayed={charge.is_paid} master={charge}>
          {renderInfoCard(charge)}
-         {selectedTradeCharge && <AnnualChargeTable data={data} />}
-
-      </MemoizedMasterCard>
+      </MasterCard>
    );
 
    return <Layout headerClassName={styles.header} className={styles['layout']}>
       {tradeCharges.length <= 0 ? <NoTradeChargesMessage /> : null}
       {selectedTradeCharge
-         ? renderMasterCard(selectedTradeCharge)
+         ? <SelectedChargeCard />
          : tradeCharges.map(renderMasterCard)}
    </Layout>;
 };
