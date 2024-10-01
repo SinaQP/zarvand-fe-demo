@@ -1,0 +1,9 @@
+@import '../../../assets/scss/all';
+
+.message-box {
+  font-size: 1.5rem;
+  font-weight: 400;
+  text-align: center;
+  border-bottom: 2px solid $secondary-color;
+  padding-bottom: 0.5rem;
+}

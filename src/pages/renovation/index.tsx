@@ -6,6 +6,7 @@ import { AppContext } from '../../App.context';
 import { RenovationCharge } from '../../App.interface';
 import MasterCard from '../../components/masterCard';
 import InfoCard from '../../components/infoCard';
+import NoRenovationChargesMessage from './noRenovationChargeMessage';
 
 const Renovation: FC = () => {
    const { token } = useContext(AppContext);
@@ -30,7 +31,7 @@ const Renovation: FC = () => {
 
    return (
       <Layout headerClassName={styles.header} className={styles.layout}>
-
+         {renovationCharges.length <= 0 && (<NoRenovationChargesMessage />)}
          {renovationCharges.map(charge => (
             <MasterCard master={charge} address={charge.address} isPayed={charge.is_paid}
                         key={charge.master_id}>

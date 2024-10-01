@@ -1,5 +1,23 @@
 @import '../../assets/scss/all';
 
 .header {
-   @include small-header;
+  @include small-header;
+}
+
+.layout {
+  margin-top: calc($small-header-height + 4rem);
+  margin-bottom: $footer-height;
+  padding: 0 1rem;
+
+  .welcome-text {
+    font-size: 1.7rem;
+    font-weight: 400;
+    background-color: $primary-color;
+    color: $font-white-color;
+    width: 100%;
+    text-align: right;
+    padding: 1.8rem 0.5rem;
+    border-radius: 1rem;
+    margin-bottom: 4rem;
+  }
 }
