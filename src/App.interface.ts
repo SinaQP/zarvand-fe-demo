@@ -20,7 +20,9 @@ export interface BillDetail {
    'income_code_id': number,
    'penalty': number,
    'desc': string,
-   'bill_code': string | null
+   'bill_code': string | null,
+   'bill_id': number,
+   'payment_date': string,
 }
 
 export interface BillInfo {

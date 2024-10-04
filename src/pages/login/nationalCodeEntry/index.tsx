@@ -20,6 +20,7 @@ const NationalCodeEntry: FC<Props> = ({ setShowConfirmationForm, showConfirmatio
          <OtpInput otpClassName={styles['otp-input']} numberOfInputs={10} value={nationalCode}
                    setValue={setNationalCode} inputsClassName={styles.input} />
          <Button className={styles['submit-button']}
+                 haveLoading
                  onClick={async () => await handleSubmit(setShowConfirmationForm, nationalCode, setPhoneNumber)}>تایید</Button>
       </div>
    );

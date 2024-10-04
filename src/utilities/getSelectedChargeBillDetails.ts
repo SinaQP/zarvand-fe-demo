@@ -1,5 +1,5 @@
-import { getTradeBillDetailsInfo } from '../../../apis/trade/guild-bill-details-info';
-import { BillDetail, BillInfo, TradeCharge } from '../../../App.interface';
+import { getTradeBillDetailsInfo } from '../apis/trade/guild-bill-details-info';
+import { BillDetail, BillInfo, TradeCharge } from '../App.interface';
 import { Dispatch, SetStateAction } from 'react';
 
 async function getSelectedChargeBillDetails(token: string, charge: TradeCharge, setBillDetailsInfoResponse: Dispatch<SetStateAction<BillDetail[] | null>>, setBillInfo: Dispatch<SetStateAction<BillInfo | null>>) {

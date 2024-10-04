@@ -25,7 +25,8 @@ export const NewButton: FC<Props> = (props) => {
       return <Loading />;
    }
    return (
-      <button {...props} className={`${props.className} ${styles.button}`} onClick={handleOnClick}>
+      <button {...props} className={`${props.className} ${styles.button}`}
+              onClick={props.haveLoading ? handleOnClick : props.onClick}>
          {props.children}
       </button>
    );

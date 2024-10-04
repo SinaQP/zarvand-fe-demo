@@ -76,5 +76,5 @@ export interface PrintBill {
    payment_no: string;
    total_amount: number;
    total_amount_in_words: string;
-   trade_type_name: string;
+   trade_type_name?: string;
 }

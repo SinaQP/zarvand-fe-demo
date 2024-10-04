@@ -20,6 +20,7 @@ const ConfirmationEntry: FC = () => {
       <OtpInput numberOfInputs={6} value={otpCode} setValue={setOtpCode} otpClassName={styles['otp-input']}
                 inputsClassName={styles.input} />
       <Button className={styles['submit-button']}
+              haveLoading
               onClick={async () => await handleConfirmationButton({
                  verificationCode: otpCode.join(''),
                  nationalCode: nationalCode.join(''),

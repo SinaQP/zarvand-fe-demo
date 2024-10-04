@@ -3,7 +3,6 @@ import { BrowserRouter, Redirect, Route } from 'react-router-dom';
 // pages
 import ZarvandSubsystem from './pages/mobile/subsystem';
 import SubsystemDetais from './pages/mobile/subsystemDetails';
-import CurrentDesktopLogin from './pages/desktop/login';
 import Welcome from './pages/desktop/subsystems';
 import RenewalCharges from './pages/desktop/renovations/charges';
 import RenovationPayment from './pages/desktop/renovations/payment';
@@ -22,26 +21,32 @@ import Renovation from './pages/renovation';
 import Profile from './pages/profile';
 import Support from './pages/support';
 import Trade from './pages/trade';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { AppContext } from './App.context';
-
+function setFontSize() {
+   const viewportWidth = window.innerWidth;
+   document.documentElement.style.setProperty('--vw', `${viewportWidth}px`);
+}
 const Router = () => {
    const { token } = useContext(AppContext);
    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+   useEffect(() => {
+      setFontSize();
+
+      window.addEventListener('resize', setFontSize);
+
+      return () => window.removeEventListener('resize', setFontSize);
+   }, []);
 
    return (
       <BrowserRouter>
          {!token && <Redirect to="/login" />}
-         <Route
-            path="/login"
-            exact
-            component={isMobile ? Login : CurrentDesktopLogin}
-         />
-         <Route path="/home" component={Home}/>
-         <Route path="/renovation" component={Renovation}/>
-         <Route path="/profile" component={Profile}/>
-         <Route path="/support" component={Support}/>
-         <Route path="/trade" component={Trade}/>
+         <Route path="/login" exact component={Login} />
+         <Route path="/home" component={Home} />
+         <Route path="/renovation" component={Renovation} />
+         <Route path="/profile" component={Profile} />
+         <Route path="/support" component={Support} />
+         <Route path="/trade" component={Trade} />
          {isMobile && (
             <>
                <Route path="/subsystem" exact component={ZarvandSubsystem} />
