@@ -1,7 +1,7 @@
 import { FC, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import Logo from '../../../assets/images/logo.png';
-import MunicipalityLogo from '../../../assets/images/municipality-logo.bmp';
+import MunicipalityLogo from '../../../assets/images/municipality-logo.png';
 import { Props } from './index.interface';
 import { AppContext } from '../../../App.context';
 import './index.scss';

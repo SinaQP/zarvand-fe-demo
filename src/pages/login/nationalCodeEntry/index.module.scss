@@ -19,7 +19,8 @@
 
   @media (min-width: $desktop) {
     width: fit-content;
-    padding: 13rem 4.2rem 8rem 4.2rem;
+    padding: 9vh 3rem 7vh 3rem;
+    margin: 9rem auto 0;
   }
 
   span {
@@ -61,7 +62,7 @@
   .submit-button {
     width: 56.25%;
     @media (min-width: $desktop) {
-      width: 100%;
+      width: 50%;
       font-size: 4.5rem;
     }
   }

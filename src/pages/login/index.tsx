@@ -12,24 +12,40 @@ const Login: FC = () => {
    const [nationalCode, setNationalCode] = useState<string[]>([]);
    const [phoneNumber, setPhoneNumber] = useState<string>('');
    const headerClassName = useWindowWidth(styles.header, '');
-
-   return <LoginContext.Provider
-      value={{
-         setNationalCode,
-         setPhoneNumber,
-         nationalCode,
-         phoneNumber,
-      }}
-   >
-      <Layout extraHeaderContent={showConfirmationForm && <ConfirmationEntry />}
-              headerBadge={showConfirmationForm &&
-                 <CounterBadge initialCount={120} setShowConfirmationForm={setShowConfirmationForm} />}
-              headerClassName={headerClassName}>
-         <NationalCodeEntry setShowConfirmationForm={setShowConfirmationForm}
-                            showConfirmationForm={showConfirmationForm} />
-      </Layout>
-   </LoginContext.Provider>;
+   const mainTitle = useWindowWidth(
+      <h1 className={styles.title}>سامانه پرداخت عوارض شهرداری زرند</h1>,
+      null,
+   );
+   return (
+      <LoginContext.Provider
+         value={{
+            setNationalCode,
+            setPhoneNumber,
+            nationalCode,
+            phoneNumber,
+         }}
+      >
+         <Layout
+            extraHeaderContent={true && <ConfirmationEntry />}
+            headerBadge={
+               showConfirmationForm && (
+                  <CounterBadge
+                     initialCount={120}
+                     setShowConfirmationForm={setShowConfirmationForm}
+                  />
+               )
+            }
+            headerClassName={headerClassName}
+            badgeClassName={styles['header-badge']}
+         >
+            {mainTitle}
+            <NationalCodeEntry
+               setShowConfirmationForm={setShowConfirmationForm}
+               showConfirmationForm={showConfirmationForm}
+            />
+         </Layout>
+      </LoginContext.Provider>
+   );
 };
 
 export default Login;
-

@@ -3,7 +3,7 @@ import { subsystemProp } from './index.interface';
 import './style/index.scss';
 import { useHistory } from 'react-router-dom';
 import { AppContext } from '../../../App.context';
-import municipalityLogo from './../../../assets/images/municipality-logo.bmp';
+import municipalityLogo from './../../../assets/images/municipality-logo.png';
 
 const ZarvandSubsystem: React.FC<subsystemProp> = () => {
    const history = useHistory();

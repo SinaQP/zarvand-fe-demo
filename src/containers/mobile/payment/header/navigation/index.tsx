@@ -1,6 +1,6 @@
 import { FC, useContext } from 'react';
 import logo from './../../../../../assets/images/zarvand-logo.png';
-import municipalityLogo from './../../../../../assets/images/municipality-logo.bmp';
+import municipalityLogo from './../../../../../assets/images/municipality-logo.png';
 import { useHistory } from 'react-router-dom';
 import { AppContext } from '../../../../../App.context';
 

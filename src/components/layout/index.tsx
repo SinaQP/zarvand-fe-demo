@@ -5,9 +5,18 @@ import Header from './header';
 import { LayoutContext } from './layout.context';
 import Footer from './footer';
 
-const Layout: FC<Props> = ({ headerBadge, className, children, extraHeaderContent, headerClassName }) => {
+const Layout: FC<Props> = ({
+   headerBadge,
+   className,
+   children,
+   extraHeaderContent,
+   headerClassName,
+   badgeClassName,
+}) => {
    return (
-      <LayoutContext.Provider value={{ headerBadge, extraHeaderContent }}>
+      <LayoutContext.Provider
+         value={{ headerBadge, extraHeaderContent, badgeClassName }}
+      >
          <div className={styles.layout}>
             <Header className={headerClassName} />
             <main className={`${styles.main} ${className}`}>{children}</main>
