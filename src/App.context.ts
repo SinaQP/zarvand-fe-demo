@@ -7,11 +7,6 @@ export interface User {
    mobile_number: string;
 }
 
-export interface SubSystem {
-   sub_system_name: string;
-   flag: boolean;
-}
-
 export interface RenovationMaster {
    address: string;
    certificate_number: string;
@@ -83,7 +78,6 @@ export interface AppContextProps {
    setToken: Dispatch<SetStateAction<string>>;
    setSelectedChargeBillDetails: Dispatch<SetStateAction<BillDetail[] | null>>;
    setUser: Dispatch<SetStateAction<User | null>>;
-   setSubsystems: Dispatch<SetStateAction<SubSystem[]>>;
    setSelectedTradeCharge: Dispatch<SetStateAction<TradeCharge | null>>;
    setSelectedRenovationCharge: Dispatch<SetStateAction<RenovationCharge | null>>;
    setSelectedCharge: Dispatch<SetStateAction<RenovationMaster | null>>;
@@ -97,7 +91,6 @@ export interface AppContextProps {
    setSelectedGuildBillDetail: Dispatch<SetStateAction<GuildBill | null>>;
    token: string;
    user: User | null;
-   subSystems: SubSystem[];
    selectedCharge: RenovationMaster | null;
    selectedGuildCharge: Guild | null;
    loginEnteredNationalCode: string;
@@ -108,15 +101,17 @@ export interface AppContextProps {
    selectedChargeBillDetails: BillDetail[] | null;
    selectedRenovationCharge: RenovationCharge | null;
    selectedChargeBillInfo: BillInfo | null;
-
+   showPaymentHistory: boolean;
+   setShowPaymentHistory: Dispatch<SetStateAction<boolean>>;
 }
+
 
 export const AppContext = createContext<AppContextProps>({
    setToken: () => {
    },
-   setUser: () => {
+   setShowPaymentHistory: () => {
    },
-   setSubsystems: () => {
+   setUser: () => {
    },
    setSelectedCharge: () => {
    },
@@ -141,7 +136,6 @@ export const AppContext = createContext<AppContextProps>({
    token: '',
    selectedCharge: null,
    user: null,
-   subSystems: [],
    selectedChargeBillDetails: null,
    loginEnteredNationalCode: '',
    maskedPhoneNumber: '',
@@ -150,4 +144,5 @@ export const AppContext = createContext<AppContextProps>({
    selectedGuildBillDetail: null,
    selectedTradeCharge: null,
    selectedRenovationCharge: null,
+   showPaymentHistory: false,
 });

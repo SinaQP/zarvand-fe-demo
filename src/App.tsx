@@ -1,20 +1,18 @@
 import { AppProps, BillDetail, BillInfo, RenovationCharge, TradeCharge } from './App.interface';
-import { AppContext, Guild, GuildBill, RenovationBill, RenovationMaster, SubSystem, User } from './App.context';
+import { AppContext, Guild, GuildBill, RenovationBill, RenovationMaster, User } from './App.context';
 import { useState } from 'react';
 
 const App = (props: AppProps) => {
-   const [user, setUser] = useState<User | null>(null);
-   const [loginEnteredNationalCode, setLoginEnteredNationalCode] =
-      useState<string>('');
-   const [token, setToken] = useState<string>('');
+   const userState = useState<User | null>(null);
+   const loginEnteredNationalCodeState = useState<string>('');
+   const tokenState = useState<string>('');
    const [maskedPhoneNumber, setMaskedPhoneNumber] = useState<string>('');
-   const [subSystems, setSubsystems] = useState<SubSystem[]>([]);
    const [selectedCharge, setSelectedCharge] =
       useState<RenovationMaster | null>(null);
    const [selectedGuildCharge, setSelectedGuildCharge] = useState<Guild | null>(
       null,
    );
-   console.log('token', token);
+   console.log('token', tokenState[0]);
    const [selectedRenovationBillDetail, setSelectedRenovationBillDetail] =
       useState<RenovationBill | null>(null);
    const [selectedGuildBillDetail, setSelectedGuildBillDetail] =
@@ -26,35 +24,36 @@ const App = (props: AppProps) => {
    const [selectedRenovationCharge, setSelectedRenovationCharge] =
       useState<RenovationCharge | null>(null);
    const [selectedChargeBillInfo, setSelectedChargeBillInfo] = useState<BillInfo | null>(null);
+   const showPaymentHistoryState = useState<boolean>(false);
    return (
       <AppContext.Provider
          value={{
+            setShowPaymentHistory:showPaymentHistoryState[1],
             selectedChargeBillInfo,
             setSelectedChargeBillInfo,
             setSelectedChargeBillDetails,
             selectedChargeBillDetails,
-            setSubsystems,
             selectedTradeCharge,
             setSelectedTradeCharge,
-            setToken,
-            setUser,
+            setToken: tokenState[1],
+            setUser: userState[1],
             setSelectedCharge,
-            setLoginEnteredNationalCode,
+            setLoginEnteredNationalCode: loginEnteredNationalCodeState[1],
             setMaskedPhoneNumber,
             setSelectedGuildCharge,
             selectedCharge,
             setSelectedRenovationBillDetail,
             setSelectedGuildBillDetail,
             maskedPhoneNumber,
-            subSystems,
-            token,
-            user,
-            loginEnteredNationalCode,
+            token:tokenState[0],
+            user: userState[0],
+            loginEnteredNationalCode: loginEnteredNationalCodeState[0],
             selectedGuildCharge,
             selectedRenovationBillDetail,
             selectedGuildBillDetail,
             selectedRenovationCharge,
             setSelectedRenovationCharge,
+            showPaymentHistory:showPaymentHistoryState[0]
          }}
       >
          {props.children}

@@ -12,7 +12,7 @@ const ConfirmationEntry: FC = () => {
    const [otpCode, setOtpCode] = useState<string[]>([]);
    const { phoneNumber, nationalCode } =
       useContext(LoginContext);
-   const { setSubsystems, setUser, setToken } =
+   const { setUser, setToken } =
       useContext(AppContext);
 
    return <form className={styles.form}>
@@ -25,7 +25,6 @@ const ConfirmationEntry: FC = () => {
                  verificationCode: otpCode.join(''),
                  nationalCode: nationalCode.join(''),
                  history,
-                 setSubsystems,
                  setToken,
                  setUser,
               })}>ورود</Button>

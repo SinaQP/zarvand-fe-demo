@@ -22,6 +22,8 @@ const Trade: FC = () => {
       setSelectedTradeCharge,
       setSelectedChargeBillDetails,
       setSelectedChargeBillInfo,
+      showPaymentHistory,
+      setShowPaymentHistory,
    } = useContext(AppContext);
 
    useEffect(() => {
@@ -30,8 +32,11 @@ const Trade: FC = () => {
    }, [token]);
 
    useEffect(() => {
-      if (selectedTradeCharge)
+      if (selectedTradeCharge) {
          getSelectedChargeBillDetails(token, selectedTradeCharge, setSelectedChargeBillDetails, setSelectedChargeBillInfo);
+         setShowPaymentHistory(selectedTradeCharge.is_paid);
+      }
+
    }, [selectedTradeCharge]);
 
    const renderInfoCard = (charge: TradeCharge) => (
@@ -43,17 +48,16 @@ const Trade: FC = () => {
       </InfoCard>
    );
    const renderMasterCard = (charge: TradeCharge) => (
-         <MasterCard key={charge.master_id} address={charge.address} isPayed={charge.is_paid}
-                     master={charge}>
-            {renderInfoCard(charge)}
-         </MasterCard>
-      )
-   ;
+      <MasterCard key={charge.master_id} address={charge.address} isPayed={charge.is_paid}
+                  master={charge}>
+         {renderInfoCard(charge)}
+      </MasterCard>
+   );
 
    return <Layout headerClassName={styles.header} className={styles['layout']}>
       {tradeCharges.length <= 0 ? <NoTradeChargesMessage /> : null}
       {selectedTradeCharge
-         ? <SelectedChargeCard />
+         ? <SelectedChargeCard isPayed={showPaymentHistory} />
          : (() => {
             resetChargeStates(setSelectedTradeCharge, setSelectedChargeBillDetails, setSelectedChargeBillInfo);
             return tradeCharges.map(renderMasterCard);
