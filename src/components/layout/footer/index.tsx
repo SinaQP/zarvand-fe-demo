@@ -8,7 +8,7 @@ import ShopIcon from './components/shop';
 import { FC, useContext } from 'react';
 import { useHistory } from 'react-router-dom';
 import { AppContext } from '../../../App.context';
-import resetChargeStates from './resetChargeStates';
+import resetChargeStates from '../../../utilities/resetChargeStates';
 
 const Footer = () => {
    const footerIconsList: { title: string; icon: FC<any>; route: string }[] = [

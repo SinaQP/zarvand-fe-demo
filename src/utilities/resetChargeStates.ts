@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { BillDetail, BillInfo, TradeCharge } from '../../../App.interface';
+import { BillDetail, BillInfo, TradeCharge } from '../App.interface';
 
 const resetChargeStates = (
       setSelectedTradeCharge: Dispatch<SetStateAction<TradeCharge | null>>,

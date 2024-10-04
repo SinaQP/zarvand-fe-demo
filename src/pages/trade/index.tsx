@@ -10,6 +10,7 @@ import NoTradeChargesMessage from './noTradeChargeMessage';
 import SelectedChargeCard from './selectedChargeCard';
 import MasterCard from '../../components/masterCard';
 import getSelectedChargeBillDetails from '../../utilities/getSelectedChargeBillDetails';
+import resetChargeStates from '../../utilities/resetChargeStates';
 
 const Trade: FC = () => {
    const [tradeCharges, setTradeCharges] = useState<TradeCharge[]>([]);
@@ -53,7 +54,11 @@ const Trade: FC = () => {
       {tradeCharges.length <= 0 ? <NoTradeChargesMessage /> : null}
       {selectedTradeCharge
          ? <SelectedChargeCard />
-         : tradeCharges.map(renderMasterCard)}
+         : (() => {
+            resetChargeStates(setSelectedTradeCharge, setSelectedChargeBillDetails, setSelectedChargeBillInfo);
+            return tradeCharges.map(renderMasterCard);
+         })()
+      }
 
    </Layout>;
 };
