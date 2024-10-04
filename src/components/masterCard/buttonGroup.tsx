@@ -85,7 +85,7 @@ const ButtonGroup: FC<{
          icon: payIcon,
          alt: 'Pay',
       },
-      !selectedChargeBillInfo ? {
+      !selectedChargeBillInfo && !isPayed ? {
          label: 'جزئیات',
          icon: detailIcon,
          alt: 'Detail',
