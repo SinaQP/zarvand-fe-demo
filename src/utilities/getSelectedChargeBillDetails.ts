@@ -9,7 +9,7 @@ async function getSelectedChargeBillDetails(token: string, charge: TradeCharge, 
    );
    const responseBody = billDetailsInfoResponse.body;
    if (billDetailsInfoResponse.status === 200) {
-      setBillDetailsInfoResponse(responseBody.last_bill_details);
+      setBillDetailsInfoResponse(charge.is_paid ? responseBody.bill_details : responseBody.last_bill_details);
       setBillInfo(responseBody);
    } else {
       setBillDetailsInfoResponse([]);

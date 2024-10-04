@@ -22,8 +22,6 @@ const ButtonGroup: FC<{
    const componentRef = useRef<HTMLDivElement>(null);
    const [printChargeBillDetails, setPrintChargeBillDetails] = useState<BillDetail[] | null>(null);
    const [printChargeBillInfo, setPrintChargeBillInfo] = useState<BillInfo | null>(null);
-   const printButton = useRef<HTMLButtonElement>(null);
-   const [x, setX] = useState('0');
    useEffect(() => {
       if ('certificate_number' in charge) {
          setChargeType('Renovation');
@@ -46,13 +44,13 @@ const ButtonGroup: FC<{
       content: () => componentRef.current,
    });
    const printChargeHandler = async () => {
-      if (chargeType === 'Trade' && !printChargeBillDetails)
-         getSelectedChargeBillDetails(token, charge as TradeCharge, setPrintChargeBillDetails, setPrintChargeBillInfo);
 
       if (charge && !printBill) {
+         if (chargeType === 'Trade' && !printChargeBillDetails)
+            getSelectedChargeBillDetails(token, charge as TradeCharge, setPrintChargeBillDetails, setPrintChargeBillInfo);
          const { body, status } = await getTradePrintData(
             {
-               last_paid_bill: false,
+               last_paid_bill: !charge.is_paid,
                master_id: charge.master_id,
             },
             token,
@@ -71,12 +69,11 @@ const ButtonGroup: FC<{
    }, [isPrinting, printChargeBillDetails]);
 
    const buttons = [
-      !isPayed && {
+      {
          label: 'دانلود',
          icon: downloadIcon,
          alt: 'Download',
          onClick: async () => {
-            setX(() => charge.master_id);
             await printChargeHandler();
          },
          id: `${charge.master_id}-charge-pdf-button`,

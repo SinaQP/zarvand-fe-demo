@@ -5,6 +5,8 @@ import { getUserRenovationCharges } from './getUserRenovationCharges';
 import { AppContext } from '../../App.context';
 import { RenovationCharge } from '../../App.interface';
 import NoRenovationChargesMessage from './noRenovationChargeMessage';
+import MasterCard from '../../components/masterCard';
+import InfoCard from '../../components/infoCard';
 
 const Renovation: FC = () => {
    const { token } = useContext(AppContext);
@@ -31,20 +33,20 @@ const Renovation: FC = () => {
    return (
       <Layout headerClassName={styles.header} className={styles.layout}>
          {renovationCharges.length <= 0 && (<NoRenovationChargesMessage />)}
-         {renovationCharges.map(charge => (<></>
-            // <MasterCard master={charge} address={charge.address} isPayed={charge.is_paid}
-            //             key={charge.master_id}>
-            //    <InfoCard title={'شماره شناسنامه ملک'}
-            //              className={styles['certification-number-section']}
-            //              isPrimary={charge.is_paid}>
-            //       {['فرعی', 'ملک', 'بلوک', 'محله', 'منطقه'].map((item, index) => (
-            //          <span key={index}>{item}</span>
-            //       ))}
-            //       {splitCertificateNumber(charge.certificate_number, segmentLengths).map((item, index) => (
-            //          <span key={index}>{item}</span>
-            //       ))}
-            //    </InfoCard>
-            // </MasterCard>
+         {renovationCharges.map(charge => (
+            <MasterCard master={charge} address={charge.address} isPayed={charge.is_paid}
+                        key={charge.master_id}>
+               <InfoCard title={'شماره شناسنامه ملک'}
+                         className={styles['certification-number-section']}
+                         isPrimary={charge.is_paid}>
+                  {['فرعی', 'ملک', 'بلوک', 'محله', 'منطقه'].map((item, index) => (
+                     <span key={index}>{item}</span>
+                  ))}
+                  {splitCertificateNumber(charge.certificate_number, segmentLengths).map((item, index) => (
+                     <span key={index}>{item}</span>
+                  ))}
+               </InfoCard>
+            </MasterCard>
          ))}
 
       </Layout>
