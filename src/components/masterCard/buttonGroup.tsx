@@ -38,6 +38,7 @@ const ButtonGroup: FC<{
       selectedChargeBillInfo,
       selectedChargeBillDetails,
       user,
+      setShowPaymentHistory
    } = useContext(AppContext);
 
    const handlePrint = useReactToPrint({
@@ -78,6 +79,7 @@ const ButtonGroup: FC<{
          },
          id: `${charge.master_id}-charge-pdf-button`,
       },
+ 
       !isPayed && {
          label: 'پرداخت',
          icon: payIcon,
@@ -94,7 +96,21 @@ const ButtonGroup: FC<{
                setSelectedTradeCharge(charge as TradeCharge);
             }
          },
+         
       } : null,
+      selectedChargeBillInfo && selectedChargeBillInfo.bill_details.length > 0 && {
+         label: 'سابقه پرداخت',
+         icon: payIcon,
+         alt: 'Pyament History',
+         onClick: () => {
+            setShowPaymentHistory(true)
+            if (chargeType === 'Renovation') {
+               setSelectedRenovationCharge(charge as RenovationCharge);
+            } else if (chargeType === 'Trade') {
+               setSelectedTradeCharge(charge as TradeCharge);
+            }
+         },
+      },
    ];
 
    const visibleButtons = buttons.filter(button => button !== null);

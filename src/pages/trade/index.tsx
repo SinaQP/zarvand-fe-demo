@@ -16,8 +16,6 @@ const Trade: FC = () => {
    const [tradeCharges, setTradeCharges] = useState<TradeCharge[]>([]);
    const {
       token,
-      selectedChargeBillDetails,
-      user,
       selectedTradeCharge,
       setSelectedTradeCharge,
       setSelectedChargeBillDetails,
