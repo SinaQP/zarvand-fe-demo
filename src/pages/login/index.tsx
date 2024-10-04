@@ -26,7 +26,7 @@ const Login: FC = () => {
          }}
       >
          <Layout
-            extraHeaderContent={true && <ConfirmationEntry />}
+            extraHeaderContent={false && <ConfirmationEntry />}
             headerBadge={
                showConfirmationForm && (
                   <CounterBadge
