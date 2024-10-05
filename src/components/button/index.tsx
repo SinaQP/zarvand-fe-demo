@@ -4,15 +4,8 @@ import './index.scss';
 import styles from './index.module.scss';
 import Loading from '../loading/loading';
 
-const Button: FC<Props> = (props) => (
-   <button {...props} className={`${props.className} button`}>
-      {props.children}
-   </button>
-);
 
-export default Button;
-
-export const NewButton: FC<Props> = (props) => {
+const Button: FC<Props> = (props) => {
    const [loading, setLoading] = useState(false);
    const handleOnClick = async (event: MouseEvent<HTMLButtonElement>) => {
       setLoading(true);
@@ -33,3 +26,4 @@ export const NewButton: FC<Props> = (props) => {
 };
 
 
+export default Button

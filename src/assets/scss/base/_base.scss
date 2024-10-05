@@ -6,12 +6,6 @@
 
 $base-font-size: 62.5%;
 
-//@each $width, $size in $breakpoints {
-//@media (max-width: #{$width}px) {
-//  html {
-//    font-size: #{$size}%; // Ensure correct interpolation and termination}
-//  }
-//}
 html {
   font-size: 62.5%;
   @each $width, $size in $breakpoints {
@@ -68,36 +62,9 @@ html {
   }
 }
 
-//@media (max-width: 767px) {
-//  html {
-//    font-size: calc(62.5 * 0.9);
-//  }
-//}
 body {
   font-size: 1.6rem;
   font-family: BNazanin, Kalameh, sans-serif;
   background-color: rgba($color: #d9d9d9, $alpha: 0.1);
   direction: $direction;
-
-  .swal2-popup,
-  .swal2-confirm,
-  .swal2-cancel,
-  .swal2-deny {
-    font-size: 2.4rem !important;
-    font-family: Vazirmatn;
-  }
-
-  .swal2-confirm {
-    background-color: #1ca421 !important;
-  }
-
-  .swal2-cancel {
-    background-color: #0f3bde !important;
-  }
-
-  .swal2-deny {
-    background-color: transparent !important;
-    color: #e05d5d !important;
-    border: 1px solid #e05d5d !important;
-  }
 }
