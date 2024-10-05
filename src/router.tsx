@@ -1,18 +1,29 @@
 // node libraries
-import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Redirect, Route } from 'react-router-dom';
 // pages
-import Root from './pages/root/index';
+import Login from './pages/login';
+import Home from './pages/home';
+import Renovation from './pages/renovation';
+import Profile from './pages/profile';
+import Support from './pages/support';
+import Trade from './pages/trade';
+import { useContext } from 'react';
+import { AppContext } from './App.context';
 
-/**
- * Router Container
- */
-function Router() {
-      return (
-            <BrowserRouter>
-                  <Route path="/" exact component={Root} />
-            </BrowserRouter>
-      );
-}
+const Router = () => {
+   const { token } = useContext(AppContext);
+
+   return (
+      <BrowserRouter>
+         {/* {!token && <Redirect to="/login" />} */}
+         <Route path="/login" exact component={Login} />
+         <Route path="/home" component={Home} />
+         <Route path="/renovation" component={Renovation} />
+         <Route path="/profile" component={Profile} />
+         <Route path="/support" component={Support} />
+         <Route path="/trade" component={Trade} />
+      </BrowserRouter>
+   );
+};
 
 export default Router;

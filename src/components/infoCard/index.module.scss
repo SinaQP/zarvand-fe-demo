@@ -1,0 +1,33 @@
+@import "../../assets/scss/all";
+
+.info-card {
+  margin-top: 1.5rem;
+  @include center-flex;
+  flex-direction: column;
+  border: 0.6px solid $secondary-color;
+  border-radius: 1rem;
+  position: relative;
+  &.primary-info-card{
+    border-color: $primary-color;
+    .title {
+      border-color: $primary-color;
+    }
+  }
+  .title {
+    border: 0.5px solid $secondary-color;
+    padding: 0rem 0.6rem;
+
+    border-radius: 0.5rem;
+    background-color: $bg-color;
+    margin-top: -1.3rem;
+
+    @include center-flex;
+  }
+
+  .body {
+    text-align: center;
+
+    font-size: 1.4rem;
+    padding: 1rem 0;
+  }
+}

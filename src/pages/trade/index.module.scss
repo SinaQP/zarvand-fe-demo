@@ -1,0 +1,38 @@
+@import '../../assets/scss/all';
+
+.header {
+  @include small-header;
+}
+
+.layout {
+  @include default-layout;
+  margin-top: calc(var(--small-header-height) + 2rem);
+  .info-card {
+    margin-bottom: 1.5rem;
+
+    .trade-type-card {
+      font-size: 1.8rem;
+      margin-bottom: 1.3rem;
+    }
+  }
+
+  .info-card-title {
+    font-size: 1.5rem;
+    @include center-flex;
+    justify-content: space-between;
+    padding: 0.5rem 1rem 0.5rem 2rem;
+
+    img {
+      margin-left: 1.2rem;
+    }
+  }
+
+  .table {
+    margin-bottom: 2rem;
+  }
+
+  .back-arrow {
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+  }
+}

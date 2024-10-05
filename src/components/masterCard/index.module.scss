@@ -1,0 +1,81 @@
+@import '../../assets/scss/all';
+
+.card {
+  border: 2px solid $secondary-color;
+  border-radius: 1.5rem;
+  box-shadow: $primary-box-shadow;
+  padding: 1rem;
+  position: relative;
+
+  &:not(:last-of-type) {
+    margin-bottom: 2rem;
+  }
+
+  &.is-payed {
+    border: 2px solid $primary-color;
+
+    .certification-number-section {
+      .certification-number-title {
+        border-color: $primary-color;
+      }
+
+      border-color: $primary-color;
+    }
+
+    .badge {
+      background-color: $primary-color;
+    }
+
+    .button {
+      background-color: $primary-color;
+    }
+  }
+
+  .address-section {
+    display: flex;
+    align-items: center;
+
+    span {
+      font-size: 1.7rem;
+      margin-right: 0.3rem;
+    }
+  }
+
+
+  .buttons {
+    display: flex;
+    margin-top: 1rem;
+
+    &.spaceBetween {
+      justify-content: space-between;
+    }
+
+    &.center {
+      justify-content: center;
+    }
+    .button {
+      width: 9rem;
+      font-size: 1.2rem;
+      border-radius: 1rem;
+      @include center-flex;
+      justify-content: space-between;
+    }
+  }
+
+
+
+  .badge {
+    font-size: 1.3rem;
+    font-family: SBaran, Kalameh, sans-serif;
+    background-color: $secondary-color;
+    color: $font-white-color;
+    text-align: center;
+    padding: 0.5rem 1rem;
+
+    border-radius: 0.5rem;
+    position: absolute;
+    top: 3px;
+    left: -14px;
+    transform: rotate(-45deg);
+  }
+}

@@ -1,0 +1,107 @@
+.printGuildJobsInfo {
+  * {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+  }
+  display: flex;
+  width: 210mm;
+  height: 275mm;
+  padding: 5mm;
+  font-size: 14px;
+  flex-direction: column;
+  text-align: right;
+  .municipality,
+  .bankPart {
+    width: 100%;
+    min-height: 105mm;
+    max-height: 105mm;
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .centered {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .minWidth {
+        min-width: 33%;
+        max-width: 33%;
+        width: 33%;
+      }
+      .centeredText {
+        text-align: center;
+      }
+      .endText {
+        text-align: end;
+      }
+      .bold {
+        font-weight: bold;
+      }
+    }
+    .top-header {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .mainTable {
+      width: 100%;
+      height: max-content;
+      border-collapse: collapse;
+      & > tr {
+        width: 100%;
+        height: fit-content;
+        & > td {
+          border: 1px solid black;
+          text-align: center;
+          width: fit-content;
+          height: fit-content;
+          padding: 1mm 3mm;
+          .withoutPadding {
+            padding: none;
+          }
+          &.textLeft {
+            text-align: start;
+          }
+        }
+      }
+      .customeColumn {
+        width: 100%;
+        padding: 0;
+        height: max-content;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+      }
+      .innerTableLeft,
+      .innerTableRight {
+        border-collapse: collapse;
+        flex-grow: 1;
+        td,
+        th {
+          border: 1px solid black;
+        }
+      }
+      .innerTableRight {
+        min-width: fit-content;
+        width: 20%;
+        max-width: 25%;
+        height: 100% !important;
+        td {
+          padding: 1mm;
+        }
+      }
+      .innerTableLeft {
+        width: 25%;
+        height: fit-content;
+      }
+    }
+  }
+  .bankPart {
+    min-height: 55mm;
+    max-height: 55mm;
+    border: none;
+  }
+}

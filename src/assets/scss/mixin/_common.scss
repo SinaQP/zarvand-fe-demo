@@ -1,0 +1,26 @@
+@mixin center-flex {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+@mixin small-header {
+   height: var(--small-header-height);
+
+   h1 {
+      @media (min-width: $desktop) {
+         margin-top: 0;
+      }
+      margin-bottom: 0;
+   }
+}
+
+@mixin default-layout {
+   margin-top: calc(var(--small-header-height) + 4rem);
+   margin-bottom: $footer-height;
+   padding: 2rem 2rem;
+   overflow-y: scroll;
+   @media (min-width: $desktop) {
+      margin-top: calc(var(--small-header-height) + 12rem);
+   }
+}
