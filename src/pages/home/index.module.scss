@@ -5,16 +5,28 @@
 }
 
 .layout {
-  @include default-layout;
+  margin-top: 20vh;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
   .welcome-text {
-    font-size: 1.7rem;
-    font-weight: 400;
     background-color: $primary-color;
+    padding: 1.7rem 0.5rem;
+    font-size: 1.7rem;
+    font-family: 'B Nazanin', sans-serif;
     color: $font-white-color;
-    width: 100%;
-    text-align: right;
-    padding: 1.8rem 0.5rem;
     border-radius: 1rem;
     margin-bottom: 4rem;
+  }
+
+  .coming-soon-text {
+    width: 100%;
+    font-size: 4rem;
+    padding: 2rem 0;
+    border: 1px solid $secondary-color;
+    text-align: center;
+    border-radius: 1rem;
   }
 }

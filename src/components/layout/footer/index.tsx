@@ -10,6 +10,7 @@ import { useHistory } from 'react-router-dom';
 import { AppContext } from '../../../App.context';
 import resetChargeStates from '../../../utilities/resetChargeStates';
 
+
 const Footer = () => {
    const footerIconsList: { title: string; icon: FC<any>; route: string }[] = [
       {
@@ -38,6 +39,7 @@ const Footer = () => {
          route: '/trade',
       },
    ];
+
    const isLoginPage = location.pathname === '/login';
    const {
       setSelectedTradeCharge,
@@ -45,6 +47,9 @@ const Footer = () => {
       setSelectedChargeBillInfo,
       setSelectedRenovationCharge,
    } = useContext(AppContext);
+   const history = useHistory()
+   const hideBtns = location.pathname === '/login';
+
    const currentRoute = location.pathname.toLowerCase();
    const history = useHistory();
    const handleRedirect = (route: string) => {
@@ -55,6 +60,7 @@ const Footer = () => {
          setSelectedChargeBillDetails,
          setSelectedChargeBillInfo,
       );
+      history.push(route)
    };
    if (isLoginPage) return null;
    return (
