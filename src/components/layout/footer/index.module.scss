@@ -1,86 +1,127 @@
 @import '../../../assets/scss/all';
 
 #footerStyleWrapper {
-  width: 100%;
-  height: $footer-height;
-  box-shadow: $primary-box-shadow;
-  border-radius: 2rem 2rem 0 0;
-  background-color: $primary-color;
+   width: 100%;
+   height: $footer-height;
+   box-shadow: $primary-box-shadow;
+   border-radius: 2rem 2rem 0 0;
+   background-color: $primary-color;
 
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: center;
-  justify-content: space-evenly;
+   display: flex;
+   flex-direction: row-reverse;
+   align-items: center;
+   justify-content: space-evenly;
 
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  color: $font-white-color;
+   position: fixed;
+   bottom: 0;
+   left: 0;
+   color: $font-white-color;
 
-  span {
-    font-size: 1.1rem;
-    margin-top: 0.5rem;
-  }
-
-  .footerIcon {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transform: translateY(0) scale(1);
-
-    .footerIconSize {
-      width: 3.2rem;
-      height: 3.2rem;
-    }
-
-    .title {
+   span {
       font-size: 1.1rem;
-      font-weight: 400;
-      line-height: 1.1rem;
-      text-align: center;
-    }
+      margin-top: 0.5rem;
+   }
 
-    &.hasAnimation {
+   .footerIcon {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       width: 7rem;
-      height: 7rem;
-      border: 0.2rem solid rgba(211, 104, 43, 1);
-      border-radius: 100%;
-      background-color: $bg-color;
-      opacity: 0;
-      justify-content: center;
-      animation: iconMoveUpAndGrow 0.5s ease-out forwards;
+
+      .footerIconSize {
+         width: 3.2rem;
+         height: 3.2rem;
+      }
 
       .title {
-        animation: hideMessage 1s ease-out forwards;
+         font-size: 1.1rem;
+         font-weight: 400;
+         line-height: 1.1rem;
+         text-align: center;
       }
-    }
 
-    .icon {
-      transform: scale(1.5);
-    }
-  }
+      &.active {
+         width: 7rem;
+         height: 7rem;
+         border: 0.2rem solid rgba(211, 104, 43, 1);
+         border-radius: 100%;
+         background-color: $bg-color;
+         opacity: 1;
+         justify-content: center;
+         transform: translateY(-2.5rem) scale(1.2);
 
+         .title {
+            opacity: 0;
+         }
+      }
 
+      &.MTLAnimation {
+         animation: MTLAnimation 0.8s forwards;
+
+         .icon {
+            animation: hideIcon 0.8s forwards;
+         }
+      }
+
+      &.MTRAnimation {
+         animation: MTRAnimation 0.8s forwards;
+
+         .icon {
+            animation: hideIcon 0.8s forwards;
+         }
+      }
+
+      &.selectedIconAnimation {
+         animation: iconMoveUpAndGrow 0.8s forwards;
+      }
+
+      .icon {
+         transform: scale(1.5);
+      }
+   }
 }
 
 @keyframes iconMoveUpAndGrow {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 0;
-  }
-  100% {
-    transform: translateY(-2.5rem) scale(1.2);
-    opacity: 1;
-  }
+   0% {
+      transform: translateY(0) scale(1);
+      opacity: 0;
+      z-index: 1;
+   }
+   100% {
+      transform: translateY(-2.5rem) scale(1.2);
+      opacity: 1;
+      z-index: 10;
+   }
 }
 
-@keyframes hideMessage {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(0) scale(1.2);
-    opacity: 0;
-  }
+@keyframes MTLAnimation {
+   0% {
+      transform: translateX(0) translateY(-2.5rem) scale(1.2);
+      opacity: 1;
+   }
+   100% {
+      transform: translateX(var(--translate-x)) translateY(-2.5rem) scale(1.2);
+      opacity: 1;
+   }
+}
+
+@keyframes MTRAnimation {
+   0% {
+      transform: translateX(0) translateY(-2.5rem) scale(1.2);
+      opacity: 1;
+   }
+   100% {
+      transform: translateX(calc(var(--translate-x) * -1)) translateY(-2.5rem)
+         scale(1.2);
+      opacity: 1;
+   }
+}
+
+@keyframes hideIcon {
+   0% {
+      opacity: 1;
+   }
+   100% {
+      opacity: 0;
+   }
 }
