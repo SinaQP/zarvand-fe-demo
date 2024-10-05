@@ -1,4 +1,3 @@
-/* eslint-disable no-restricted-globals */
 import styles from './index.module.scss';
 import ProfileIcon from './components/profileIcon';
 import OperatorIcon from './components/operatorIcon';
@@ -40,7 +39,6 @@ const Footer = () => {
       },
    ];
 
-   const isLoginPage = location.pathname === '/login';
    const {
       setSelectedTradeCharge,
       setSelectedChargeBillDetails,
@@ -48,6 +46,7 @@ const Footer = () => {
       setSelectedRenovationCharge,
    } = useContext(AppContext);
    const history = useHistory();
+   const isLoginPage = history.location.pathname === '/login';
 
    const [currentRoute, setCurrentRoute] = useState<RouteType>({
       route: history.location.pathname.toLowerCase(),
