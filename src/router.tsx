@@ -7,7 +7,7 @@ import Renovation from './pages/renovation';
 import Profile from './pages/profile';
 import Support from './pages/support';
 import Trade from './pages/trade';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { AppContext } from './App.context';
 
 const Router = () => {
