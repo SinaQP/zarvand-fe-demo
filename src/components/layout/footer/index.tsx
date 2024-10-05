@@ -39,12 +39,22 @@ const Footer = () => {
       },
    ];
    const isLoginPage = location.pathname === '/login';
-   const { setSelectedTradeCharge, setSelectedChargeBillDetails, setSelectedChargeBillInfo } = useContext(AppContext);
+   const {
+      setSelectedTradeCharge,
+      setSelectedChargeBillDetails,
+      setSelectedChargeBillInfo,
+      setSelectedRenovationCharge,
+   } = useContext(AppContext);
    const currentRoute = location.pathname.toLowerCase();
    const history = useHistory();
    const handleRedirect = (route: string) => {
       history.push(route);
-      resetChargeStates(setSelectedTradeCharge, setSelectedChargeBillDetails, setSelectedChargeBillInfo);
+      resetChargeStates(
+         setSelectedTradeCharge,
+         setSelectedRenovationCharge,
+         setSelectedChargeBillDetails,
+         setSelectedChargeBillInfo,
+      );
    };
    if (isLoginPage) return null;
    return (

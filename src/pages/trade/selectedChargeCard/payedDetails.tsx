@@ -19,6 +19,7 @@ const PayedDetails: FC = () => {
       setSelectedChargeBillDetails,
       setSelectedChargeBillInfo,
       setShowPaymentHistory,
+      setSelectedRenovationCharge,
    } = useContext(AppContext);
    if (!selectedTradeCharge || !selectedChargeBillDetails) return null;
 
@@ -32,6 +33,7 @@ const PayedDetails: FC = () => {
                } else {
                   resetChargeStates(
                      setSelectedTradeCharge,
+                     setSelectedRenovationCharge,
                      setSelectedChargeBillDetails,
                      setSelectedChargeBillInfo,
                   );
@@ -39,7 +41,9 @@ const PayedDetails: FC = () => {
             }}
          />
 
-         {selectedChargeBillDetails.map(charge => (<PayedBill charge={charge}/>))}
+         {selectedChargeBillDetails.map((charge) => (
+            <PayedBill charge={charge} />
+         ))}
       </div>
    );
 };

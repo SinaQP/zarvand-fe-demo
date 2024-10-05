@@ -23,24 +23,14 @@ import Support from './pages/support';
 import Trade from './pages/trade';
 import { useContext, useEffect } from 'react';
 import { AppContext } from './App.context';
-function setFontSize() {
-   const viewportWidth = window.innerWidth;
-   document.documentElement.style.setProperty('--vw', `${viewportWidth}px`);
-}
+
 const Router = () => {
    const { token } = useContext(AppContext);
    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-   useEffect(() => {
-      setFontSize();
-
-      window.addEventListener('resize', setFontSize);
-
-      return () => window.removeEventListener('resize', setFontSize);
-   }, []);
 
    return (
       <BrowserRouter>
-         {!token && <Redirect to="/login" />}
+         {/* {!token && <Redirect to="/login" />} */}
          <Route path="/login" exact component={Login} />
          <Route path="/home" component={Home} />
          <Route path="/renovation" component={Renovation} />

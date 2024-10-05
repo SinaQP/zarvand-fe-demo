@@ -22,6 +22,7 @@ const Trade: FC = () => {
       setSelectedChargeBillInfo,
       showPaymentHistory,
       setShowPaymentHistory,
+      setSelectedRenovationCharge,
    } = useContext(AppContext);
 
    useEffect(() => {
@@ -31,38 +32,56 @@ const Trade: FC = () => {
 
    useEffect(() => {
       if (selectedTradeCharge) {
-         getSelectedChargeBillDetails(token, selectedTradeCharge, setSelectedChargeBillDetails, setSelectedChargeBillInfo);
+         getSelectedChargeBillDetails(
+            token,
+            selectedTradeCharge,
+            'Trade',
+            setSelectedChargeBillDetails,
+            setSelectedChargeBillInfo,
+         );
          setShowPaymentHistory(selectedTradeCharge.is_paid);
       }
-
    }, [selectedTradeCharge]);
 
    const renderInfoCard = (charge: TradeCharge) => (
-      <InfoCard isPrimary={charge.is_paid}
-                title={<InfoCardTitle />}
-                className={styles['trade-type-card']}
-                containerClassName={styles['info-card']}>
+      <InfoCard
+         isPrimary={charge.is_paid}
+         title={<InfoCardTitle />}
+         className={styles['trade-type-card']}
+         containerClassName={styles['info-card']}
+      >
          {charge.TradeType}
       </InfoCard>
    );
    const renderMasterCard = (charge: TradeCharge) => (
-      <MasterCard key={charge.master_id} address={charge.address} isPayed={charge.is_paid}
-                  master={charge}>
+      <MasterCard
+         key={charge.master_id}
+         address={charge.address}
+         isPayed={charge.is_paid}
+         master={charge}
+      >
          {renderInfoCard(charge)}
       </MasterCard>
    );
 
-   return <Layout headerClassName={styles.header} className={styles['layout']}>
-      {tradeCharges.length <= 0 ? <NoTradeChargesMessage /> : null}
-      {selectedTradeCharge
-         ? <SelectedChargeCard isPayed={showPaymentHistory} />
-         : (() => {
-            resetChargeStates(setSelectedTradeCharge, setSelectedChargeBillDetails, setSelectedChargeBillInfo);
-            return tradeCharges.map(renderMasterCard);
-         })()
-      }
-
-   </Layout>;
+   return (
+      <Layout headerClassName={styles.header} className={styles['layout']}>
+         {tradeCharges.length <= 0 ? <NoTradeChargesMessage /> : null}
+         {selectedTradeCharge ? (
+            <SelectedChargeCard isPayed={showPaymentHistory} />
+         ) : (
+            (() => {
+               resetChargeStates(
+                  setSelectedTradeCharge,
+                  setSelectedRenovationCharge,
+                  setSelectedChargeBillDetails,
+                  setSelectedChargeBillInfo,
+               );
+               return tradeCharges.map(renderMasterCard);
+            })()
+         )}
+      </Layout>
+   );
 };
 
 export default Trade;

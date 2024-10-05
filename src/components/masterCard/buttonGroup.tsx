@@ -48,7 +48,7 @@ const ButtonGroup: FC<{
 
       if (charge && !printBill) {
          if (chargeType === 'Trade' && !printChargeBillDetails)
-            getSelectedChargeBillDetails(token, charge as TradeCharge, setPrintChargeBillDetails, setPrintChargeBillInfo);
+            getSelectedChargeBillDetails(token, charge as TradeCharge, "Trade", setPrintChargeBillDetails, setPrintChargeBillInfo);
          const { body, status } = await getTradePrintData(
             {
                last_paid_bill: !charge.is_paid,

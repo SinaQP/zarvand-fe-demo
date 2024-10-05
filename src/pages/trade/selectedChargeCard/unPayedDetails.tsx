@@ -17,30 +17,53 @@ const UnPayedDetails: FC = () => {
       setSelectedTradeCharge,
       setSelectedChargeBillDetails,
       setSelectedChargeBillInfo,
+      setSelectedRenovationCharge,
    } = useContext(AppContext);
    if (!selectedTradeCharge) return null;
 
-   return <div>
-      <BackArrow className={styles['back-arrow']}
-                 onClick={() => resetChargeStates(setSelectedTradeCharge, setSelectedChargeBillDetails, setSelectedChargeBillInfo)} />
-      <MasterCard key={selectedTradeCharge.master_id} address={selectedTradeCharge.address}
-                  isPayed={selectedTradeCharge.is_paid}
-                  master={selectedTradeCharge}>
+   return (
+      <div>
+         <BackArrow
+            className={styles['back-arrow']}
+            onClick={() =>
+               resetChargeStates(
+                  setSelectedTradeCharge,
+                  setSelectedRenovationCharge,
+                  setSelectedChargeBillDetails,
+                  setSelectedChargeBillInfo,
+               )
+            }
+         />
+         <MasterCard
+            key={selectedTradeCharge.master_id}
+            address={selectedTradeCharge.address}
+            isPayed={selectedTradeCharge.is_paid}
+            master={selectedTradeCharge}
+         >
+            <InfoCard
+               isPrimary={selectedTradeCharge.is_paid}
+               title={<InfoCardTitle />}
+               className={styles['trade-type-card']}
+               containerClassName={styles['info-card']}
+            >
+               {selectedTradeCharge.TradeType}
+            </InfoCard>
 
-         <InfoCard isPrimary={selectedTradeCharge.is_paid}
-                   title={<InfoCardTitle />}
-                   className={styles['trade-type-card']}
-                   containerClassName={styles['info-card']}>
-            {selectedTradeCharge.TradeType}
-         </InfoCard>
+            {selectedChargeBillDetails === null ? (
+               <Loading />
+            ) : (
+               <AnnualChargeTable
+                  data={
+                     selectedChargeBillDetails ? selectedChargeBillDetails : []
+                  }
+                  className={styles.table}
+               />
+            )}
 
-         {selectedChargeBillDetails === null ? <Loading /> :
-            <AnnualChargeTable data={selectedChargeBillDetails ? selectedChargeBillDetails : []}
-                               className={styles.table} />}
-
-         <BillInfo />
-      </MasterCard>
-   </div>;
+            <BillInfo />
+         </MasterCard>
+      </div>
+   );
 };
 
 export default UnPayedDetails;
