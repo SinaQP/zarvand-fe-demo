@@ -2,7 +2,7 @@ import { FC, useContext, useEffect, useRef, useState } from 'react';
 import detailIcon from '../../assets/images/detail.svg';
 import payIcon from '../../assets/images/pay.svg';
 import downloadIcon from '../../assets/images/download.svg';
-import { NewButton as Button } from '../button';
+import Button from '../button';
 import styles from './index.module.scss';
 import { AppContext } from '../../App.context';
 import { BillDetail, BillInfo, RenovationCharge, TradeCharge } from '../../App.interface';

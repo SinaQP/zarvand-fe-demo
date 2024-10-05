@@ -1,5 +1,5 @@
 import { FC, useContext, useState } from 'react';
-import { NewButton as Button } from '../../../components/button';
+import Button from '../../../components/button';
 import OtpInput from '../../../components/otpInput';
 import styles from './index.module.scss';
 import { LoginContext } from '../context';
