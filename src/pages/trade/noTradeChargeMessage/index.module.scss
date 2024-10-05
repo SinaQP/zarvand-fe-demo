@@ -12,10 +12,18 @@
     border-bottom: 2px solid $secondary-color;
     padding-bottom: 0.5rem;
 
-
+    @media (min-width: $desktop) {
+      width: 50vw;
+      margin: 0 auto;
+      font-size: 3.5rem;
+    }
   }
 
   img {
     width: 100%;
+    @media (min-width: $desktop) {
+      height: 66vh;
+      margin-top: -20vh;
+    }
   }
 }
