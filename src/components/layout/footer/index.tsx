@@ -5,8 +5,11 @@ import OperatorIcon from './components/operatorIcon';
 import HomeIcon from './components/homeIcon';
 import BrickWallsIcon from './components/brickWallsIcon';
 import ShopIcon from './components/shop';
-import { FC } from 'react';
-import {useHistory} from "react-router-dom";
+import { FC, useContext } from 'react';
+import { useHistory } from 'react-router-dom';
+import { AppContext } from '../../../App.context';
+import resetChargeStates from '../../../utilities/resetChargeStates';
+
 
 const Footer = () => {
    const footerIconsList: { title: string; icon: FC<any>; route: string }[] = [
@@ -36,36 +39,52 @@ const Footer = () => {
          route: '/trade',
       },
    ];
+
+   const isLoginPage = location.pathname === '/login';
+   const {
+      setSelectedTradeCharge,
+      setSelectedChargeBillDetails,
+      setSelectedChargeBillInfo,
+      setSelectedRenovationCharge,
+   } = useContext(AppContext);
    const history = useHistory()
    const hideBtns = location.pathname === '/login';
-   const currentRoute = location.pathname.toLowerCase();
 
+   const currentRoute = location.pathname.toLowerCase();
+   const history = useHistory();
    const handleRedirect = (route: string) => {
+      history.push(route);
+      resetChargeStates(
+         setSelectedTradeCharge,
+         setSelectedRenovationCharge,
+         setSelectedChargeBillDetails,
+         setSelectedChargeBillInfo,
+      );
       history.push(route)
    };
+   if (isLoginPage) return null;
    return (
       <footer id={styles.footerStyleWrapper}>
-         {!hideBtns &&
-            footerIconsList.map((icon, idx) => {
-               const isRouteActive = icon.route.toLowerCase() === currentRoute;
-               return (
-                  <div
-                     className={`${styles.footerIcon} ${
-                        isRouteActive ? styles.hasAnimation : ''
-                     }`}
-                     key={`${icon.title}-${idx}`}
-                     onClick={() => handleRedirect(icon.route)}
-                  >
-                     <icon.icon
-                        className={isRouteActive && styles.icon}
-                        color={isRouteActive ? 'black' : 'white'}
-                     />
-                     {!isRouteActive && (
-                        <span className={styles.title}>{icon.title}</span>
-                     )}
-                  </div>
-               );
-            })}
+         {footerIconsList.map((icon, idx) => {
+            const isRouteActive = icon.route.toLowerCase() === currentRoute;
+            return (
+               <div
+                  className={`${styles.footerIcon} ${
+                     isRouteActive ? styles.hasAnimation : ''
+                  }`}
+                  key={`${icon.title}-${idx}`}
+                  onClick={() => handleRedirect(icon.route)}
+               >
+                  <icon.icon
+                     className={isRouteActive && styles.icon}
+                     color={isRouteActive ? 'black' : 'white'}
+                  />
+                  {!isRouteActive && (
+                     <span className={styles.title}>{icon.title}</span>
+                  )}
+               </div>
+            );
+         })}
       </footer>
    );
 };

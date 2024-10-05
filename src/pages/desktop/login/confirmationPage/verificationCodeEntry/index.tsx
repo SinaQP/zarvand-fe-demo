@@ -16,7 +16,7 @@ const VerificationCodeEntry: FC<Props> = ({
    timerIntervalLoop,
 }) => {
    const { nationalCode, setLoginStage } = useContext(LoginContext);
-   const { setSubsystems, setToken, setUser } = useContext(AppContext);
+   const { setToken, setUser } = useContext(AppContext);
    const [verificationCode, setVerificationCode] = useState<string[]>([]);
    const history = useHistory();
 
@@ -43,7 +43,6 @@ const VerificationCodeEntry: FC<Props> = ({
                      verificationCode: verificationCode.join(""),
                      setLoginStage,
                      history,
-                     setSubsystems,
                      setToken,
                      setUser,
                   });

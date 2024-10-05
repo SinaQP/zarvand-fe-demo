@@ -5,9 +5,20 @@
 }
 
 @mixin small-header {
-   height: 12.5vh;
+   height: var(--small-header-height);
+
    h1 {
-      margin-top: 2vh;
+      margin-top: 0;
       margin-bottom: 0;
+   }
+}
+
+@mixin default-layout {
+   margin-top: calc(var(--small-header-height) + 4rem);
+   margin-bottom: $footer-height;
+   padding: 2rem 2rem;
+   overflow-y: scroll;
+   @media (min-width: $desktop) {
+    margin-top: calc(var(--small-header-height) + 12rem);
    }
 }

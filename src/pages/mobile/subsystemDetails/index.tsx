@@ -7,7 +7,7 @@ import { AppContext, RenovationMaster } from '../../../App.context';
 import handleChargeDetailButton from './handleChargeDetailButton';
 import RenovationCard from '../../../components/renovationCard';
 import Button from '../../../components/button';
-import municipalityLogo from './../../../assets/images/municipality-logo.bmp';
+import municipalityLogo from './../../../assets/images/municipality-logo.png';
 
 const SubsystemDetais: FC<subsystemDetailsProps> = () => {
    const history = useHistory();

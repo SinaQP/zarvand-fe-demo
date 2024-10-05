@@ -12,7 +12,7 @@ const ConfirmationEntry: FC = () => {
    const [otpCode, setOtpCode] = useState<string[]>([]);
    const { phoneNumber, nationalCode } =
       useContext(LoginContext);
-   const { setSubsystems, setUser, setToken } =
+   const { setUser, setToken } =
       useContext(AppContext);
 
    return <form className={styles.form}>
@@ -20,11 +20,11 @@ const ConfirmationEntry: FC = () => {
       <OtpInput numberOfInputs={6} value={otpCode} setValue={setOtpCode} otpClassName={styles['otp-input']}
                 inputsClassName={styles.input} />
       <Button className={styles['submit-button']}
+              haveLoading
               onClick={async () => await handleConfirmationButton({
                  verificationCode: otpCode.join(''),
                  nationalCode: nationalCode.join(''),
                  history,
-                 setSubsystems,
                  setToken,
                  setUser,
               })}>ورود</Button>

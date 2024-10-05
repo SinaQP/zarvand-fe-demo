@@ -34,7 +34,6 @@ const TradePayment = () => {
       if (isPrinting) {
          printButton.current?.click();
       }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
    }, [selectedGuildCharge]);
 
    const printChargeHandler = async () => {

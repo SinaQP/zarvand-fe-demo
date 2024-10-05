@@ -1,0 +1,23 @@
+@import '../../../../assets/scss/all';
+.payed-bill {
+   padding: 1rem;
+   background-color: rgba($primary-color, 0.05);
+   border-right: 1rem solid $primary-color;
+   border-radius: 1rem;
+
+   .time-line {
+      width: 100%;
+      margin-left: 1rem;
+      // padding-right: 1.5rem;
+      position: relative;
+      .path-line {
+         height: 80%;
+         width: 10px;
+         background-color: $primary-color;
+      }
+      .from-year {
+         font-size: 1.6rem;
+         font-weight: 400;
+      }
+   }
+}

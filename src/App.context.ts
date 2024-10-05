@@ -1,14 +1,10 @@
-import { Dispatch, SetStateAction, createContext } from 'react';
+import { createContext, Dispatch, SetStateAction } from 'react';
+import { BillDetail, BillInfo, RenovationCharge, TradeCharge } from './App.interface';
 
 export interface User {
    name: string;
    national_code: string;
    mobile_number: string;
-}
-
-export interface SubSystem {
-   sub_system_name: string;
-   flag: boolean;
 }
 
 export interface RenovationMaster {
@@ -63,6 +59,7 @@ export interface RenovationBillDetail {
    is_annual_charges: true;
    desc: string;
 }
+
 export interface RenovationBill {
    bill_no: string;
    charges_by_year: [number, number][];
@@ -79,8 +76,10 @@ export interface RenovationBill {
 
 export interface AppContextProps {
    setToken: Dispatch<SetStateAction<string>>;
+   setSelectedChargeBillDetails: Dispatch<SetStateAction<BillDetail[] | null>>;
    setUser: Dispatch<SetStateAction<User | null>>;
-   setSubsystems: Dispatch<SetStateAction<SubSystem[]>>;
+   setSelectedTradeCharge: Dispatch<SetStateAction<TradeCharge | null>>;
+   setSelectedRenovationCharge: Dispatch<SetStateAction<RenovationCharge | null>>;
    setSelectedCharge: Dispatch<SetStateAction<RenovationMaster | null>>;
    setSelectedGuildCharge: Dispatch<SetStateAction<Guild | null>>;
    setLoginEnteredNationalCode: Dispatch<SetStateAction<string>>;
@@ -88,35 +87,62 @@ export interface AppContextProps {
    setSelectedRenovationBillDetail: Dispatch<
       SetStateAction<RenovationBill | null>
    >;
+   setSelectedChargeBillInfo: Dispatch<SetStateAction<BillInfo | null>>;
    setSelectedGuildBillDetail: Dispatch<SetStateAction<GuildBill | null>>;
    token: string;
    user: User | null;
-   subSystems: SubSystem[];
    selectedCharge: RenovationMaster | null;
    selectedGuildCharge: Guild | null;
    loginEnteredNationalCode: string;
    maskedPhoneNumber: string;
    selectedRenovationBillDetail: RenovationBill | null;
    selectedGuildBillDetail: GuildBill | null;
+   selectedTradeCharge: TradeCharge | null;
+   selectedChargeBillDetails: BillDetail[] | null;
+   selectedRenovationCharge: RenovationCharge | null;
+   selectedChargeBillInfo: BillInfo | null;
+   showPaymentHistory: boolean;
+   setShowPaymentHistory: Dispatch<SetStateAction<boolean>>;
 }
 
+
 export const AppContext = createContext<AppContextProps>({
-   setToken: () => {},
-   setUser: () => {},
-   setSubsystems: () => {},
-   setSelectedCharge: () => {},
-   setSelectedGuildCharge: () => {},
-   setLoginEnteredNationalCode: () => {},
-   setMaskedPhoneNumber: () => {},
-   setSelectedRenovationBillDetail: () => {},
-   setSelectedGuildBillDetail: () => {},
+   setToken: () => {
+   },
+   setShowPaymentHistory: () => {
+   },
+   setUser: () => {
+   },
+   setSelectedCharge: () => {
+   },
+   setSelectedGuildCharge: () => {
+   },
+   setLoginEnteredNationalCode: () => {
+   },
+   setMaskedPhoneNumber: () => {
+   },
+   setSelectedRenovationBillDetail: () => {
+   },
+   setSelectedGuildBillDetail: () => {
+   },
+   setSelectedTradeCharge: () => {
+   }, setSelectedRenovationCharge: () => {
+   },
+   setSelectedChargeBillDetails: () => {
+   },
+   setSelectedChargeBillInfo: () => {
+   },
+   selectedChargeBillInfo: null,
    token: '',
    selectedCharge: null,
    user: null,
-   subSystems: [],
+   selectedChargeBillDetails: null,
    loginEnteredNationalCode: '',
    maskedPhoneNumber: '',
    selectedGuildCharge: null,
    selectedRenovationBillDetail: null,
    selectedGuildBillDetail: null,
+   selectedTradeCharge: null,
+   selectedRenovationCharge: null,
+   showPaymentHistory: false,
 });

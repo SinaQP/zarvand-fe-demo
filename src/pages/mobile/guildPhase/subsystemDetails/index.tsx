@@ -7,7 +7,7 @@ import { AppContext, Guild } from '../../../../App.context';
 import { getPersonTradeMasters } from '../../../../apis/trade/get-person-trade-master';
 import GuildCard from '../../../../components/guildCard';
 import Button from '../../../../components/button';
-import municipalityLogo from './../../../../assets/images/municipality-logo.bmp';
+import municipalityLogo from './../../../../assets/images/municipality-logo.png';
 
 const SubsystemGuildDetais: FC<subsystemDetailsProps> = () => {
    const history = useHistory();

@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from 'react';
-import { SubSystem, User } from '../../../../../App.context';
+import { User } from '../../../../../App.context';
 import { validateSmsCode } from '../../../../../apis/login/validate-sms-code';
 import Toast from '../nationalCodeSection/toast';
 
@@ -9,14 +9,12 @@ interface Props {
    history: { push: (url: string) => void };
    setToken: Dispatch<SetStateAction<string>>;
    setUser: Dispatch<SetStateAction<User | null>>;
-   setSubsystems: Dispatch<SetStateAction<SubSystem[]>>;
 }
 
 const handleConfirmationButton: Function = async ({
    verificationCode,
    nationalCode,
    history,
-   setSubsystems,
    setToken,
    setUser,
 }: Props) => {
@@ -28,7 +26,6 @@ const handleConfirmationButton: Function = async ({
    if (response.status === 200) {
       setToken(responseBody.token);
       setUser(responseBody.user);
-      setSubsystems(() => responseBody.subsystems);
       history.push('subsystem');
    } else {
       Toast.fire({

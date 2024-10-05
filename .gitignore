@@ -25,3 +25,5 @@ yarn-error.log*
 # all zip file
 *.zip
 *.rar
+
+.idea

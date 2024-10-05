@@ -1,7 +1,32 @@
 $direction: rtl;
 
-$mobile: 767px;
-$tablet: 1024px;
-$desktop: 1200px;
+$desktop: 767px;
 
+$breakpoints: (
+   1920px: 62.5%,
+   1800px: 58.6%,
+   1700px: 55.3%,
+   1600px: 52.08%,
+   1550px: 49.5%,
+   1400px: 47%,
+   1300px: 44%,
+   1200px: 42%,
+   1100px: 40%,
+   1000px: 38%,
+   900px: 36%,
+   800px: 34%,
+   767px: 62.5%,
+);
+:root {
+   --small-header-height: 12.5vh;
+   --badge-height: 7rem;
+}
+
+@media (min-width: $desktop) {
+   :root {
+      --small-header-height: 18rem;
+      --badge-height: 18rem;
+   }
+}
 $primary-box-shadow: 0px 2px 4px 0px #00000040;
+$footer-height: 8rem;

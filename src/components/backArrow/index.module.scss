@@ -1,0 +1,9 @@
+@import "../../assets/scss/all";
+
+.back-arrow {
+  width: 3rem;
+  height: 3rem;
+  background-color: $secondary-color;
+  @include center-flex;
+  border-radius: 50%;
+}
