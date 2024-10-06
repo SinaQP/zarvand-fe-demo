@@ -42,7 +42,7 @@ const Login: FC = () => {
             phoneNumber,
          }}
       >
-         <Layout
+         {/* <Layout
             extraHeaderContent={showConfirmationForm && <ConfirmationEntry />}
             headerBadge={
                showConfirmationForm && (
@@ -54,16 +54,17 @@ const Login: FC = () => {
             }
             headerClassName={headerClassName}
             badgeClassName={styles['header-badge']}
-         >
-            {blueSquare}
-            {whiteSquare}
-            <CityAnimationCard />
-            {mainTitle}
-            <NationalCodeEntry
-               setShowConfirmationForm={setShowConfirmationForm}
-               showConfirmationForm={showConfirmationForm}
-            />
-         </Layout>
+         > */}
+
+         {blueSquare}
+         {whiteSquare}
+         <CityAnimationCard />
+         {mainTitle}
+         <NationalCodeEntry
+            setShowConfirmationForm={setShowConfirmationForm}
+            showConfirmationForm={showConfirmationForm}
+         />
+         {/* </Layout> */}
       </LoginContext.Provider>
    );
 };

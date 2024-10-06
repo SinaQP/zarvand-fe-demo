@@ -59,7 +59,7 @@ const Renovation: FC = () => {
    };
 
    return (
-      <Layout headerClassName={styles.header} className={styles.layout}>
+      <>
          {renovationCharges.length <= 0 && <NoRenovationChargesMessage />}
          {selectedRenovationCharge ? (
             <SelectedRenovationCharge />
@@ -93,7 +93,7 @@ const Renovation: FC = () => {
                ));
             })()
          )}
-      </Layout>
+      </>
    );
 };
 

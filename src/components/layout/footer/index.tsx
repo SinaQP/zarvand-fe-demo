@@ -5,7 +5,7 @@ import HomeIcon from './components/homeIcon';
 import BrickWallsIcon from './components/brickWallsIcon';
 import ShopIcon from './components/shop';
 import { ReactNode, useContext, useEffect, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../../../App.context';
 import resetChargeStates from '../../../utilities/resetChargeStates';
 import { IconType, RouteType } from './index.interface';
@@ -45,11 +45,11 @@ const Footer = () => {
       setSelectedChargeBillInfo,
       setSelectedRenovationCharge,
    } = useContext(AppContext);
-   const history = useHistory();
-   const isLoginPage = history.location.pathname === '/login';
+   const history = useNavigate();
+   const isLoginPage = location.pathname === '/login';
 
    const [currentRoute, setCurrentRoute] = useState<RouteType>({
-      route: history.location.pathname.toLowerCase(),
+      route: location.pathname.toLowerCase(),
       id: 0,
    });
    const [selectedRoute, setSelectedRoute] = useState<RouteType | null>(null);
@@ -72,7 +72,7 @@ const Footer = () => {
       );
 
       setTimeout(() => {
-         history.push(icon.route);
+         history(icon.route);
       }, 600);
    };
 

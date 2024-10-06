@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 
 export interface Props {
    children: ReactNode;
@@ -12,5 +12,6 @@ export interface Props {
 export interface LayoutContextProps {
    headerBadge?: ReactNode;
    badgeClassName?: string;
+   setBadgetClassName?: Dispatch<SetStateAction<string>>;
    extraHeaderContent?: ReactNode;
 }
