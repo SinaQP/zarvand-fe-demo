@@ -43,10 +43,10 @@ const Trade: FC = () => {
    }, [selectedTradeCharge]);
 
    return (
-      <Layout headerClassName={styles.header} className={styles['layout']}>
+      <>
          {tradeCharges.length <= 0 ? <NoTradeChargesMessage /> : null}
          {chargeCards}
-      </Layout>
+      </>
    );
 };
 

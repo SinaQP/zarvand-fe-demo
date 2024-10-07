@@ -5,10 +5,11 @@ import styles from './index.module.scss';
 import { LoginContext } from '../context';
 import handleConfirmationButton from './functions/submit';
 import { AppContext } from '../../../App.context';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+// import { useHistory } from 'react-router-dom';
 
 const ConfirmationEntry: FC = () => {
-   const history = useHistory();
+   const history = useNavigate();
    const [otpCode, setOtpCode] = useState<string[]>([]);
    const { phoneNumber, nationalCode } =
       useContext(LoginContext);

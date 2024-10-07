@@ -4,7 +4,7 @@ import styles from './index.module.scss';
 import ComingSoonText from '../../components/comingSoonText';
 
 const Profile: FC = () => {
-   return <Layout headerClassName={styles.header} className={styles.layout}><ComingSoonText /></Layout>;
+   return <ComingSoonText />;
 };
 
 export default Profile;

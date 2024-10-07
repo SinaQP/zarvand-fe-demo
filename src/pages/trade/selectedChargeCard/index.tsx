@@ -4,8 +4,7 @@ import PayedDetails from './payedDetails';
 
 const SelectedChargeCard: FC<{ isPayed: boolean }> = ({ isPayed }) => {
    return (
-      // isPayed ? <PayedDetails /> : <UnPayedDetails />
-      <UnPayedDetails />
+      isPayed ? <PayedDetails /> : <UnPayedDetails />
    );
 };
 

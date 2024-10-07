@@ -21,14 +21,23 @@ const OtpInput: FC<Props> = ({
       setOtp(newOtp);
       setValue(newOtp);
    };
+
+   const handleClick = (index: number) => {
+      const areAllEmpty = otp.every((val) => val === '');
+      if (areAllEmpty) {
+         inputRefs.current[0]?.focus();
+      } else {
+         inputRefs.current[index]?.focus();
+      }
+   };
+
    return (
       <div className={`${otpClassName} otp-container `}>
          {otp.map((data, index) => (
             <input
                key={index}
                type="text"
-               inputMode="numeric" // This ensures the numeric keyboard shows up on mobile
-
+               inputMode="numeric"
                maxLength={1}
                value={data}
                onPaste={handlePaste}
@@ -39,6 +48,7 @@ const OtpInput: FC<Props> = ({
                   handleKeyDown(e, index, otp, setOtp, inputRefs)
                }
                ref={(el) => (inputRefs.current[index] = el!)}
+               onClick={() => handleClick(index)}
                className={`otp-input ${inputsClassName}`}
             />
          ))}
