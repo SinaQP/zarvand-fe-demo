@@ -55,3 +55,9 @@ html {
     background: rgba(76, 112, 243, 0.7);
   }
 }
+body {
+  font-size: 1.6rem;
+  font-family: BNazanin, Kalameh, sans-serif;
+  background-color: rgba($color: #d9d9d9, $alpha: 0.1);
+  direction: $direction;
+}

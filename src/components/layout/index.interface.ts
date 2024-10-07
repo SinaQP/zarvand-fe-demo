@@ -15,4 +15,8 @@ export interface LayoutContextProps {
    setHeaderId?: Dispatch<SetStateAction<string>>;
    badgeId?: string;
    setBadgeId?: Dispatch<SetStateAction<string>>;
+   maskedPhoneNumber: string;
+   setMaskedPhoneNumber: Dispatch<SetStateAction<string>>;
+   nationalCode: string[];
+   setNationalCode: Dispatch<SetStateAction<string[]>>;
 }

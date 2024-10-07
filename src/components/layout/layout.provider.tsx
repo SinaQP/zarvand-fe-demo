@@ -8,6 +8,8 @@ export const LayoutProvider = ({ children }: { children: ReactNode }) => {
    const [badgeId, setBadgeId] = useState<string>('');
    const [badgeClassName, setBadgeClassName] = useState<string>('');
    const [className, setClassName] = useState<string>('');
+   const [maskedPhoneNumber, setMaskedPhoneNumber] = useState<string>('');
+   const [nationalCode, setNationalCode] = useState<string[]>([]);
    const [extraHeaderContent, setExtraHeaderContent] =
       useState<ReactNode>(null);
    const layoutContextValue = {
@@ -25,6 +27,10 @@ export const LayoutProvider = ({ children }: { children: ReactNode }) => {
       setHeaderId,
       badgeId,
       setBadgeId,
+      nationalCode,
+      setNationalCode,
+      maskedPhoneNumber,
+      setMaskedPhoneNumber,
    };
 
    return (

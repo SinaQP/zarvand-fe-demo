@@ -9,8 +9,8 @@ export async function getRnvPrintData(
    token: string,
 ): Promise<any> {
    try {
-      const url: string =
-         process.env.REACT_APP_BACKEND + `/zarvand/renovation/print`;
+      const backendUrl = import.meta.env.VITE_APP_BACKEND;
+      const url: string = backendUrl + `/zarvand/renovation/print`;
 
       const result: FetchResult = await Fetch(url, {
          method: 'POST',
@@ -19,7 +19,7 @@ export async function getRnvPrintData(
             Authorization: `Bearer ${token}`,
          },
          body: JSON.stringify(body),
-      });  
+      });
       return result;
    } catch (error) {
       return error;

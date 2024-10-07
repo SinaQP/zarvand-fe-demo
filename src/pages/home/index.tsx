@@ -1,5 +1,4 @@
 import { FC, useContext, useEffect } from 'react';
-import Layout from '../../components/layout';
 import styles from './index.module.scss';
 import { AppContext } from '../../App.context';
 import ComingSoonText from '../../components/comingSoonText';

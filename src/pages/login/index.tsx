@@ -1,8 +1,6 @@
 import { FC, useEffect, useState } from 'react';
-import Layout from '../../components/layout';
 import NationalCodeEntry from './nationalCodeEntry';
 
-import { LoginContext } from './context';
 import styles from './index.module.scss';
 import useWindowWidth from '../../hooks/useWindowWidth';
 import blueSquareIcon from '../../assets/images/blue-squares.svg';
@@ -12,15 +10,9 @@ import { useLayoutContext } from '../../components/layout/layout.context';
 import { updateLayout } from './functions/updateLayout';
 
 const Login: FC = () => {
-   const {
-      setExtraHeaderContent,
-      setHeaderBadge,
-      setHeaderClassName,
-      setBadgeClassName,
-   } = useLayoutContext();
+   const { setExtraHeaderContent, setHeaderBadge, setBadgeId, setHeaderId } =
+      useLayoutContext();
    const [showConfirmationForm, setShowConfirmationForm] = useState(false);
-   const [nationalCode, setNationalCode] = useState<string[]>([]);
-   const [phoneNumber, setPhoneNumber] = useState<string>('');
    const headerClassName = useWindowWidth(styles.header, '');
    const mainTitle = useWindowWidth(
       <h1
@@ -47,21 +39,14 @@ const Login: FC = () => {
          setExtraHeaderContent,
          setHeaderBadge,
          setShowConfirmationForm,
-         setHeaderClassName,
-         setBadgeClassName,
+         setHeaderId,
+         setBadgeId,
          headerClassName,
       });
    }, [showConfirmationForm]);
 
    return (
-      <LoginContext.Provider
-         value={{
-            setNationalCode,
-            setPhoneNumber,
-            nationalCode,
-            phoneNumber,
-         }}
-      >
+      <section>
          {blueSquare}
          {whiteSquare}
          <CityAnimationCard />
@@ -70,7 +55,7 @@ const Login: FC = () => {
             setShowConfirmationForm={setShowConfirmationForm}
             showConfirmationForm={showConfirmationForm}
          />
-      </LoginContext.Provider>
+      </section>
    );
 };
 

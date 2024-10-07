@@ -8,11 +8,12 @@
    border-radius: 50%;
    border: 0.15em solid $secondary-color;
    margin-top: auto;
-   margin-bottom: calc(-1 * (var(--badge-height) / 2));
+   margin-bottom: calc(-1 * var(--badge-height) / 2);
+
    @include center-flex;
    @media (min-width: $desktop) {
       width: 18rem;
-      height: var(--badge-height) ;
+      height: var(--badge-height);
    }
    img {
       width: 4.7rem;

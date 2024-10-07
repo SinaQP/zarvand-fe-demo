@@ -1,4 +1,4 @@
-import { Dispatch, FC, ReactNode, SetStateAction } from 'react';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 import ConfirmationEntry from '../confirmationEntry';
 import CounterBadge from '../counter';
 import styles from '../index.module.scss';
@@ -6,10 +6,10 @@ import styles from '../index.module.scss';
 interface UpdateLayoutProps {
    showConfirmationForm: boolean;
    setShowConfirmationForm: Dispatch<SetStateAction<boolean>>;
-   setExtraHeaderContent?: (content: React.ReactNode) => void;
-   setHeaderBadge?: (badge: React.ReactNode) => void;
-   setHeaderClassName?: (className: string) => void;
-   setBadgeClassName?: (className: string) => void;
+   setExtraHeaderContent?: (content: ReactNode) => void;
+   setHeaderBadge?: (badge: ReactNode) => void;
+   setBadgeId?: (className: string) => void;
+   setHeaderId?: (className: string) => void;
    headerClassName: string;
 }
 
@@ -17,8 +17,8 @@ export const updateLayout = ({
    showConfirmationForm,
    setExtraHeaderContent,
    setHeaderBadge,
-   setHeaderClassName,
-   setBadgeClassName,
+   setBadgeId,
+   setHeaderId,
    headerClassName,
    setShowConfirmationForm,
 }: UpdateLayoutProps) => {
@@ -35,6 +35,6 @@ export const updateLayout = ({
             />
          ) : null,
       );
-   setHeaderClassName && setHeaderClassName(headerClassName);
-   setBadgeClassName && setBadgeClassName(styles['header-badge']);
+   setHeaderId && setHeaderId(headerClassName);
+   setBadgeId && setBadgeId(styles['header-badge']);
 };
