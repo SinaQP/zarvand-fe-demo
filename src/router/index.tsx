@@ -1,5 +1,5 @@
 // node libraries
-import { BrowserRouter, createBrowserRouter, Route } from 'react-router-dom';
+import { createBrowserRouter } from 'react-router-dom';
 // pages
 import Login from '../pages/login';
 import Home from '../pages/home';
@@ -7,9 +7,6 @@ import Renovation from '../pages/renovation';
 import Profile from '../pages/profile';
 import Support from '../pages/support';
 import Trade from '../pages/trade';
-import { ComponentType, ReactNode, useContext } from 'react';
-import { AppContext } from '../App.context';
-import Footer from '../components/layout/footer';
 import Layout from '../components/layout';
 
 // const Router = () => {

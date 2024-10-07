@@ -24,10 +24,9 @@
    },
    "scripts": {
       "start": "vite",
-      "build": "cp .env.pro .env && cross-env GENERATE_SOURCEMAP=false react-scripts build",
-      "test": "react-scripts test",
-      "eject": "react-scripts eject",
-      "coverage": "react-scripts test --coverage --watchAll=false"
+      "build": "vite build",
+      "test": "vitest",
+      "coverage": "vitest --coverage --watch=false"
    },
    "eslintConfig": {
       "extends": [
