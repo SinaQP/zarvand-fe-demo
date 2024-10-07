@@ -11,4 +11,8 @@ export interface LayoutContextProps {
    setExtraHeaderContent?: Dispatch<SetStateAction<ReactNode>>;
    className?: string;
    setClassName?: Dispatch<SetStateAction<string>>;
+   headerId?: string;
+   setHeaderId?: Dispatch<SetStateAction<string>>;
+   badgeId?: string;
+   setBadgeId?: Dispatch<SetStateAction<string>>;
 }

@@ -24,8 +24,8 @@ $breakpoints: (
 
 @media (min-width: $desktop) {
    :root {
-      --small-header-height: 18.5vh;
-      // --badge-height: 18rem;
+      --small-header-height: 18rem;
+      --badge-height: 18rem;
    }
 }
 $primary-box-shadow: 0px 2px 4px 0px #00000040;

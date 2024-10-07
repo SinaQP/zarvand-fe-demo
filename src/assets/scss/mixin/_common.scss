@@ -5,7 +5,7 @@
 }
 
 @mixin small-header {
-   height: var(--small-header-height) ;
+   height: var(--small-header-height);
 
    h1 {
       @media (min-width: $desktop) {

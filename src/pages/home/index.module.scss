@@ -1,8 +1,7 @@
 @import '../../assets/scss/all';
 
-.header {
+#header {
    @include small-header;
-  //  background-color: orangered;
 }
 
 .layout {

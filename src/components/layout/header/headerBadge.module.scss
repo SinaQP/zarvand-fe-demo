@@ -12,6 +12,7 @@
    @include center-flex;
    @media (min-width: $desktop) {
       width: 18rem;
+      height: var(--badge-height) ;
    }
    img {
       width: 4.7rem;
