@@ -1,7 +1,7 @@
 import { AppProps, BillDetail, BillInfo, RenovationCharge, TradeCharge } from './App.interface';
 import { AppContext, Guild, GuildBill, RenovationBill, RenovationMaster, User } from './App.context';
 import { useState } from 'react';
-
+import 'react-toastify/dist/ReactToastify.css';
 const App = (props: AppProps) => {
    const userState = useState<User | null>(null);
    const loginEnteredNationalCodeState = useState<string>('');
