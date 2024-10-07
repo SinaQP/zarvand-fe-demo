@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import Layout from '../../components/layout';
 import NationalCodeEntry from './nationalCodeEntry';
 import ConfirmationEntry from './confirmationEntry';
@@ -9,8 +9,15 @@ import useWindowWidth from '../../hooks/useWindowWidth';
 import blueSquareIcon from '../../assets/images/blue-squares.svg';
 import whiteSquareIcon from '../../assets/images/white.squares.svg';
 import CityAnimationCard from './cityAnimationCard';
+import { useLayoutContext } from '../../components/layout/layout.context';
 
 const Login: FC = () => {
+   const {
+      setExtraHeaderContent,
+      setHeaderBadge,
+      setHeaderClassName,
+      setBadgeClassName,
+   } = useLayoutContext();
    const [showConfirmationForm, setShowConfirmationForm] = useState(false);
    const [nationalCode, setNationalCode] = useState<string[]>([]);
    const [phoneNumber, setPhoneNumber] = useState<string>('');
@@ -33,6 +40,24 @@ const Login: FC = () => {
       <img src={whiteSquareIcon} className={styles['white-square']} />,
       null,
    );
+
+   useEffect(() => {
+      setExtraHeaderContent &&
+         setExtraHeaderContent(
+            true ? <ConfirmationEntry /> : null,
+         );
+      setHeaderBadge &&
+         setHeaderBadge(
+            showConfirmationForm ? (
+               <CounterBadge
+                  initialCount={120}
+                  setShowConfirmationForm={setShowConfirmationForm}
+               />
+            ) : null,
+         );
+      setHeaderClassName && setHeaderClassName(headerClassName);
+      setBadgeClassName && setBadgeClassName(styles['header-badge']);
+   }, [showConfirmationForm]);
    return (
       <LoginContext.Provider
          value={{
@@ -42,20 +67,6 @@ const Login: FC = () => {
             phoneNumber,
          }}
       >
-         {/* <Layout
-            extraHeaderContent={showConfirmationForm && <ConfirmationEntry />}
-            headerBadge={
-               showConfirmationForm && (
-                  <CounterBadge
-                     initialCount={120}
-                     setShowConfirmationForm={setShowConfirmationForm}
-                  />
-               )
-            }
-            headerClassName={headerClassName}
-            badgeClassName={styles['header-badge']}
-         > */}
-
          {blueSquare}
          {whiteSquare}
          <CityAnimationCard />
@@ -64,7 +75,6 @@ const Login: FC = () => {
             setShowConfirmationForm={setShowConfirmationForm}
             showConfirmationForm={showConfirmationForm}
          />
-         {/* </Layout> */}
       </LoginContext.Provider>
    );
 };

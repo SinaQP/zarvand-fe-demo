@@ -8,36 +8,23 @@ import Profile from '../pages/profile';
 import Support from '../pages/support';
 import Trade from '../pages/trade';
 import Layout from '../components/layout';
-
-// const Router = () => {
-//    const { token } = useContext(AppContext);
-
-//    return (
-//       <BrowserRouter>
-//          {/* {!token && <Redirect to="/login" />} */}
-//          {/* <Route path="/login" exact component={Login} /> */}
-//          {/* <Layout> */}
-//          {/* <PrivateRoute path="/home" component={Home} />
-//          <PrivateRoute path="/renovation" component={Renovation} />
-//          <PrivateRoute path="/profile" component={Profile} />
-//          <PrivateRoute path="/support" component={Support} />
-//          <PrivateRoute path="/trade" component={Trade} /> */}
-//          {/* </Layout> */}
-//       </BrowserRouter>
-//    );
-// };
+import PrivateRoute from './privateRoute';
 
 const Router = createBrowserRouter([
    {
       path: '/',
       element: <Layout />,
       children: [
-         { path: '/', Component: Home },
-         { path: '/home', Component: Home },
-         { path: '/profile', Component: Profile },
-         { path: '/support', Component: Support },
-         { path: '/trade', Component: Trade },
-         { path: '/renovation', Component: Renovation },
+         { path: '/', element: <PrivateRoute element={<Home />} /> },
+         { path: '/home', element: <PrivateRoute element={<Home />} /> },
+         { path: '/profile', element: <PrivateRoute element={<Profile />} /> },
+         { path: '/support', element: <PrivateRoute element={<Support />} /> },
+         { path: '/trade', element: <PrivateRoute element={<Trade />} /> },
+         {
+            path: '/renovation',
+            element: <PrivateRoute element={<Renovation />} />,
+         },
+         { path: '/login', element: <Login /> },
       ],
    },
 ]);
