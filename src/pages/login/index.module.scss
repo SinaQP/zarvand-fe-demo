@@ -1,9 +1,9 @@
 @import '../../assets/scss/all';
 
-.header {
+#header {
    @media (min-width: $desktop) {
       height: 100vh;
-
+      background-color: orangered;
       border-radius: 1.5rem 0 0 1.5rem;
       right: 0;
       background-color: $primary-color;
@@ -20,7 +20,7 @@
          font-family: 'BNazanin';
       }
 
-      .header-badge {
+      #header-badge {
          width: 20rem;
          height: 20rem;
          position: absolute;

@@ -5,8 +5,8 @@ export async function getMobileNumber(body: {
    national_code: string;
 }): Promise<any> {
    try {
-      const url: string =
-         process.env.REACT_APP_BACKEND + `/zarvand/get-mobile-number/`;
+      const backendUrl = import.meta.env.VITE_APP_BACKEND;
+      const url: string = backendUrl + `/zarvand/get-mobile-number/`;
 
       const result: FetchResult = await Fetch(url, {
          method: 'POST',

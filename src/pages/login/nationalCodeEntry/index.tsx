@@ -1,10 +1,9 @@
-import { Dispatch, FC, SetStateAction, useContext } from 'react';
+import { Dispatch, FC, SetStateAction } from 'react';
 import styles from './index.module.scss';
 import Button from '../../../components/button';
 import OtpInput from '../../../components/otpInput';
 import handleSubmit from './functions/submit';
-import { LoginContext } from '../context';
-import useWindowWidth from '../../../hooks/useWindowWidth';
+import { useLayoutContext } from '../../../components/layout/layout.context';
 
 interface Props {
    setShowConfirmationForm: Dispatch<SetStateAction<boolean>>;
@@ -15,9 +14,8 @@ const NationalCodeEntry: FC<Props> = ({
    setShowConfirmationForm,
    showConfirmationForm,
 }) => {
-   const { nationalCode, setPhoneNumber, setNationalCode } =
-      useContext(LoginContext);
-  
+   const { setMaskedPhoneNumber, nationalCode, setNationalCode } =
+      useLayoutContext();
    return (
       <div
          className={`${styles['national-code-entry']} ${
@@ -39,7 +37,7 @@ const NationalCodeEntry: FC<Props> = ({
                await handleSubmit(
                   setShowConfirmationForm,
                   nationalCode,
-                  setPhoneNumber,
+                  setMaskedPhoneNumber,
                )
             }
          >

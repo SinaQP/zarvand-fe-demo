@@ -6,8 +6,8 @@ export async function validateSmsCode(body: {
    code: string;
 }): Promise<any> {
    try {
-      const url: string =
-         process.env.REACT_APP_BACKEND + `/zarvand/validate-sms-code/`;
+      const backendUrl = import.meta.env.VITE_APP_BACKEND;
+      const url: string = backendUrl + `/zarvand/validate-sms-code/`;
 
       const result: FetchResult = await Fetch(url, {
          method: 'POST',
