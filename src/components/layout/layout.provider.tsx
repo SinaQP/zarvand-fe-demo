@@ -5,6 +5,7 @@ export const LayoutProvider = ({ children }: { children: ReactNode }) => {
    const [headerBadge, setHeaderBadge] = useState<ReactNode>(null);
    const [headerClassName, setHeaderClassName] = useState<string>('');
    const [badgeClassName, setBadgeClassName] = useState<string>('');
+   const [className, setClassName] = useState<string>('');
    const [extraHeaderContent, setExtraHeaderContent] =
       useState<ReactNode>(null);
    const layoutContextValue = {
@@ -16,7 +17,8 @@ export const LayoutProvider = ({ children }: { children: ReactNode }) => {
       setBadgeClassName,
       extraHeaderContent,
       setExtraHeaderContent,
-      className: '',
+      className,
+      setClassName,
    };
 
    return (

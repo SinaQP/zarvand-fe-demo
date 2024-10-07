@@ -8,11 +8,16 @@ import whiteSquareIcon from '../../assets/images/white.squares.svg';
 import { useLayoutContext } from '../../components/layout/layout.context';
 
 const Home: FC = () => {
+   const { setClassName, setHeaderClassName } = useLayoutContext();
    const { user } = useContext(AppContext);
    const whiteSquares = useWindowWidth(
       <img src={whiteSquareIcon} className={styles['white-square']} />,
       null,
    );
+   useEffect(() => {
+      setClassName && setClassName(styles['layout'])
+      setHeaderClassName && setHeaderClassName(styles['header'])
+   }, []);
    return (
       <section className={styles.main}>
          <div className={styles['welcome-text']}>
@@ -20,7 +25,7 @@ const Home: FC = () => {
             آسان در مدیریت عوارض شهری داشته باشید.
          </div>
          <ComingSoonText />
-         {whiteSquares}
+         {/* {whiteSquares} */}
       </section>
    );
 };

@@ -10,4 +10,5 @@ export interface LayoutContextProps {
    extraHeaderContent?: ReactNode;
    setExtraHeaderContent?: Dispatch<SetStateAction<ReactNode>>;
    className?: string;
+   setClassName?: Dispatch<SetStateAction<string>>;
 }

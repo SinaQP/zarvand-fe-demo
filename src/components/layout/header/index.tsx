@@ -4,8 +4,8 @@ import { useLayoutContext } from '../layout.context';
 import HeaderBadge from './headerBadge';
 import useWindowWidth from '../../../hooks/useWindowWidth';
 
-const Header: FC<{ className?: string }> = ({ className }) => {
-   const { headerBadge, extraHeaderContent } = useLayoutContext();
+const Header = () => {
+   const { headerBadge, extraHeaderContent, headerClassName } = useLayoutContext();
    const [isExpanded, setIsExpanded] = useState(false);
    const headerText = useWindowWidth(
       'پرداخت آسان عوارض شهری بدون نیاز به مراجعه حضوری',
@@ -24,7 +24,7 @@ const Header: FC<{ className?: string }> = ({ className }) => {
       <header
          className={`${styles.header} ${
             isExpanded ? styles.expanded : ''
-         } ${className}`}
+         } ${headerClassName}`}
       >
          <h1>{headerText}</h1>
          <div className={styles.extraContent}>
