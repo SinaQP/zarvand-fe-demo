@@ -8,8 +8,10 @@ import NoTradeChargesMessage from './noTradeChargeMessage';
 import getSelectedChargeBillDetails from '../../utilities/getSelectedChargeBillDetails';
 import useWindowWidth from '../../hooks/useWindowWidth';
 import MobileChargeCards from './mobileChargeCards';
+import { useLayoutContext } from '../../components/layout/layout.context';
 
 const Trade: FC = () => {
+   const { setHeaderId } = useLayoutContext();
    const [tradeCharges, setTradeCharges] = useState<TradeCharge[]>([]);
    const chargeCards = useWindowWidth(
       null,
@@ -27,6 +29,7 @@ const Trade: FC = () => {
    useEffect(() => {
       setSelectedTradeCharge(null);
       getUserTradeMasters(token, setTradeCharges);
+      setHeaderId && setHeaderId(styles['header']);
    }, [token]);
 
    useEffect(() => {
@@ -43,10 +46,10 @@ const Trade: FC = () => {
    }, [selectedTradeCharge]);
 
    return (
-      <>
+      <section className={styles.layout}>
          {tradeCharges.length <= 0 ? <NoTradeChargesMessage /> : null}
          {chargeCards}
-      </>
+      </section>
    );
 };
 

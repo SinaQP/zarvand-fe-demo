@@ -1,5 +1,4 @@
 import { FC, useContext, useEffect, useState } from 'react';
-import Layout from '../../components/layout';
 import styles from './index.module.scss';
 import { getUserRenovationCharges } from './getUserRenovationCharges';
 import { AppContext } from '../../App.context';
@@ -7,25 +6,26 @@ import { RenovationCharge } from '../../App.interface';
 import NoRenovationChargesMessage from './noRenovationChargeMessage';
 import MasterCard from '../../components/masterCard';
 import InfoCard from '../../components/infoCard';
-import resetChargeStates from '../../utilities/resetChargeStates';
 import SelectedRenovationCharge from './selectedRenovationCharge';
 import getSelectedChargeBillDetails from '../../utilities/getSelectedChargeBillDetails';
+import { useLayoutContext } from '../../components/layout/layout.context';
 
 const Renovation: FC = () => {
    const {
       token,
       selectedRenovationCharge,
       setSelectedChargeBillDetails,
-      selectedChargeBillInfo,
       setSelectedChargeBillInfo,
       setShowPaymentHistory,
    } = useContext(AppContext);
+   const { setHeaderId } = useLayoutContext();
    const [renovationCharges, setRenovationCharges] = useState<
       RenovationCharge[]
    >([]);
 
    useEffect(() => {
       getUserRenovationCharges(token, setRenovationCharges);
+      setHeaderId && setHeaderId(styles['header']);
    }, []);
 
    useEffect(() => {
@@ -59,7 +59,7 @@ const Renovation: FC = () => {
    };
 
    return (
-      <>
+      <section className={styles.layout}>
          {renovationCharges.length <= 0 && <NoRenovationChargesMessage />}
          {selectedRenovationCharge ? (
             <SelectedRenovationCharge />
@@ -93,7 +93,7 @@ const Renovation: FC = () => {
                ));
             })()
          )}
-      </>
+      </section>
    );
 };
 
