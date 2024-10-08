@@ -14,17 +14,19 @@ const Home: FC = () => {
       null,
    );
    useEffect(() => {
-      setClassName && setClassName(styles['layout'])
-      setHeaderId && setHeaderId(styles['header'])
+      setClassName && setClassName(styles['layout']);
+      setHeaderId && setHeaderId(styles['header']);
    }, []);
    return (
       <section className={styles.main}>
          <div className={styles['welcome-text']}>
-            {user ? user.name : ''} عزیز ! خوش آمدید. امیدواریم تجربه‌ای سریع و
-            آسان در مدیریت عوارض شهری داشته باشید.
+            <span>
+               {user ? user.name : ''} عزیز ! خوش آمدید. امیدواریم تجربه‌ای سریع
+               و آسان در مدیریت عوارض شهری داشته باشید.
+            </span>
          </div>
          <ComingSoonText />
-         {/* {whiteSquares} */}
+         {whiteSquares}
       </section>
    );
 };

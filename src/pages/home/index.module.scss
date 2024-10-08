@@ -4,21 +4,33 @@
    @include small-header;
 }
 
-#layout {
-   margin-top: 20vh;
+.main {
+   @include default-layout;
    padding: 0 1rem;
    display: flex;
    align-items: center;
    flex-direction: column;
-
+   @media (min-width: $desktop) {
+      padding: 0 25vw;
+   }
    .welcome-text {
       background-color: $primary-color;
       padding: 1.7rem 0.5rem;
       font-size: 1.7rem;
-      font-family: 'B Nazanin', sans-serif;
+      font-family: 'BNazanin', sans-serif;
       color: $font-white-color;
       border-radius: 1rem;
       margin-bottom: 4rem;
+      width: 100%;
+      @media (min-width: $desktop) {
+         font-size: 3.7rem;
+         text-align: center;
+      }
+      span {
+         display: block;
+         margin: 0 auto;
+         max-width: 40rem;
+      }
    }
 
    .coming-soon-text {
@@ -28,5 +40,13 @@
       border: 1px solid $secondary-color;
       text-align: center;
       border-radius: 1rem;
+   }
+
+   .white-square {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      transform: rotate(-90deg);
+      height: 25vw;
    }
 }
