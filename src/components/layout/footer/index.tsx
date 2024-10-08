@@ -1,13 +1,13 @@
+import { useEffect, useRef, useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
+import { AppContext } from '../../../App.context';
+import resetChargeStates from '../../../utilities/resetChargeStates';
 import ProfileIcon from './components/profileIcon';
 import OperatorIcon from './components/operatorIcon';
 import HomeIcon from './components/homeIcon';
 import BrickWallsIcon from './components/brickWallsIcon';
 import ShopIcon from './components/shop';
-import { ReactNode, useContext, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { AppContext } from '../../../App.context';
-import resetChargeStates from '../../../utilities/resetChargeStates';
 import { IconType, RouteType } from './index.interface';
 
 const Footer = () => {
@@ -53,17 +53,39 @@ const Footer = () => {
       id: 0,
    });
    const [selectedRoute, setSelectedRoute] = useState<RouteType | null>(null);
+
+   const [activeIconPosition, setActiveIconPosition] = useState({ left: 0 });
+   const footerIconsRefs = useRef<any[]>([]);
+   const circleRef = useRef(null);
+
+   const updateCirclePosition = () => {
+      const activeIcon = footerIconsRefs.current.find(
+         (iconRef, idx) =>
+            iconRef &&
+            currentRoute.route === footerIconsList[idx].route.toLowerCase(),
+      );
+      if (activeIcon && circleRef.current) {
+         const rect = activeIcon.getBoundingClientRect();
+         setActiveIconPosition({ left: rect.left + rect.width / 2 - 35 });
+      }
+   };
+
    useEffect(() => {
       for (let i = 0; i < footerIconsList.length; i++) {
-         footerIconsList[i].route === currentRoute.route &&
-            setCurrentRoute((prev) => {
-               return { ...prev, id: i };
-            });
+         if (footerIconsList[i].route === currentRoute.route) {
+            setCurrentRoute((prev) => ({ ...prev, id: i }));
+         }
       }
    }, []);
 
+   useEffect(() => {
+      updateCirclePosition();
+      window.addEventListener('resize', updateCirclePosition);
+      return () => window.removeEventListener('resize', updateCirclePosition);
+   }, [currentRoute]);
+
    const handleRedirect = (icon: IconType, id: number) => {
-      setSelectedRoute({ route: icon.route, id: id });
+      setSelectedRoute({ route: icon.route, id });
       resetChargeStates(
          setSelectedTradeCharge,
          setSelectedRenovationCharge,
@@ -71,35 +93,20 @@ const Footer = () => {
          setSelectedChargeBillInfo,
       );
 
-      setTimeout(() => {
-         history(icon.route);
-      }, 600);
-   };
-
-   const assignAnimation = (id: number, isActive: boolean): string => {
-      if (selectedRoute && isActive) {
-         const distance = `${Math.abs(selectedRoute.id - id) * 7.5}rem`;
-         const footerIconElement = document.querySelectorAll(
-            `.${styles.footerIcon}`,
-         )[id];
-         (footerIconElement as HTMLDivElement)?.style.setProperty(
-            '--translate-x',
-            distance,
-         );
-
-         if (selectedRoute.id > id) {
-            return styles.MTLAnimation;
-         } else {
-            return styles.MTRAnimation;
-         }
-      } else {
-         return '';
-      }
+      setCurrentRoute({ id, route: icon.route });
+      setSelectedRoute(null);
+      history(icon.route);
    };
 
    if (isLoginPage) return null;
    return (
       <footer id={styles.footerStyleWrapper}>
+         <div
+            className={`${styles.activatedIcon}`}
+            ref={circleRef}
+            style={{ left: `${activeIconPosition.left}px` }}
+         ></div>
+
          {footerIconsList.map((icon, idx) => {
             const isRouteActive =
                icon.route.toLowerCase() === currentRoute.route;
@@ -108,13 +115,14 @@ const Footer = () => {
                <div
                   className={`${styles.footerIcon} ${
                      isRouteActive ? styles.active : ''
-                  } ${assignAnimation(idx, isRouteActive)} ${
+                  } ${
                      selectedRoute?.route === icon.route
                         ? styles.selectedIconAnimation
                         : ''
                   }`}
                   key={`${icon.title}-${idx}`}
                   onClick={() => handleRedirect(icon, idx)}
+                  ref={(el) => (footerIconsRefs.current[idx] = el)}
                >
                   <icon.icon
                      className={isRouteActive && styles.icon}
