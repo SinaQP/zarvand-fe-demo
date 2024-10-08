@@ -8,6 +8,7 @@ import whiteSquareIcon from '../../assets/images/white.squares.svg';
 import CityAnimationCard from './cityAnimationCard';
 import { useLayoutContext } from '../../components/layout/layout.context';
 import { updateLayout } from './functions/updateLayout';
+import { Bounce, toast, ToastContainer } from 'react-toastify';
 
 const Login: FC = () => {
    const { setExtraHeaderContent, setHeaderBadge, setBadgeId, setHeaderId } =
@@ -54,6 +55,19 @@ const Login: FC = () => {
          <NationalCodeEntry
             setShowConfirmationForm={setShowConfirmationForm}
             showConfirmationForm={showConfirmationForm}
+         />
+         <ToastContainer
+            rtl
+            position="bottom-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            closeOnClick
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            transition={Bounce}
+            bodyStyle={{ fontFamily: 'BNazanin', fontSize: '2.5rem' }}
          />
       </section>
    );

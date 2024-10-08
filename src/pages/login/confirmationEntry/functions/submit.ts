@@ -2,6 +2,7 @@ import { Dispatch, ReactNode, SetStateAction } from 'react';
 import { validateSmsCode } from '../../../../apis/login/validate-sms-code';
 import { User } from '../../../../App.context';
 import { NavigateFunction } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 interface Props {
    verificationCode: string;
@@ -40,6 +41,10 @@ const handleConfirmationButton: Function = async ({
       setExtraHeaderContent(null);
       setHeaderBadge(null);
       navigate('home');
+   } else {
+      const responseBody = response.body;
+      const message = responseBody.message;
+      toast.error(message);
    }
 };
 
