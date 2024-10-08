@@ -1,5 +1,4 @@
 import { FC, useContext, useEffect, useState } from 'react';
-import Layout from '../../components/layout';
 import styles from './index.module.scss';
 import { AppContext } from '../../App.context';
 import { getUserTradeMasters } from './functions/getPersonTradeMasters';

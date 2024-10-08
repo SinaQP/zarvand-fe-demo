@@ -6,7 +6,8 @@
 
 .layout {
    margin-top: calc(var(--small-header-height) + 2rem);
-
+   margin-bottom: 0 !important;
+   padding-bottom: 0 !important;
    @include default-layout;
    .info-card {
       margin-bottom: 1.5rem;

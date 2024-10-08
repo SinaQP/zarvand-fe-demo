@@ -1,29 +1,35 @@
 @import '../../../assets/scss/all';
 
 .container {
-  .message-box {
-    width: 100%;
-    @include center-flex;
-    flex-direction: column;
-
-    font-size: 1.5rem;
-    font-weight: 400;
-    text-align: center;
-    border-bottom: 2px solid $secondary-color;
-    padding-bottom: 0.5rem;
-
-    @media (min-width: $desktop) {
-      width: 50vw;
+   @media (min-width: $desktop) {
+      @include center-flex;
+      flex-direction: column;
       margin: 0 auto;
-      font-size: 3.5rem;
-    }
-  }
+   }
 
-  img {
-    width: 100%;
-    @media (min-width: $desktop) {
-      height: 66vh;
-      margin-top: -20vh;
-    }
-  }
+   .message-box {
+      @include center-flex;
+      flex-direction: column;
+
+      font-size: 1.5rem;
+      font-weight: 400;
+      text-align: center;
+      border-bottom: 2px solid $secondary-color;
+      padding-bottom: 0.5rem;
+
+      @media (min-width: $desktop) {
+         font-size: 2.5rem;
+         @include center-flex;
+         flex-direction: column;
+         margin: 0 auto;
+      }
+   }
+
+   img {
+      width: 100%;
+      @media (min-width: $desktop) {
+         width: 64.5vw;
+         height: 64.5vh;
+      }
+   }
 }
