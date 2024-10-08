@@ -4,7 +4,7 @@ import { Navigate } from 'react-router-dom';
 
 const PrivateRoute: FC<{ element: ReactNode }> = ({ element }) => {
    const { token } = useContext(AppContext);
-   return true ? element : <Navigate to="/login" />;
+   return token ? element : <Navigate to="/login" />;
 };
 
 export default PrivateRoute;
