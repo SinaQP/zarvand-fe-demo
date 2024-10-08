@@ -21,9 +21,9 @@
       font-weight: 400;
       color: $font-white-color;
 
-      margin-top: 3.4rem;
       margin-bottom: 1.8rem;
       @media (min-width: $desktop) {
+         margin-top: 3.4rem;
          font-size: 5rem;
          min-width: 43rem;
       }
