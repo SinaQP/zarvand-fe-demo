@@ -4,16 +4,17 @@
   box-sizing: border-box;
 }
 
+$base-font-size: 62.5%;
+
 html {
   font-size: 62.5%;
-  @media (max-width: 1920px) and (min-width: $mobile) {
-    font-size: 60%;
+  @each $width, $size in $breakpoints {
+    @media (max-width: $width) {
+      font-size: $size;
+    }
   }
-  @media (max-width: 1600px) and (min-width: $mobile) {
-    font-size: 50%;
-  }
-  @media (max-width: 1440px) and (min-width: $mobile) {
-    font-size: 43.875%;
+  @media (max-width: $desktop) {
+    font-size: 62.5%;
   }
 
   ::-webkit-scrollbar {
@@ -54,32 +55,9 @@ html {
     background: rgba(76, 112, 243, 0.7);
   }
 }
-
 body {
   font-size: 1.6rem;
   font-family: BNazanin, Kalameh, sans-serif;
   background-color: rgba($color: #d9d9d9, $alpha: 0.1);
   direction: $direction;
-
-  .swal2-popup,
-  .swal2-confirm,
-  .swal2-cancel,
-  .swal2-deny {
-    font-size: 2.4rem !important;
-    font-family: Vazirmatn;
-  }
-
-  .swal2-confirm {
-    background-color: #1ca421 !important;
-  }
-
-  .swal2-cancel {
-    background-color: #0f3bde !important;
-  }
-
-  .swal2-deny {
-    background-color: transparent !important;
-    color: #e05d5d !important;
-    border: 1px solid #e05d5d !important;
-  }
 }

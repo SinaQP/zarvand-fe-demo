@@ -1,17 +1,18 @@
 .button {
-      font-family: Kalameh;
-      font-size: 1.6rem;
-      font-weight: 700;
+   font-family: BNazanin;
+   font-size: 1.6rem;
+   font-weight: 700;
 
-      color: black;
-      background-color: #e3fe55;
-      border: 1px solid #e3fe55;
-      border-radius: 3.5rem;
-      padding: 1.7rem 3.3rem;
+   color: black;
+   background-color: #e3fe55;
+   border: 1px solid #e3fe55;
+   border-radius: 3.5rem;
+   padding: 1.7rem 3.3rem;
 
-      cursor: pointer;
-      transition: 450ms ease-in;
-      &:hover {
-            background-color: darken(#e3fe55, 20%);
-      }
+   cursor: pointer;
+   transition: 450ms ease-in;
+   &:hover {
+      // background-color: darken(#e3fe55, 20%);
+      background-color: adjust-color(#e3fe55, $lightness: -20%);
+   }
 }

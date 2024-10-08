@@ -1,0 +1,12 @@
+@import "../../assets/scss/all";
+
+.coming-soon-text {
+  font-size: 4rem;
+  font-weight: 400;
+  text-align: center;
+  @include center-flex;
+  padding: 2.1rem 0;
+  width: 100%;
+  border: 1px solid $secondary-color;
+  border-radius: 1.5rem;
+}

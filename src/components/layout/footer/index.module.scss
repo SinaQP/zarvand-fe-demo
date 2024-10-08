@@ -2,8 +2,8 @@
 
 #footerStyleWrapper {
    width: 100%;
-   height: 8rem;
-   box-shadow: 0 -0.2rem 0.4rem 0 rgba(0, 0, 0, 0.25);
+   height: $footer-height;
+   box-shadow: $primary-box-shadow;
    border-radius: 2rem 2rem 0 0;
    background-color: $primary-color;
 
@@ -25,7 +25,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      transform: translateY(0) scale(1);
+      width: 7rem;
 
       .footerIconSize {
          width: 3.2rem;
@@ -39,26 +39,47 @@
          text-align: center;
       }
 
-      &.hasAnimation {
+      &.active {
          width: 7rem;
          height: 7rem;
-         border: 0.2rem solid rgba(211, 104, 43, 1);
-         border-radius: 100%;
-         background-color: $bg-color;
-         opacity: 0;
+         opacity: 1;
          justify-content: center;
-         animation: iconMoveUpAndGrow 0.5s ease-out forwards;
+         transform: translateY(-2.5rem) scale(1.2);
+         animation: iconMoveUpAndGrow 0.4s ease;
 
          .title {
-            animation: hideMessage 1s ease-out forwards;
-         }             
+            opacity: 0;
+         }
       }
+
+      &.selectedIconAnimation {
+         animation: iconMoveUpAndGrow 0.8s forwards;
+      }
+
       .icon {
          transform: scale(1.5);
       }
    }
 
+   .activatedIcon {
+      display: flex;
+      position: absolute;
+      width: 7rem;
+      height: 7rem;
+      border: 0.2rem solid rgba(211, 104, 43, 1);
+      border-radius: 100%;
+      background-color: $bg-color;
+      justify-content: center;
+      bottom: 0;
+      transform: translateY(-2.5rem) scale(1.2);
+      transition: left 0.4s ease;
+   }
 
+   @media (min-width: $desktop) {
+      right: 0;
+      height: 100%;
+      width: 10rem;
+   }
 }
 
 @keyframes iconMoveUpAndGrow {
@@ -69,16 +90,5 @@
    100% {
       transform: translateY(-2.5rem) scale(1.2);
       opacity: 1;
-   }
-}
-
-@keyframes hideMessage {
-   0% {
-      transform: translateY(0) scale(1);
-      opacity: 1;
-   }
-   100% {
-      transform: translateY(0) scale(1.2);
-      opacity: 0;
    }
 }

@@ -1,11 +1,17 @@
 import { FC } from 'react';
 import styles from './headerBadge.module.scss';
-import MunicipalityLogo from '../../../assets/images/municipality-logo.bmp';
+import MunicipalityLogo from '../../../assets/images/municipality-logo.png';
+import { useLayoutContext } from '../layout.context';
 
 const HeaderBadge: FC = () => {
-   return <div className={styles['header-badge']}>
-      <img src={MunicipalityLogo} alt="Municipality Logo" />
-   </div>;
-
+   const { badgeClassName, badgeId } = useLayoutContext();
+   return (
+      <div
+         className={`${styles['header-badge']} ${badgeClassName}`}
+         id={badgeId}
+      >
+         <img src={MunicipalityLogo} alt="Municipality Logo" />
+      </div>
+   );
 };
 export default HeaderBadge;

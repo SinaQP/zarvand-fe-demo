@@ -8,8 +8,8 @@ export async function getTradeBillDetailsInfo(
    token: string,
 ): Promise<any> {
    try {
-      const url: string =
-         process.env.REACT_APP_BACKEND + `/zarvand/trade-bill-details-info/`;
+      const backendUrl = import.meta.env.VITE_APP_BACKEND;
+      const url: string = backendUrl + `/zarvand/trade-bill-details-info/`;
 
       const result: FetchResult = await Fetch(url, {
          method: 'POST',

@@ -1,20 +1,20 @@
-import { FC } from 'react';
-import { Props } from './index.interface';
 import styles from './index.module.scss';
 import Header from './header';
-import { LayoutContext } from './layout.context';
+import { useLayoutContext } from './layout.context';
 import Footer from './footer';
+import { Outlet } from 'react-router-dom';
+import { LayoutProvider } from './layout.provider';
 
-const Layout: FC<Props> = ({ headerBadge, children, extraHeaderContent, headerClassName }) => {
+const Layout = () => {
+   const { className } = useLayoutContext();
    return (
-      <LayoutContext.Provider value={{ headerBadge, extraHeaderContent }}>
-         <div className={styles.layout}>
-            <Header className={headerClassName}/>
-            <main className={styles.main}>{children}</main>
-            <Footer />
-         </div>
-      </LayoutContext.Provider>
+      <div className={styles.layout}>
+         <Header />
+         <main className={`${styles.main} ${className}`}>
+            <Outlet />
+         </main>
+         <Footer />
+      </div>
    );
 };
-
 export default Layout;

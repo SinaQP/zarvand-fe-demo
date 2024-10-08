@@ -7,4 +7,5 @@ export interface Props
    > {
    children?: ReactElement | ReactElement[] | string;
    className?: string;
+   haveLoading?: boolean;
 }

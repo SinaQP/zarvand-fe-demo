@@ -1,24 +1,27 @@
-@import "../../../assets/scss/all";
-
-$badge-height: 7rem;
+@import '../../../assets/scss/all';
 
 .header-badge {
-  width: 7rem;
-  height: $badge-height;
-  background-color: $bg-color;
-  box-shadow: $primary-box-shadow;
-  border-radius: 50%;
-  border: 0.15em solid $secondary-color;
-  margin-top: auto;
-  margin-bottom: -($badge-height / 2);
-  @include center-flex;
-  //position: absolute;
-  //bottom: 0;
+   width: 7rem;
+   height: var(--badge-height);
+   background-color: $bg-color;
+   box-shadow: $primary-box-shadow;
+   border-radius: 50%;
+   border: 0.15em solid $secondary-color;
+   margin-top: auto;
+   margin-bottom: calc(-1 * var(--badge-height) / 2);
 
-  img {
-    width: 4.7rem;
-    height: 3.5rem;
-    //margin: auto auto;
-    margin: 0 auto;
-  }
+   @include center-flex;
+   @media (min-width: $desktop) {
+      width: 18rem;
+      height: var(--badge-height);
+   }
+   img {
+      width: 4.7rem;
+      height: 3.5rem;
+      margin: 0 auto;
+      @media (min-width: $desktop) {
+         width: 12.7rem;
+         height: 9rem;
+      }
+   }
 }

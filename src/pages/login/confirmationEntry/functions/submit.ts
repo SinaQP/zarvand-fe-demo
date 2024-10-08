@@ -1,24 +1,32 @@
-import { Dispatch, SetStateAction } from 'react';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 import { validateSmsCode } from '../../../../apis/login/validate-sms-code';
-import { SubSystem, User } from '../../../../App.context';
+import { User } from '../../../../App.context';
+import { NavigateFunction } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 interface Props {
    verificationCode: string;
    nationalCode: string;
-   history: { push: (url: string) => void };
+   navigate: NavigateFunction;
    setToken: Dispatch<SetStateAction<string>>;
    setUser: Dispatch<SetStateAction<User | null>>;
-   setSubsystems: Dispatch<SetStateAction<SubSystem[]>>;
+   setHeaderId: Dispatch<SetStateAction<string>>;
+   setBadgeId: Dispatch<SetStateAction<string>>;
+   setExtraHeaderContent: Dispatch<SetStateAction<ReactNode | null>>;
+   setHeaderBadge: Dispatch<SetStateAction<ReactNode | null>>;
 }
 
 const handleConfirmationButton: Function = async ({
-                                                     verificationCode,
-                                                     nationalCode,
-                                                     history,
-                                                     setSubsystems,
-                                                     setToken,
-                                                     setUser,
-                                                  }: Props) => {
+   verificationCode,
+   nationalCode,
+   navigate,
+   setToken,
+   setUser,
+   setBadgeId,
+   setHeaderId,
+   setExtraHeaderContent,
+   setHeaderBadge,
+}: Props) => {
    console.log(nationalCode, verificationCode);
    const response = await validateSmsCode({
       national_code: nationalCode,
@@ -28,8 +36,15 @@ const handleConfirmationButton: Function = async ({
    if (response.status === 200) {
       setToken(responseBody.token);
       setUser(responseBody.user);
-      setSubsystems(() => responseBody.subsystems);
-      history.push('home');
+      setHeaderId('');
+      setBadgeId('');
+      setExtraHeaderContent(null);
+      setHeaderBadge(null);
+      navigate('home');
+   } else {
+      const responseBody = response.body;
+      const message = responseBody.message;
+      toast.error(message);
    }
 };
 

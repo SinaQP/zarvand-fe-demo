@@ -56,6 +56,11 @@
       right: 47%;
       z-index: 1;
       background: linear-gradient(72deg, #D3682B 0%, #248094 100%);
+      @media (min-width: $desktop) {
+        width: 18px;
+        height: 18px;
+        top: -7%;
+      }
     }
   }
 }
