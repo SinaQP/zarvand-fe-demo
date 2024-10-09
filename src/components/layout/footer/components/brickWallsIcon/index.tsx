@@ -1,15 +1,20 @@
 import { FC } from 'react';
 import { FooterIconType } from '../index.interface';
 
-const BrickWallsIcon: FC<FooterIconType> = ({ color = 'white', className }) => {
+const BrickWallsIcon: FC<FooterIconType> = ({
+   color = 'white',
+   className,
+   width,
+   height,
+}) => {
    return (
       <svg
-         width="25"
-         height="24"
+         width={width}
+         height={height}
          viewBox="0 0 25 24"
          fill="none"
          xmlns="http://www.w3.org/2000/svg"
-         className={className}
+         className={`${className}`}
       >
          <g clipPath="url(#clip0_1_25)">
             <path

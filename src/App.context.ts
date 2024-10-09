@@ -1,10 +1,16 @@
 import { createContext, Dispatch, SetStateAction } from 'react';
-import { BillDetail, BillInfo, RenovationCharge, TradeCharge } from './App.interface';
+import {
+   BillDetail,
+   BillInfo,
+   RenovationCharge,
+   TradeCharge,
+} from './App.interface';
 
 export interface User {
    name: string;
    national_code: string;
    mobile_number: string;
+   birth_date: string;
 }
 
 export interface RenovationMaster {
@@ -79,7 +85,9 @@ export interface AppContextProps {
    setSelectedChargeBillDetails: Dispatch<SetStateAction<BillDetail[] | null>>;
    setUser: Dispatch<SetStateAction<User | null>>;
    setSelectedTradeCharge: Dispatch<SetStateAction<TradeCharge | null>>;
-   setSelectedRenovationCharge: Dispatch<SetStateAction<RenovationCharge | null>>;
+   setSelectedRenovationCharge: Dispatch<
+      SetStateAction<RenovationCharge | null>
+   >;
    setSelectedCharge: Dispatch<SetStateAction<RenovationMaster | null>>;
    setSelectedGuildCharge: Dispatch<SetStateAction<Guild | null>>;
    setLoginEnteredNationalCode: Dispatch<SetStateAction<string>>;
@@ -105,33 +113,20 @@ export interface AppContextProps {
    setShowPaymentHistory: Dispatch<SetStateAction<boolean>>;
 }
 
-
 export const AppContext = createContext<AppContextProps>({
-   setToken: () => {
-   },
-   setShowPaymentHistory: () => {
-   },
-   setUser: () => {
-   },
-   setSelectedCharge: () => {
-   },
-   setSelectedGuildCharge: () => {
-   },
-   setLoginEnteredNationalCode: () => {
-   },
-   setMaskedPhoneNumber: () => {
-   },
-   setSelectedRenovationBillDetail: () => {
-   },
-   setSelectedGuildBillDetail: () => {
-   },
-   setSelectedTradeCharge: () => {
-   }, setSelectedRenovationCharge: () => {
-   },
-   setSelectedChargeBillDetails: () => {
-   },
-   setSelectedChargeBillInfo: () => {
-   },
+   setToken: () => {},
+   setShowPaymentHistory: () => {},
+   setUser: () => {},
+   setSelectedCharge: () => {},
+   setSelectedGuildCharge: () => {},
+   setLoginEnteredNationalCode: () => {},
+   setMaskedPhoneNumber: () => {},
+   setSelectedRenovationBillDetail: () => {},
+   setSelectedGuildBillDetail: () => {},
+   setSelectedTradeCharge: () => {},
+   setSelectedRenovationCharge: () => {},
+   setSelectedChargeBillDetails: () => {},
+   setSelectedChargeBillInfo: () => {},
    selectedChargeBillInfo: null,
    token: '',
    selectedCharge: null,
