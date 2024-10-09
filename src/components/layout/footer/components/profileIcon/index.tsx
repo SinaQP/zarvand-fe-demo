@@ -1,15 +1,20 @@
 import { FC } from 'react';
 import { FooterIconType } from '../index.interface';
 
-const ProfileIcon: FC<FooterIconType> = ({ color = 'white', className }) => {
+const ProfileIcon: FC<FooterIconType> = ({
+   color = 'white',
+   className,
+   height,
+   width,
+}) => {
    return (
       <svg
-         width="24"
-         height="24"
+         width={width}
+         height={height}
          viewBox="0 0 24 24"
          fill="none"
          xmlns="http://www.w3.org/2000/svg"
-         className={className ? className : ''}
+         className={`${className}`}
       >
          <path
             fillRule="evenodd"

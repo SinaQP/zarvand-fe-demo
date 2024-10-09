@@ -9,6 +9,7 @@ import HomeIcon from './components/homeIcon';
 import BrickWallsIcon from './components/brickWallsIcon';
 import ShopIcon from './components/shop';
 import { IconType, RouteType } from './index.interface';
+import useWindowWidth from '../../../hooks/useWindowWidth';
 
 const Footer = () => {
    const footerIconsList: IconType[] = [
@@ -25,7 +26,7 @@ const Footer = () => {
       {
          title: 'خانه',
          icon: HomeIcon,
-         route: '/home',
+         route: location.pathname === '/' ? '/' : '/home',
       },
       {
          title: 'نوسازی',
@@ -54,31 +55,51 @@ const Footer = () => {
    });
    const [selectedRoute, setSelectedRoute] = useState<RouteType | null>(null);
 
-   const [activeIconPosition, setActiveIconPosition] = useState({ left: 0 });
+   const [activeIconPosition, setActiveIconPosition] = useState({
+      left: 0,
+      top: 0,
+   });
    const footerIconsRefs = useRef<any[]>([]);
    const circleRef = useRef(null);
+   const [drawerActive, setDrawerActive] = useState(false);
+   const windowWidth = useWindowWidth('desktop', 'mobile');
 
-   const updateCirclePosition = () => {
-      const activeIcon = footerIconsRefs.current.find(
-         (iconRef, idx) =>
-            iconRef &&
-            currentRoute.route === footerIconsList[idx].route.toLowerCase(),
-      );
-      if (activeIcon && circleRef.current) {
-         const rect = activeIcon.getBoundingClientRect();
-         setActiveIconPosition({ left: rect.left + rect.width / 2 - 35 });
-      }
+   const handleChangeCurrentRoute = (id: number) => {
+      setCurrentRoute((prev) => ({ ...prev, id }));
    };
 
    useEffect(() => {
       for (let i = 0; i < footerIconsList.length; i++) {
          if (footerIconsList[i].route === currentRoute.route) {
-            setCurrentRoute((prev) => ({ ...prev, id: i }));
+            handleChangeCurrentRoute(i);
          }
       }
    }, []);
 
    useEffect(() => {
+      const updateCirclePosition = () => {
+         const activeIcon = footerIconsRefs.current.find(
+            (iconRef, idx) =>
+               iconRef &&
+               currentRoute.route === footerIconsList[idx].route.toLowerCase(),
+         );
+         console.log('lvl1');
+
+         if (activeIcon && circleRef.current) {
+            console.log('lvl2');
+            const rect = activeIcon.getBoundingClientRect();
+            setActiveIconPosition(
+               windowWidth === 'mobile'
+                  ? {
+                       left: rect.left + rect.width / 2 - 35,
+                       top: 0,
+                    }
+                  : { left: 0, top: rect.top },
+            );
+         }
+      };
+
+      console.log('test');
       updateCirclePosition();
       window.addEventListener('resize', updateCirclePosition);
       return () => window.removeEventListener('resize', updateCirclePosition);
@@ -104,8 +125,29 @@ const Footer = () => {
          <div
             className={`${styles.activatedIcon}`}
             ref={circleRef}
-            style={{ left: `${activeIconPosition.left}px` }}
+            style={
+               windowWidth === 'mobile'
+                  ? { left: `${activeIconPosition.left}px` }
+                  : { top: `${activeIconPosition.top}px` }
+            }
          ></div>
+
+         {windowWidth === 'desktop' && (
+            <div className={styles.desktopDrawer}>
+               {drawerActive ? (
+                  <>
+                     <div className={styles.crossLines}></div>
+                     <div className={styles.crossLines}></div>
+                  </>
+               ) : (
+                  <>
+                     <div className={styles.hamburgerLines}></div>
+                     <div className={styles.hamburgerLines}></div>
+                     <div className={styles.hamburgerLines}></div>
+                  </>
+               )}
+            </div>
+         )}
 
          {footerIconsList.map((icon, idx) => {
             const isRouteActive =
@@ -127,8 +169,10 @@ const Footer = () => {
                   <icon.icon
                      className={isRouteActive && styles.icon}
                      color={isRouteActive ? 'black' : 'white'}
+                     width={windowWidth === 'desktop' ? 60 : 24}
+                     height={windowWidth === 'desktop' ? 60 : 24}
                   />
-                  {!isRouteActive && (
+                  {!isRouteActive && windowWidth === 'mobile' && (
                      <span className={styles.title}>{icon.title}</span>
                   )}
                </div>

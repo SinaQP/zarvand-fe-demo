@@ -1,15 +1,20 @@
 import { FC } from 'react';
 import { FooterIconType } from '../index.interface';
 
-const HomeIcon: FC<FooterIconType> = ({ color = 'white', className }) => {
+const HomeIcon: FC<FooterIconType> = ({
+   color = 'white',
+   className,
+   height,
+   width,
+}) => {
    return (
       <svg
-         width="24"
-         height="24"
+         width={width}
+         height={height}
          viewBox="0 0 24 24"
          fill="none"
          xmlns="http://www.w3.org/2000/svg"
-         className={className}
+         className={`${className}`}
       >
          <path
             d="M23.4993 12.0921C23.5006 12.0984 23.5001 12.1048 23.4982 12.1101L12.3519 1.07685L12.0001 0.728673L11.6484 1.07685L0.501746 12.1103C0.500677 12.1072 0.49991 12.1033 0.500008 12.0987C0.500221 12.0887 0.504346 12.0826 0.506144 12.0809L12.0001 0.703528L23.4937 12.0804L23.4939 12.0806C23.4951 12.0818 23.4979 12.0855 23.4993 12.0921ZM16.0052 2.25093H19.5V2.28575H19H16.0052C16.0031 2.28301 16.0001 2.27709 16.0001 2.26834C16.0001 2.25959 16.0031 2.25366 16.0052 2.25093ZM23.4999 12.6166C23.3712 12.6168 23.2474 12.5654 23.1544 12.4733L23.4999 12.6166Z"
