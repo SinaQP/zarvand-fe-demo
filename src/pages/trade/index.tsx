@@ -8,12 +8,14 @@ import getSelectedChargeBillDetails from '../../utilities/getSelectedChargeBillD
 import useWindowWidth from '../../hooks/useWindowWidth';
 import MobileChargeCards from './mobileChargeCards';
 import { useLayoutContext } from '../../components/layout/layout.context';
+import { Bounce, ToastContainer } from 'react-toastify';
+import DesktopChargeCards from './desktopChargeCards';
 
 const Trade: FC = () => {
    const { setHeaderId } = useLayoutContext();
    const [tradeCharges, setTradeCharges] = useState<TradeCharge[]>([]);
    const chargeCards = useWindowWidth(
-      null,
+      <DesktopChargeCards />,
       <MobileChargeCards tradeCharges={tradeCharges} />,
    );
    const {
@@ -46,8 +48,21 @@ const Trade: FC = () => {
 
    return (
       <section className={styles.layout}>
-         {tradeCharges.length <= 0 ? <NoTradeChargesMessage /> : null}
+         {/* {tradeCharges.length <= 0 ? <NoTradeChargesMessage /> : null} */}
          {chargeCards}
+         <ToastContainer
+            rtl
+            position="bottom-center"
+            autoClose={2000}
+            hideProgressBar={false}
+            closeOnClick
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            transition={Bounce}
+            bodyStyle={{ fontFamily: 'BNazanin', fontSize: '2.5rem' }}
+         />
       </section>
    );
 };

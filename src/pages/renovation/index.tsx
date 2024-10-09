@@ -9,6 +9,7 @@ import InfoCard from '../../components/infoCard';
 import SelectedRenovationCharge from './selectedRenovationCharge';
 import getSelectedChargeBillDetails from '../../utilities/getSelectedChargeBillDetails';
 import { useLayoutContext } from '../../components/layout/layout.context';
+import { Bounce, ToastContainer } from 'react-toastify';
 
 const Renovation: FC = () => {
    const {
@@ -93,6 +94,19 @@ const Renovation: FC = () => {
                ));
             })()
          )}
+         <ToastContainer
+            rtl
+            position="bottom-center"
+            autoClose={2000}
+            hideProgressBar={false}
+            closeOnClick
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+            transition={Bounce}
+            bodyStyle={{ fontFamily: 'BNazanin', fontSize: '2.5rem' }}
+         />
       </section>
    );
 };

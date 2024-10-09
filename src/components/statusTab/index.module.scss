@@ -1,0 +1,70 @@
+@import '../../assets/scss/all';
+.statusTab {
+   display: flex;
+   align-items: center;
+   flex-direction: column;
+   margin: 0 auto;
+   width: 80%;
+   font-size: 3rem;
+
+   .header {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      .statues {
+         direction: ltr;
+         display: flex;
+         div {
+            transition: all 500ms;
+            width: 18rem;
+            direction: rtl;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            cursor: pointer;
+            span {
+               color: #999999;
+               transition: color 5000ms;
+            }
+            img {
+               filter: grayscale(100%);
+               transition: color 5000ms;
+            }
+            &.isActive {
+               transform: scale(1.05);
+               span {
+                  color: black;
+               }
+               img {
+                  filter: none;
+               }
+            }
+            &:not(:last-of-type) {
+               margin-right: 3rem;
+            }
+         }
+      }
+   }
+
+   .progress-bar {
+      transition: all 500ms;
+      width: 100%;
+      height: 1.6rem;
+      border-radius: 1rem;
+      background-color: $primary-color;
+      display: flex;
+      align-items: center;
+      position: relative;
+      .active-bar {
+         height: 0.7rem;
+         width: 17rem;
+         background-color: white;
+         border-radius: 1rem;
+         position: absolute;
+         margin: 0 0.5rem;
+         left: 0;
+         transition: left 500ms ease;
+      }
+   }
+}
