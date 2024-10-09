@@ -1,12 +1,13 @@
 @import '../../assets/scss/all';
 
-.header {
+#header {
   @include small-header;
 }
 
 .layout {
   @include default-layout;
-
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
   .certification-number-section {
     display: grid;
     grid-template-columns: repeat(5, 1fr);

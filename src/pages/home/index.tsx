@@ -7,16 +7,16 @@ import whiteSquareIcon from '../../assets/images/white.squares.svg';
 import { useLayoutContext } from '../../components/layout/layout.context';
 
 const Home: FC = () => {
-   const { setClassName, setHeaderId } = useLayoutContext();
+   const { setHeaderId } = useLayoutContext();
    const { user } = useContext(AppContext);
    const whiteSquares = useWindowWidth(
       <img src={whiteSquareIcon} className={styles['white-square']} />,
       null,
    );
-   useEffect(() => {
-      setClassName && setClassName(styles['layout']);
+   useEffect(() => {      
       setHeaderId && setHeaderId(styles['header']);
    }, []);
+
    return (
       <section className={styles.main}>
          <div className={styles['welcome-text']}>
