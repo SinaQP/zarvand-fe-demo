@@ -1,7 +1,10 @@
+import { toast } from 'react-toastify';
 import { getPersonTradeMasters } from '../../../apis/trade/get-person-trade-master';
 import { Dispatch, SetStateAction } from 'react';
 
-export const getUserTradeMasters = async (token: string, setState: Dispatch<SetStateAction<any>>,
+export const getUserTradeMasters = async (
+   token: string,
+   setState: Dispatch<SetStateAction<any>>,
 ) => {
    const response = await getPersonTradeMasters(token);
    const responseBody = response.body;
@@ -9,8 +12,7 @@ export const getUserTradeMasters = async (token: string, setState: Dispatch<SetS
       setState(responseBody);
       return responseBody;
    } else {
-      // Toast.fire({ icon: 'error', title: responseBody.message });
+      toast.error(responseBody.message);
    }
    return [];
 };
-
