@@ -3,42 +3,18 @@ import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
 import { AppContext } from '../../../App.context';
 import resetChargeStates from '../../../utilities/resetChargeStates';
-import ProfileIcon from './components/profileIcon';
-import OperatorIcon from './components/operatorIcon';
-import HomeIcon from './components/homeIcon';
-import BrickWallsIcon from './components/brickWallsIcon';
-import ShopIcon from './components/shop';
 import { IconType, RouteType } from './index.interface';
 import useWindowWidth from '../../../hooks/useWindowWidth';
+import {
+   androidIconOrder,
+   desktopIconOrder,
+} from './func/footerIconsCorrectOrders';
 
 const Footer = () => {
-   const footerIconsList: IconType[] = [
-      {
-         title: 'پروفایل',
-         icon: ProfileIcon,
-         route: '/profile',
-      },
-      {
-         title: 'پشتیبانی',
-         icon: OperatorIcon,
-         route: '/support',
-      },
-      {
-         title: 'خانه',
-         icon: HomeIcon,
-         route: location.pathname === '/' ? '/' : '/home',
-      },
-      {
-         title: 'نوسازی',
-         icon: BrickWallsIcon,
-         route: '/renovation',
-      },
-      {
-         title: 'کسب و پیشه',
-         icon: ShopIcon,
-         route: '/trade',
-      },
-   ];
+   const windowWidth = useWindowWidth('desktop', 'mobile');
+
+   const footerIconsList: IconType[] =
+      windowWidth === 'desktop' ? desktopIconOrder : androidIconOrder;
 
    const {
       setSelectedTradeCharge,
@@ -55,51 +31,54 @@ const Footer = () => {
    });
    const [selectedRoute, setSelectedRoute] = useState<RouteType | null>(null);
 
-   const [activeIconPosition, setActiveIconPosition] = useState({
-      left: 0,
+   const [activeIconPosition, setActiveIconPosition] = useState<{
+      left: number;
+      top: number;
+   }>({
+      left: 177.5,
       top: 0,
    });
    const footerIconsRefs = useRef<any[]>([]);
    const circleRef = useRef(null);
    const [drawerActive, setDrawerActive] = useState(false);
-   const windowWidth = useWindowWidth('desktop', 'mobile');
-
-   const handleChangeCurrentRoute = (id: number) => {
-      setCurrentRoute((prev) => ({ ...prev, id }));
-   };
 
    useEffect(() => {
       for (let i = 0; i < footerIconsList.length; i++) {
          if (footerIconsList[i].route === currentRoute.route) {
-            handleChangeCurrentRoute(i);
+            setCurrentRoute((prev) => ({ ...prev, i }));
          }
       }
    }, []);
 
    useEffect(() => {
       const updateCirclePosition = () => {
-         const activeIcon = footerIconsRefs.current.find(
-            (iconRef, idx) =>
+         const activeIcon = footerIconsRefs.current.find((iconRef, idx) => {
+            if (
                iconRef &&
-               currentRoute.route === footerIconsList[idx].route.toLowerCase(),
-         );
-         console.log('lvl1');
+               currentRoute.route === footerIconsList[idx].route.toLowerCase()
+            ) {
+               return iconRef;
+            }
+         });
 
          if (activeIcon && circleRef.current) {
-            console.log('lvl2');
             const rect = activeIcon.getBoundingClientRect();
+
             setActiveIconPosition(
                windowWidth === 'mobile'
                   ? {
                        left: rect.left + rect.width / 2 - 35,
                        top: 0,
                     }
-                  : { left: 0, top: rect.top },
+                  : {
+                       left: 0,
+                       top: rect.top,
+                    },
             );
          }
       };
 
-      console.log('test');
+      setSelectedRoute(currentRoute);
       updateCirclePosition();
       window.addEventListener('resize', updateCirclePosition);
       return () => window.removeEventListener('resize', updateCirclePosition);
@@ -119,21 +98,32 @@ const Footer = () => {
       history(icon.route);
    };
 
+   const handleDrawer = () => {
+      setDrawerActive((prev) => !prev);
+   };
+
    if (isLoginPage) return null;
    return (
-      <footer id={styles.footerStyleWrapper}>
-         <div
-            className={`${styles.activatedIcon}`}
-            ref={circleRef}
-            style={
-               windowWidth === 'mobile'
-                  ? { left: `${activeIconPosition.left}px` }
-                  : { top: `${activeIconPosition.top}px` }
-            }
-         ></div>
+      <footer
+         id={styles.footerStyleWrapper}
+         className={`${drawerActive ? styles.drawerActive : ''}`}
+      >
+         {windowWidth === 'mobile' && (
+            <div
+               className={`${styles.activatedIcon}`}
+               ref={circleRef}
+               style={
+                  windowWidth === 'mobile'
+                     ? {
+                          left: `${activeIconPosition.left}px`,
+                       }
+                     : { top: `${activeIconPosition.top}px` }
+               }
+            ></div>
+         )}
 
          {windowWidth === 'desktop' && (
-            <div className={styles.desktopDrawer}>
+            <div className={styles.desktopDrawer} onClick={handleDrawer}>
                {drawerActive ? (
                   <>
                      <div className={styles.crossLines}></div>
@@ -169,10 +159,13 @@ const Footer = () => {
                   <icon.icon
                      className={isRouteActive && styles.icon}
                      color={isRouteActive ? 'black' : 'white'}
-                     width={windowWidth === 'desktop' ? 60 : 24}
-                     height={windowWidth === 'desktop' ? 60 : 24}
+                     width={windowWidth === 'desktop' ? 50 : 24}
+                     height={windowWidth === 'desktop' ? 50 : 24}
                   />
                   {!isRouteActive && windowWidth === 'mobile' && (
+                     <span className={styles.title}>{icon.title}</span>
+                  )}
+                  {windowWidth === 'desktop' && drawerActive && (
                      <span className={styles.title}>{icon.title}</span>
                   )}
                </div>

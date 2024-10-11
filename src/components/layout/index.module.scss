@@ -11,4 +11,9 @@
    .main {
       flex: 1;
    }
+
+   @media (min-width: $desktop) {
+      flex-direction: row-reverse;
+      align-items: center;
+   }
 }
