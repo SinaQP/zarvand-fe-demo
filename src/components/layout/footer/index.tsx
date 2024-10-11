@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
-import {  useChargesContext } from '../../../app.context';
+import { useChargesContext } from '../../../App.context';
 import resetChargeStates from '../../../utilities/resetChargeStates';
 import { IconType, RouteType } from './index.interface';
 import useWindowWidth from '../../../hooks/useWindowWidth';

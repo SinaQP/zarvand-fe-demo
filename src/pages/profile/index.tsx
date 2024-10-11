@@ -5,7 +5,7 @@ import nationalCodeIcon from '/src/assets/images/nationalCodeIcon.svg';
 import InfoCardHeader from './components/infoCardHeader';
 import smartphoneIcon from '/src/assets/images/smartphoneIcon.svg';
 import callenderIcon from '/src/assets/images/callenderIcon.svg';
-import { useUserContext } from '../../app.context';
+import { useUserContext } from '../../App.context';
 import InfoCardBody from './components/infoCardBody';
 import Button from '../../components/button';
 import exitIcon from '/src/assets/images/exitIcon.svg';

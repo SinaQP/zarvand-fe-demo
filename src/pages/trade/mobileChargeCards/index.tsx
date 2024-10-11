@@ -7,7 +7,7 @@ import styles from '../index.module.scss';
 import MasterCard from '../../../components/masterCard';
 import { renderInfoCard } from './renderInfoCard';
 import { TradeCharge } from '../../../interfaces/models.interface';
-import { useChargesContext, useUserContext } from '../../../app.context';
+import { useChargesContext, useUserContext } from '../../../App.context';
 
 const MobileChargeCards: FC<{ tradeCharges: TradeCharge[] }> = ({
    tradeCharges,

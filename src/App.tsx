@@ -1,4 +1,4 @@
-import { AppProps } from './app.interface';
+import { AppProps } from './App.interface';
 import 'react-toastify/dist/ReactToastify.css';
 import AppProviders from './app.provider';
 

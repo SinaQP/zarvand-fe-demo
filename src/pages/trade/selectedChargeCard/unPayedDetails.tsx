@@ -8,7 +8,7 @@ import InfoCardTitle from '../infoCardTitle';
 import Loading from '../../../components/loading/loading';
 import AnnualChargeTable from '../../../components/annualChargeTable';
 import BillInfo from './billInfo';
-import { useChargesContext } from '../../../app.context';
+import { useChargesContext } from '../../../App.context';
 
 const UnPayedDetails: FC = () => {
    const {

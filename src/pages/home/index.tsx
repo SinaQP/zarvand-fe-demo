@@ -1,6 +1,6 @@
 import { FC, useContext, useEffect } from 'react';
 import styles from './index.module.scss';
-import { useUserContext } from '../../app.context';
+import { useUserContext } from '../../App.context';
 import ComingSoonText from '../../components/comingSoonText';
 import useWindowWidth from '../../hooks/useWindowWidth';
 import whiteSquareIcon from '../../assets/images/white.squares.svg';

@@ -1,6 +1,7 @@
 import { getPersonRenovationMasters as getPersonRenovationMastersApi } from '../../apis/renovation/get-person-renovation-masters';
 import { Dispatch, SetStateAction } from 'react';
-import { RenovationCharge } from '../../app.interface';
+import { RenovationCharge } from '../../interfaces/models.interface';
+// import { RenovationCharge } from '../../App.interface';
 
 export const getUserRenovationCharges = async (
    token: string,

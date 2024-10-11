@@ -15,7 +15,7 @@ import {
    RenovationCharge,
    TradeCharge,
 } from '../../interfaces/models.interface';
-import { useChargesContext, useUserContext } from '../../app.context';
+import { useChargesContext, useUserContext } from '../../App.context';
 
 const ButtonGroup: FC<{
    isPayed?: boolean;

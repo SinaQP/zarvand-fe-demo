@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react';
-import { ChargesContextProps, UserContextProps } from './app.interface';
+import { ChargesContextProps, UserContextProps } from './App.interface';
 
 export const UserContext = createContext<UserContextProps | undefined>(
    undefined,
@@ -16,7 +16,6 @@ export const useUserContext = () => {
 export const ChargesContext = createContext<ChargesContextProps | undefined>(
    undefined,
 );
-
 
 export const useChargesContext = () => {
    const context = useContext(ChargesContext);

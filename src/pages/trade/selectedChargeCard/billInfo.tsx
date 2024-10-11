@@ -1,7 +1,7 @@
 import { FC, useContext } from 'react';
 import InfoRow from '../../../components/infoRow';
 import toMoneyFormat from '../../../utilities/toMoneyFormat';
-import { useChargesContext } from '../../../app.context';
+import { useChargesContext } from '../../../App.context';
 
 const BillInfo: FC = () => {
    const { selectedChargeBillInfo } = useChargesContext();

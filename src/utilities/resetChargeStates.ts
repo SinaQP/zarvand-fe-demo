@@ -4,7 +4,7 @@ import {
    BillInfo,
    RenovationCharge,
    TradeCharge,
-} from '../app.interface';
+} from '../interfaces/models.interface';
 
 const resetChargeStates = (
    setSelectedTradeCharge: Dispatch<SetStateAction<TradeCharge | null>>,
