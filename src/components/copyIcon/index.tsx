@@ -6,8 +6,13 @@ const CopyIcon: FC<CopyIconProps> = ({
    color = 'white',
    width = '2rem',
    height = '2rem',
+   data,
 }) => {
-   const handleClick = () => {};
+   const handleClick = () => {
+      if (!data) return;
+
+      navigator.clipboard.writeText(`${data}`);
+   };
 
    return (
       <svg
