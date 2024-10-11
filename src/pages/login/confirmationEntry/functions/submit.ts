@@ -1,6 +1,6 @@
 import { Dispatch, ReactNode, SetStateAction } from 'react';
 import { validateSmsCode } from '../../../../apis/login/validate-sms-code';
-import { User } from '../../../../App.context';
+import { User } from '../../../../app.context';
 import { NavigateFunction } from 'react-router-dom';
 import { toast } from 'react-toastify';
 

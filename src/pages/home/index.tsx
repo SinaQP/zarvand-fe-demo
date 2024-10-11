@@ -1,6 +1,6 @@
 import { FC, useContext, useEffect } from 'react';
 import styles from './index.module.scss';
-import { AppContext } from '../../App.context';
+import { useUserContext } from '../../app.context';
 import ComingSoonText from '../../components/comingSoonText';
 import useWindowWidth from '../../hooks/useWindowWidth';
 import whiteSquareIcon from '../../assets/images/white.squares.svg';
@@ -8,12 +8,12 @@ import { useLayoutContext } from '../../components/layout/layout.context';
 
 const Home: FC = () => {
    const { setHeaderId } = useLayoutContext();
-   const { user } = useContext(AppContext);
+   const { user } = useUserContext();
    const whiteSquares = useWindowWidth(
       <img src={whiteSquareIcon} className={styles['white-square']} />,
       null,
    );
-   useEffect(() => {      
+   useEffect(() => {
       setHeaderId && setHeaderId(styles['header']);
    }, []);
 

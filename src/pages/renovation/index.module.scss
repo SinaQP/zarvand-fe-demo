@@ -1,21 +1,23 @@
 @import '../../assets/scss/all';
 
 #header {
-  @include small-header;
+   @include small-header;
 }
 
 .layout {
-  @include default-layout;
-  margin-bottom: 0 !important;
-  padding-bottom: 0 !important;
-  .certification-number-section {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, auto);
-    column-gap: 1.5rem;
-    padding: 0 2rem;
-    text-align: center;
+   @include default-layout;
+   @media (min-width: $desktop) {
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+   }
+   .certification-number-section {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(2, auto);
+      column-gap: 1.5rem;
+      padding: 0 2rem;
+      text-align: center;
 
-    font-size: 1.4rem;
-  }
+      font-size: 1.4rem;
+   }
 }

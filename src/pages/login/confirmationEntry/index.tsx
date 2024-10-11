@@ -3,14 +3,14 @@ import Button from '../../../components/button';
 import OtpInput from '../../../components/otpInput';
 import styles from './index.module.scss';
 import handleConfirmationButton from './functions/submit';
-import { AppContext } from '../../../App.context';
 import { useNavigate } from 'react-router-dom';
 import { useLayoutContext } from '../../../components/layout/layout.context';
+import { useUserContext } from '../../../app.context';
 
 const ConfirmationEntry: FC = () => {
    const navigate = useNavigate();
    const [otpCode, setOtpCode] = useState<string[]>([]);
-   const { setUser, setToken } = useContext(AppContext);
+   const { setUser, setToken } = useUserContext();
    const {
       maskedPhoneNumber,
       nationalCode,

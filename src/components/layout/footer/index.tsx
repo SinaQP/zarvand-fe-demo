@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './index.module.scss';
-import { AppContext } from '../../../App.context';
+import {  useChargesContext } from '../../../app.context';
 import resetChargeStates from '../../../utilities/resetChargeStates';
 import ProfileIcon from './components/profileIcon';
 import OperatorIcon from './components/operatorIcon';
@@ -45,7 +45,8 @@ const Footer = () => {
       setSelectedChargeBillDetails,
       setSelectedChargeBillInfo,
       setSelectedRenovationCharge,
-   } = useContext(AppContext);
+   } = useChargesContext();
+
    const history = useNavigate();
    const isLoginPage = location.pathname === '/login';
 

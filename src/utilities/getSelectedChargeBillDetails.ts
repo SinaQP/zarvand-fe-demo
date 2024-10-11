@@ -5,7 +5,7 @@ import {
    BillInfo,
    RenovationCharge,
    TradeCharge,
-} from '../App.interface';
+} from '../app.interface';
 import { Dispatch, SetStateAction } from 'react';
 
 async function getSelectedChargeBillDetails(

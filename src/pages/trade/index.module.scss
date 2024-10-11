@@ -5,10 +5,11 @@
 }
 
 .layout {
-   margin-top: calc(var(--small-header-height) + 2rem);
-   margin-bottom: 0 !important;
-   padding-bottom: 0 !important;
    @include default-layout;
+   @media (min-width: $desktop) {
+      margin-bottom: 0 !important;
+      padding-bottom: 0 !important;
+   }
    .info-card {
       margin-bottom: 1.5rem;
 

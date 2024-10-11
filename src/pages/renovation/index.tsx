@@ -1,8 +1,6 @@
 import { FC, useContext, useEffect, useState } from 'react';
 import styles from './index.module.scss';
 import { getUserRenovationCharges } from './getUserRenovationCharges';
-import { AppContext } from '../../App.context';
-import { RenovationCharge } from '../../App.interface';
 import NoRenovationChargesMessage from './noRenovationChargeMessage';
 import MasterCard from '../../components/masterCard';
 import InfoCard from '../../components/infoCard';
@@ -10,19 +8,19 @@ import SelectedRenovationCharge from './selectedRenovationCharge';
 import getSelectedChargeBillDetails from '../../utilities/getSelectedChargeBillDetails';
 import { useLayoutContext } from '../../components/layout/layout.context';
 import { Bounce, ToastContainer } from 'react-toastify';
+import { useChargesContext, useUserContext } from '../../app.context';
+import { RenovationCharge } from '../../interfaces/models.interface';
 
 const Renovation: FC = () => {
    const {
-      token,
       selectedRenovationCharge,
       setSelectedChargeBillDetails,
       setSelectedChargeBillInfo,
-      setShowPaymentHistory,
-   } = useContext(AppContext);
+      renovationCharges,
+      setRenovationCharges,
+   } = useChargesContext();
+   const { token, setShowPaymentHistory } = useUserContext();
    const { setHeaderId } = useLayoutContext();
-   const [renovationCharges, setRenovationCharges] = useState<
-      RenovationCharge[]
-   >([]);
 
    useEffect(() => {
       getUserRenovationCharges(token, setRenovationCharges);

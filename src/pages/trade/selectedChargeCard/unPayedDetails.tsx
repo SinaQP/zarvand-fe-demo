@@ -8,7 +8,7 @@ import InfoCardTitle from '../infoCardTitle';
 import Loading from '../../../components/loading/loading';
 import AnnualChargeTable from '../../../components/annualChargeTable';
 import BillInfo from './billInfo';
-import { AppContext } from '../../../App.context';
+import { useChargesContext } from '../../../app.context';
 
 const UnPayedDetails: FC = () => {
    const {
@@ -18,7 +18,7 @@ const UnPayedDetails: FC = () => {
       setSelectedChargeBillDetails,
       setSelectedChargeBillInfo,
       setSelectedRenovationCharge,
-   } = useContext(AppContext);
+   } = useChargesContext();
    if (!selectedTradeCharge) return null;
 
    return (

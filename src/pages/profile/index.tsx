@@ -6,14 +6,13 @@ import nationalCodeIcon from '/src/assets/images/nationalCodeIcon.svg';
 import InfoCardHeader from './components/infoCardHeader';
 import smartphoneIcon from '/src/assets/images/smartphoneIcon.svg';
 import callenderIcon from '/src/assets/images/callenderIcon.svg';
-import { AppContext } from '../../App.context';
+import { useUserContext } from '../../app.context';
 import InfoCardBody from './components/infoCardBody';
 import Button from '../../components/button';
 import exitIcon from '/src/assets/images/exitIcon.svg';
 
 const Profile: FC = () => {
-   // return <ComingSoonText />;
-   const { user, setToken } = useContext(AppContext);
+   const { user, setToken } = useUserContext();
 
    const handleExit = () => {
       setToken('');

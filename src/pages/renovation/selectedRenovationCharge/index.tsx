@@ -1,15 +1,14 @@
-import { FC, useContext } from 'react';
+import { FC } from 'react';
 import MasterCard from '../../../components/masterCard';
 import InfoCard from '../../../components/infoCard';
-import { RenovationCharge } from '../../../App.interface';
 import styles from '../index.module.scss';
-import { AppContext } from '../../../App.context';
 import AnnualChargeTable from '../../../components/annualChargeTable';
 import Loading from '../../../components/loading/loading';
+import { useChargesContext } from '../../../app.context';
 
 const SelectedRenovationCharge: FC = () => {
    const { selectedRenovationCharge, selectedChargeBillDetails } =
-      useContext(AppContext);
+      useChargesContext();
    const segmentLengths = [3, 4, 7, 2, 3];
 
    const splitCertificateNumber = (
