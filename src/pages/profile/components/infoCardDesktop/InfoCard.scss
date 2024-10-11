@@ -1,0 +1,21 @@
+@import '/src/assets/scss/_all.scss';
+
+#infoCardStyleWrapper {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   min-height: 8rem;
+   min-width: 10rem;
+   border: 0.15rem solid $primary-color;
+   border-radius: 1.5rem;
+
+   #copySection {
+      width: 10rem;
+      height: 8rem;
+      border-radius: 1.5rem 0 0 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: $primary-color;
+   }
+}

@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { BillDetail } from '../../../../App.interface';
+import { BillDetail } from '../../../../app.interface';
 import styles from './index.module.scss';
 import InfoCard from '../../../../components/infoCard';
 import InfoRow from '../../../../components/infoRow';

@@ -1,8 +1,6 @@
 import { FC, useContext, useEffect, useState } from 'react';
 import styles from './index.module.scss';
 import { getUserRenovationCharges } from './getUserRenovationCharges';
-import { AppContext } from '../../App.context';
-import { RenovationCharge } from '../../App.interface';
 import NoRenovationChargesMessage from './noRenovationChargeMessage';
 import MasterCard from '../../components/masterCard';
 import InfoCard from '../../components/infoCard';
@@ -10,19 +8,20 @@ import SelectedRenovationCharge from './selectedRenovationCharge';
 import getSelectedChargeBillDetails from '../../utilities/getSelectedChargeBillDetails';
 import { useLayoutContext } from '../../components/layout/layout.context';
 import { Bounce, ToastContainer } from 'react-toastify';
+import { useChargesContext, useUserContext } from '../../app.context';
+import { RenovationCharge } from '../../interfaces/models.interface';
+import CertificationNumberCard from '../../components/certificationNumberCard';
 
 const Renovation: FC = () => {
    const {
-      token,
       selectedRenovationCharge,
       setSelectedChargeBillDetails,
       setSelectedChargeBillInfo,
-      setShowPaymentHistory,
-   } = useContext(AppContext);
+      renovationCharges,
+      setRenovationCharges,
+   } = useChargesContext();
+   const { token, setShowPaymentHistory } = useUserContext();
    const { setHeaderId } = useLayoutContext();
-   const [renovationCharges, setRenovationCharges] = useState<
-      RenovationCharge[]
-   >([]);
 
    useEffect(() => {
       getUserRenovationCharges(token, setRenovationCharges);
@@ -42,23 +41,6 @@ const Renovation: FC = () => {
       }
    }, [selectedRenovationCharge]);
 
-   const segmentLengths = [3, 4, 7, 2, 3];
-
-   const splitCertificateNumber = (
-      str: string,
-      lengths: number[],
-   ): string[] => {
-      let result: string[] = [];
-      let startIndex = 0;
-
-      lengths.forEach((length) => {
-         result.push(str.substr(startIndex, length));
-         startIndex += length;
-      });
-
-      return result;
-   };
-
    return (
       <section className={styles.layout}>
          {renovationCharges.length <= 0 && <NoRenovationChargesMessage />}
@@ -73,23 +55,7 @@ const Renovation: FC = () => {
                      isPayed={charge.is_paid}
                      key={charge.master_id}
                   >
-                     <InfoCard
-                        title={'شماره شناسنامه ملک'}
-                        className={styles['certification-number-section']}
-                        isPrimary={charge.is_paid}
-                     >
-                        {['فرعی', 'ملک', 'بلوک', 'محله', 'منطقه'].map(
-                           (item, index) => (
-                              <span key={index}>{item}</span>
-                           ),
-                        )}
-                        {splitCertificateNumber(
-                           charge.certificate_number,
-                           segmentLengths,
-                        ).map((item, index) => (
-                           <span key={index}>{item}</span>
-                        ))}
-                     </InfoCard>
+                     <CertificationNumberCard charge={charge} />
                   </MasterCard>
                ));
             })()

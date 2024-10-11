@@ -4,18 +4,18 @@ import payIcon from '../../assets/images/pay.svg';
 import downloadIcon from '../../assets/images/download.svg';
 import Button from '../button';
 import styles from './index.module.scss';
-import { AppContext } from '../../App.context';
-import {
-   BillDetail,
-   BillInfo,
-   RenovationCharge,
-   TradeCharge,
-} from '../../App.interface';
 import { useReactToPrint } from 'react-to-print';
 import { getTradePrintData } from '../../apis/trade/print';
 import { PrintBill } from '../pdfs/trdChargePdf/index.interface';
 import TrdChargePdf from '../pdfs/trdChargePdf';
 import getSelectedChargeBillDetails from '../../utilities/getSelectedChargeBillDetails';
+import {
+   BillDetail,
+   BillInfo,
+   RenovationCharge,
+   TradeCharge,
+} from '../../interfaces/models.interface';
+import { useChargesContext, useUserContext } from '../../app.context';
 
 const ButtonGroup: FC<{
    isPayed?: boolean;
@@ -40,16 +40,14 @@ const ButtonGroup: FC<{
       }
    }, []);
 
+   const { user, token, setShowPaymentHistory } = useUserContext();
    const {
-      setSelectedTradeCharge,
-      selectedTradeCharge,
-      setSelectedRenovationCharge,
-      token,
       selectedChargeBillInfo,
       selectedChargeBillDetails,
-      user,
-      setShowPaymentHistory,
-   } = useContext(AppContext);
+      selectedTradeCharge,
+      setSelectedTradeCharge,
+      setSelectedRenovationCharge,
+   } = useChargesContext();
 
    const handlePrint = useReactToPrint({
       content: () => componentRef.current,
@@ -101,7 +99,7 @@ const ButtonGroup: FC<{
          icon: payIcon,
          alt: 'Pay',
       },
-      !selectedChargeBillInfo 
+      !selectedChargeBillInfo
          ? {
               label: 'جزئیات',
               icon: detailIcon,
@@ -117,7 +115,8 @@ const ButtonGroup: FC<{
            }
          : null,
       selectedChargeBillInfo &&
-         (selectedChargeBillInfo.bills.length > 0 && !charge.is_paid) && {
+         selectedChargeBillInfo.bills.length > 0 &&
+         !charge.is_paid && {
             label: 'سابقه پرداخت',
             icon: payIcon,
             alt: 'Pyament History',

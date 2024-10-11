@@ -1,8 +1,7 @@
 import { FC, useContext, useEffect, useState } from 'react';
 import styles from './index.module.scss';
-import { AppContext } from '../../App.context';
+import { useChargesContext, useUserContext } from '../../app.context';
 import { getUserTradeMasters } from './functions/getPersonTradeMasters';
-import { TradeCharge } from '../../App.interface';
 import NoTradeChargesMessage from './noTradeChargeMessage';
 import getSelectedChargeBillDetails from '../../utilities/getSelectedChargeBillDetails';
 import useWindowWidth from '../../hooks/useWindowWidth';
@@ -10,23 +9,25 @@ import MobileChargeCards from './mobileChargeCards';
 import { useLayoutContext } from '../../components/layout/layout.context';
 import { Bounce, ToastContainer } from 'react-toastify';
 import DesktopChargeCards from './desktopChargeCards';
+import { TradeCharge } from '../../interfaces/models.interface';
 
 const Trade: FC = () => {
    const { setHeaderId } = useLayoutContext();
-   const [tradeCharges, setTradeCharges] = useState<TradeCharge[]>([]);
-   const chargeCards = useWindowWidth(
-      <DesktopChargeCards />,
-      <MobileChargeCards tradeCharges={tradeCharges} />,
-   );
+
+   const { token } = useUserContext();
    const {
-      token,
       selectedTradeCharge,
       setSelectedTradeCharge,
       setSelectedChargeBillDetails,
       setSelectedChargeBillInfo,
-      setShowPaymentHistory,
-   } = useContext(AppContext);
-
+      tradeCharges,
+      setTradeCharges,
+   } = useChargesContext();
+   const chargeCards = useWindowWidth(
+      <DesktopChargeCards />,
+      <MobileChargeCards tradeCharges={tradeCharges} />,
+   );
+   const { setShowPaymentHistory } = useUserContext();
    useEffect(() => {
       setSelectedTradeCharge(null);
       getUserTradeMasters(token, setTradeCharges);
@@ -48,7 +49,7 @@ const Trade: FC = () => {
 
    return (
       <section className={styles.layout}>
-         {/* {tradeCharges.length <= 0 ? <NoTradeChargesMessage /> : null} */}
+         {tradeCharges.length <= 0 ? <NoTradeChargesMessage /> : null}
          {chargeCards}
          <ToastContainer
             rtl

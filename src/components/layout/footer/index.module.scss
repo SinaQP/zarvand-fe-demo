@@ -37,6 +37,7 @@
          font-weight: 400;
          line-height: 1.1rem;
          text-align: center;
+         user-select: none;
       }
 
       &.active {
@@ -46,6 +47,10 @@
          justify-content: center;
          transform: translateY(-2.5rem) scale(1.2);
          animation: iconMoveUpAndGrow 0.4s ease;
+
+         @media (min-width: $desktop) {
+            transition: 0.5s ease;
+         }
 
          .title {
             opacity: 0;
@@ -64,7 +69,6 @@
    }
 
    .activatedIcon {
-      display: flex;
       position: absolute;
       width: 7rem;
       height: 7rem;
@@ -72,28 +76,31 @@
       border-radius: 100%;
       background-color: $bg-color;
       justify-content: center;
-      // bottom: 0;
       transform: translateY(-2.5rem) scale(1.2);
-      transition: left 0.4s ease;
+      transition: left 0.4s ease, top 0.4s ease, width 0.4s ease;
    }
 
    @media (min-width: $desktop) {
-      top: 50%;
-      right: 0;
-      height: 80rem;
+      height: 70rem;
       width: 14rem;
       border-radius: 1.5rem 0 0 1.5rem;
       flex-direction: column;
-      transform: translateY(-50%);
+      transform: translateY(0);
+      margin-top: 5%;
+      position: static;
+      transition: width 0.5s ease;
+      padding-left: 2rem;
 
       .footerIcon {
-         // flex-direction: row-reverse;
+         flex-direction: row-reverse;
+         flex-wrap: nowrap;
          height: 6rem;
          margin-left: 1rem;
+         transition: width 0.5s ease;
 
          .footerIconSize {
-            width: 6rem;
-            height: 6rem;
+            width: 5rem;
+            height: 5rem;
          }
 
          .icon {
@@ -106,10 +113,23 @@
             animation: none;
             transform: none;
             height: 6rem;
+            background-color: $bg-color;
+            border-radius: 1.5rem;
+            // transition: ease 0.4s;
+
+            .title {
+               opacity: 1;
+               color: #000;
+            }
          }
 
          .title {
-            display: none;
+            font-size: 3rem;
+            font-weight: 400;
+            line-height: 3rem;
+            text-align: center;
+            transition: display 0.5 ease;
+            z-index: 99;
          }
       }
 
@@ -133,6 +153,7 @@
             width: 4rem;
             height: 0.3rem;
             background-color: $primary-color;
+            transition: 0.5s ease;
          }
 
          .crossLines {
@@ -140,6 +161,8 @@
             width: 4rem;
             height: 0.3rem;
             background-color: $primary-color;
+
+            transition: 0.5s ease;
 
             &:first-child {
                rotate: 45deg;
@@ -152,8 +175,9 @@
       }
 
       .activatedIcon {
-         display: flex;
-         position: fixed;
+         // display: flex;
+         margin-top: 18rem;
+         position: absolute;
          width: 8rem;
          height: 8rem;
          border: none;
@@ -162,8 +186,29 @@
          justify-content: center;
          margin-left: 1rem;
          top: 0;
-         transform: translateY(-100%) scale(1);
-         transition: top 0.4s ease;
+         // transition: width 0.5s ease;
+         transform: translateY(0) scale(1);
+         // transition: top 0.4s ease;
+      }
+
+      &.drawerActive {
+         width: 28rem;
+
+         .footerIcon {
+            width: 22rem;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 0.5rem;
+
+            .title {
+               animation: titleAnimation 1s ease;
+            }
+         }
+
+         .activatedIcon {
+            width: 22rem;
+            border-radius: 3rem;
+         }
       }
    }
 }
@@ -175,6 +220,15 @@
    }
    100% {
       transform: translateY(-2.5rem) scale(1.2);
+      opacity: 1;
+   }
+}
+
+@keyframes titleAnimation {
+   0% {
+      opacity: 0;
+   }
+   100% {
       opacity: 1;
    }
 }

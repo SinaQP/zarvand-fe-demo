@@ -8,8 +8,8 @@ import InfoCardTitle from '../infoCardTitle';
 import Loading from '../../../components/loading/loading';
 import AnnualChargeTable from '../../../components/annualChargeTable';
 import BillInfo from './billInfo';
-import { AppContext } from '../../../App.context';
 import PayedBill from './payedBill';
+import { useChargesContext, useUserContext } from '../../../app.context';
 
 const PayedDetails: FC = () => {
    const {
@@ -18,9 +18,9 @@ const PayedDetails: FC = () => {
       setSelectedTradeCharge,
       setSelectedChargeBillDetails,
       setSelectedChargeBillInfo,
-      setShowPaymentHistory,
       setSelectedRenovationCharge,
-   } = useContext(AppContext);
+   } = useChargesContext();
+   const { setShowPaymentHistory } = useUserContext();
    if (!selectedTradeCharge || !selectedChargeBillDetails) return null;
 
    return (
