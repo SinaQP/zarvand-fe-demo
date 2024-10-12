@@ -17,7 +17,8 @@ const DesktopChargeCards: FC = () => {
       );
       setStatuses(updatedStatuses);
    };
-
+   const activeStatus = statuses.find((status) => status.isActive);
+   
    return (
       <div>
          <StatusTab statuses={statuses} onClick={statusOnClick} />

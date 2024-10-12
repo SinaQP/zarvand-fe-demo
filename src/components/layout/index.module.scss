@@ -10,6 +10,10 @@
 
    .main {
       flex: 1;
+      
+      @media (min-width: $desktop) {
+         align-self: start;
+      }
    }
 
    @media (min-width: $desktop) {
