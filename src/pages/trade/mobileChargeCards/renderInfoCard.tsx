@@ -1,7 +1,7 @@
 import InfoCard from '../../../components/infoCard';
 import InfoCardTitle from '../infoCardTitle';
 import styles from '../index.module.scss';
-import { TradeCharge } from '../../../app.interface';
+import { TradeCharge } from '../../../interfaces/models.interface';
 
 export const renderInfoCard = (charge: TradeCharge) => (
    <InfoCard

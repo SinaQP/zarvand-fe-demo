@@ -1,5 +1,5 @@
 import { FC, ReactNode, useState } from 'react';
-import { ChargesContext, UserContext } from './app.context';
+import { ChargesContext, UserContext } from './App.context';
 import {
    BillDetail,
    BillInfo,

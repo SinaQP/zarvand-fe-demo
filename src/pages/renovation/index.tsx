@@ -8,9 +8,10 @@ import SelectedRenovationCharge from './selectedRenovationCharge';
 import getSelectedChargeBillDetails from '../../utilities/getSelectedChargeBillDetails';
 import { useLayoutContext } from '../../components/layout/layout.context';
 import { Bounce, ToastContainer } from 'react-toastify';
-import { useChargesContext, useUserContext } from '../../app.context';
+import { useChargesContext, useUserContext } from '../../App.context';
 import { RenovationCharge } from '../../interfaces/models.interface';
 import CertificationNumberCard from '../../components/certificationNumberCard';
+import RenovateCard from '../../components/renovateCard';
 
 const Renovation: FC = () => {
    const {
@@ -22,6 +23,8 @@ const Renovation: FC = () => {
    } = useChargesContext();
    const { token, setShowPaymentHistory } = useUserContext();
    const { setHeaderId } = useLayoutContext();
+   const { selectedChargeBillInfo } = useChargesContext();
+   console.log(selectedChargeBillInfo?.bills);
 
    useEffect(() => {
       getUserRenovationCharges(token, setRenovationCharges);
@@ -48,17 +51,30 @@ const Renovation: FC = () => {
             <SelectedRenovationCharge />
          ) : (
             (() => {
-               return renovationCharges.map((charge) => (
-                  <MasterCard
-                     master={charge}
-                     address={charge.address}
-                     isPayed={charge.is_paid}
-                     key={charge.master_id}
-                  >
-                     <CertificationNumberCard charge={charge} />
-                  </MasterCard>
+               // return renovationCharges.map((charge) => (
+               //    <MasterCard
+               //       master={charge}
+               //       address={charge.address}
+               //       isPayed={charge.is_paid}
+               //       key={charge.master_id}
+               //    >
+               //       <CertificationNumberCard charge={charge} />
+               //    </MasterCard>
+               // ));
+               return selectedChargeBillInfo?.bills.map((bill, idx) => (
+                  <RenovateCard Bill={bill} />
                ));
             })()
+
+            // <>
+            //    <RenovateCard Bill={selectedChargeBillInfo?.bills[0]} />
+            //    {/* <RenovateCard Bill={selectedChargeBillInfo?.bills[0]} />
+            //    <RenovateCard Bill={selectedChargeBillInfo?.bills[0]} />
+            //    <RenovateCard Bill={selectedChargeBillInfo?.bills[0]} />
+            //    <RenovateCard Bill={selectedChargeBillInfo?.bills[0]} />
+            //    <RenovateCard Bill={selectedChargeBillInfo?.bills[0]} />
+            //    <RenovateCard Bill={selectedChargeBillInfo?.bills[0]} /> */}
+            // </>
          )}
          <ToastContainer
             rtl

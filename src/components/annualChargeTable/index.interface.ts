@@ -1,4 +1,4 @@
-import { BillDetail } from '../../app.interface';
+import { BillDetail } from '../../interfaces/models.interface';
 
 export interface TableRow {
    from_year: string;

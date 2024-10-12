@@ -1,6 +1,6 @@
 import { FC, useContext, useEffect, useState } from 'react';
 import styles from './index.module.scss';
-import { useChargesContext, useUserContext } from '../../app.context';
+import { useChargesContext, useUserContext } from '../../App.context';
 import { getUserTradeMasters } from './functions/getPersonTradeMasters';
 import NoTradeChargesMessage from './noTradeChargeMessage';
 import getSelectedChargeBillDetails from '../../utilities/getSelectedChargeBillDetails';

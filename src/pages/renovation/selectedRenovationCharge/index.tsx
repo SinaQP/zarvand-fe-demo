@@ -4,7 +4,7 @@ import InfoCard from '../../../components/infoCard';
 import styles from '../index.module.scss';
 import AnnualChargeTable from '../../../components/annualChargeTable';
 import Loading from '../../../components/loading/loading';
-import { useChargesContext } from '../../../app.context';
+import { useChargesContext } from '../../../App.context';
 
 const SelectedRenovationCharge: FC = () => {
    const { selectedRenovationCharge, selectedChargeBillDetails } =

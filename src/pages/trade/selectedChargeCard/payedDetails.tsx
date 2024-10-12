@@ -9,7 +9,7 @@ import Loading from '../../../components/loading/loading';
 import AnnualChargeTable from '../../../components/annualChargeTable';
 import BillInfo from './billInfo';
 import PayedBill from './payedBill';
-import { useChargesContext, useUserContext } from '../../../app.context';
+import { useChargesContext, useUserContext } from '../../../App.context';
 
 const PayedDetails: FC = () => {
    const {

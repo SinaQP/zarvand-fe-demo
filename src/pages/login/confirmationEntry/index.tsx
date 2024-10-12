@@ -5,7 +5,7 @@ import styles from './index.module.scss';
 import handleConfirmationButton from './functions/submit';
 import { useNavigate } from 'react-router-dom';
 import { useLayoutContext } from '../../../components/layout/layout.context';
-import { useUserContext } from '../../../app.context';
+import { useUserContext } from '../../../App.context';
 
 const ConfirmationEntry: FC = () => {
    const navigate = useNavigate();

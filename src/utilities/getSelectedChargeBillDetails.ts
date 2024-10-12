@@ -1,12 +1,12 @@
 import { getRenovationBillDetailsInfo } from '../apis/renovation/renovation-bill-details-info';
 import { getTradeBillDetailsInfo } from '../apis/trade/guild-bill-details-info';
+import { Dispatch, SetStateAction } from 'react';
 import {
    BillDetail,
    BillInfo,
    RenovationCharge,
    TradeCharge,
-} from '../app.interface';
-import { Dispatch, SetStateAction } from 'react';
+} from '../interfaces/models.interface';
 
 async function getSelectedChargeBillDetails(
    token: string,
