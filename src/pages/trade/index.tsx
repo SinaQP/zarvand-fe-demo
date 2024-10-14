@@ -49,7 +49,7 @@ const Trade: FC = () => {
 
    return (
       <section className={styles.layout}>
-         {tradeCharges.length <= 0 ? <NoTradeChargesMessage /> : null}
+         {/* {tradeCharges.length <= 0 ? <NoTradeChargesMessage /> : null} */}
          {chargeCards}
          <ToastContainer
             rtl

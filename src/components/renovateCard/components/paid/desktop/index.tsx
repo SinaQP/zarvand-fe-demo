@@ -1,15 +1,16 @@
 import { FC } from 'react';
 import './RenovateDesktop.scss';
-import { props } from '../interface';
+import { props } from '../../interface';
 import locMarkerIcon from '/src/assets/images/location-pin.svg';
 import shareIcon from '/src/assets/images/shareIcon.svg';
 import cloudIcon from '/src/assets/images/cloudIcon.svg';
 import printerIcon from '/src/assets/images/printerIcon.svg';
-import DataInput from './components/dataInput';
-import InfoCard from '../../../infoCard';
+import InfoCard from '../../../../infoCard';
 import houseIcon from '/src/assets/images/houseIcon.svg';
+import DataInput from '../../dataInput';
+import InfoCardTitle from '../../infoCardTitle';
 
-const DesktopRenovateCard: FC<props> = ({ Bill }) => {
+const PaidDesktopRenovateCard: FC<props> = ({ Bill, theme }) => {
    return (
       <div className="desktopRenovateCardStyleWrapper">
          <div className="lineContainer">
@@ -32,10 +33,15 @@ const DesktopRenovateCard: FC<props> = ({ Bill }) => {
 
             <div className="dataInputContainer">
                <div>
-                  <DataInput title="مبلغ کل(ریال)" data={Bill?.creditor || 0} />
+                  <DataInput
+                     title="مبلغ کل(ریال)"
+                     data={Bill?.creditor || 0}
+                     theme={theme}
+                  />
                   <DataInput
                      title="تاریخ پرداخت"
                      data={Bill?.payment_date || '1400/12/30'}
+                     theme={theme}
                   />
                </div>
 
@@ -43,21 +49,18 @@ const DesktopRenovateCard: FC<props> = ({ Bill }) => {
                   <DataInput
                      title="شناسه قبض"
                      data={Bill?.bill_no || '0000000000000'}
+                     theme={theme}
                   />
                   <DataInput
                      title="شناسه پرداخت"
                      data={Bill?.payment_no || '0000000000'}
+                     theme={theme}
                   />
                </div>
 
                <div className="propertyDetailsContaienr">
                   <InfoCard
-                     title={
-                        <div className="title">
-                           <img src={houseIcon} alt="house icon" />
-                           <span>شماره شناسنامه ملک</span>
-                        </div>
-                     }
+                     title={<InfoCardTitle title={'شماره شناسنامه مالک'} />}
                   >
                      <div className="data"></div>
                   </InfoCard>
@@ -78,4 +81,4 @@ const DesktopRenovateCard: FC<props> = ({ Bill }) => {
    );
 };
 
-export default DesktopRenovateCard;
+export default PaidDesktopRenovateCard;

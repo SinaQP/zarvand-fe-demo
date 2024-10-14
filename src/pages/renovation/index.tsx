@@ -62,7 +62,11 @@ const Renovation: FC = () => {
                //    </MasterCard>
                // ));
                return selectedChargeBillInfo?.bills.map((bill, idx) => (
-                  <RenovateCard Bill={bill} />
+                  <RenovateCard
+                     Bill={bill}
+                     paymentStatus
+                     key={`${bill.bill_no}-${idx}`}
+                  />
                ));
             })()
 
