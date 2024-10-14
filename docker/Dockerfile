@@ -7,14 +7,14 @@ RUN npm install
 
 COPY . .
 
-ARG VITE_APP_BACKEND
-ENV VITE_APP_BACKEND=$VITE_APP_BACKEND
-
 RUN npm run build
 
 # CMD [ "yarn", "start" ]
 
 FROM nexus.zaraamad.ir:5006/repository/docker-zaraamad/nginx:alpine
+
+ARG VITE_APP_BACKEND
+ENV VITE_APP_BACKEND=$VITE_APP_BACKEND
 
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=build /app/dist /usr/share/nginx/html
