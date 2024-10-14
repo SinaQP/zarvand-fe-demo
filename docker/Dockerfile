@@ -1,4 +1,4 @@
-FROM nexus.zaraamad.ir:5006/repository/docker-zaraamad/node:18.14.0-alpine3.17 as build
+FROM node:18.14.0-alpine3.17 as build
 
 WORKDIR /app
 COPY ["package.json", "package-lock.json*", "./"]
