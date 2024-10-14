@@ -1,17 +1,15 @@
-import { FC, useContext, useEffect, useState } from 'react';
+import { FC, useContext, useEffect } from 'react';
 import styles from './index.module.scss';
 import { getUserRenovationCharges } from './getUserRenovationCharges';
 import NoRenovationChargesMessage from './noRenovationChargeMessage';
 import MasterCard from '../../components/masterCard';
-import InfoCard from '../../components/infoCard';
 import SelectedRenovationCharge from './selectedRenovationCharge';
 import getSelectedChargeBillDetails from '../../utilities/getSelectedChargeBillDetails';
 import { useLayoutContext } from '../../components/layout/layout.context';
 import { Bounce, ToastContainer } from 'react-toastify';
 import { useChargesContext, useUserContext } from '../../App.context';
-import { RenovationCharge } from '../../interfaces/models.interface';
 import CertificationNumberCard from '../../components/certificationNumberCard';
-import RenovateCard from '../../components/renovateCard';
+import InfoRow from '../../components/infoRow';
 
 const Renovation: FC = () => {
    const {
@@ -21,15 +19,15 @@ const Renovation: FC = () => {
       renovationCharges,
       setRenovationCharges,
    } = useChargesContext();
+
    const { token, setShowPaymentHistory } = useUserContext();
    const { setHeaderId } = useLayoutContext();
    const { selectedChargeBillInfo } = useChargesContext();
-   console.log(selectedChargeBillInfo?.bills);
 
    useEffect(() => {
       getUserRenovationCharges(token, setRenovationCharges);
-      setHeaderId && setHeaderId(styles['header']);
-   }, []);
+      setHeaderId?.(styles['header']);
+   }, [token]);
 
    useEffect(() => {
       if (selectedRenovationCharge) {
@@ -50,31 +48,30 @@ const Renovation: FC = () => {
          {selectedRenovationCharge ? (
             <SelectedRenovationCharge />
          ) : (
-            (() => {
-               // return renovationCharges.map((charge) => (
-               //    <MasterCard
-               //       master={charge}
-               //       address={charge.address}
-               //       isPayed={charge.is_paid}
-               //       key={charge.master_id}
-               //    >
-               //       <CertificationNumberCard charge={charge} />
-               //    </MasterCard>
-               // ));
-               return selectedChargeBillInfo?.bills.map((bill, idx) => (
-                  <RenovateCard Bill={bill} />
-               ));
-            })()
-
-            // <>
-            //    <RenovateCard Bill={selectedChargeBillInfo?.bills[0]} />
-            //    {/* <RenovateCard Bill={selectedChargeBillInfo?.bills[0]} />
-            //    <RenovateCard Bill={selectedChargeBillInfo?.bills[0]} />
-            //    <RenovateCard Bill={selectedChargeBillInfo?.bills[0]} />
-            //    <RenovateCard Bill={selectedChargeBillInfo?.bills[0]} />
-            //    <RenovateCard Bill={selectedChargeBillInfo?.bills[0]} />
-            //    <RenovateCard Bill={selectedChargeBillInfo?.bills[0]} /> */}
-            // </>
+            renovationCharges.map((charge) => (
+               <MasterCard
+                  master={charge}
+                  address={charge.address}
+                  isPayed={charge.is_paid}
+                  key={charge.master_id}
+               >
+                  <CertificationNumberCard charge={charge} />
+                  <InfoRow
+                     title="مساحت ساختمان :"
+                     value={`${charge.building_area} متر مربع`}
+                     className={`${styles['info-row']} ${
+                        charge.is_paid && styles['info-row--is-paid']
+                     }`}
+                  />
+                  <InfoRow
+                     title="مساحت زمین :"
+                     value={`${charge.land_area} متر مربع`}
+                     className={`${styles['info-row']} ${
+                        charge.is_paid && styles['info-row--is-paid']
+                     }`}
+                  />
+               </MasterCard>
+            ))
          )}
          <ToastContainer
             rtl

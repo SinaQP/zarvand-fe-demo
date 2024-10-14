@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect, useState } from 'react';
+import { FC, useContext, useEffect } from 'react';
 import styles from './index.module.scss';
 import { useChargesContext, useUserContext } from '../../App.context';
 import { getUserTradeMasters } from './functions/getPersonTradeMasters';
@@ -13,35 +13,35 @@ import { TradeCharge } from '../../interfaces/models.interface';
 
 const Trade: FC = () => {
    const { setHeaderId } = useLayoutContext();
-
-   const { token } = useUserContext();
-   const {
-      selectedTradeCharge,
-      setSelectedTradeCharge,
-      setSelectedChargeBillDetails,
-      setSelectedChargeBillInfo,
-      tradeCharges,
-      setTradeCharges,
+   const { token, setShowPaymentHistory } = useUserContext();
+   const { 
+      selectedTradeCharge, 
+      setSelectedTradeCharge, 
+      setSelectedChargeBillDetails, 
+      setSelectedChargeBillInfo, 
+      tradeCharges, 
+      setTradeCharges 
    } = useChargesContext();
+
    const chargeCards = useWindowWidth(
-      <DesktopChargeCards />,
-      <MobileChargeCards tradeCharges={tradeCharges} />,
+      <DesktopChargeCards />, 
+      <MobileChargeCards tradeCharges={tradeCharges} />
    );
-   const { setShowPaymentHistory } = useUserContext();
+
    useEffect(() => {
       setSelectedTradeCharge(null);
       getUserTradeMasters(token, setTradeCharges);
-      setHeaderId && setHeaderId(styles['header']);
+      setHeaderId?.(styles['header']);
    }, [token]);
 
    useEffect(() => {
       if (selectedTradeCharge) {
          getSelectedChargeBillDetails(
-            token,
-            selectedTradeCharge,
-            'Trade',
-            setSelectedChargeBillDetails,
-            setSelectedChargeBillInfo,
+            token, 
+            selectedTradeCharge, 
+            'Trade', 
+            setSelectedChargeBillDetails, 
+            setSelectedChargeBillInfo
          );
          setShowPaymentHistory(selectedTradeCharge.is_paid);
       }
@@ -49,7 +49,7 @@ const Trade: FC = () => {
 
    return (
       <section className={styles.layout}>
-         {tradeCharges.length <= 0 ? <NoTradeChargesMessage /> : null}
+         {tradeCharges.length <= 0 && <NoTradeChargesMessage />}
          {chargeCards}
          <ToastContainer
             rtl

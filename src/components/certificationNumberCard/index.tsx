@@ -26,6 +26,7 @@ const CertificationNumberCard: FC<{ charge: RenovationCharge }> = ({
       <InfoCard
          title={'شماره شناسنامه ملک'}
          className={styles['certification-number-section']}
+         containerClassName={styles['certification-number-section-wrapper']}
          isPrimary={charge.is_paid}
       >
          {['فرعی', 'ملک', 'بلوک', 'محله', 'منطقه'].map((item, index) => (
