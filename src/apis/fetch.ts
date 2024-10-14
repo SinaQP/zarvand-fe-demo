@@ -18,7 +18,7 @@ export async function Fetch(
       let failResult: FetchResult = {
             status: 0,
             body: 'fail to fetch address',
-      };
+      }; 
 
       try {
             let response = await Call(url, metaData); // call api
