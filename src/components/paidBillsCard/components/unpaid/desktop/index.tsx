@@ -2,14 +2,13 @@ import { FC } from 'react';
 import AnnualChargeTable from '../../../../annualChargeTable';
 import InfoCard from '../../../../infoCard';
 import InfoRow from '../../../../infoRow';
-import DataInput from '../../dataInput';
 import InfoCardTitle from '../../infoCardTitle';
 import './unpaidRenovateDesktop.scss';
 import locMarkerIcon from '/src/assets/images/location-pin.svg';
 import { RenovateCardProps } from '../../../interface';
 import Button from '../../../../button';
 
-const UnPaidDesktopRenovateCard: FC<{ theme: RenovateCardProps['theme'] }> = ({
+const UnPaidDesktopRenovateCard: FC<{ theme: string }> = ({
    theme,
 }) => {
    return (
@@ -29,7 +28,7 @@ const UnPaidDesktopRenovateCard: FC<{ theme: RenovateCardProps['theme'] }> = ({
                   <div></div>
 
                   <div className="content">
-                     <DataInput
+                     {/* <DataInput
                         title={'مبلغ کل (ریال)'}
                         data={0}
                         theme={theme}
@@ -48,7 +47,7 @@ const UnPaidDesktopRenovateCard: FC<{ theme: RenovateCardProps['theme'] }> = ({
                         data={'0000000000'}
                         theme={theme}
                         width="80%"
-                     />
+                     /> */}
                   </div>
 
                   <div>

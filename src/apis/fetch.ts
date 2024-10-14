@@ -12,7 +12,7 @@ export async function Fetch(
       url: string,
       metaData: HeadersInterface,
       Call: any = fetch,
-      env: string = process.env.NODE_ENV,
+      env: string = process.env.NODE_ENV || "develop",
 ): Promise<FetchResult> {
       // define fail result object
       let failResult: FetchResult = {
