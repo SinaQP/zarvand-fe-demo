@@ -90,6 +90,7 @@
       position: static;
       transition: width 0.5s ease;
       padding-left: 2rem;
+      margin-left: 2.5rem;
 
       .footerIcon {
          flex-direction: row-reverse;
@@ -160,7 +161,7 @@
             position: absolute;
             width: 4rem;
             height: 0.3rem;
-            background-color: $primary-color;
+            background-color: $secondary-color;
 
             transition: 0.5s ease;
 

@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction } from 'react';
+import { Dispatch, FC, SetStateAction, useEffect, useRef } from 'react';
 import styles from './index.module.scss';
 import Button from '../../../components/button';
 import OtpInput from '../../../components/otpInput';
@@ -16,6 +16,12 @@ const NationalCodeEntry: FC<Props> = ({
 }) => {
    const { setMaskedPhoneNumber, nationalCode, setNationalCode } =
       useLayoutContext();
+
+   useEffect(() => {
+      const loginBtn = document.getElementById('loginBtn');
+      nationalCode.length === 10 && loginBtn?.click();
+   }, [nationalCode]);
+
    return (
       <div
          className={`${styles['national-code-entry']} ${
@@ -33,6 +39,7 @@ const NationalCodeEntry: FC<Props> = ({
          <Button
             className={styles['submit-button']}
             haveLoading
+            id="loginBtn"
             onClick={async () =>
                await handleSubmit(
                   setShowConfirmationForm,

@@ -5,9 +5,10 @@ import locMarkerIcon from '/src/assets/images/location-pin.svg';
 import shareIcon from '/src/assets/images/shareIcon.svg';
 import cloudIcon from '/src/assets/images/cloudIcon.svg';
 import printerIcon from '/src/assets/images/printerIcon.svg';
-import DataInput from './components/dataInput';
 import InfoCard from '../../../infoCard';
 import houseIcon from '/src/assets/images/houseIcon.svg';
+import InfoCardTitle from '../infoCardTitle';
+import DataPlaceholder from '../dataPlaceholder';
 
 const DesktopRenovateCard: FC<props> = ({ Bill }) => {
    return (
@@ -32,19 +33,24 @@ const DesktopRenovateCard: FC<props> = ({ Bill }) => {
 
             <div className="dataInputContainer">
                <div>
-                  <DataInput title="مبلغ کل(ریال)" data={Bill?.creditor || 0} />
-                  <DataInput
+                  <DataPlaceholder
+                     title="مبلغ کل(ریال)"
+                     data={Bill?.creditor || 0}
+                  />
+
+                  <DataPlaceholder
                      title="تاریخ پرداخت"
                      data={Bill?.payment_date || '1400/12/30'}
                   />
                </div>
 
                <div>
-                  <DataInput
+                  <DataPlaceholder
                      title="شناسه قبض"
                      data={Bill?.bill_no || '0000000000000'}
                   />
-                  <DataInput
+
+                  <DataPlaceholder
                      title="شناسه پرداخت"
                      data={Bill?.payment_no || '0000000000'}
                   />
@@ -52,12 +58,8 @@ const DesktopRenovateCard: FC<props> = ({ Bill }) => {
 
                <div className="propertyDetailsContaienr">
                   <InfoCard
-                     title={
-                        <div className="title">
-                           <img src={houseIcon} alt="house icon" />
-                           <span>شماره شناسنامه ملک</span>
-                        </div>
-                     }
+                     isPrimary
+                     title={<InfoCardTitle title={'شماره شناسنامه مالک'} />}
                   >
                      <div className="data"></div>
                   </InfoCard>
