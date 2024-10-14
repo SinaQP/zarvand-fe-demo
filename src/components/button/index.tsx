@@ -4,7 +4,6 @@ import './index.scss';
 import styles from './index.module.scss';
 import Loading from '../loading/loading';
 
-
 const Button: FC<Props> = (props) => {
    const [loading, setLoading] = useState(false);
    const handleOnClick = async (event: MouseEvent<HTMLButtonElement>) => {
@@ -18,12 +17,14 @@ const Button: FC<Props> = (props) => {
       return <Loading />;
    }
    return (
-      <button {...props} className={`${props.className} ${styles.button}`}
-              onClick={props.haveLoading ? handleOnClick : props.onClick}>
+      <button
+         {...props}
+         className={`${props.className} ${styles.button}`}
+         onClick={props.haveLoading ? handleOnClick : props.onClick}
+      >
          {props.children}
       </button>
    );
 };
 
-
-export default Button
+export default Button;
