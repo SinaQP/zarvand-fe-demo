@@ -1,7 +1,23 @@
-version: '3.4'
+---
 services:
-   front:
-      build: .
-      restart: always
-      ports:
-         - 3050:80
+  front:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.local
+      args:
+        EXTRA_HOST: "nexus.zaraamad.ir:192.168.174.4"
+    container_name: zarvand-fe-${PROJ}
+    restart: always
+    ports:
+      - ${LPORT}:80
+    networks:
+      - ProjectNet
+    extra_hosts:
+      - "nexus.zaraamad.ir:192.168.174.4"
+    env_file:
+      - ../.env
+
+networks:
+  ProjectNet:
+    name: ${PROJ}
+    external: true

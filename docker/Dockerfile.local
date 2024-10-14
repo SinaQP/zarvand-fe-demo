@@ -6,10 +6,12 @@ COPY ["package.json", "package-lock.json*", "./"]
 RUN npm install
 
 COPY . .
-RUN npm run build
 
 ARG VITE_APP_BACKEND
 ENV VITE_APP_BACKEND=$VITE_APP_BACKEND
+
+RUN npm run build
+
 # CMD [ "yarn", "start" ]
 
 FROM nginx:alpine
