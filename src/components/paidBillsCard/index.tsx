@@ -2,25 +2,17 @@ import { FC } from 'react';
 import useWindowWidth from '../../hooks/useWindowWidth';
 import './Renovate.scss';
 import { RenovateCardProps } from './interface';
-import PaidDesktopRenovateCard from './components/paid/desktop';
-import PaidAndroidRenovateCard from './components/paid/android';
-import UnPaidDesktopRenovateCard from './components/unpaid/desktop';
+import AndroidRenovateCard from './components/android';
+import DesktopRenovateCard from './components/desktop';
 
-const RenovateCard: FC<RenovateCardProps> = ({
-   Bill,
-   theme = 'primary',
-   paymentStatus,
-}) => {
+const PaidBillCard: FC<RenovateCardProps> = ({ Bill }) => {
    const windowWidth = useWindowWidth('desktop', 'android');
 
    return (
-      <div
-         id="renovationStyleWrapper"
-         className={`${theme === 'primary' ? 'primary' : 'secondary'}`}
-      >
+      <div id="renovationStyleWrapper">
          <div id="border"></div>
          <div className="container">
-            {paymentStatus ? (
+            {/* {paymentStatus ? (
                windowWidth === 'android' ? (
                   <PaidAndroidRenovateCard Bill={Bill} />
                ) : (
@@ -30,10 +22,15 @@ const RenovateCard: FC<RenovateCardProps> = ({
                <div></div>
             ) : (
                <UnPaidDesktopRenovateCard theme="secondary" />
+            )} */}
+            {windowWidth === 'android' ? (
+               <AndroidRenovateCard Bill={Bill} />
+            ) : (
+               <DesktopRenovateCard Bill={Bill} />
             )}
          </div>
       </div>
    );
 };
 
-export default RenovateCard;
+export default PaidBillCard;

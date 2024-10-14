@@ -3,7 +3,7 @@ import StatusTab from '../../../components/statusTab';
 import UnPayedCardIcon from '../../../assets/images/unpayed-card.svg';
 import PayedCardIcon from '../../../assets/images/payed-card.svg';
 import { Status } from '../../../components/statusTab/index.interface';
-import RenovateCard from '../../../components/renovateCard';
+import PaidBillCard from '../../../components/paidBillsCard';
 const DesktopChargeCards: FC = () => {
    const initialStatuses = [
       { label: 'پرداخت شده', isActive: true, icon: PayedCardIcon },
@@ -24,15 +24,11 @@ const DesktopChargeCards: FC = () => {
       <div>
          <StatusTab statuses={statuses} onClick={statusOnClick} />
          {activeStatus?.label === 'پرداخت شده' ? (
-            <> payed</>
-         ) : (
             <>
-               <RenovateCard
-                  Bill={undefined}
-                  theme="secondary"
-                  paymentStatus={false}
-               />
+               <PaidBillCard Bill={undefined} />
             </>
+         ) : (
+            <>unpaid</>
          )}
       </div>
    );

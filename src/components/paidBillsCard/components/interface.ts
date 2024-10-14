@@ -3,5 +3,4 @@ import { RenovateCardProps } from '../interface';
 
 export interface props {
    Bill: Bill | undefined;
-   theme: RenovateCardProps["theme"]
 }

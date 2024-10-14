@@ -1,11 +1,11 @@
-import CopyIcon from '../../../../copyIcon';
+import CopyIcon from '../../../copyIcon';
 import './RenovateAndroid.scss';
 import shareIcon from '/src/assets/images/shareIcon.svg';
 import cloudIcon from '/src/assets/images/cloudIcon.svg';
 import { FC } from 'react';
-import { Bill } from '../../../../../interfaces/models.interface';
+import { Bill } from '../../../../interfaces/models.interface';
 
-const PaidAndroidRenovateCard: FC<{ Bill: Bill | undefined }> = ({ Bill }) => {
+const AndroidRenovateCard: FC<{ Bill: Bill | undefined }> = ({ Bill }) => {
    return (
       <div className="androidRenovateCardStyleWrapper">
          <div className="lineContainer">
@@ -64,4 +64,4 @@ const PaidAndroidRenovateCard: FC<{ Bill: Bill | undefined }> = ({ Bill }) => {
    );
 };
 
-export default PaidAndroidRenovateCard;
+export default AndroidRenovateCard;

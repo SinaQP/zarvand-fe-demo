@@ -1,16 +1,16 @@
 import { FC } from 'react';
 import './RenovateDesktop.scss';
-import { props } from '../../interface';
+import { props } from '../interface';
 import locMarkerIcon from '/src/assets/images/location-pin.svg';
 import shareIcon from '/src/assets/images/shareIcon.svg';
 import cloudIcon from '/src/assets/images/cloudIcon.svg';
 import printerIcon from '/src/assets/images/printerIcon.svg';
-import InfoCard from '../../../../infoCard';
+import InfoCard from '../../../infoCard';
 import houseIcon from '/src/assets/images/houseIcon.svg';
-import DataInput from '../../dataInput';
-import InfoCardTitle from '../../infoCardTitle';
+import InfoCardTitle from '../infoCardTitle';
+import DataPlaceholder from '../dataPlaceholder';
 
-const PaidDesktopRenovateCard: FC<props> = ({ Bill, theme }) => {
+const DesktopRenovateCard: FC<props> = ({ Bill }) => {
    return (
       <div className="desktopRenovateCardStyleWrapper">
          <div className="lineContainer">
@@ -33,33 +33,32 @@ const PaidDesktopRenovateCard: FC<props> = ({ Bill, theme }) => {
 
             <div className="dataInputContainer">
                <div>
-                  <DataInput
+                  <DataPlaceholder
                      title="مبلغ کل(ریال)"
                      data={Bill?.creditor || 0}
-                     theme={theme}
                   />
-                  <DataInput
+
+                  <DataPlaceholder
                      title="تاریخ پرداخت"
                      data={Bill?.payment_date || '1400/12/30'}
-                     theme={theme}
                   />
                </div>
 
                <div>
-                  <DataInput
+                  <DataPlaceholder
                      title="شناسه قبض"
                      data={Bill?.bill_no || '0000000000000'}
-                     theme={theme}
                   />
-                  <DataInput
+
+                  <DataPlaceholder
                      title="شناسه پرداخت"
                      data={Bill?.payment_no || '0000000000'}
-                     theme={theme}
                   />
                </div>
 
                <div className="propertyDetailsContaienr">
                   <InfoCard
+                     isPrimary
                      title={<InfoCardTitle title={'شماره شناسنامه مالک'} />}
                   >
                      <div className="data"></div>
@@ -81,4 +80,4 @@ const PaidDesktopRenovateCard: FC<props> = ({ Bill, theme }) => {
    );
 };
 
-export default PaidDesktopRenovateCard;
+export default DesktopRenovateCard;

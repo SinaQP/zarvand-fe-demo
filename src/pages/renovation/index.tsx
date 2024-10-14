@@ -11,7 +11,7 @@ import { Bounce, ToastContainer } from 'react-toastify';
 import { useChargesContext, useUserContext } from '../../App.context';
 import { RenovationCharge } from '../../interfaces/models.interface';
 import CertificationNumberCard from '../../components/certificationNumberCard';
-import RenovateCard from '../../components/renovateCard';
+import PaidBillCard from '../../components/paidBillsCard';
 
 const Renovation: FC = () => {
    const {
@@ -61,13 +61,17 @@ const Renovation: FC = () => {
                //       <CertificationNumberCard charge={charge} />
                //    </MasterCard>
                // ));
-               return selectedChargeBillInfo?.bills.map((bill, idx) => (
-                  <RenovateCard
-                     Bill={bill}
-                     paymentStatus
-                     key={`${bill.bill_no}-${idx}`}
-                  />
-               ));
+               // return selectedChargeBillInfo?.bills.map((bill, idx) => (
+               //    <RenovateCard
+               //       Bill={bill}
+               //       key={`${bill.bill_no}-${idx}`}
+               //    />
+               // ));
+               return (
+                  <>
+                     <PaidBillCard Bill={undefined} />
+                  </>
+               );
             })()
 
             // <>
