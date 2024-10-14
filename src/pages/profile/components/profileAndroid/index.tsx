@@ -5,7 +5,7 @@ import callenderIcon from '/src/assets/images/callenderIcon.svg';
 import smartphoneIcon from '/src/assets/images/smartphoneIcon.svg';
 import nationalCodeIcon from '/src/assets/images/nationalCodeIcon.svg';
 import { FC } from 'react';
-import { User } from '../../../../App.context';
+import { User } from '../../../../interfaces/models.interface';
 
 const ProfileAndroid: FC<{ user: User | null }> = ({ user }) => {
    return (

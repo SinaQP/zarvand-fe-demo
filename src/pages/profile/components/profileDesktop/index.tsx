@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import InfoCardBodyDesktop from '../infoCardBody/desktop';
 import InfoCardDesktop from '../infoCardDesktop';
-import { User } from '../../../../App.context';
+import { User } from '../../../../interfaces/models.interface';
 
 const ProfileDesktop: FC<{ user: User | null }> = ({ user }) => {
    return (
