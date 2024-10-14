@@ -9,15 +9,16 @@ const BillInfo: FC = () => {
       selectedChargeBillInfo && (
          <div>
             <InfoRow
+
                title="مبلغ کل(ریال)"
                value={toMoneyFormat(
-                  selectedChargeBillInfo.value_to_pay.toString(),
+                  selectedChargeBillInfo.last_bill_info.value_to_pay.toString(),
                )}
             />
-            <InfoRow title="شناسه قبض" value={selectedChargeBillInfo.bill_no} />
+            <InfoRow title="شناسه قبض" value={selectedChargeBillInfo.last_bill_info.bill_no} />
             <InfoRow
                title="شناسه پرداخت"
-               value={selectedChargeBillInfo.payment_no}
+               value={selectedChargeBillInfo.last_bill_info.payment_no}
             />
          </div>
       )

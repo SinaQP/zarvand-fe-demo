@@ -1,13 +1,12 @@
-import { FC, useContext } from 'react';
+import { FC } from 'react';
 import SelectedChargeCard from '../selectedChargeCard';
 import resetChargeStates from '../../../utilities/resetChargeStates';
-import InfoCard from '../../../components/infoCard';
-import InfoCardTitle from '../infoCardTitle';
 import styles from '../index.module.scss';
 import MasterCard from '../../../components/masterCard';
 import { renderInfoCard } from './renderInfoCard';
 import { TradeCharge } from '../../../interfaces/models.interface';
 import { useChargesContext, useUserContext } from '../../../App.context';
+import InfoRow from '../../../components/infoRow';
 
 const MobileChargeCards: FC<{ tradeCharges: TradeCharge[] }> = ({
    tradeCharges,
@@ -28,6 +27,13 @@ const MobileChargeCards: FC<{ tradeCharges: TradeCharge[] }> = ({
          master={charge}
       >
          {renderInfoCard(charge)}
+         <InfoRow
+            title="مساحت ملک :"
+            value={`${charge.shop_area} متر مربع`}
+            className={`${styles['info-row']} ${
+               charge.is_paid && styles['info-row--is-paid']
+            }`}
+         />
       </MasterCard>
    );
 

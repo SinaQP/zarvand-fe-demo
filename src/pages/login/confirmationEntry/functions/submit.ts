@@ -1,8 +1,8 @@
 import { Dispatch, ReactNode, SetStateAction } from 'react';
 import { validateSmsCode } from '../../../../apis/login/validate-sms-code';
-import { User } from '../../../../App.context';
 import { NavigateFunction } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { User } from '../../../../interfaces/models.interface';
 
 interface Props {
    verificationCode: string;

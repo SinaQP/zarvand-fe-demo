@@ -4,11 +4,12 @@ import styles from './index.module.scss';
 interface Props {
    title: string;
    value: string;
+   className?: string;
 }
 
-const InfoRow: FC<Props> = ({ title, value }) => {
+const InfoRow: FC<Props> = ({ title, value, className }) => {
    return (
-      <div className={styles['info-row']}>
+      <div className={`${styles['info-row']} ${className}`}>
          <span>{title}</span>
          <span>{value}</span>
       </div>
