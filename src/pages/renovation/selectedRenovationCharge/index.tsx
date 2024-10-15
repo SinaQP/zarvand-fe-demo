@@ -25,9 +25,11 @@ const SelectedRenovationCharge: FC<{ isPayed: boolean }> = ({ isPayed }) => {
    if (!selectedRenovationCharge) return null;
 
    return (
-      <div>
+      <div style={{ width: '100%' }}>
          <BackArrow
-            className={`${styles['back-arrow']} ${showPaymentHistory && styles['back-arrow--is-paid']}`}
+            className={`${styles['back-arrow']} ${
+               showPaymentHistory && styles['back-arrow--is-paid']
+            }`}
             onClick={() => {
                if (
                   !selectedRenovationCharge.is_paid &&
