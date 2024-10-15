@@ -24,11 +24,11 @@ export const updateLayout = ({
 }: UpdateLayoutProps) => {
    setExtraHeaderContent &&
       setExtraHeaderContent(
-         true ? <ConfirmationEntry /> : null,
+         showConfirmationForm ? <ConfirmationEntry /> : null,
       );
    setHeaderBadge &&
       setHeaderBadge(
-         true ? (
+         showConfirmationForm ? (
             <CounterBadge
                initialCount={120}
                setShowConfirmationForm={setShowConfirmationForm}
