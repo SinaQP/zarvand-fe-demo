@@ -7,12 +7,13 @@ import {
    RenovationCharge,
    TradeCharge,
 } from '../interfaces/models.interface';
+import { toast } from 'react-toastify';
 
 async function getSelectedChargeBillDetails(
    token: string,
    charge: TradeCharge | RenovationCharge,
    chargeType: 'Trade' | 'Renovation',
-   setBillDetailsInfoResponse: Dispatch<SetStateAction<BillDetail[] | null>>,
+   setSelectedChargeBillDetails: Dispatch<SetStateAction<BillDetail[] | null>>,
    setBillInfo: Dispatch<SetStateAction<BillInfo | null>>,
 ) {
    let billDetailsInfoResponse = null;
@@ -29,12 +30,12 @@ async function getSelectedChargeBillDetails(
    }
    const responseBody = billDetailsInfoResponse.body;
    if (billDetailsInfoResponse.status === 200) {
-      // setBillDetailsInfoResponse(charge.is_paid ? responseBody.bill_details : responseBody.last_bill_details);
-      setBillDetailsInfoResponse(responseBody.last_bill_details);
+      setSelectedChargeBillDetails(responseBody.last_bill_details);
       setBillInfo(responseBody);
    } else {
-      setBillDetailsInfoResponse([]);
-   } //toast.fire({ title: responseBody.message, icon: 'error' });
+      setSelectedChargeBillDetails([]);
+      toast.error(responseBody.message);
+   }
 }
 
 export default getSelectedChargeBillDetails;

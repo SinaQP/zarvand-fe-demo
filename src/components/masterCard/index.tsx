@@ -1,8 +1,8 @@
 import { FC } from 'react';
 import styles from './index.module.scss';
 import { Props } from './index.interface';
-import AddressSection from './addressSection';
 import ButtonGroup from './buttonGroup';
+import AddressSection from '../addressSection';
 
 const MasterCard: FC<Props> = ({
                                   isPayed,

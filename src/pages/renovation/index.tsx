@@ -20,7 +20,8 @@ const Renovation: FC = () => {
       setRenovationCharges,
    } = useChargesContext();
 
-   const { token, setShowPaymentHistory } = useUserContext();
+   const { token, setShowPaymentHistory, showPaymentHistory } =
+      useUserContext();
    const { setHeaderId } = useLayoutContext();
    const { selectedChargeBillInfo } = useChargesContext();
 
@@ -46,7 +47,7 @@ const Renovation: FC = () => {
       <section className={styles.layout}>
          {renovationCharges.length <= 0 && <NoRenovationChargesMessage />}
          {selectedRenovationCharge ? (
-            <SelectedRenovationCharge />
+            <SelectedRenovationCharge isPayed={showPaymentHistory} />
          ) : (
             renovationCharges.map((charge) => (
                <MasterCard
