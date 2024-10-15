@@ -6,6 +6,7 @@
   box-shadow: $primary-box-shadow;
   padding: 1rem;
   position: relative;
+  width: 100%;
 
   &:not(:last-of-type) {
     margin-bottom: 2rem;

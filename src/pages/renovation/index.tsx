@@ -55,6 +55,7 @@ const Renovation: FC = () => {
                   address={charge.address}
                   isPayed={charge.is_paid}
                   key={charge.master_id}
+                  
                >
                   <CertificationNumberCard charge={charge} />
                   <InfoRow
