@@ -1,21 +1,73 @@
 stages:
   - build
   - run
-build-front-prod:
+
+.build:
+  script:
+    - hostname
+    - echo "$ENVS" > .env
+    - docker compose --env-file .env -f docker/docker-compose-stage.yml -p ${PROJ} up -d --build;
+
+build-stage:
+  extends: .build
+  environment: stage
   stage: build
+  tags:
+    - stage
   only:
     - stage
-  script:
-    - hostname
-    - docker compose build;
-  tags: [stage]
 
-run-front-prod:
+build-prod:
+  extends: .build
+  environment: prod
+  when: manual
+  stage: build
+  tags:
+    - prod
+  only:
+    - stage
+
+build-zarand:
+  extends: .build
+  environment: zarand
+  when: manual
+  stage: build
+  tags:
+    - prod
+  only:
+    - stage
+
+.run:
+  script:
+    - echo "$ENVS" > .env
+    - docker compose --env-file .env -f docker/docker-compose.yml -p ${PROJ} up -d;
+
+
+run-stage:
+  extends: .run
+  environment: stage
   stage: run
+  tags:
+    - stage
   only:
     - stage
-  script:
-    - hostname
-    - docker compose up -d;
-  tags: [stage]
 
+run-prod:
+  extends: .run
+  environment: prod
+  when: manual
+  stage: run
+  tags:
+    - prod
+  only:
+    - stage
+
+run-zarand:
+  extends: .run
+  environment: zarand
+  when: manual
+  stage: run
+  tags:
+    - prod
+  only:
+    - stage
