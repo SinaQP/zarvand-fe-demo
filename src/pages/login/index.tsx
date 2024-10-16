@@ -48,10 +48,10 @@ const Login: FC = () => {
 
    return (
       <section>
-         {/* {blueSquare} */}
-         {/* {whiteSquare} */}
+         {blueSquare}
+         {whiteSquare}
          <CityAnimationCard />
-         {/* {mainTitle} */}
+         {mainTitle}
          <NationalCodeEntry
             setShowConfirmationForm={setShowConfirmationForm}
             showConfirmationForm={showConfirmationForm}
