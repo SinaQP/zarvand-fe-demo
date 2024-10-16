@@ -9,11 +9,12 @@
    width: 100%;
    @media (min-width: $desktop) {
       width: 52rem;
+      margin-left: 2rem;
    }
 
-   &:not(:last-of-type) {
-      margin-bottom: 2rem;
-   }
+   // &:not(:last-of-type) {
+   //    margin-bottom: 2rem;
+   // }
 
    &.is-payed {
       border: 2px solid $primary-color;

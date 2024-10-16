@@ -38,7 +38,6 @@ const ChargeCards: FC<{ tradeCharges: TradeCharge[] }> = ({ tradeCharges }) => {
 
    return (
       <>
-         <StatusTab statuses={[]} title='کسب هایه زیر در سیستم برای شما ثبت شده است'/>
          {selectedTradeCharge ? (
             <SelectedChargeCard isPayed={showPaymentHistory} />
          ) : (

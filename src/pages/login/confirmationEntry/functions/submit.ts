@@ -9,6 +9,7 @@ interface Props {
    nationalCode: string;
    navigate: NavigateFunction;
    setToken: Dispatch<SetStateAction<string>>;
+   setHeaderText: Dispatch<SetStateAction<string>>;
    setUser: Dispatch<SetStateAction<User | null>>;
    setHeaderId: Dispatch<SetStateAction<string>>;
    setBadgeId: Dispatch<SetStateAction<string>>;
@@ -26,6 +27,7 @@ const handleConfirmationButton: Function = async ({
    setHeaderId,
    setExtraHeaderContent,
    setHeaderBadge,
+   setHeaderText,
 }: Props) => {
    console.log(nationalCode, verificationCode);
    const response = await validateSmsCode({
@@ -40,6 +42,7 @@ const handleConfirmationButton: Function = async ({
       setBadgeId('');
       setExtraHeaderContent(null);
       setHeaderBadge(null);
+      setHeaderText('');
       navigate('home');
    } else {
       const responseBody = response.body;

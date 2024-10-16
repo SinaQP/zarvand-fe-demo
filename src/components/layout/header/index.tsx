@@ -5,8 +5,13 @@ import HeaderBadge from './headerBadge';
 import useWindowWidth from '../../../hooks/useWindowWidth';
 
 const Header = () => {
-   const { headerBadge, extraHeaderContent, headerClassName, headerId } =
-      useLayoutContext();
+   const {
+      headerBadge,
+      extraHeaderContent,
+      headerClassName,
+      headerId,
+      headerText,
+   } = useLayoutContext();
    const [isExpanded, setIsExpanded] = useState(false);
    useEffect(() => {
       setIsExpanded(!!extraHeaderContent);
@@ -21,7 +26,7 @@ const Header = () => {
          }`}
          id={headerId}
       >
-         <h1>سامانه هوشمند شهروندی</h1>
+         <h1>{headerText ? headerText : 'سامانه هوشمند شهروندی'}</h1>
          <div className={styles.extraContent}>
             {extraHeaderContent && extraHeaderContent}
          </div>

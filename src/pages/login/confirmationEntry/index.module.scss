@@ -54,7 +54,7 @@
       text-align: center;
       color: $font-white-color;
       @media (min-width: $desktop) {
-         font-size: 4.5rem;
+         font-size: 4rem;
       }
    }
 
@@ -100,7 +100,8 @@
       border: none;
 
       @media (min-width: $desktop) {
-         font-size: 4.5rem;
+         width: 45%;
+         font-size: 3.5rem;
       }
    }
 }

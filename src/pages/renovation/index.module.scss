@@ -9,9 +9,9 @@
    display: flex;
    flex-direction: column;
    align-items: center;
+   justify-content: center;
    gap: 3rem;
    @media (min-width: $desktop) {
-  
       height: auto;
    }
    @media (min-width: $desktop) {
@@ -20,8 +20,10 @@
       display: flex;
       flex-direction: row;
       flex-wrap: wrap;
+      gap: 0;
+      justify-content: baseline;
       row-gap: 5rem;
-      column-gap: 3rem;
+
    }
    .master-info {
       margin-bottom: 3rem;

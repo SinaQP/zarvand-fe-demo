@@ -12,10 +12,10 @@ const ChargeCards: FC = () => {
    const { selectedRenovationCharge, renovationCharges } = useChargesContext();
    return (
       <>
-         <StatusTab
+         {/* <StatusTab
             statuses={[]}
             title="ملک‌های زیر در سیستم برای شما ثبت شده است"
-         />
+         /> */}
          {selectedRenovationCharge ? (
             <SelectedRenovationCharge isPayed={showPaymentHistory} />
          ) : (

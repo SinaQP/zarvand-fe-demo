@@ -18,6 +18,7 @@ const ConfirmationEntry: FC = () => {
       setBadgeId,
       setExtraHeaderContent,
       setHeaderBadge,
+      setHeaderText,
    } = useLayoutContext();
 
    useEffect(() => {
@@ -28,11 +29,11 @@ const ConfirmationEntry: FC = () => {
       <form className={styles.form}>
          <span>
             لطفا کد ارسال شده به شماره
-            {`${maskedPhoneNumber.slice(8)}****${maskedPhoneNumber.slice(
+            {` ${maskedPhoneNumber.slice(8)}****${maskedPhoneNumber.slice(
                0,
                4,
             )}`}
-            را وارد کنید
+            را وارد نمایید
          </span>
          <OtpInput
             numberOfInputs={6}
@@ -56,6 +57,7 @@ const ConfirmationEntry: FC = () => {
                   setBadgeId,
                   setExtraHeaderContent,
                   setHeaderBadge,
+                  setHeaderText,
                })
             }
          >
