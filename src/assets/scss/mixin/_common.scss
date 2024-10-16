@@ -22,8 +22,7 @@
    padding: 2rem 2rem;
    overflow-y: scroll;
    @media (min-width: $desktop) {
-      margin-left: 16.5rem;
-      min-height: 100vh;
+      margin-left: 14.5rem;
       margin-top: calc(var(--small-header-height) + 8vh);
    }
 }

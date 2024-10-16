@@ -13,6 +13,7 @@
       flex-wrap: wrap;
       gap: 5rem;
       justify-content: center;
+      min-height: auto;
    }
    .info-row {
       border-bottom: 1px solid $secondary-color;

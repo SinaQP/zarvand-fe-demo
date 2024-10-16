@@ -42,8 +42,12 @@ const Renovation: FC = () => {
 
    return (
       <section className={styles.layout}>
-         {renovationCharges.length <= 0 && <NoRenovationChargesMessage />}
-         <ChargeCards />
+         {renovationCharges.length <= 0 ? (
+            <NoRenovationChargesMessage />
+         ) : (
+            <ChargeCards />
+         )}
+
          <ToastContainer
             rtl
             position="bottom-center"

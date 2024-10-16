@@ -11,13 +11,13 @@ import ChargeCards from './chargeCards';
 const Trade: FC = () => {
    const { setHeaderId } = useLayoutContext();
    const { token, setShowPaymentHistory } = useUserContext();
-   const { 
-      selectedTradeCharge, 
-      setSelectedTradeCharge, 
-      setSelectedChargeBillDetails, 
-      setSelectedChargeBillInfo, 
-      tradeCharges, 
-      setTradeCharges 
+   const {
+      selectedTradeCharge,
+      setSelectedTradeCharge,
+      setSelectedChargeBillDetails,
+      setSelectedChargeBillInfo,
+      tradeCharges,
+      setTradeCharges,
    } = useChargesContext();
 
    useEffect(() => {
@@ -29,11 +29,11 @@ const Trade: FC = () => {
    useEffect(() => {
       if (selectedTradeCharge) {
          getSelectedChargeBillDetails(
-            token, 
-            selectedTradeCharge, 
-            'Trade', 
-            setSelectedChargeBillDetails, 
-            setSelectedChargeBillInfo
+            token,
+            selectedTradeCharge,
+            'Trade',
+            setSelectedChargeBillDetails,
+            setSelectedChargeBillInfo,
          );
          setShowPaymentHistory(selectedTradeCharge.is_paid);
       }
@@ -41,8 +41,12 @@ const Trade: FC = () => {
 
    return (
       <section className={styles.layout}>
-         {tradeCharges.length <= 0 && <NoTradeChargesMessage />}
-         <ChargeCards tradeCharges={tradeCharges} />
+         {tradeCharges.length <= 0 ? (
+            <NoTradeChargesMessage />
+         ) : (
+            <ChargeCards tradeCharges={tradeCharges} />
+         )}
+
          <ToastContainer
             rtl
             position="bottom-center"
