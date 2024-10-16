@@ -16,6 +16,7 @@ const UnPayedDetails: FC = () => {
          address={selectedRenovationCharge.address}
          isPayed={selectedRenovationCharge.is_paid}
          key={selectedRenovationCharge.master_id}
+         
       >
          <CertificationNumberCard charge={selectedRenovationCharge} />
 
