@@ -23,11 +23,6 @@ const Trade: FC = () => {
       setTradeCharges 
    } = useChargesContext();
 
-   const chargeCards = useWindowWidth(
-      <DesktopChargeCards />, 
-      <MobileChargeCards tradeCharges={tradeCharges} />
-   );
-
    useEffect(() => {
       setSelectedTradeCharge(null);
       getUserTradeMasters(token, setTradeCharges);
@@ -50,7 +45,7 @@ const Trade: FC = () => {
    return (
       <section className={styles.layout}>
          {tradeCharges.length <= 0 && <NoTradeChargesMessage />}
-         {chargeCards}
+         <MobileChargeCards tradeCharges={tradeCharges} />
          <ToastContainer
             rtl
             position="bottom-center"
