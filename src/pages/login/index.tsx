@@ -11,8 +11,13 @@ import { updateLayout } from './functions/updateLayout';
 import { Bounce, toast, ToastContainer } from 'react-toastify';
 
 const Login: FC = () => {
-   const { setExtraHeaderContent, setHeaderBadge, setBadgeId, setHeaderId } =
-      useLayoutContext();
+   const {
+      setExtraHeaderContent,
+      setHeaderBadge,
+      setBadgeId,
+      setHeaderId,
+      setClassName,
+   } = useLayoutContext();
    const [showConfirmationForm, setShowConfirmationForm] = useState(false);
    const headerClassName = useWindowWidth(styles.header, '');
    const mainTitle = useWindowWidth(

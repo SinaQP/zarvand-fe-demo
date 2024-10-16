@@ -11,8 +11,10 @@
    align-items: center;
    flex-direction: column;
    @media (min-width: $desktop) {
+      height: auto;
       padding: 0 25vw;
    }
+
    .welcome-text {
       background-color: $primary-color;
       padding: 1.7rem 0.5rem;

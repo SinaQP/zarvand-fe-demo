@@ -12,8 +12,8 @@
    }
    .main {
       flex: 1;
-      
       @media (min-width: $desktop) {
+         min-height: 100vh;
          align-self: start;
       }
    }
