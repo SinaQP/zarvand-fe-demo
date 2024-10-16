@@ -2,7 +2,7 @@ import { FC, useEffect, useState } from 'react';
 import { Props } from './index.interface';
 import styles from './index.module.scss';
 
-const StatusTab: FC<Props> = ({ statuses, onClick }) => {
+const StatusTab: FC<Props> = ({ statuses, onClick, title }) => {
    const [activeIndex, setActiveIndex] = useState<number>(
       statuses.findIndex((status) => status.isActive),
    );
@@ -14,12 +14,12 @@ const StatusTab: FC<Props> = ({ statuses, onClick }) => {
    return (
       <div className={styles.statusTab}>
          <div className={styles.header}>
-            <span> ملک‌های زیر در سیستم برای شما ثبت شده است</span>
+            <span>{title}</span>
             <div className={styles.statues}>
                {statuses.map((value) => (
                   <div
                      className={`${value.isActive && styles.isActive}`}
-                     onClick={() => onClick(value)}
+                     onClick={() => onClick && onClick(value)}
                   >
                      <span>{value.label}</span>
                      <img src={value.icon} />

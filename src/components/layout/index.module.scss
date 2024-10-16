@@ -7,7 +7,9 @@
 
    display: flex;
    flex-direction: column;
-
+   @media (min-width: $desktop) {
+      height: auto;
+   }
    .main {
       flex: 1;
       

@@ -6,5 +6,6 @@ export interface Status {
 
 export interface Props {
    statuses: Status[];
-   onClick: (clickedStatus: Status) => void;
+   title: string;
+   onClick?: (clickedStatus: Status) => void;
 }
