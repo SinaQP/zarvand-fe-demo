@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { androidIconOrder } from '../../func/footerIconsCorrectOrders';
+import './androidFooter.scss';
 
 const AndroidFooter: FC<{
    activeIndex: number;

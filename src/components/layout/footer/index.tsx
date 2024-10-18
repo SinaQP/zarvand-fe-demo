@@ -1,22 +1,14 @@
-import { useEffect, useRef, useState, useContext } from 'react';
+import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import styles from './index.module.scss';
 import { useChargesContext } from '../../../App.context';
 import resetChargeStates from '../../../utilities/resetChargeStates';
-import { IconType, RouteType } from './index.interface';
+import { IconType } from './index.interface';
 import useWindowWidth from '../../../hooks/useWindowWidth';
-import {
-   androidIconOrder,
-   desktopIconOrder,
-} from './func/footerIconsCorrectOrders';
-import './index.scss';
 import AndroidFooter from './components/androidFooter';
+import DesktopFooter from './components/desktopFooter';
 
 const Footer = () => {
    const windowWidth = useWindowWidth('desktop', 'mobile');
-
-   const footerIconsList: IconType[] =
-      windowWidth === 'desktop' ? desktopIconOrder : androidIconOrder;
 
    const {
       setSelectedTradeCharge,
@@ -51,7 +43,7 @@ const Footer = () => {
 
    const handlePointerMove = (e: HTMLLIElement) => {
       const rect = e.getBoundingClientRect();
-      setPosition(`${(rect.x + 6) / 10}rem`);
+      setPosition(`${(rect.left + rect.width / 2 - 35) / 10}rem`);
    };
 
    const routeToIndex =
@@ -93,43 +85,17 @@ const Footer = () => {
                position={position}
             />
          ) : (
-            <div></div>
+            <DesktopFooter
+               drawerActive={drawerActive}
+               setDrawerActive={setDrawerActive}
+               activeIndex={activeIndex}
+               setActiveIndex={setActiveIndex}
+               handleDrawer={handleDrawer}
+               handleRedirect={handleRedirect}
+            />
          )}
       </>
    );
-   // (
-   //    <footer className="container">
-   //       <nav className="tabbar tab-style">
-   //          <ul className="flex-center">
-   //             {footerIconsList.map((item, idx) => {
-   //                const isActive = idx === activeIndex;
-
-   //                return (
-   //                   <li
-   //                      className={`${isActive ? 'active' : ''}`}
-   //                      onClick={(e) => {
-   //                         handlePointerMove(e.currentTarget);
-   //                         handleRedirect(item.route, idx);
-   //                      }}
-   //                   >
-   //                      <item.icon
-   //                         color={isActive ? 'black' : 'white'}
-   //                         width={isActive ? '3.4rem' : '2.4rem'}
-   //                         height={isActive ? '3.4rem' : '2.4rem'}
-   //                      />
-   //                   </li>
-   //                );
-   //             })}
-   //             <li
-   //                className="follow"
-   //                style={windowWidth === 'mobile' ? { left: position } : {}}
-   //             >
-   //                &nbsp;
-   //             </li>
-   //          </ul>
-   //       </nav>
-   //    </footer>
-   // );
 };
 
 export default Footer;

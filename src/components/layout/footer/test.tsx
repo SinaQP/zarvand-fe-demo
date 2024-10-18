@@ -1,97 +1,179 @@
-import { useEffect, useState } from 'react';
-import './test.scss';
-import { androidIconOrder } from './func/footerIconsCorrectOrders';
-import { spawn } from 'child_process';
+import { useEffect, useRef, useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import styles from './index.module.scss';
+import { useChargesContext } from '../../../App.context';
+import resetChargeStates from '../../../utilities/resetChargeStates';
+import { IconType, RouteType } from './index.interface';
+import useWindowWidth from '../../../hooks/useWindowWidth';
+import {
+   androidIconOrder,
+   desktopIconOrder,
+} from './func/footerIconsCorrectOrders';
 
-const TestTabbar = () => {
-   // Use effect to handle DOM manipulations after component mounts
-   //    useEffect(() => {
-   //       // Query all 'ul' elements
-   //       const uls = document.querySelectorAll<HTMLUListElement>('ul');
+const Footer = () => {
+   const windowWidth = useWindowWidth('desktop', 'mobile');
 
-   //       uls.forEach((ul) => {
-   //          const resetClass = ul.parentElement?.getAttribute('class') || '';
-   //          const lis = ul.querySelectorAll<HTMLLIElement>('li');
+   const footerIconsList: IconType[] =
+      windowWidth === 'desktop' ? desktopIconOrder : androidIconOrder;
 
-   //          lis.forEach((li) => {
-   //             li.addEventListener('click', (e: MouseEvent) => {
-   //                e.preventDefault();
-   //                e.stopPropagation();
+   const {
+      setSelectedTradeCharge,
+      setSelectedChargeBillDetails,
+      setSelectedChargeBillInfo,
+      setSelectedRenovationCharge,
+   } = useChargesContext();
 
-   //                const target = e.currentTarget as HTMLLIElement;
+   const history = useNavigate();
+   const isLoginPage = location.pathname === '/login';
 
-   //                // Check if the clicked li is already active or follow, if so, return
-   //                if (
-   //                   target.classList.contains('active') ||
-   //                   target.classList.contains('follow')
-   //                ) {
-   //                   return;
-   //                }
+   const [currentRoute, setCurrentRoute] = useState<RouteType>({
+      route: location.pathname.toLowerCase(),
+      id: 0,
+   });
+   const [selectedRoute, setSelectedRoute] = useState<RouteType | null>(null);
 
-   //                // Update the parent class based on the clicked li
-   //                ul.parentElement?.setAttribute(
-   //                   'class',
-   //                   `${resetClass} ${target.getAttribute('data-where')}-style`,
-   //                );
+   const [activeIconPosition, setActiveIconPosition] = useState<{
+      left: number;
+      top: number;
+   }>({
+      left: 177.5,
+      top: 0,
+   });
+   const footerIconsRefs = useRef<any[]>([]);
+   const circleRef = useRef(null);
+   const [drawerActive, setDrawerActive] = useState(false);
 
-   //                // Remove active class from all list items
-   //                lis.forEach((item) => clearClass(item, 'active'));
+   useEffect(() => {
+      for (let i = 0; i < footerIconsList.length; i++) {
+         if (footerIconsList[i].route === currentRoute.route) {
+            setCurrentRoute((prev) => ({ ...prev, i }));
+         }
+      }
+   }, []);
 
-   //                // Add active class to the clicked li
-   //                setClass(target, 'active');
-   //             });
-   //          });
-   //       });
+   useEffect(() => {
+      const updateCirclePosition = () => {
+         const activeIcon = footerIconsRefs.current.find((iconRef, idx) => {
+            if (
+               iconRef &&
+               currentRoute.route === footerIconsList[idx].route.toLowerCase()
+            ) {
+               return iconRef;
+            }
+         });
 
-   //       // Function to remove a class
-   //       function clearClass(node: HTMLElement, className: string) {
-   //          node.classList.remove(className);
-   //       }
+         if (activeIcon && circleRef.current) {
+            const rect = activeIcon.getBoundingClientRect();
 
-   //       // Function to add a class
-   //       function setClass(node: HTMLElement, className: string) {
-   //          node.classList.add(className);
-   //       }
+            setActiveIconPosition(
+               windowWidth === 'mobile'
+                  ? {
+                       left: rect.left + rect.width / 2 - 35,
+                       top: 0,
+                    }
+                  : {
+                       left: 0,
+                       top: rect.top,
+                    },
+            );
+         }
+      };
 
-   //       // Cleanup event listeners when component unmounts
-   //       return () => {
-   //          uls.forEach((ul) => {
-   //             const lis = ul.querySelectorAll<HTMLLIElement>('li');
-   //             lis.forEach((li) => li.replaceWith(li.cloneNode(true)));
-   //          });
-   //       };
-   //    }, []);
+      setSelectedRoute(currentRoute);
+      updateCirclePosition();
+      window.addEventListener('resize', updateCirclePosition);
+      return () => window.removeEventListener('resize', updateCirclePosition);
+   }, [currentRoute]);
 
-   const [activeItem, setActiveItem] = useState(2);
+   const handleRedirect = (icon: IconType, id: number) => {
+      setSelectedRoute({ route: icon.route, id });
+      resetChargeStates(
+         setSelectedTradeCharge,
+         setSelectedRenovationCharge,
+         setSelectedChargeBillDetails,
+         setSelectedChargeBillInfo,
+      );
 
+      setCurrentRoute({ id, route: icon.route });
+      setSelectedRoute(null);
+      history(icon.route);
+   };
+
+   const handleDrawer = () => {
+      setDrawerActive((prev) => !prev);
+   };
+
+   if (isLoginPage) return null;
    return (
-      <nav className="container">
-         <div className="tabbar tab-style">
-            <ul className="flex-center">
-               {androidIconOrder.map((item, idx) => {
-                  const isActive = idx === activeItem;
+      <footer
+         id={styles.footerStyleWrapper}
+         className={`${drawerActive ? styles.drawerActive : ''}`}
+      >
+         {windowWidth === 'mobile' && (
+            <div
+               className={`${styles.activatedIcon}`}
+               ref={circleRef}
+               style={
+                  windowWidth === 'mobile'
+                     ? {
+                          left: `${activeIconPosition.left}px`,
+                       }
+                     : { top: `${activeIconPosition.top}px` }
+               }
+            ></div>
+         )}
 
-                  return (
-                     <li
-                        className={`${item.classname} ${
-                           isActive ? 'active' : ''
-                        }`}
-                        data-where={item.classname}
-                        onClick={() => setActiveItem(idx)}
-                     >
-                        <item.icon
-                           color={isActive ? 'black' : 'white'}
-                           width={isActive ? '3.4rem' : '2.4rem'}
-                           height={isActive ? '3.4rem' : '2.4rem'}
-                        />
-                     </li>
-                  );
-               })}
-               <li className="follow">&nbsp;</li>
-            </ul>
-         </div>
-      </nav>
+         {windowWidth === 'desktop' && (
+            <div className={styles.desktopDrawer} onClick={handleDrawer}>
+               {drawerActive ? (
+                  <>
+                     <div className={styles.crossLines}></div>
+                     <div className={styles.crossLines}></div>
+                  </>
+               ) : (
+                  <>
+                     <div className={styles.hamburgerLines}></div>
+                     <div className={styles.hamburgerLines}></div>
+                     <div className={styles.hamburgerLines}></div>
+                  </>
+               )}
+            </div>
+         )}
+
+         {footerIconsList.map((icon, idx) => {
+            const isRouteActive =
+               icon.route.toLowerCase() === currentRoute.route;
+
+            return (
+               <div
+                  className={`${styles.footerIcon} ${
+                     isRouteActive ? styles.active : ''
+                  } ${
+                     selectedRoute?.route === icon.route
+                        ? styles.selectedIconAnimation
+                        : ''
+                  }`}
+                  key={`${icon.title}-${idx}`}
+                  onClick={() => handleRedirect(icon, idx)}
+                  ref={(el) => (footerIconsRefs.current[idx] = el)}
+               >
+                  <icon.icon
+                     className={isRouteActive && styles.icon}
+                     color={isRouteActive ? 'black' : 'white'}
+                     width={windowWidth === 'desktop' ? 50 : 24}
+                     height={windowWidth === 'desktop' ? 50 : 24}
+                  />
+                  {!isRouteActive && windowWidth === 'mobile' && (
+                     <span className={styles.title}>{icon.title}</span>
+                  )}
+                  {windowWidth === 'desktop' && drawerActive && (
+                     <span className={styles.title}>{icon.title}</span>
+                  )}
+               </div>
+            );
+         })}
+      </footer>
    );
 };
 
-export default TestTabbar;
+export default Footer;
