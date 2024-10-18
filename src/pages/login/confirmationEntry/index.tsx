@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect, useState } from 'react';
+import { FC, useContext, useEffect, useRef, useState } from 'react';
 import Button from '../../../components/button';
 import OtpInput from '../../../components/otpInput';
 import styles from './index.module.scss';
@@ -19,6 +19,12 @@ const ConfirmationEntry: FC = () => {
       setExtraHeaderContent,
       setHeaderBadge,
    } = useLayoutContext();
+   const afterOtpRef = useRef<HTMLButtonElement>(null);
+
+   useEffect(() => {
+      const button = document.getElementById('otpButtonRef');
+      if (otpCode.length === 6) button?.click();
+   });
 
    return (
       <form className={styles.form}>
@@ -40,6 +46,8 @@ const ConfirmationEntry: FC = () => {
          <Button
             className={styles['submit-button']}
             haveLoading
+            ref={afterOtpRef}
+            id="otpButtonRef"
             onClick={async () =>
                await handleConfirmationButton({
                   verificationCode: otpCode.join(''),

@@ -4,9 +4,12 @@ import { handleChange, handleKeyDown } from './handlers.function';
 import './_index.scss';
 
 const OtpInput: FC<Props> = ({
-                                inputsClassName, numberOfInputs,
-                                value, setValue, otpClassName,
-                             }) => {
+   inputsClassName,
+   numberOfInputs,
+   value,
+   setValue,
+   otpClassName,
+}) => {
    const [otp, setOtp] = useState(new Array(numberOfInputs).fill(''));
    const inputRefs = useRef<HTMLInputElement[]>([]);
 

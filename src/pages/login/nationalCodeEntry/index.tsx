@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction, useEffect, useRef } from 'react';
+import { Dispatch, FC, SetStateAction, useEffect } from 'react';
 import styles from './index.module.scss';
 import Button from '../../../components/button';
 import OtpInput from '../../../components/otpInput';
@@ -19,7 +19,7 @@ const NationalCodeEntry: FC<Props> = ({
 
    useEffect(() => {
       const loginBtn = document.getElementById('loginBtn');
-      nationalCode.length === 10 && loginBtn?.click();
+      nationalCode.join('').length === 10 && loginBtn?.click();
    }, [nationalCode]);
 
    return (
