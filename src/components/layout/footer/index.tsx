@@ -10,6 +10,7 @@ import {
    desktopIconOrder,
 } from './func/footerIconsCorrectOrders';
 import './index.scss';
+import AndroidFooter from './components/androidFooter';
 
 const Footer = () => {
    const windowWidth = useWindowWidth('desktop', 'mobile');
@@ -78,42 +79,57 @@ const Footer = () => {
          const targetLi = document.querySelectorAll('li')[index];
          if (targetLi) handlePointerMove(targetLi as HTMLLIElement);
       }
-   }, [location.pathname]); // Re-run effect whenever the route changes
+   }, [location.pathname]);
 
    if (isLoginPage) return null;
    return (
-      <footer className="container">
-         <nav className="tabbar tab-style">
-            <ul className="flex-center">
-               {footerIconsList.map((item, idx) => {
-                  const isActive = idx === activeIndex;
-
-                  return (
-                     <li
-                        className={`${isActive ? 'active' : ''}`}
-                        onClick={(e) => {
-                           handlePointerMove(e.currentTarget);
-                           handleRedirect(item.route, idx);
-                        }}
-                     >
-                        <item.icon
-                           color={isActive ? 'black' : 'white'}
-                           width={isActive ? '3.4rem' : '2.4rem'}
-                           height={isActive ? '3.4rem' : '2.4rem'}
-                        />
-                     </li>
-                  );
-               })}
-               <li
-                  className="follow"
-                  style={windowWidth === 'mobile' ? { left: position } : {}}
-               >
-                  &nbsp;
-               </li>
-            </ul>
-         </nav>
-      </footer>
+      <>
+         {windowWidth === 'mobile' ? (
+            <AndroidFooter
+               activeIndex={activeIndex}
+               handlePointerMove={handlePointerMove}
+               handleRedirect={handleRedirect}
+               windowWidth={windowWidth}
+               position={position}
+            />
+         ) : (
+            <div></div>
+         )}
+      </>
    );
+   // (
+   //    <footer className="container">
+   //       <nav className="tabbar tab-style">
+   //          <ul className="flex-center">
+   //             {footerIconsList.map((item, idx) => {
+   //                const isActive = idx === activeIndex;
+
+   //                return (
+   //                   <li
+   //                      className={`${isActive ? 'active' : ''}`}
+   //                      onClick={(e) => {
+   //                         handlePointerMove(e.currentTarget);
+   //                         handleRedirect(item.route, idx);
+   //                      }}
+   //                   >
+   //                      <item.icon
+   //                         color={isActive ? 'black' : 'white'}
+   //                         width={isActive ? '3.4rem' : '2.4rem'}
+   //                         height={isActive ? '3.4rem' : '2.4rem'}
+   //                      />
+   //                   </li>
+   //                );
+   //             })}
+   //             <li
+   //                className="follow"
+   //                style={windowWidth === 'mobile' ? { left: position } : {}}
+   //             >
+   //                &nbsp;
+   //             </li>
+   //          </ul>
+   //       </nav>
+   //    </footer>
+   // );
 };
 
 export default Footer;
