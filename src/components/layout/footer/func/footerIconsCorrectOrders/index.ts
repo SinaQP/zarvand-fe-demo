@@ -1,4 +1,5 @@
 import BrickWallsIcon from '../../components/brickWallsIcon';
+import ExitIcon from '../../components/exitIcon';
 import HomeIcon from '../../components/homeIcon';
 import OperatorIcon from '../../components/operatorIcon';
 import ProfileIcon from '../../components/profileIcon';
@@ -30,6 +31,11 @@ export const desktopIconOrder: IconType[] = [
       title: 'پروفایل',
       icon: ProfileIcon,
       route: '/profile',
+   },
+   {
+      title: 'خروج',
+      icon: ExitIcon,
+      route: '/login',
    },
 ];
 
