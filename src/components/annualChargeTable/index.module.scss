@@ -3,7 +3,7 @@
 .tableContainer {
    border-radius: 1rem;
    overflow: hidden;
-   border: 1px solid #ddd;
+   border: 2px solid $secondary-color;
    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -14,13 +14,19 @@
    direction: rtl;
    background-color: #e07d47;
    color: $font-white-color;
+   @media (min-width: $desktop) {
+      font-size: 2.5rem;
+   }
 }
 
 .tableBody {
    font-size: 1.5rem;
    max-height: 28vh;
    overflow-y: auto;
-
+   @media (min-width: $desktop) {
+      font-size: 2.5rem;
+      max-height: 35vh;
+   }
    -ms-overflow-style: none;
    scrollbar-width: none;
 
@@ -34,7 +40,7 @@
 
       .tableCell {
          @include center-flex;
-         border-left: 1px solid rgba(#000000, 0.2);
+         border-left: 1.3px solid #000000;
 
          &:last-child {
             border-left: none;
@@ -54,4 +60,8 @@
 .tableCell {
    padding: 1rem 0.5rem;
    text-align: center;
+   border-left: 1.3px solid #FFFFFF;
+   @media ( min-width:$desktop) {
+      padding: 0.5rem 0rem;
+   }
 }

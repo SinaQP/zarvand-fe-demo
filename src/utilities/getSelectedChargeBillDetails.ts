@@ -165,7 +165,35 @@ async function getSelectedChargeBillDetails(
    // ]);
    // setBillInfo({
    //    bill_details: [],
-   //    bills: [],
+   //    bills: [
+   //       {
+   //          bill_id: '100',
+   //          bill_no: '1000',
+   //          creditor: 1000,
+   //          from_year: 1400,
+   //          payment_date: '1500/10/01',
+   //          payment_no: '100',
+   //          to_year: 1400,
+   //       },
+   //       {
+   //          bill_id: '100',
+   //          bill_no: '1000',
+   //          creditor: 1000,
+   //          from_year: 1400,
+   //          payment_date: '1500/10/01',
+   //          payment_no: '100',
+   //          to_year: 1400,
+   //       },
+   //       {
+   //          bill_id: '100',
+   //          bill_no: '1000',
+   //          creditor: 1000,
+   //          from_year: 1400,
+   //          payment_date: '1500/10/01',
+   //          payment_no: '100',
+   //          to_year: 1400,
+   //       },
+   //    ],
    //    last_bill_info: {
    //       bill_no: '1000',
    //       payment_no: '1000',
@@ -190,7 +218,7 @@ async function getSelectedChargeBillDetails(
       setSelectedChargeBillDetails(responseBody.last_bill_details);
       setBillInfo(responseBody);
    } else {
-      setSelectedChargeBillDetails([]);
+      // setSelectedChargeBillDetails([]);
       toast.error(responseBody.message);
    }
 }
