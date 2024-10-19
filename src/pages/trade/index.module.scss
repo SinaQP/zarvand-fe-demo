@@ -14,7 +14,48 @@
       row-gap: 5rem;
       justify-content: center;
       min-height: auto;
+
+      .unPayedDetails {
+         width: 80%;
+         .master-card {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            text-align: center;
+
+            .info-card {
+               justify-content: space-between;
+               max-height: 33rem;
+               .trade-type-card {
+                  width: 90%;
+               }
+               .info-row--bill-info {
+                  margin-bottom: 1rem;
+               }
+            }
+            .bill-info {
+               display: none;
+            }
+            &__body {
+               display: flex;
+               justify-content: space-between;
+               padding: 0 2rem;
+               .info-card {
+                  flex: 0.4;
+               }
+            }
+            .address-section {
+               align-self: center;
+               margin-bottom: 1rem;
+            }
+         }
+
+         .table {
+            flex: 0.5;
+         }
+      }
    }
+
    .info-row {
       border-bottom: 1px solid $secondary-color;
       background-color: rgba($secondary-color, 0.05);

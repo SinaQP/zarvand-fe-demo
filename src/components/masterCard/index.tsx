@@ -10,12 +10,20 @@ const MasterCard: FC<Props> = ({
    address,
    master,
    className,
+   addressSectionClassName,
 }) => {
    const badgeText = isPayed ? 'پرداخت شده' : 'پرداخت نشده';
 
    return (
-      <div className={`${styles.card} ${isPayed && styles['is-payed']} ${className}`}>
-         <AddressSection address={address ? address : ''} />
+      <div
+         className={`${styles.card} ${
+            isPayed && styles['is-payed']
+         } ${className}`}
+      >
+         <AddressSection
+            address={address ? address : ''}
+            className={addressSectionClassName}
+         />
 
          {children}
 
