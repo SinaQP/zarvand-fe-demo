@@ -38,7 +38,7 @@ const Footer = () => {
       setDrawerActive((prev) => !prev);
    };
 
-   const [activeIndex, setActiveIndex] = useState(2);
+   const [activeIndex, setActiveIndex] = useState(10);
    const [position, setPosition] = useState('164px');
 
    const handlePointerMove = (e: HTMLLIElement) => {
@@ -49,6 +49,7 @@ const Footer = () => {
    const routeToIndex =
       windowWidth === 'mobile'
          ? {
+              '/': 2,
               '/home': 2,
               '/profile': 0,
               '/support': 1,
@@ -56,6 +57,7 @@ const Footer = () => {
               '/renovation': 3,
            }
          : {
+              '/': 0,
               '/home': 0,
               '/trade': 1,
               '/renovation': 2,
@@ -81,15 +83,12 @@ const Footer = () => {
                activeIndex={activeIndex}
                handlePointerMove={handlePointerMove}
                handleRedirect={handleRedirect}
-               windowWidth={windowWidth}
                position={position}
             />
          ) : (
             <DesktopFooter
                drawerActive={drawerActive}
-               setDrawerActive={setDrawerActive}
                activeIndex={activeIndex}
-               setActiveIndex={setActiveIndex}
                handleDrawer={handleDrawer}
                handleRedirect={handleRedirect}
             />

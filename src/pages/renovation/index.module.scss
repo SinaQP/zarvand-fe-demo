@@ -5,13 +5,13 @@
 }
 
 .layout {
-   @include default-layout;
    display: flex;
    flex-direction: column;
    align-items: center;
    justify-content: center;
    gap: 3rem;
 
+   @include default-layout;
    @media (min-width: $desktop) {
       height: auto;
       .unPayedDetails {

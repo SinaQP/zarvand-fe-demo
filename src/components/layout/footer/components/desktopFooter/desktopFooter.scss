@@ -1,7 +1,8 @@
 @import '/src/assets/scss/all';
 
 .footer {
-   position: relative;
+   position: sticky;
+   top: 20vh;
    height: 60rem;
    width: 10rem;
    background-color: $primary-color;
