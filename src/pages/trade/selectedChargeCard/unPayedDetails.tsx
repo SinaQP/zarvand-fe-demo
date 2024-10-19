@@ -1,4 +1,4 @@
-import { FC, useContext } from 'react';
+import { FC } from 'react';
 import BackArrow from '../../../components/backArrow';
 import styles from '../index.module.scss';
 import resetChargeStates from '../../../utilities/resetChargeStates';
@@ -10,7 +10,6 @@ import AnnualChargeTable from '../../../components/annualChargeTable';
 import BillInfo from './billInfo';
 import { useChargesContext } from '../../../App.context';
 import useWindowWidth from '../../../hooks/useWindowWidth';
-import InfoRow from '../../../components/infoRow';
 
 const UnPayedDetails: FC = () => {
    const desktopBillInfo = useWindowWidth(<BillInfo />, null);

@@ -9,57 +9,57 @@ export const getUserRenovationCharges = async (
 ) => {
    const response = await getPersonRenovationMastersApi(token);
    const responseBody = response.body;
-   // setState([
-   //    {
-   //       address: '1',
-   //       building_area: 20,
-   //       certificate_number: '10',
-   //       is_paid: false,
-   //       land_area: 20,
-   //       master_id: '10000',
-   //    },
-   //    {
-   //       address: '1',
-   //       building_area: 20,
-   //       certificate_number: '10',
-   //       is_paid: false,
-   //       land_area: 20,
-   //       master_id: '10000',
-   //    },
-   //    {
-   //       address: '1',
-   //       building_area: 20,
-   //       certificate_number: '10',
-   //       is_paid: false,
-   //       land_area: 20,
-   //       master_id: '10000',
-   //    },
-   //    {
-   //       address: '1',
-   //       building_area: 20,
-   //       certificate_number: '10',
-   //       is_paid: false,
-   //       land_area: 20,
-   //       master_id: '10000',
-   //    },
-   //    {
-   //       address: '1',
-   //       building_area: 20,
-   //       certificate_number: '10',
-   //       is_paid: false,
-   //       land_area: 20,
-   //       master_id: '10000',
-   //    },
+   setState([
+      {
+         address: '1',
+         building_area: 20,
+         certificate_number: '10',
+         is_paid: false,
+         land_area: 20,
+         master_id: '10000',
+      },
+      {
+         address: '1',
+         building_area: 20,
+         certificate_number: '10',
+         is_paid: false,
+         land_area: 20,
+         master_id: '10000',
+      },
+      {
+         address: '1',
+         building_area: 20,
+         certificate_number: '10',
+         is_paid: false,
+         land_area: 20,
+         master_id: '10000',
+      },
+      {
+         address: '1',
+         building_area: 20,
+         certificate_number: '10',
+         is_paid: false,
+         land_area: 20,
+         master_id: '10000',
+      },
+      {
+         address: '1',
+         building_area: 20,
+         certificate_number: '10',
+         is_paid: false,
+         land_area: 20,
+         master_id: '10000',
+      },
       
-   //    {
-   //       address: '1',
-   //       building_area: 20,
-   //       certificate_number: '10',
-   //       is_paid: false,
-   //       land_area: 20,
-   //       master_id: '10000',
-   //    },
-   // ]);
+      {
+         address: '1',
+         building_area: 20,
+         certificate_number: '10',
+         is_paid: false,
+         land_area: 20,
+         master_id: '10000',
+      },
+   ]);
    if (response.status === 200) {
       setState(responseBody);
       return responseBody;

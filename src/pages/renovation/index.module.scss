@@ -11,8 +11,39 @@
    align-items: center;
    justify-content: center;
    gap: 3rem;
+
    @media (min-width: $desktop) {
       height: auto;
+      .unPayedDetails {
+         width: 80%;
+         margin: 0 auto;
+
+         .master-card {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            text-align: center;
+            .bill-info {
+               display: none;
+            }
+            &__body {
+               display: flex;
+               justify-content: space-between;
+               padding: 0 2rem;
+               .info-row--bill-info {
+                  margin-bottom: 1rem;
+               }
+            }
+            .address-section {
+               align-self: center;
+               margin-bottom: 1rem;
+            }
+         }
+
+         .table {
+            flex: 0.5;
+         }
+      }
    }
    @media (min-width: $desktop) {
       margin-bottom: 0 !important;
@@ -23,7 +54,6 @@
       gap: 0;
       justify-content: baseline;
       row-gap: 5rem;
-
    }
    .master-info {
       margin-bottom: 3rem;
@@ -35,6 +65,8 @@
       border-bottom: 1px solid $secondary-color;
       background-color: rgba($secondary-color, 0.05);
       padding: 0.2rem 1rem;
+      font-size: 2.2rem;
+
       &--is-paid {
          border-color: $primary-color;
          background-color: rgba($primary-color, 0.05);
@@ -46,5 +78,8 @@
       &--is-paid {
          background-color: $primary-color;
       }
+   }
+   .bill-info {
+      margin-top: 3rem;
    }
 }
