@@ -9,8 +9,11 @@ import Loading from '../../../components/loading/loading';
 import AnnualChargeTable from '../../../components/annualChargeTable';
 import BillInfo from './billInfo';
 import { useChargesContext } from '../../../App.context';
+import useWindowWidth from '../../../hooks/useWindowWidth';
+import InfoRow from '../../../components/infoRow';
 
 const UnPayedDetails: FC = () => {
+   const desktopBillInfo = useWindowWidth(<BillInfo />, null);
    const {
       selectedTradeCharge,
       selectedChargeBillDetails,
@@ -22,7 +25,7 @@ const UnPayedDetails: FC = () => {
    if (!selectedTradeCharge) return null;
 
    return (
-      <div>
+      <div className={styles.unPayedDetails}>
          <BackArrow
             className={styles['back-arrow']}
             onClick={() =>
@@ -39,28 +42,35 @@ const UnPayedDetails: FC = () => {
             address={selectedTradeCharge.address}
             isPayed={selectedTradeCharge.is_paid}
             master={selectedTradeCharge}
+            className={styles['master-card']}
+            addressSectionClassName={styles['address-section']}
          >
-            <InfoCard
-               isPrimary={selectedTradeCharge.is_paid}
-               title={<InfoCardTitle />}
-               className={styles['trade-type-card']}
-               containerClassName={styles['info-card']}
-            >
-               {selectedTradeCharge.TradeType}
-            </InfoCard>
+            <div className={styles['master-card__body']}>
+               <InfoCard
+                  isPrimary={selectedTradeCharge.is_paid}
+                  title={<InfoCardTitle />}
+                  className={styles['trade-type-card']}
+                  containerClassName={styles['info-card']}
+               >
+                  {selectedTradeCharge.TradeType}
+                  {desktopBillInfo}
+               </InfoCard>
 
-            {selectedChargeBillDetails === null ? (
-               <Loading />
-            ) : (
-               <AnnualChargeTable
-                  data={
-                     selectedChargeBillDetails ? selectedChargeBillDetails : []
-                  }
-                  className={styles.table}
-               />
-            )}
+               {selectedChargeBillDetails === null ? (
+                  <Loading />
+               ) : (
+                  <AnnualChargeTable
+                     data={
+                        selectedChargeBillDetails
+                           ? selectedChargeBillDetails
+                           : []
+                     }
+                     className={styles.table}
+                  />
+               )}
 
-            <BillInfo />
+               <BillInfo className={styles['bill-info']} />
+            </div>
          </MasterCard>
       </div>
    );

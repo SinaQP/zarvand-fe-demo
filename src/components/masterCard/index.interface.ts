@@ -11,5 +11,6 @@ export interface Props {
    isPayed?: boolean;
    children?: ReactNode;
    className?: string;
+   addressSectionClassName?: string;
    master: TradeCharge | RenovationCharge;
 }
