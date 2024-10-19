@@ -49,6 +49,7 @@ const Footer = () => {
    const routeToIndex =
       windowWidth === 'mobile'
          ? {
+              '/': 2,
               '/home': 2,
               '/profile': 0,
               '/support': 1,
@@ -56,6 +57,7 @@ const Footer = () => {
               '/renovation': 3,
            }
          : {
+              '/': 0,
               '/home': 0,
               '/trade': 1,
               '/renovation': 2,

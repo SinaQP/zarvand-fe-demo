@@ -1,18 +1,17 @@
-
 .certification-number-section {
-   &-wrapper{
-      padding: 0.5rem;
-      margin-bottom: 1rem;
-   }
    display: grid;
    grid-template-columns: repeat(5, 1fr);
    grid-template-rows: repeat(2, auto);
    column-gap: 1.5rem;
    padding: 0 2rem;
    text-align: center;
-   
+
    font-size: 1.4rem;
-   h1{
+   h1 {
       font-size: 3rem;
+   }
+   &-wrapper {
+      padding: 0.5rem;
+      margin-bottom: 1rem;
    }
 }

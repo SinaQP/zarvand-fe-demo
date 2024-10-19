@@ -5,12 +5,13 @@
 }
 
 .layout {
-   @include default-layout;
    display: flex;
    flex-direction: column;
    align-items: center;
    justify-content: center;
    gap: 3rem;
+
+   @include default-layout;
    @media (min-width: $desktop) {
       height: auto;
    }
@@ -23,7 +24,6 @@
       gap: 0;
       justify-content: baseline;
       row-gap: 5rem;
-
    }
    .master-info {
       margin-bottom: 3rem;
