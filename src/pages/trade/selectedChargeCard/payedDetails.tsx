@@ -1,15 +1,11 @@
-import { FC, useContext } from 'react';
+import { FC } from 'react';
 import BackArrow from '../../../components/backArrow';
 import styles from '../index.module.scss';
 import resetChargeStates from '../../../utilities/resetChargeStates';
-import MasterCard from '../../../components/masterCard';
-import InfoCard from '../../../components/infoCard';
-import InfoCardTitle from '../infoCardTitle';
-import Loading from '../../../components/loading/loading';
-import AnnualChargeTable from '../../../components/annualChargeTable';
-import BillInfo from './billInfo';
 import PayedBill from './payedBill';
 import { useChargesContext, useUserContext } from '../../../App.context';
+import AddressSection from '../../../components/addressSection';
+import SelectedRenovationCharge from '../../renovation/selectedRenovationCharge';
 
 const PayedDetails: FC = () => {
    const {
@@ -19,6 +15,7 @@ const PayedDetails: FC = () => {
       setSelectedChargeBillDetails,
       setSelectedChargeBillInfo,
       setSelectedRenovationCharge,
+      selectedRenovationCharge
    } = useChargesContext();
    const { setShowPaymentHistory } = useUserContext();
    if (!selectedTradeCharge || !selectedChargeBillDetails) return null;
@@ -40,7 +37,6 @@ const PayedDetails: FC = () => {
                }
             }}
          />
-
          {selectedChargeBillDetails.map((charge) => (
             <PayedBill charge={charge} />
          ))}

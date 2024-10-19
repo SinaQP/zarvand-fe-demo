@@ -11,8 +11,13 @@ import { updateLayout } from './functions/updateLayout';
 import { Bounce, toast, ToastContainer } from 'react-toastify';
 
 const Login: FC = () => {
-   const { setExtraHeaderContent, setHeaderBadge, setBadgeId, setHeaderId } =
-      useLayoutContext();
+   const {
+      setExtraHeaderContent,
+      setHeaderBadge,
+      setBadgeId,
+      setHeaderId,
+      setHeaderText,
+   } = useLayoutContext();
    const [showConfirmationForm, setShowConfirmationForm] = useState(false);
    const headerClassName = useWindowWidth(styles.header, '');
    const mainTitle = useWindowWidth(
@@ -21,7 +26,7 @@ const Login: FC = () => {
             showConfirmationForm ? styles.expanded : ''
          }`}
       >
-         سامانه پرداخت عوارض شهرداری زرند
+         سامانه هوشمند شهروندی
       </h1>,
       null,
    );
@@ -35,6 +40,8 @@ const Login: FC = () => {
    );
 
    useEffect(() => {
+      setHeaderText &&
+         setHeaderText('پرداخت آسان عوارض شهری بدون نیاز به مراجعه حضوری');
       updateLayout({
          showConfirmationForm,
          setExtraHeaderContent,

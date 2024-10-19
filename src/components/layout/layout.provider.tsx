@@ -3,6 +3,7 @@ import { LayoutContext } from './layout.context';
 
 export const LayoutProvider = ({ children }: { children: ReactNode }) => {
    const [headerBadge, setHeaderBadge] = useState<ReactNode>(null);
+   const [headerText, setHeaderText] = useState<string>('');
    const [headerClassName, setHeaderClassName] = useState<string>('');
    const [headerId, setHeaderId] = useState<string>('');
    const [badgeId, setBadgeId] = useState<string>('');
@@ -14,6 +15,8 @@ export const LayoutProvider = ({ children }: { children: ReactNode }) => {
       useState<ReactNode>(null);
    const layoutContextValue = {
       headerBadge,
+      headerText,
+      setHeaderText,
       setHeaderBadge,
       headerClassName,
       setHeaderClassName,

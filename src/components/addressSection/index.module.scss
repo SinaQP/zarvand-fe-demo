@@ -1,0 +1,15 @@
+@import "../../assets/scss/all";
+
+.address-section {
+   display: flex;
+   align-items: center;
+
+   span {
+      font-size: 1.7rem;
+      margin-right: 0.3rem;
+      @media (min-width: $desktop) {
+         font-size: 3rem;
+      }
+   
+   }
+}

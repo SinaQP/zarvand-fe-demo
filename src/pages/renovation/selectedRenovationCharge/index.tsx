@@ -4,61 +4,52 @@ import InfoCard from '../../../components/infoCard';
 import styles from '../index.module.scss';
 import AnnualChargeTable from '../../../components/annualChargeTable';
 import Loading from '../../../components/loading/loading';
-import { useChargesContext } from '../../../App.context';
+import { useChargesContext, useUserContext } from '../../../App.context';
+import CertificationNumberCard from '../../../components/certificationNumberCard';
+import UnPayedDetails from './unPayedDetail';
+import PayedDetails from './payedDetail';
+import BackArrow from '../../../components/backArrow';
+import resetChargeStates from '../../../utilities/resetChargeStates';
 
-const SelectedRenovationCharge: FC = () => {
-   const { selectedRenovationCharge, selectedChargeBillDetails } =
-      useChargesContext();
-   const segmentLengths = [3, 4, 7, 2, 3];
+const SelectedRenovationCharge: FC<{ isPayed: boolean }> = ({ isPayed }) => {
+   const {
+      selectedRenovationCharge,
+      selectedChargeBillInfo,
+      setSelectedTradeCharge,
+      setSelectedRenovationCharge,
+      setSelectedChargeBillDetails,
+      setSelectedChargeBillInfo,
+   } = useChargesContext();
+   const { setShowPaymentHistory, showPaymentHistory } = useUserContext();
 
-   const splitCertificateNumber = (
-      str: string,
-      lengths: number[],
-   ): string[] => {
-      let result: string[] = [];
-      let startIndex = 0;
-
-      lengths.forEach((length) => {
-         result.push(str.substr(startIndex, length));
-         startIndex += length;
-      });
-
-      return result;
-   };
    if (!selectedRenovationCharge) return null;
 
    return (
-      <MasterCard
-         master={selectedRenovationCharge}
-         address={selectedRenovationCharge.address}
-         isPayed={selectedRenovationCharge.is_paid}
-         key={selectedRenovationCharge.master_id}
-      >
-         <InfoCard
-            title={'شماره شناسنامه ملک'}
-            className={styles['certification-number-section']}
-            isPrimary={selectedRenovationCharge.is_paid}
-         >
-            {['فرعی', 'ملک', 'بلوک', 'محله', 'منطقه'].map((item, index) => (
-               <span key={index}>{item}</span>
-            ))}
-            {splitCertificateNumber(
-               selectedRenovationCharge.certificate_number,
-               segmentLengths,
-            ).map((item, index) => (
-               <span key={index}>{item}</span>
-            ))}
-         </InfoCard>
-
-         {selectedChargeBillDetails === null ? (
-            <Loading />
-         ) : (
-            <AnnualChargeTable
-               data={selectedChargeBillDetails ? selectedChargeBillDetails : []}
-               className={styles.table}
-            />
-         )}
-      </MasterCard>
+      <div style={{ width: '100%' }}>
+         <BackArrow
+            className={`${styles['back-arrow']} ${
+               showPaymentHistory && styles['back-arrow--is-paid']
+            }`}
+            onClick={() => {
+               if (
+                  !selectedRenovationCharge.is_paid &&
+                  selectedChargeBillInfo &&
+                  selectedChargeBillInfo.last_bill_info &&
+                  showPaymentHistory
+               ) {
+                  setShowPaymentHistory(false);
+               } else {
+                  resetChargeStates(
+                     setSelectedTradeCharge,
+                     setSelectedRenovationCharge,
+                     setSelectedChargeBillDetails,
+                     setSelectedChargeBillInfo,
+                  );
+               }
+            }}
+         />
+         {isPayed ? <PayedDetails /> : <UnPayedDetails />}
+      </div>
    );
 };
 

@@ -7,10 +7,9 @@ import { renderInfoCard } from './renderInfoCard';
 import { TradeCharge } from '../../../interfaces/models.interface';
 import { useChargesContext, useUserContext } from '../../../App.context';
 import InfoRow from '../../../components/infoRow';
+import StatusTab from '../../../components/statusTab';
 
-const MobileChargeCards: FC<{ tradeCharges: TradeCharge[] }> = ({
-   tradeCharges,
-}) => {
+const ChargeCards: FC<{ tradeCharges: TradeCharge[] }> = ({ tradeCharges }) => {
    const {
       selectedTradeCharge,
       setSelectedTradeCharge,
@@ -56,4 +55,4 @@ const MobileChargeCards: FC<{ tradeCharges: TradeCharge[] }> = ({
    );
 };
 
-export default MobileChargeCards;
+export default ChargeCards;

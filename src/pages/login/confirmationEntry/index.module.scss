@@ -1,5 +1,38 @@
 @import '../../../assets/scss/all';
+#header {
+   @media (min-width: $desktop) {
+      height: 100vh;
+      background-color: orangered;
+      border-radius: 1.5rem 0 0 1.5rem;
+      right: 0;
+      background-color: $primary-color;
 
+      width: 55rem;
+      transition: width 0.5s ease-in-out;
+      h1 {
+         margin-top: 29.6vh;
+         font-size: 4.5rem;
+         font-weight: 400;
+         line-height: 4.5rem;
+         text-align: center;
+         width: 43rem;
+         font-family: 'BNazanin';
+      }
+
+      #header-badge {
+         width: 20rem;
+         height: 20rem;
+         position: absolute;
+         top: 50%;
+         left: 0;
+         transform: translate(-50%, -50%);
+         img {
+            width: 13.716rem;
+            height: 10rem;
+         }
+      }
+   }
+}
 .form {
    width: 89vw;
    border: 2px solid #ffffff;
@@ -21,7 +54,7 @@
       text-align: center;
       color: $font-white-color;
       @media (min-width: $desktop) {
-         font-size: 4.5rem;
+         font-size: 4rem;
       }
    }
 
@@ -67,7 +100,8 @@
       border: none;
 
       @media (min-width: $desktop) {
-         font-size: 4.5rem;
+         width: 45%;
+         font-size: 3.5rem;
       }
    }
 }

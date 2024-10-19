@@ -32,21 +32,28 @@ export const handleKeyDown = (
    otp: any[],
    setOtp: Dispatch<SetStateAction<any[]>>,
    inputRefs: React.MutableRefObject<HTMLInputElement[]>,
+   stateValue: any[],
+   setStateValue: Dispatch<SetStateAction<any[]>>
 ) => {
    if (event.key !== 'Backspace') return;
 
    const newOtp = [...otp];
+   const newValue = [...stateValue];
+
    const isCurrentInputFilled = otp[index] !== '';
    const isNotFirstInput = index > 0;
    const previousIndex = index - 1;
 
    if (isCurrentInputFilled) {
       newOtp[index] = '';
+      newValue[index] = ''; // Clear the state value too
    } else if (isNotFirstInput) {
       const previousInput = inputRefs.current[previousIndex];
       previousInput.focus();
       newOtp[previousIndex] = '';
+      newValue[previousIndex] = ''; // Clear the previous input's state value
    }
 
    setOtp(newOtp);
+   setStateValue(newValue); // Sync with parent state
 };

@@ -42,11 +42,11 @@
       }
 
       &.evenRow {
-         background-color: rgba($secondary-color, 0.5);
+         background-color: #fff;
       }
 
       &.oddRow {
-         background-color: #fff;
+         background-color: rgba($secondary-color, 0.5);
       }
    }
 }

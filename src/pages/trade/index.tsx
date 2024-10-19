@@ -1,32 +1,24 @@
-import { FC, useContext, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import styles from './index.module.scss';
 import { useChargesContext, useUserContext } from '../../App.context';
 import { getUserTradeMasters } from './functions/getPersonTradeMasters';
 import NoTradeChargesMessage from './noTradeChargeMessage';
 import getSelectedChargeBillDetails from '../../utilities/getSelectedChargeBillDetails';
-import useWindowWidth from '../../hooks/useWindowWidth';
-import MobileChargeCards from './mobileChargeCards';
 import { useLayoutContext } from '../../components/layout/layout.context';
 import { Bounce, ToastContainer } from 'react-toastify';
-import DesktopChargeCards from './desktopChargeCards';
-import { TradeCharge } from '../../interfaces/models.interface';
+import ChargeCards from './chargeCards';
 
 const Trade: FC = () => {
    const { setHeaderId } = useLayoutContext();
    const { token, setShowPaymentHistory } = useUserContext();
-   const { 
-      selectedTradeCharge, 
-      setSelectedTradeCharge, 
-      setSelectedChargeBillDetails, 
-      setSelectedChargeBillInfo, 
-      tradeCharges, 
-      setTradeCharges 
+   const {
+      selectedTradeCharge,
+      setSelectedTradeCharge,
+      setSelectedChargeBillDetails,
+      setSelectedChargeBillInfo,
+      tradeCharges,
+      setTradeCharges,
    } = useChargesContext();
-
-   const chargeCards = useWindowWidth(
-      <DesktopChargeCards />, 
-      <MobileChargeCards tradeCharges={tradeCharges} />
-   );
 
    useEffect(() => {
       setSelectedTradeCharge(null);
@@ -37,11 +29,11 @@ const Trade: FC = () => {
    useEffect(() => {
       if (selectedTradeCharge) {
          getSelectedChargeBillDetails(
-            token, 
-            selectedTradeCharge, 
-            'Trade', 
-            setSelectedChargeBillDetails, 
-            setSelectedChargeBillInfo
+            token,
+            selectedTradeCharge,
+            'Trade',
+            setSelectedChargeBillDetails,
+            setSelectedChargeBillInfo,
          );
          setShowPaymentHistory(selectedTradeCharge.is_paid);
       }
@@ -49,8 +41,12 @@ const Trade: FC = () => {
 
    return (
       <section className={styles.layout}>
-         {tradeCharges.length <= 0 && <NoTradeChargesMessage />}
-         {chargeCards}
+         {tradeCharges.length <= 0 ? (
+            <NoTradeChargesMessage />
+         ) : (
+            <ChargeCards tradeCharges={tradeCharges} />
+         )}
+
          <ToastContainer
             rtl
             position="bottom-center"

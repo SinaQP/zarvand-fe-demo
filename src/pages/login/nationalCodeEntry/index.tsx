@@ -18,7 +18,7 @@ const NationalCodeEntry: FC<Props> = ({
       useLayoutContext();
 
    useEffect(() => {
-      const loginBtn = document.getElementById('loginBtn');
+      const loginBtn = document.getElementById('loginBtn') as HTMLButtonElement;
       nationalCode.join('').length === 10 && loginBtn?.click();
    }, [nationalCode]);
 

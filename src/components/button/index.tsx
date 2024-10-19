@@ -1,6 +1,5 @@
 import { FC, MouseEvent, useState } from 'react';
 import { Props } from './index.interface';
-import './index.scss';
 import styles from './index.module.scss';
 import Loading from '../loading/loading';
 
@@ -14,7 +13,7 @@ const Button: FC<Props> = (props) => {
       setLoading(false);
    };
    if (loading) {
-      return <Loading />;
+      return <Loading className={styles['button-loading']} />;
    }
    return (
       <button

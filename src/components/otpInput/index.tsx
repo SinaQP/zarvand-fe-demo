@@ -48,7 +48,15 @@ const OtpInput: FC<Props> = ({
                   handleChange(e.target, index, otp, setOtp, value, setValue)
                }
                onKeyDown={(e) =>
-                  handleKeyDown(e, index, otp, setOtp, inputRefs)
+                  handleKeyDown(
+                     e,
+                     index,
+                     otp,
+                     setOtp,
+                     inputRefs,
+                     value,
+                     setValue,
+                  )
                }
                ref={(el) => (inputRefs.current[index] = el!)}
                onClick={() => handleClick(index)}

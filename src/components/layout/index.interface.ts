@@ -1,6 +1,8 @@
 import { Dispatch, ReactNode, SetStateAction } from 'react';
 
 export interface LayoutContextProps {
+   headerText?: string;
+   setHeaderText?: Dispatch<SetStateAction<string>>;
    headerBadge?: ReactNode;
    setHeaderBadge?: Dispatch<SetStateAction<ReactNode>>;
    headerClassName?: string;

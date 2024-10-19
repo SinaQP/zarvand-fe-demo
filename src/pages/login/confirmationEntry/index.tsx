@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import Button from '../../../components/button';
 import OtpInput from '../../../components/otpInput';
 import styles from './index.module.scss';
@@ -18,6 +18,7 @@ const ConfirmationEntry: FC = () => {
       setBadgeId,
       setExtraHeaderContent,
       setHeaderBadge,
+      setHeaderText,
    } = useLayoutContext();
    const afterOtpRef = useRef<HTMLButtonElement>(null);
 
@@ -26,15 +27,19 @@ const ConfirmationEntry: FC = () => {
       if (otpCode.length === 6) button?.click();
    });
 
+   useEffect(() => {
+      setHeaderId?.(styles['header']);
+   }, [setHeaderId]);
+
    return (
       <form className={styles.form}>
          <span>
             لطفا کد ارسال شده به شماره
-            {`${maskedPhoneNumber.slice(8)}****${maskedPhoneNumber.slice(
+            {` ${maskedPhoneNumber.slice(8)}****${maskedPhoneNumber.slice(
                0,
                4,
             )}`}
-            را وارد کنید
+            را وارد نمایید
          </span>
          <OtpInput
             numberOfInputs={6}
@@ -59,6 +64,7 @@ const ConfirmationEntry: FC = () => {
                   setBadgeId,
                   setExtraHeaderContent,
                   setHeaderBadge,
+                  setHeaderText,
                })
             }
          >

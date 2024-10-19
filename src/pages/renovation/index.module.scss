@@ -9,11 +9,27 @@
    display: flex;
    flex-direction: column;
    align-items: center;
+   justify-content: center;
    gap: 3rem;
-
+   @media (min-width: $desktop) {
+      height: auto;
+   }
    @media (min-width: $desktop) {
       margin-bottom: 0 !important;
       padding-bottom: 0 !important;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0;
+      justify-content: baseline;
+      row-gap: 5rem;
+
+   }
+   .master-info {
+      margin-bottom: 3rem;
+      .master-address {
+         margin-bottom: 1.5rem;
+      }
    }
    .info-row {
       border-bottom: 1px solid $secondary-color;
@@ -22,6 +38,13 @@
       &--is-paid {
          border-color: $primary-color;
          background-color: rgba($primary-color, 0.05);
+      }
+   }
+   .back-arrow {
+      margin-top: -0.5rem;
+      margin-bottom: 1rem;
+      &--is-paid {
+         background-color: $primary-color;
       }
    }
 }
