@@ -5,19 +5,10 @@ import { IconType } from '../../index.interface';
 
 const DesktopFooter: FC<{
    drawerActive: boolean;
-   setDrawerActive: Dispatch<SetStateAction<boolean>>;
    activeIndex: number;
-   setActiveIndex: Dispatch<SetStateAction<number>>;
    handleDrawer: () => void;
    handleRedirect: (route: IconType['route'], id: number) => void;
-}> = ({
-   drawerActive,
-   setDrawerActive,
-   activeIndex,
-   handleDrawer,
-   setActiveIndex,
-   handleRedirect,
-}) => {
+}> = ({ drawerActive, activeIndex, handleDrawer, handleRedirect }) => {
    return (
       <footer className={`footer ${drawerActive ? 'drawerActive' : ''}`}>
          <nav className="navbar">

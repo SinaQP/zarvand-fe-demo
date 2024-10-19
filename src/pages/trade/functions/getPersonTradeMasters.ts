@@ -30,49 +30,57 @@ export const getUserTradeMasters = async (
    //       shop_area: 20,
    //       TradeType: 'نیگا فروشی',
    //       is_paid: false,
-   //    },   {
+   //    },
+   //    {
    //       address: '1',
    //       master_id: '10000',
    //       shop_area: 20,
    //       TradeType: 'نیگا فروشی',
    //       is_paid: false,
-   //    },   {
+   //    },
+   //    {
    //       address: '1',
    //       master_id: '10000',
    //       shop_area: 20,
    //       TradeType: 'نیگا فروشی',
    //       is_paid: false,
-   //    },   {
+   //    },
+   //    {
    //       address: '1',
    //       master_id: '10000',
    //       shop_area: 20,
    //       TradeType: 'نیگا فروشی',
    //       is_paid: false,
-   //    },   {
+   //    },
+   //    {
    //       address: '1',
    //       master_id: '10000',
    //       shop_area: 20,
    //       TradeType: 'نیگا فروشی',
    //       is_paid: false,
-   //    },   {
+   //    },
+   //    {
    //       address: '1',
    //       master_id: '10000',
    //       shop_area: 20,
    //       TradeType: 'نیگا فروشی',
    //       is_paid: false,
-   //    },   {
+   //    },
+   //    {
    //       address: '1',
    //       master_id: '10000',
    //       shop_area: 20,
    //       TradeType: 'نیگا فروشی',
    //       is_paid: false,
-   //    },   {
+   //    },
+   //    {
    //       address: '1',
    //       master_id: '10000',
    //       shop_area: 20,
    //       TradeType: 'نیگا فروشی',
    //       is_paid: false,
-   //    },   {
+   //    },
+   //    {
    //       address: '1',
    //       master_id: '10000',
    //       shop_area: 20,

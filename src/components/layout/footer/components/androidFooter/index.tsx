@@ -6,15 +6,8 @@ const AndroidFooter: FC<{
    activeIndex: number;
    handlePointerMove: (e: HTMLLIElement) => void;
    handleRedirect: (route: string, id: number) => void;
-   windowWidth: 'mobile' | 'desktop';
    position: string;
-}> = ({
-   activeIndex,
-   handlePointerMove,
-   handleRedirect,
-   windowWidth,
-   position,
-}) => {
+}> = ({ activeIndex, handlePointerMove, handleRedirect, position }) => {
    return (
       <footer className="container">
          <nav className="tabbar tab-style">
@@ -38,12 +31,11 @@ const AndroidFooter: FC<{
                      </li>
                   );
                })}
-               <li
-                  className="follow"
-                  style={windowWidth === 'mobile' ? { left: position } : {}}
-               >
-                  &nbsp;
-               </li>
+               {activeIndex < 5 && (
+                  <li className="follow" style={{ left: position }}>
+                     &nbsp;
+                  </li>
+               )}
             </ul>
          </nav>
       </footer>

@@ -38,7 +38,7 @@ const Footer = () => {
       setDrawerActive((prev) => !prev);
    };
 
-   const [activeIndex, setActiveIndex] = useState(2);
+   const [activeIndex, setActiveIndex] = useState(10);
    const [position, setPosition] = useState('164px');
 
    const handlePointerMove = (e: HTMLLIElement) => {
@@ -83,15 +83,12 @@ const Footer = () => {
                activeIndex={activeIndex}
                handlePointerMove={handlePointerMove}
                handleRedirect={handleRedirect}
-               windowWidth={windowWidth}
                position={position}
             />
          ) : (
             <DesktopFooter
                drawerActive={drawerActive}
-               setDrawerActive={setDrawerActive}
                activeIndex={activeIndex}
-               setActiveIndex={setActiveIndex}
                handleDrawer={handleDrawer}
                handleRedirect={handleRedirect}
             />
