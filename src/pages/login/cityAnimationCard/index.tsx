@@ -17,11 +17,10 @@ const CityAnimationCard = () => {
       defaultOptions(mobileCityAnimation),
       defaultOptions(desktopCityAnimation),
    );
-   
 
    return (
       <div className={styles['city-animation-card']}>
-         <Lottie options={options} speed={1}/>
+         <Lottie options={options} speed={1} />
       </div>
    );
 };

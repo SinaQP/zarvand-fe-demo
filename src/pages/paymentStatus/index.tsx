@@ -16,7 +16,12 @@ const PaymentStatus = () => {
    return (
       <div id="paymentStatusStyleWrapper">
          <PaymentResult status="success" />
-         <Lottie options={defaultOptions(paymentStatusAnimation)} speed={1} />
+         <Lottie
+            options={defaultOptions(paymentStatusAnimation)}
+            speed={1}
+            width={250}
+            height={250}
+         />
       </div>
    );
 };
