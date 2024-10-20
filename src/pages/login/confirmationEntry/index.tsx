@@ -53,6 +53,7 @@ const ConfirmationEntry: FC = () => {
             haveLoading
             ref={afterOtpRef}
             id="otpButtonRef"
+            type='button'
             onClick={async () =>
                await handleConfirmationButton({
                   verificationCode: otpCode.join(''),

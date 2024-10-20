@@ -29,7 +29,6 @@ const handleConfirmationButton: Function = async ({
    setHeaderBadge,
    setHeaderText,
 }: Props) => {
-   console.log(nationalCode, verificationCode);
    const response = await validateSmsCode({
       national_code: nationalCode,
       code: verificationCode,
