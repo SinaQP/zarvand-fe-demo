@@ -2,8 +2,6 @@ import { getRenovationBillDetailsInfo } from '../apis/renovation/renovation-bill
 import { getTradeBillDetailsInfo } from '../apis/trade/guild-bill-details-info';
 import { Dispatch, SetStateAction } from 'react';
 import {
-   BillDetail,
-   BillInfo,
    RenovationCharge,
    TradeCharge,
 } from '../interfaces/models.interface';
@@ -13,8 +11,9 @@ async function getSelectedChargeBillDetails(
    token: string,
    charge: TradeCharge | RenovationCharge,
    chargeType: 'Trade' | 'Renovation',
-   setSelectedChargeBillDetails: Dispatch<SetStateAction<BillDetail[] | null>>,
-   setBillInfo: Dispatch<SetStateAction<BillInfo | null>>,
+   setCharges?:
+      | Dispatch<SetStateAction<TradeCharge[]>>
+      | Dispatch<SetStateAction<RenovationCharge[]>>,
 ) {
    let billDetailsInfoResponse = null;
    if (chargeType == 'Trade') {
@@ -30,11 +29,25 @@ async function getSelectedChargeBillDetails(
    }
 
    const responseBody = billDetailsInfoResponse.body;
-   if (billDetailsInfoResponse.status === 200) {
-      setSelectedChargeBillDetails(responseBody.last_bill_details);
-      setBillInfo(responseBody);
+   if (billDetailsInfoResponse.status === 200 && setCharges) {
+      setCharges((prevState: any) => {
+         const state = prevState.map((prevCharge: any) => {
+            console.log('prevCharge', prevCharge);
+            console.log(
+               'prevCharge BOOL',
+               charge.master_id === prevCharge.master_id,
+            );
+            if (charge.master_id === prevCharge.master_id) {
+               return {
+                  ...prevCharge,
+                  ...responseBody,
+               };
+            }
+            return prevCharge;
+         });
+         return state;
+      });
    } else {
-      setSelectedChargeBillDetails([]);
       toast.error(responseBody.message);
    }
 }

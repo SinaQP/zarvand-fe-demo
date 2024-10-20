@@ -15,10 +15,7 @@ const UnPayedDetails: FC = () => {
    const desktopBillInfo = useWindowWidth(<BillInfo />, null);
    const {
       selectedTradeCharge,
-      selectedChargeBillDetails,
       setSelectedTradeCharge,
-      setSelectedChargeBillDetails,
-      setSelectedChargeBillInfo,
       setSelectedRenovationCharge,
    } = useChargesContext();
    if (!selectedTradeCharge) return null;
@@ -31,8 +28,6 @@ const UnPayedDetails: FC = () => {
                resetChargeStates(
                   setSelectedTradeCharge,
                   setSelectedRenovationCharge,
-                  setSelectedChargeBillDetails,
-                  setSelectedChargeBillInfo,
                )
             }
          />
@@ -55,13 +50,13 @@ const UnPayedDetails: FC = () => {
                   {desktopBillInfo}
                </InfoCard>
 
-               {selectedChargeBillDetails === null ? (
+               {selectedTradeCharge.last_bill_details === null ? (
                   <Loading />
                ) : (
                   <AnnualChargeTable
                      data={
-                        selectedChargeBillDetails
-                           ? selectedChargeBillDetails
+                        selectedTradeCharge.last_bill_details
+                           ? selectedTradeCharge.last_bill_details
                            : []
                      }
                      className={styles.table}

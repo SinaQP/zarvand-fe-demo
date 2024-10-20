@@ -14,27 +14,25 @@ const Trade: FC = () => {
    const {
       selectedTradeCharge,
       setSelectedTradeCharge,
-      setSelectedChargeBillDetails,
-      setSelectedChargeBillInfo,
       tradeCharges,
       setTradeCharges,
-      
    } = useChargesContext();
 
    useEffect(() => {
       setSelectedTradeCharge(null);
-      !tradeCharges && getUserTradeMasters(token, setTradeCharges);
+      console.log(tradeCharges);
+      !tradeCharges.length && getUserTradeMasters(token, setTradeCharges);
       setHeaderId?.(styles['header']);
    }, [token]);
 
    useEffect(() => {
-      if (selectedTradeCharge) {
+      console.log('SELECTED ONE', selectedTradeCharge);
+      if (selectedTradeCharge && !selectedTradeCharge.last_bill_details) {
          getSelectedChargeBillDetails(
             token,
             selectedTradeCharge,
             'Trade',
-            setSelectedChargeBillDetails,
-            setSelectedChargeBillInfo,
+            setTradeCharges,
          );
          setShowPaymentHistory(selectedTradeCharge.is_paid);
       }

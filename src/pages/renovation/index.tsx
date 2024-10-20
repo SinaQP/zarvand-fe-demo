@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import styles from './index.module.scss';
 import { getUserRenovationCharges } from './getUserRenovationCharges';
 import NoRenovationChargesMessage from './noRenovationChargeMessage';
@@ -11,19 +11,17 @@ import ChargeCards from './chargeCards';
 const Renovation: FC = () => {
    const {
       selectedRenovationCharge,
-      setSelectedChargeBillDetails,
-      setSelectedChargeBillInfo,
       renovationCharges,
       setRenovationCharges,
    } = useChargesContext();
 
-   const { token, setShowPaymentHistory, showPaymentHistory } =
+   const { token, setShowPaymentHistory } =
       useUserContext();
    const { setHeaderId } = useLayoutContext();
-   const { selectedChargeBillInfo } = useChargesContext();
 
    useEffect(() => {
-      !renovationCharges && getUserRenovationCharges(token, setRenovationCharges);
+      !renovationCharges &&
+         getUserRenovationCharges(token, setRenovationCharges);
       setHeaderId?.(styles['header']);
    }, [token]);
 
@@ -33,8 +31,7 @@ const Renovation: FC = () => {
             token,
             selectedRenovationCharge,
             'Renovation',
-            setSelectedChargeBillDetails,
-            setSelectedChargeBillInfo,
+            setRenovationCharges,
          );
          setShowPaymentHistory(selectedRenovationCharge.is_paid);
       }

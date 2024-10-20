@@ -13,14 +13,14 @@ import { getTradePrintData } from '../../../../apis/trade/print';
 interface PrintChargeHandlerParams {
    charge: TradeCharge | RenovationCharge;
    printBill: PrintBill | null;
-   printChargeBillDetails: BillDetail[] | null;
    setPrintBill: Dispatch<SetStateAction<PrintBill | null>>;
    chargeType: 'Trade' | 'Renovation' | null;
    token: string;
-   setPrintChargeBillDetails: Dispatch<SetStateAction<BillDetail[] | null>>;
-   setPrintChargeBillInfo: Dispatch<SetStateAction<BillInfo | null>>;
    handlePrint: () => void;
    setIsPrinting: (isPrinting: boolean) => void;
+   setCharges:
+      | Dispatch<SetStateAction<RenovationCharge[]>>
+      | Dispatch<SetStateAction<TradeCharge[]>>;
 }
 
 export const printChargeHandler = async ({
@@ -29,21 +29,18 @@ export const printChargeHandler = async ({
    setPrintBill,
    chargeType,
    token,
-   printChargeBillDetails,
-   setPrintChargeBillDetails,
-   setPrintChargeBillInfo,
    handlePrint,
    setIsPrinting,
+   setCharges,
 }: PrintChargeHandlerParams) => {
    if (charge && !printBill) {
       if (chargeType === 'Trade') {
-         if (!printChargeBillDetails && setPrintChargeBillDetails) {
+         if (!charge.last_bill_info) {
             await getSelectedChargeBillDetails(
                token,
                charge as TradeCharge,
                'Trade',
-               setPrintChargeBillDetails,
-               setPrintChargeBillInfo,
+               setCharges,
             );
          }
          const { body, status } = await getTradePrintData(
@@ -59,13 +56,12 @@ export const printChargeHandler = async ({
          }
       }
       if (chargeType === 'Renovation') {
-         if (!printChargeBillDetails && setPrintChargeBillDetails) {
+         if (!charge.last_bill_info) {
             await getSelectedChargeBillDetails(
                token,
                charge as RenovationCharge,
                'Renovation',
-               setPrintChargeBillDetails,
-               setPrintChargeBillInfo,
+               setCharges,
             );
          }
          const { body, status } = await getRnvPrintData(

@@ -14,12 +14,8 @@ const UnPayedDetails: FC = () => {
    const desktopBillInfo = useWindowWidth(<BillInfo />, null);
    const {
       selectedRenovationCharge,
-      selectedChargeBillDetails,
-      selectedChargeBillInfo,
       setSelectedTradeCharge,
       setSelectedRenovationCharge,
-      setSelectedChargeBillDetails,
-      setSelectedChargeBillInfo,
    } = useChargesContext();
    const { showPaymentHistory, setShowPaymentHistory } = useUserContext();
    if (!selectedRenovationCharge) return null;
@@ -32,8 +28,8 @@ const UnPayedDetails: FC = () => {
             onClick={() => {
                if (
                   !selectedRenovationCharge.is_paid &&
-                  selectedChargeBillInfo &&
-                  selectedChargeBillInfo.last_bill_info &&
+                  selectedRenovationCharge &&
+                  selectedRenovationCharge.last_bill_info &&
                   showPaymentHistory
                ) {
                   setShowPaymentHistory(false);
@@ -41,8 +37,6 @@ const UnPayedDetails: FC = () => {
                   resetChargeStates(
                      setSelectedTradeCharge,
                      setSelectedRenovationCharge,
-                     setSelectedChargeBillDetails,
-                     setSelectedChargeBillInfo,
                   );
                }
             }}
@@ -59,13 +53,13 @@ const UnPayedDetails: FC = () => {
                <CertificationNumberCard charge={selectedRenovationCharge}>
                   {desktopBillInfo}
                </CertificationNumberCard>
-               {selectedChargeBillDetails === null ? (
+               {selectedRenovationCharge === null ? (
                   <Loading />
                ) : (
                   <AnnualChargeTable
                      data={
-                        selectedChargeBillDetails
-                           ? selectedChargeBillDetails
+                        selectedRenovationCharge.last_bill_details
+                           ? selectedRenovationCharge.last_bill_details
                            : []
                      }
                      className={styles.table}

@@ -4,21 +4,16 @@ import styles from '../index.module.scss';
 import resetChargeStates from '../../../utilities/resetChargeStates';
 import PayedBill from './payedBill';
 import { useChargesContext, useUserContext } from '../../../App.context';
-import AddressSection from '../../../components/addressSection';
-import SelectedRenovationCharge from '../../renovation/selectedRenovationCharge';
 
 const PayedDetails: FC = () => {
    const {
       selectedTradeCharge,
-      selectedChargeBillDetails,
       setSelectedTradeCharge,
-      setSelectedChargeBillDetails,
-      setSelectedChargeBillInfo,
       setSelectedRenovationCharge,
-      selectedRenovationCharge
    } = useChargesContext();
    const { setShowPaymentHistory } = useUserContext();
-   if (!selectedTradeCharge || !selectedChargeBillDetails) return null;
+   if (!selectedTradeCharge || !selectedTradeCharge.bills)
+      return null;
 
    return (
       <div>
@@ -31,13 +26,11 @@ const PayedDetails: FC = () => {
                   resetChargeStates(
                      setSelectedTradeCharge,
                      setSelectedRenovationCharge,
-                     setSelectedChargeBillDetails,
-                     setSelectedChargeBillInfo,
                   );
                }
             }}
          />
-         {selectedChargeBillDetails.map((charge) => (
+         {selectedTradeCharge.bills.map((charge: any) => (
             <PayedBill charge={charge} />
          ))}
       </div>

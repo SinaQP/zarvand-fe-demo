@@ -26,11 +26,6 @@ const ButtonGroup: FC<{
    );
    const [isPrinting, setIsPrinting] = useState(false);
    const [printBill, setPrintBill] = useState<PrintBill | null>(null);
-   const [printChargeBillDetails, setPrintChargeBillDetails] = useState<
-      BillDetail[] | null
-   >(null);
-   const [printChargeBillInfo, setPrintChargeBillInfo] =
-      useState<BillInfo | null>(null);
 
    useEffect(() => {
       setChargeType('certificate_number' in charge ? 'Renovation' : 'Trade');
@@ -38,20 +33,20 @@ const ButtonGroup: FC<{
 
    const { token, setShowPaymentHistory } = useUserContext();
    const {
-      selectedChargeBillInfo,
       setSelectedTradeCharge,
       setSelectedRenovationCharge,
+      setTradeCharges,
+      setRenovationCharges,
    } = useChargesContext();
 
    useEffect(() => {
       const trdChargePdfButton = document.getElementById(
          `${charge.master_id}-charge-pdf-button`,
       )! as HTMLButtonElement;
-      console.log('useEffect REF', componentRef);
       if (isPrinting && trdChargePdfButton) {
          trdChargePdfButton.click();
       }
-   }, [isPrinting, printChargeBillDetails]);
+   }, [isPrinting]);
 
    const downloadButton = {
       label: 'دانلود',
@@ -64,11 +59,10 @@ const ButtonGroup: FC<{
             setPrintBill,
             chargeType,
             token,
-            setPrintChargeBillDetails,
-            setPrintChargeBillInfo,
             handlePrint,
             setIsPrinting,
-            printChargeBillDetails,
+            setCharges:
+               chargeType == 'Trade' ? setTradeCharges : setRenovationCharges,
          });
       },
       id: `${charge.master_id}-charge-pdf-button`,
@@ -80,7 +74,7 @@ const ButtonGroup: FC<{
       alt: 'Pay',
    };
 
-   const detailsButton = !selectedChargeBillInfo
+   const detailsButton = !charge.last_bill_info
       ? {
            label: 'جزئیات',
            icon: detailIcon,
@@ -97,9 +91,7 @@ const ButtonGroup: FC<{
       : null;
 
    const paymentHistoryButton =
-      selectedChargeBillInfo &&
-      selectedChargeBillInfo.bills.length > 0 &&
-      !charge.is_paid
+      charge.last_bill_info && charge.bills.length > 0 && !charge.is_paid
          ? {
               label: 'سابقه پرداخت',
               icon: payIcon,
@@ -125,9 +117,6 @@ const ButtonGroup: FC<{
    const visibleButtons = buttons.filter((button) => button !== null);
    const componentRef = useRef<HTMLDivElement>(null);
    const handlePrint = useReactToPrint({ content: () => componentRef.current });
-   useEffect(() => {
-      console.log(printChargeBillDetails, 'NIGA');
-   }, [printChargeBillDetails]);
    return (
       <div
          className={`${styles.buttons} ${
@@ -141,7 +130,9 @@ const ButtonGroup: FC<{
             chargeType={chargeType}
             isPrinting={isPrinting}
             printBill={printBill}
-            printChargeBillDetails={printChargeBillDetails}
+            printChargeBillDetails={
+               charge.is_paid ? charge.last_bill_details : charge.last_bill_details
+            }
             componentRef={componentRef}
          />
       </div>
