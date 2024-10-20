@@ -60,10 +60,6 @@ const PayedDetails: FC = () => {
                </>
             ) : (
                <>
-                  {/* <InfoCard
-                     title={<InfoCardTitle title="شماره شناسنامه ملک" />}
-                     isPrimary
-                  > */}
                   <div className={styles['locationDetails']}>
                      <CertificationNumberCard charge={selectedRenovationCharge}>
                         <div className={styles['square-footage']}>
@@ -81,7 +77,6 @@ const PayedDetails: FC = () => {
                         </div>
                      </CertificationNumberCard>
                   </div>
-                  {/* </InfoCard> */}
                </>
             )}
          </div>
