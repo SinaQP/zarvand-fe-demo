@@ -18,11 +18,12 @@ const Trade: FC = () => {
       setSelectedChargeBillInfo,
       tradeCharges,
       setTradeCharges,
+      
    } = useChargesContext();
 
    useEffect(() => {
       setSelectedTradeCharge(null);
-      getUserTradeMasters(token, setTradeCharges);
+      !tradeCharges && getUserTradeMasters(token, setTradeCharges);
       setHeaderId?.(styles['header']);
    }, [token]);
 

@@ -23,7 +23,7 @@ const Renovation: FC = () => {
    const { selectedChargeBillInfo } = useChargesContext();
 
    useEffect(() => {
-      getUserRenovationCharges(token, setRenovationCharges);
+      !renovationCharges && getUserRenovationCharges(token, setRenovationCharges);
       setHeaderId?.(styles['header']);
    }, [token]);
 
