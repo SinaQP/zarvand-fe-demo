@@ -9,7 +9,7 @@ import Support from '../pages/support';
 import Trade from '../pages/trade';
 import Layout from '../components/layout';
 import PrivateRoute from './privateRoute';
-import PaymentStatus from '../pages/PaymentStatus';
+import PaymentStatus from '../pages/paymentStatus';
 
 const Router = createBrowserRouter([
    {
