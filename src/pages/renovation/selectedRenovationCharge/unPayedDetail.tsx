@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import MasterCard from '../../../components/masterCard';
 import { useChargesContext, useUserContext } from '../../../App.context';
 import CertificationNumberCard from '../../../components/certificationNumberCard';
@@ -9,19 +9,37 @@ import BackArrow from '../../../components/backArrow';
 import resetChargeStates from '../../../utilities/resetChargeStates';
 import BillInfo from './billInfo';
 import useWindowWidth from '../../../hooks/useWindowWidth';
+import getSelectedChargeBillDetails from '../../../utilities/getSelectedChargeBillDetails';
+import { RenovationCharge } from '../../../interfaces/models.interface';
 
 const UnPayedDetails: FC = () => {
    const desktopBillInfo = useWindowWidth(<BillInfo />, null);
+   const { token } = useUserContext();
    const {
       selectedRenovationCharge,
-      selectedChargeBillDetails,
-      selectedChargeBillInfo,
       setSelectedTradeCharge,
       setSelectedRenovationCharge,
-      setSelectedChargeBillDetails,
-      setSelectedChargeBillInfo,
+      setRenovationCharges,
    } = useChargesContext();
    const { showPaymentHistory, setShowPaymentHistory } = useUserContext();
+   useEffect(() => {
+      async function fetchBillDetails() {
+         if (
+            selectedRenovationCharge &&
+            !selectedRenovationCharge.last_bill_details
+         ) {
+            const updatedCharge = await getSelectedChargeBillDetails(
+               token,
+               selectedRenovationCharge,
+               'Renovation',
+               setRenovationCharges,
+            );
+            setShowPaymentHistory(selectedRenovationCharge.is_paid);
+            setSelectedRenovationCharge(updatedCharge as RenovationCharge);
+         }
+      }
+      fetchBillDetails();
+   }, [selectedRenovationCharge]);
    if (!selectedRenovationCharge) return null;
    return (
       <div className={styles.unPayedDetails}>
@@ -32,8 +50,8 @@ const UnPayedDetails: FC = () => {
             onClick={() => {
                if (
                   !selectedRenovationCharge.is_paid &&
-                  selectedChargeBillInfo &&
-                  selectedChargeBillInfo.last_bill_info &&
+                  selectedRenovationCharge &&
+                  selectedRenovationCharge.last_bill_info &&
                   showPaymentHistory
                ) {
                   setShowPaymentHistory(false);
@@ -41,8 +59,6 @@ const UnPayedDetails: FC = () => {
                   resetChargeStates(
                      setSelectedTradeCharge,
                      setSelectedRenovationCharge,
-                     setSelectedChargeBillDetails,
-                     setSelectedChargeBillInfo,
                   );
                }
             }}
@@ -59,18 +75,16 @@ const UnPayedDetails: FC = () => {
                <CertificationNumberCard charge={selectedRenovationCharge}>
                   {desktopBillInfo}
                </CertificationNumberCard>
-               {selectedChargeBillDetails === null ? (
-                  <Loading />
-               ) : (
-                  <AnnualChargeTable
-                     data={
-                        selectedChargeBillDetails
-                           ? selectedChargeBillDetails
-                           : []
-                     }
-                     className={styles.table}
-                  />
-               )}
+
+               <AnnualChargeTable
+                  data={
+                     selectedRenovationCharge.last_bill_details
+                        ? selectedRenovationCharge.last_bill_details
+                        : []
+                  }
+                  className={styles.table}
+               />
+
                <BillInfo className={styles['bill-info']} />
             </div>
          </MasterCard>

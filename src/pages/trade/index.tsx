@@ -10,34 +10,18 @@ import ChargeCards from './chargeCards';
 
 const Trade: FC = () => {
    const { setHeaderId } = useLayoutContext();
-   const { token, setShowPaymentHistory } = useUserContext();
+   const { token } = useUserContext();
    const {
-      selectedTradeCharge,
       setSelectedTradeCharge,
-      setSelectedChargeBillDetails,
-      setSelectedChargeBillInfo,
       tradeCharges,
       setTradeCharges,
    } = useChargesContext();
 
    useEffect(() => {
       setSelectedTradeCharge(null);
-      getUserTradeMasters(token, setTradeCharges);
+      !tradeCharges.length && getUserTradeMasters(token, setTradeCharges);
       setHeaderId?.(styles['header']);
    }, [token]);
-
-   useEffect(() => {
-      if (selectedTradeCharge) {
-         getSelectedChargeBillDetails(
-            token,
-            selectedTradeCharge,
-            'Trade',
-            setSelectedChargeBillDetails,
-            setSelectedChargeBillInfo,
-         );
-         setShowPaymentHistory(selectedTradeCharge.is_paid);
-      }
-   }, [selectedTradeCharge]);
 
    return (
       <section className={styles.layout}>
