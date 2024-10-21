@@ -20,22 +20,10 @@ const Renovation: FC = () => {
    const { setHeaderId } = useLayoutContext();
 
    useEffect(() => {
-      !renovationCharges &&
+      !renovationCharges.length &&
          getUserRenovationCharges(token, setRenovationCharges);
       setHeaderId?.(styles['header']);
    }, [token]);
-
-   useEffect(() => {
-      if (selectedRenovationCharge) {
-         getSelectedChargeBillDetails(
-            token,
-            selectedRenovationCharge,
-            'Renovation',
-            setRenovationCharges,
-         );
-         setShowPaymentHistory(selectedRenovationCharge.is_paid);
-      }
-   }, [selectedRenovationCharge]);
 
    return (
       <section className={styles.layout}>

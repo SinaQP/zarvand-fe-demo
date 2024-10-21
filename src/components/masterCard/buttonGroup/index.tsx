@@ -16,6 +16,7 @@ import ButtonList from './buttonList';
 import { printChargeHandler } from './functions/printChargeHandler';
 import TrdChargePdf from '../../pdfs/trdChargePdf';
 import { useReactToPrint } from 'react-to-print';
+import getSelectedChargeBillDetails from '../../../utilities/getSelectedChargeBillDetails';
 
 const ButtonGroup: FC<{
    isPayed?: boolean;
@@ -37,6 +38,8 @@ const ButtonGroup: FC<{
       setSelectedRenovationCharge,
       setTradeCharges,
       setRenovationCharges,
+      selectedRenovationCharge,
+      selectedTradeCharge,
    } = useChargesContext();
 
    useEffect(() => {
@@ -74,24 +77,28 @@ const ButtonGroup: FC<{
       alt: 'Pay',
    };
 
-   const detailsButton = !charge.last_bill_info
-      ? {
-           label: 'جزئیات',
-           icon: detailIcon,
-           alt: 'Detail',
-           onClick: () => {
-              if (chargeType === 'Renovation') {
-                 setSelectedRenovationCharge(charge as RenovationCharge);
-              } else if (chargeType === 'Trade') {
-                 setSelectedTradeCharge(charge as TradeCharge);
-              }
-              if (charge.is_paid) setShowPaymentHistory(true);
-           },
-        }
-      : null;
+   const detailsButton =
+      !selectedRenovationCharge && !selectedTradeCharge
+         ? {
+              label: 'جزئیات',
+              icon: detailIcon,
+              alt: 'Detail',
+              onClick: async () => {
+                 if (chargeType === 'Renovation') {
+                    setSelectedRenovationCharge(charge as RenovationCharge);
+                 } else if (chargeType === 'Trade') {
+                    setSelectedTradeCharge(charge as TradeCharge);
+                 }
+                 if (charge.is_paid) setShowPaymentHistory(true);
+              },
+           }
+         : null;
 
    const paymentHistoryButton =
-      charge.last_bill_info && charge.bills.length > 0 && !charge.is_paid
+      (selectedRenovationCharge || selectedTradeCharge) &&
+      charge.last_bill_info &&
+      charge.bills.length > 0 &&
+      !charge.is_paid
          ? {
               label: 'سابقه پرداخت',
               icon: payIcon,
@@ -131,7 +138,9 @@ const ButtonGroup: FC<{
             isPrinting={isPrinting}
             printBill={printBill}
             printChargeBillDetails={
-               charge.is_paid ? charge.last_bill_details : charge.last_bill_details
+               charge.is_paid
+                  ? charge.last_bill_details
+                  : charge.last_bill_details
             }
             componentRef={componentRef}
          />

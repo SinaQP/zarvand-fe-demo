@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import BackArrow from '../../../components/backArrow';
 import styles from '../index.module.scss';
 import resetChargeStates from '../../../utilities/resetChargeStates';
@@ -8,18 +8,35 @@ import InfoCardTitle from '../infoCardTitle';
 import Loading from '../../../components/loading/loading';
 import AnnualChargeTable from '../../../components/annualChargeTable';
 import BillInfo from './billInfo';
-import { useChargesContext } from '../../../App.context';
+import { useChargesContext, useUserContext } from '../../../App.context';
 import useWindowWidth from '../../../hooks/useWindowWidth';
+import getSelectedChargeBillDetails from '../../../utilities/getSelectedChargeBillDetails';
+import { TradeCharge } from '../../../interfaces/models.interface';
 
 const UnPayedDetails: FC = () => {
    const desktopBillInfo = useWindowWidth(<BillInfo />, null);
+   const { token, setShowPaymentHistory } = useUserContext();
    const {
       selectedTradeCharge,
       setSelectedTradeCharge,
       setSelectedRenovationCharge,
+      setTradeCharges,
    } = useChargesContext();
+   useEffect(() => {
+      async function fetchBillDetails() {
+         if (selectedTradeCharge && !selectedTradeCharge.last_bill_details) {
+            const updatedCharge = await getSelectedChargeBillDetails(
+               token,
+               selectedTradeCharge,
+               'Trade',
+               setTradeCharges,
+            );
+            setSelectedTradeCharge(updatedCharge as TradeCharge);
+         }
+      }
+      fetchBillDetails();
+   }, [selectedTradeCharge]);
    if (!selectedTradeCharge) return null;
-
    return (
       <div className={styles.unPayedDetails}>
          <BackArrow
@@ -50,18 +67,14 @@ const UnPayedDetails: FC = () => {
                   {desktopBillInfo}
                </InfoCard>
 
-               {selectedTradeCharge.last_bill_details === null ? (
-                  <Loading />
-               ) : (
-                  <AnnualChargeTable
-                     data={
-                        selectedTradeCharge.last_bill_details
-                           ? selectedTradeCharge.last_bill_details
-                           : []
-                     }
-                     className={styles.table}
-                  />
-               )}
+               <AnnualChargeTable
+                  data={
+                     selectedTradeCharge.last_bill_details
+                        ? selectedTradeCharge.last_bill_details
+                        : []
+                  }
+                  className={styles.table}
+               />
 
                <BillInfo className={styles['bill-info']} />
             </div>

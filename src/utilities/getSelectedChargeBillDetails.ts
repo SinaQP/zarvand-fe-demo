@@ -1,10 +1,7 @@
 import { getRenovationBillDetailsInfo } from '../apis/renovation/renovation-bill-details-info';
 import { getTradeBillDetailsInfo } from '../apis/trade/guild-bill-details-info';
 import { Dispatch, SetStateAction } from 'react';
-import {
-   RenovationCharge,
-   TradeCharge,
-} from '../interfaces/models.interface';
+import { RenovationCharge, TradeCharge } from '../interfaces/models.interface';
 import { toast } from 'react-toastify';
 
 async function getSelectedChargeBillDetails(
@@ -32,12 +29,11 @@ async function getSelectedChargeBillDetails(
    if (billDetailsInfoResponse.status === 200 && setCharges) {
       setCharges((prevState: any) => {
          const state = prevState.map((prevCharge: any) => {
-            console.log('prevCharge', prevCharge);
-            console.log(
-               'prevCharge BOOL',
-               charge.master_id === prevCharge.master_id,
-            );
             if (charge.master_id === prevCharge.master_id) {
+               charge = {
+                  ...prevCharge,
+                  ...responseBody,
+               };
                return {
                   ...prevCharge,
                   ...responseBody,
@@ -50,6 +46,7 @@ async function getSelectedChargeBillDetails(
    } else {
       toast.error(responseBody.message);
    }
+   return charge;
 }
 
 export default getSelectedChargeBillDetails;

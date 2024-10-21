@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import MasterCard from '../../../components/masterCard';
 import { useChargesContext, useUserContext } from '../../../App.context';
 import CertificationNumberCard from '../../../components/certificationNumberCard';
@@ -9,15 +9,37 @@ import BackArrow from '../../../components/backArrow';
 import resetChargeStates from '../../../utilities/resetChargeStates';
 import BillInfo from './billInfo';
 import useWindowWidth from '../../../hooks/useWindowWidth';
+import getSelectedChargeBillDetails from '../../../utilities/getSelectedChargeBillDetails';
+import { RenovationCharge } from '../../../interfaces/models.interface';
 
 const UnPayedDetails: FC = () => {
    const desktopBillInfo = useWindowWidth(<BillInfo />, null);
+   const { token } = useUserContext();
    const {
       selectedRenovationCharge,
       setSelectedTradeCharge,
       setSelectedRenovationCharge,
+      setRenovationCharges,
    } = useChargesContext();
    const { showPaymentHistory, setShowPaymentHistory } = useUserContext();
+   useEffect(() => {
+      async function fetchBillDetails() {
+         if (
+            selectedRenovationCharge &&
+            !selectedRenovationCharge.last_bill_details
+         ) {
+            const updatedCharge = await getSelectedChargeBillDetails(
+               token,
+               selectedRenovationCharge,
+               'Renovation',
+               setRenovationCharges,
+            );
+            setShowPaymentHistory(selectedRenovationCharge.is_paid);
+            setSelectedRenovationCharge(updatedCharge as RenovationCharge);
+         }
+      }
+      fetchBillDetails();
+   }, [selectedRenovationCharge]);
    if (!selectedRenovationCharge) return null;
    return (
       <div className={styles.unPayedDetails}>
@@ -53,18 +75,16 @@ const UnPayedDetails: FC = () => {
                <CertificationNumberCard charge={selectedRenovationCharge}>
                   {desktopBillInfo}
                </CertificationNumberCard>
-               {selectedRenovationCharge === null ? (
-                  <Loading />
-               ) : (
-                  <AnnualChargeTable
-                     data={
-                        selectedRenovationCharge.last_bill_details
-                           ? selectedRenovationCharge.last_bill_details
-                           : []
-                     }
-                     className={styles.table}
-                  />
-               )}
+
+               <AnnualChargeTable
+                  data={
+                     selectedRenovationCharge.last_bill_details
+                        ? selectedRenovationCharge.last_bill_details
+                        : []
+                  }
+                  className={styles.table}
+               />
+
                <BillInfo className={styles['bill-info']} />
             </div>
          </MasterCard>
