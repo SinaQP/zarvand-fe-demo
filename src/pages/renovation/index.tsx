@@ -7,6 +7,11 @@ import { useLayoutContext } from '../../components/layout/layout.context';
 import { Bounce, ToastContainer } from 'react-toastify';
 import { useChargesContext, useUserContext } from '../../App.context';
 import ChargeCards from './chargeCards';
+import PaidBillCard from '../../components/paidBillsCard';
+import locMarkerIcon from '/src/assets/images/location-pin.svg';
+import InfoCard from '../../components/infoCard';
+import InfoCardTitle from './components/infoCardTitle';
+import InfoCardBody from './components/infoCardBody';
 
 const Renovation: FC = () => {
    const {
@@ -26,7 +31,7 @@ const Renovation: FC = () => {
    }, [token]);
 
    return (
-      <section className={styles.layout}>
+      <section className={styles.RenovationStyleWrapper}>
          {renovationCharges.length <= 0 ? (
             <NoRenovationChargesMessage />
          ) : (
