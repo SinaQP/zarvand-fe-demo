@@ -10,6 +10,7 @@ import { useUserContext } from '../../../App.context';
 const ConfirmationEntry: FC = () => {
    const navigate = useNavigate();
    const [otpCode, setOtpCode] = useState<string[]>([]);
+   const [debuggerMsg, setDebuggerMsg] = useState('');
    const { setUser, setToken } = useUserContext();
    const {
       maskedPhoneNumber,
@@ -22,10 +23,34 @@ const ConfirmationEntry: FC = () => {
    } = useLayoutContext();
    const afterOtpRef = useRef<HTMLButtonElement>(null);
 
+   // useEffect(() => {
+   //    const button = document.getElementById('otpButtonRef');
+   //    if (otpCode.length === 6) button?.click();
+   // });
+
    useEffect(() => {
-      const button = document.getElementById('otpButtonRef');
-      if (otpCode.length === 6) button?.click();
-   });
+      if ('OTPCredential' in window) {
+         setDebuggerMsg('locked in');
+         const ac = new AbortController();
+
+         navigator.credentials
+            .get({
+               otp: { transport: ['sms'] },
+               signal: ac.signal,
+            } as CredentialRequestOptions)
+            .then((otp: any) => {
+               if (otp?.code) {
+                  const code = `${otp.code}`.split(' ');
+                  setOtpCode(code);
+               } else {
+                  setDebuggerMsg(`you fucking failed you retard`);
+               }
+            })
+            .catch((err) => {
+               alert(err);
+            });
+      }
+   }, []);
 
    useEffect(() => {
       setHeaderId?.(styles['header']);
@@ -48,12 +73,13 @@ const ConfirmationEntry: FC = () => {
             otpClassName={styles['otp-input']}
             inputsClassName={styles.input}
          />
+         {/* <p>{debuggerMsg}</p> */}
          <Button
             className={styles['submit-button']}
             haveLoading
             ref={afterOtpRef}
             id="otpButtonRef"
-            type='button'
+            type="button"
             onClick={async () =>
                await handleConfirmationButton({
                   verificationCode: otpCode.join(''),

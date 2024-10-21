@@ -9,20 +9,9 @@ const PaidBillCard: FC<RenovateCardProps> = ({ Bill }) => {
    const windowWidth = useWindowWidth('desktop', 'android');
 
    return (
-      <div id="renovationStyleWrapper">
+      <div id="paidBillsStyleWrapper">
          <div id="border"></div>
-         <div className="container">
-            {/* {paymentStatus ? (
-               windowWidth === 'android' ? (
-                  <PaidAndroidRenovateCard Bill={Bill} />
-               ) : (
-                  <PaidDesktopRenovateCard Bill={Bill} theme={theme} />
-               )
-            ) : windowWidth === 'android' ? (
-               <div></div>
-            ) : (
-               <UnPaidDesktopRenovateCard theme="secondary" />
-            )} */}
+         <div id="container">
             {windowWidth === 'android' ? (
                <AndroidRenovateCard Bill={Bill} />
             ) : (

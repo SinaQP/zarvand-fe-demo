@@ -11,6 +11,7 @@ const HeaderBadge: FC = () => {
          id={badgeId}
       >
          <img src={MunicipalityLogo} alt="Municipality Logo" />
+         <span className={styles['subtitle']}>پرداخت عوارض</span>
       </div>
    );
 };
