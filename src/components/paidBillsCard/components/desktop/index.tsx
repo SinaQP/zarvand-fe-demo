@@ -56,9 +56,9 @@ const DesktopRenovateCard: FC<props> = ({ Bill }) => {
             </div>
          </div>
          <div className="icons">
-            <img src={shareIcon} alt="share icon" width={40} height={40} />
+            {/* <img src={shareIcon} alt="share icon" width={40} height={40} />
             <img src={cloudIcon} alt="cloud icon" width={40} height={40} />
-            <img src={printerIcon} alt="printer icon" width={40} height={40} />
+            <img src={printerIcon} alt="printer icon" width={40} height={40} /> */}
          </div>
       </div>
    );
