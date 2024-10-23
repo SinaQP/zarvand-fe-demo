@@ -67,6 +67,8 @@
 
    @media (min-width: $desktop) {
       height: auto;
+      flex-direction: row;
+      flex-wrap: wrap;
       .unPayedDetails {
          width: 80%;
          margin: 0 auto;
