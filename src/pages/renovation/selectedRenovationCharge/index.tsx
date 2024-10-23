@@ -9,7 +9,7 @@ const SelectedRenovationCharge: FC<{ isPayed: boolean }> = ({ isPayed }) => {
 
    return (
       <div style={{ width: '100%' }}>
-         {isPayed ? <PayedDetails /> : <UnPayedDetails />}
+         {isPayed ? <PayedDetails /> : <UnPayedDetails />}  
       </div>
    );
 };

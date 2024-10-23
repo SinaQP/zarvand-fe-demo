@@ -30,7 +30,7 @@ const PayedDetails: FC = () => {
                }
             }}
          />
-         {selectedTradeCharge.bills.map((charge: any) => (
+         {selectedTradeCharge.bills && selectedTradeCharge.bills.map((charge: any) => (
             <PayedBill charge={charge} />
          ))}
       </div>

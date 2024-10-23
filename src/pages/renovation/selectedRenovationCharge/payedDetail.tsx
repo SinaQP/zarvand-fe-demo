@@ -73,7 +73,7 @@ const PayedDetails: FC = () => {
                </>
             )}
          </div>
-         {selectedRenovationCharge.bills.map((bill: Bill) => (
+         {selectedRenovationCharge.bills && selectedRenovationCharge.bills.map((bill: Bill) => (
             <PaidBillCard Bill={bill} />
          ))}
       </section>
