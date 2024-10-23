@@ -31,7 +31,7 @@ const Renovation: FC = () => {
    }, [token]);
 
    return (
-      <section className={styles.RenovationStyleWrapper}>
+      <section className={styles.layout}>
          {renovationCharges.length <= 0 ? (
             <NoRenovationChargesMessage />
          ) : (
