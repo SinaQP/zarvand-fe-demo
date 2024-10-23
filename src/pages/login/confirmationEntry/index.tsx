@@ -31,7 +31,6 @@ const ConfirmationEntry: FC = () => {
       if ('OTPCredential' in window) {
          const ac = new AbortController();
 
-         console.log('test');
          navigator.credentials
             .get({
                otp: { transport: ['sms'] },
@@ -39,18 +38,14 @@ const ConfirmationEntry: FC = () => {
             } as CredentialRequestOptions)
             .then((otp: any) => {
                if (otp?.code) {
-                  // Convert OTP code to array of strings
                   const codeArray = otp.code.split('');
-                  setOtpCode(codeArray); // Save the array of characters in state
+                  setOtpCode(codeArray);
                } else {
                   console.log('Failed to retrieve OTP. Please try again.');
                }
             })
             .catch((err) => {
                console.log(err);
-            })
-            .finally(() => {
-               console.log('test');
             });
       }
    }, []);
