@@ -21,6 +21,7 @@ const Home: FC = () => {
       <img src={whiteSquareIcon} className={'white-square'} />,
       null,
    );
+   const windowWidth = useWindowWidth('des', 'and');
    useEffect(() => {
       setHeaderId && setHeaderId('header');
    }, []);
@@ -61,51 +62,55 @@ const Home: FC = () => {
    };
 
    return (
-      <section className={'main'}>
-         <div className={'welcome-text-container'}>
-            <span className="welcome-text">
-               {user?.name || 'کاربر'} عزیز ! خوش آمدید. امیدواریم تجربه‌ای سریع
-               و آسان در مدیریت عوارض شهری داشته باشید.
-            </span>
+      <section id={'home-main'}>
+         <div id="container">
+            <div className={'welcome-text-container'}>
+               <span className="welcome-text">
+                  {user?.name || 'کاربر'} عزیز ! خوش آمدید. امیدواریم تجربه‌ای
+                  سریع و آسان در مدیریت عوارض شهری داشته باشید.
+               </span>
 
-            <span className="date">{formattedDate}</span>
-         </div>
-
-         <div className="citizenship-privilege-container">
-            <div className="title">
-               <span>امتیاز شهروندی شما</span>
+               <span className="date">{formattedDate}</span>
             </div>
 
-            <span className="text">
-               با افزایش امتیاز شهروندی خود، از خدمات ویژه و تخفیف‌های اختصاصی
-               بهره‌مند شوید. امتیاز شما نشان‌دهنده همراهی‌تان در توسعه و پیشرفت
-               شهر است !
-            </span>
+            <div className="citizenship-privilege-container">
+               <div className="title">
+                  <span>امتیاز شهروندی شما</span>
+               </div>
 
-            <div className="actions">
-               <ActionBtn text={'تخفیفات'} imageSrc={percentageIcon} />
-               <ActionBtn text={'توضیحات'} imageSrc={whiteClipboardIcon} />
-               <ActionBtn text={'افزایش'} imageSrc={lineChart} />
-            </div>
-         </div>
+               <span className="text">
+                  با افزایش امتیاز شهروندی خود، از خدمات ویژه و تخفیف‌های
+                  اختصاصی بهره‌مند شوید. امتیاز شما نشان‌دهنده همراهی‌تان در
+                  توسعه و پیشرفت شهر است !
+               </span>
 
-         <div className="services-container">
-            <div className="title">
-               <span>خدمات</span>
+               <div className="actions">
+                  <ActionBtn text={'تخفیفات'} imageSrc={percentageIcon} />
+                  <ActionBtn text={'توضیحات'} imageSrc={whiteClipboardIcon} />
+                  <ActionBtn text={'افزایش'} imageSrc={lineChart} />
+               </div>
             </div>
 
-            <div className="actions">
-               <ServiceBtn
-                  imageSrc={brickWallIcon}
-                  text="نوسازی"
-                  onClick={() => navigate('/renovation')}
-               />
-               <ServiceBtn
-                  imageSrc={shopIcon}
-                  text="کسب و پیشه"
-                  onClick={() => navigate('/trade')}
-               />
-            </div>
+            {windowWidth === 'and' && (
+               <div className="services-container">
+                  <div className="title">
+                     <span>خدمات</span>
+                  </div>
+
+                  <div className="actions">
+                     <ServiceBtn
+                        imageSrc={brickWallIcon}
+                        text="نوسازی"
+                        onClick={() => navigate('/renovation')}
+                     />
+                     <ServiceBtn
+                        imageSrc={shopIcon}
+                        text="کسب و پیشه"
+                        onClick={() => navigate('/trade')}
+                     />
+                  </div>
+               </div>
+            )}
          </div>
          {whiteSquares}
       </section>

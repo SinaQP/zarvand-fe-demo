@@ -39,10 +39,6 @@ const Login: FC = () => {
       null,
    );
 
-   const test = 'this is a test string';
-   const splitedTest = test.split('');
-   console.log('>>>', splitedTest);
-
    useEffect(() => {
       setHeaderText &&
          setHeaderText('پرداخت آسان عوارض شهری بدون نیاز به مراجعه حضوری');
