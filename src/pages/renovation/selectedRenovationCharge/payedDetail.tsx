@@ -1,5 +1,4 @@
 import { FC } from 'react';
-import MasterCard from '../../../components/masterCard';
 import { useChargesContext } from '../../../App.context';
 import PaidBillCard from '../../../components/paidBillsCard';
 import InfoRow from '../../../components/infoRow';
@@ -7,23 +6,19 @@ import styles from '../index.module.scss';
 import AddressSection from '../../../components/addressSection';
 import BackArrow from '../../../components/backArrow';
 import resetChargeStates from '../../../utilities/resetChargeStates';
-import useWindowWidth from '../../../hooks/useWindowWidth';
-import InfoCard from '../../../components/infoCard';
-import InfoCardTitle from '../components/infoCardTitle';
+import { Bill } from '../../../interfaces/models.interface';
 import CertificationNumberCard from '../../../components/certificationNumberCard';
+import useWindowWidth from '../../../hooks/useWindowWidth';
 
 const PayedDetails: FC = () => {
    const {
       selectedRenovationCharge,
-      selectedChargeBillInfo,
       setSelectedTradeCharge,
       setSelectedRenovationCharge,
-      setSelectedChargeBillDetails,
-      setSelectedChargeBillInfo,
    } = useChargesContext();
    const windowWidth = useWindowWidth('desktop', 'android');
 
-   if (!selectedRenovationCharge || !selectedChargeBillInfo) return null;
+   if (!selectedRenovationCharge) return null;
    return (
       <section className={styles['paidRenovationContainer']}>
          {windowWidth === 'android' && (
@@ -33,8 +28,6 @@ const PayedDetails: FC = () => {
                   resetChargeStates(
                      setSelectedTradeCharge,
                      setSelectedRenovationCharge,
-                     setSelectedChargeBillDetails,
-                     setSelectedChargeBillInfo,
                   )
                }
             />
@@ -80,7 +73,7 @@ const PayedDetails: FC = () => {
                </>
             )}
          </div>
-         {selectedChargeBillInfo.bills.map((bill) => (
+         {selectedRenovationCharge.bills.map((bill: Bill) => (
             <PaidBillCard Bill={bill} />
          ))}
       </section>

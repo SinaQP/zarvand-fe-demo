@@ -7,14 +7,11 @@ import { renderInfoCard } from './renderInfoCard';
 import { TradeCharge } from '../../../interfaces/models.interface';
 import { useChargesContext, useUserContext } from '../../../App.context';
 import InfoRow from '../../../components/infoRow';
-import StatusTab from '../../../components/statusTab';
 
 const ChargeCards: FC<{ tradeCharges: TradeCharge[] }> = ({ tradeCharges }) => {
    const {
       selectedTradeCharge,
       setSelectedTradeCharge,
-      setSelectedChargeBillDetails,
-      setSelectedChargeBillInfo,
       setSelectedRenovationCharge,
    } = useChargesContext();
    const { showPaymentHistory } = useUserContext();
@@ -45,8 +42,6 @@ const ChargeCards: FC<{ tradeCharges: TradeCharge[] }> = ({ tradeCharges }) => {
                resetChargeStates(
                   setSelectedTradeCharge,
                   setSelectedRenovationCharge,
-                  setSelectedChargeBillDetails,
-                  setSelectedChargeBillInfo,
                );
                return tradeCharges.map(renderMasterCard);
             })()

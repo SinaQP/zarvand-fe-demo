@@ -11,6 +11,13 @@ export interface TradeCharge {
    TradeType: string;
    is_paid: false;
    shop_area: number;
+   last_bill_info: {
+      payment_no: string;
+      bill_no: string;
+      value_to_pay: number;
+   } | null;
+   last_bill_details: BillDetail[];
+   bills: Bill[];
 }
 
 export interface RenovationCharge {
@@ -20,6 +27,13 @@ export interface RenovationCharge {
    is_paid: boolean;
    building_area: number;
    land_area: number;
+   last_bill_info: {
+      payment_no: string;
+      bill_no: string;
+      value_to_pay: number;
+   } | null;
+   last_bill_details: BillDetail[];
+   bills: Bill[];
 }
 
 export interface BillDetail {

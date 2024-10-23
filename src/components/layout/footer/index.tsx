@@ -10,12 +10,8 @@ import DesktopFooter from './components/desktopFooter';
 const Footer = () => {
    const windowWidth = useWindowWidth('desktop', 'mobile');
 
-   const {
-      setSelectedTradeCharge,
-      setSelectedChargeBillDetails,
-      setSelectedChargeBillInfo,
-      setSelectedRenovationCharge,
-   } = useChargesContext();
+   const { setSelectedTradeCharge, setSelectedRenovationCharge } =
+      useChargesContext();
 
    const history = useNavigate();
    const location = useLocation();
@@ -25,12 +21,7 @@ const Footer = () => {
 
    const handleRedirect = (route: IconType['route'], id: number) => {
       setActiveIndex(id);
-      resetChargeStates(
-         setSelectedTradeCharge,
-         setSelectedRenovationCharge,
-         setSelectedChargeBillDetails,
-         setSelectedChargeBillInfo,
-      );
+      resetChargeStates(setSelectedTradeCharge, setSelectedRenovationCharge);
       history(route);
    };
 

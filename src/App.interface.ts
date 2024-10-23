@@ -31,10 +31,7 @@ export interface ChargesContextProps {
    setSelectedRenovationCharge: Dispatch<
       SetStateAction<RenovationCharge | null>
    >;
-   setSelectedChargeBillDetails: Dispatch<SetStateAction<BillDetail[] | null>>;
-   selectedChargeBillDetails: BillDetail[] | null;
-   selectedChargeBillInfo: BillInfo | null;
-   setSelectedChargeBillInfo: Dispatch<SetStateAction<BillInfo | null>>;
+
 }
 
 export interface AppProps {

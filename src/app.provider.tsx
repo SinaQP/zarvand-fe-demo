@@ -1,8 +1,6 @@
 import { FC, ReactNode, useState } from 'react';
 import { ChargesContext, UserContext } from './App.context';
 import {
-   BillDetail,
-   BillInfo,
    RenovationCharge,
    TradeCharge,
    User,
@@ -44,11 +42,6 @@ export const ChargesProvider: FC<{ children: ReactNode }> = ({ children }) => {
       useState<TradeCharge | null>(null);
    const [selectedRenovationCharge, setSelectedRenovationCharge] =
       useState<RenovationCharge | null>(null);
-   const [selectedChargeBillInfo, setSelectedChargeBillInfo] =
-      useState<BillInfo | null>(null);
-   const [selectedChargeBillDetails, setSelectedChargeBillDetails] = useState<
-      BillDetail[] | null
-   >(null);
    return (
       <ChargesContext.Provider
          value={{
@@ -60,10 +53,6 @@ export const ChargesProvider: FC<{ children: ReactNode }> = ({ children }) => {
             setRenovationCharges,
             selectedRenovationCharge,
             setSelectedRenovationCharge,
-            selectedChargeBillInfo,
-            setSelectedChargeBillInfo,
-            selectedChargeBillDetails,
-            setSelectedChargeBillDetails,
          }}
       >
          {children}

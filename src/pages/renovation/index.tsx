@@ -1,4 +1,4 @@
-import { FC, useContext, useEffect } from 'react';
+import { FC, useEffect } from 'react';
 import styles from './index.module.scss';
 import { getUserRenovationCharges } from './getUserRenovationCharges';
 import NoRenovationChargesMessage from './noRenovationChargeMessage';
@@ -16,34 +16,19 @@ import InfoCardBody from './components/infoCardBody';
 const Renovation: FC = () => {
    const {
       selectedRenovationCharge,
-      setSelectedChargeBillDetails,
-      setSelectedChargeBillInfo,
       renovationCharges,
       setRenovationCharges,
    } = useChargesContext();
 
-   const { token, setShowPaymentHistory, showPaymentHistory } =
+   const { token, setShowPaymentHistory } =
       useUserContext();
    const { setHeaderId } = useLayoutContext();
-   const { selectedChargeBillInfo } = useChargesContext();
 
    useEffect(() => {
-      getUserRenovationCharges(token, setRenovationCharges);
+      !renovationCharges.length &&
+         getUserRenovationCharges(token, setRenovationCharges);
       setHeaderId?.(styles['header']);
    }, [token]);
-
-   useEffect(() => {
-      if (selectedRenovationCharge) {
-         getSelectedChargeBillDetails(
-            token,
-            selectedRenovationCharge,
-            'Renovation',
-            setSelectedChargeBillDetails,
-            setSelectedChargeBillInfo,
-         );
-         setShowPaymentHistory(selectedRenovationCharge.is_paid);
-      }
-   }, [selectedRenovationCharge]);
 
    return (
       <section className={styles.RenovationStyleWrapper}>

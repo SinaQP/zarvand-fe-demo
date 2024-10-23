@@ -1,205 +1,17 @@
 import { getRenovationBillDetailsInfo } from '../apis/renovation/renovation-bill-details-info';
 import { getTradeBillDetailsInfo } from '../apis/trade/guild-bill-details-info';
 import { Dispatch, SetStateAction } from 'react';
-import {
-   BillDetail,
-   BillInfo,
-   RenovationCharge,
-   TradeCharge,
-} from '../interfaces/models.interface';
+import { RenovationCharge, TradeCharge } from '../interfaces/models.interface';
 import { toast } from 'react-toastify';
 
 async function getSelectedChargeBillDetails(
    token: string,
    charge: TradeCharge | RenovationCharge,
    chargeType: 'Trade' | 'Renovation',
-   setSelectedChargeBillDetails: Dispatch<SetStateAction<BillDetail[] | null>>,
-   setBillInfo: Dispatch<SetStateAction<BillInfo | null>>,
+   setCharges?:
+      | Dispatch<SetStateAction<TradeCharge[]>>
+      | Dispatch<SetStateAction<RenovationCharge[]>>,
 ) {
-   // setSelectedChargeBillDetails([
-   //    {
-   //       bill_code: '1000',
-   //       bill_id: 1,
-   //       creditor: 10000,
-   //       desc: 'd',
-   //       from_year: 1300,
-   //       id: '100',
-   //       income_code_id: 1000,
-   //       payment_date: '1300/10/01',
-   //       penalty: 2000,
-   //       to_year: 1400,
-   //    },
-   //    {
-   //       bill_code: '1000',
-   //       bill_id: 1,
-   //       creditor: 10000,
-   //       desc: 'd',
-   //       from_year: 1300,
-   //       id: '100',
-   //       income_code_id: 1000,
-   //       payment_date: '1300/10/01',
-   //       penalty: 2000,
-   //       to_year: 1400,
-   //    },
-   //    {
-   //       bill_code: '1000',
-   //       bill_id: 1,
-   //       creditor: 10000,
-   //       desc: 'd',
-   //       from_year: 1300,
-   //       id: '100',
-   //       income_code_id: 1000,
-   //       payment_date: '1300/10/01',
-   //       penalty: 2000,
-   //       to_year: 1400,
-   //    },
-   //    {
-   //       bill_code: '1000',
-   //       bill_id: 1,
-   //       creditor: 10000,
-   //       desc: 'd',
-   //       from_year: 1300,
-   //       id: '100',
-   //       income_code_id: 1000,
-   //       payment_date: '1300/10/01',
-   //       penalty: 2000,
-   //       to_year: 1400,
-   //    },
-
-   //    {
-   //       bill_code: '1000',
-   //       bill_id: 1,
-   //       creditor: 10000,
-   //       desc: 'd',
-   //       from_year: 1300,
-   //       id: '100',
-   //       income_code_id: 1000,
-   //       payment_date: '1300/10/01',
-   //       penalty: 2000,
-   //       to_year: 1400,
-   //    },
-   //    {
-   //       bill_code: '1000',
-   //       bill_id: 1,
-   //       creditor: 10000,
-   //       desc: 'd',
-   //       from_year: 1300,
-   //       id: '100',
-   //       income_code_id: 1000,
-   //       payment_date: '1300/10/01',
-   //       penalty: 2000,
-   //       to_year: 1400,
-   //    },
-   //    {
-   //       bill_code: '1000',
-   //       bill_id: 1,
-   //       creditor: 10000,
-   //       desc: 'd',
-   //       from_year: 1300,
-   //       id: '100',
-   //       income_code_id: 1000,
-   //       payment_date: '1300/10/01',
-   //       penalty: 2000,
-   //       to_year: 1400,
-   //    },
-   //    {
-   //       bill_code: '1000',
-   //       bill_id: 1,
-   //       creditor: 10000,
-   //       desc: 'd',
-   //       from_year: 1300,
-   //       id: '100',
-   //       income_code_id: 1000,
-   //       payment_date: '1300/10/01',
-   //       penalty: 2000,
-   //       to_year: 1400,
-   //    },
-   //    {
-   //       bill_code: '1000',
-   //       bill_id: 1,
-   //       creditor: 10000,
-   //       desc: 'd',
-   //       from_year: 1300,
-   //       id: '100',
-   //       income_code_id: 1000,
-   //       payment_date: '1300/10/01',
-   //       penalty: 2000,
-   //       to_year: 1400,
-   //    },
-   //    {
-   //       bill_code: '1000',
-   //       bill_id: 1,
-   //       creditor: 10000,
-   //       desc: 'd',
-   //       from_year: 1300,
-   //       id: '100',
-   //       income_code_id: 1000,
-   //       payment_date: '1300/10/01',
-   //       penalty: 2000,
-   //       to_year: 1400,
-   //    },
-   //    {
-   //       bill_code: '1000',
-   //       bill_id: 1,
-   //       creditor: 10000,
-   //       desc: 'd',
-   //       from_year: 1300,
-   //       id: '100',
-   //       income_code_id: 1000,
-   //       payment_date: '1300/10/01',
-   //       penalty: 2000,
-   //       to_year: 1400,
-   //    },
-   //    {
-   //       bill_code: '1000',
-   //       bill_id: 1,
-   //       creditor: 10000,
-   //       desc: 'd',
-   //       from_year: 1300,
-   //       id: '100',
-   //       income_code_id: 1000,
-   //       payment_date: '1300/10/01',
-   //       penalty: 2000,
-   //       to_year: 1400,
-   //    },
-   // ]);
-   // setBillInfo({
-   //    bill_details: [],
-   //    bills: [
-   //       {
-   //          bill_id: '100',
-   //          bill_no: '1000',
-   //          creditor: 1000,
-   //          from_year: 1400,
-   //          payment_date: '1500/10/01',
-   //          payment_no: '100',
-   //          to_year: 1400,
-   //       },
-   //       {
-   //          bill_id: '100',
-   //          bill_no: '1000',
-   //          creditor: 1000,
-   //          from_year: 1400,
-   //          payment_date: '1500/10/01',
-   //          payment_no: '100',
-   //          to_year: 1400,
-   //       },
-   //       {
-   //          bill_id: '100',
-   //          bill_no: '1000',
-   //          creditor: 1000,
-   //          from_year: 1400,
-   //          payment_date: '1500/10/01',
-   //          payment_no: '100',
-   //          to_year: 1400,
-   //       },
-   //    ],
-   //    last_bill_info: {
-   //       bill_no: '1000',
-   //       payment_no: '1000',
-   //       value_to_pay: 1000,
-   //    },
-   // });
    let billDetailsInfoResponse = null;
    if (chargeType == 'Trade') {
       billDetailsInfoResponse = await getTradeBillDetailsInfo(
@@ -214,13 +26,27 @@ async function getSelectedChargeBillDetails(
    }
 
    const responseBody = billDetailsInfoResponse.body;
-   if (billDetailsInfoResponse.status === 200) {
-      setSelectedChargeBillDetails(responseBody.last_bill_details);
-      setBillInfo(responseBody);
+   if (billDetailsInfoResponse.status === 200 && setCharges) {
+      setCharges((prevState: any) => {
+         const state = prevState.map((prevCharge: any) => {
+            if (charge.master_id === prevCharge.master_id) {
+               charge = {
+                  ...prevCharge,
+                  ...responseBody,
+               };
+               return {
+                  ...prevCharge,
+                  ...responseBody,
+               };
+            }
+            return prevCharge;
+         });
+         return state;
+      });
    } else {
-      // setSelectedChargeBillDetails([]);
       toast.error(responseBody.message);
    }
+   return charge;
 }
 
 export default getSelectedChargeBillDetails;

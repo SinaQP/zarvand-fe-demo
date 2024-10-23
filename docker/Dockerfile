@@ -3,6 +3,8 @@ FROM nexus.zaraamad.ir:5006/repository/docker-zaraamad/node:20-alpine AS build
 WORKDIR /app
 COPY ["package.json", "package-lock.json*", "./"]
 
+RUN npm config set registry http://192.168.174.4/repository/npm-zaraamad/
+
 RUN npm install
 
 COPY . .
