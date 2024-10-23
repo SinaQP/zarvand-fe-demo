@@ -10,7 +10,6 @@ import { useUserContext } from '../../../App.context';
 const ConfirmationEntry: FC = () => {
    const navigate = useNavigate();
    const [otpCode, setOtpCode] = useState<string[]>([]);
-   const [debuggerMsg, setDebuggerMsg] = useState('');
    const { setUser, setToken } = useUserContext();
    const {
       maskedPhoneNumber,
@@ -30,9 +29,9 @@ const ConfirmationEntry: FC = () => {
 
    useEffect(() => {
       if ('OTPCredential' in window) {
-         setDebuggerMsg('locked in');
          const ac = new AbortController();
 
+         console.log('test');
          navigator.credentials
             .get({
                otp: { transport: ['sms'] },
@@ -40,14 +39,18 @@ const ConfirmationEntry: FC = () => {
             } as CredentialRequestOptions)
             .then((otp: any) => {
                if (otp?.code) {
-                  const code = `${otp.code}`.split(' ');
-                  setOtpCode(code);
+                  // Convert OTP code to array of strings
+                  const codeArray = otp.code.split('');
+                  setOtpCode(codeArray); // Save the array of characters in state
                } else {
-                  setDebuggerMsg(`you fucking failed you retard`);
+                  console.log('Failed to retrieve OTP. Please try again.');
                }
             })
             .catch((err) => {
-               alert(err);
+               console.log(err);
+            })
+            .finally(() => {
+               console.log('test');
             });
       }
    }, []);
@@ -73,7 +76,6 @@ const ConfirmationEntry: FC = () => {
             otpClassName={styles['otp-input']}
             inputsClassName={styles.input}
          />
-         {/* <p>{debuggerMsg}</p> */}
          <Button
             className={styles['submit-button']}
             haveLoading
