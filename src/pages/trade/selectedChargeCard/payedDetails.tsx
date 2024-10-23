@@ -1,11 +1,12 @@
 import { FC } from 'react';
 import BackArrow from '../../../components/backArrow';
-import styles from '../index.module.scss';
 import resetChargeStates from '../../../utilities/resetChargeStates';
 import PayedBill from './payedBill';
 import { useChargesContext, useUserContext } from '../../../App.context';
 import AddressSection from '../../../components/addressSection';
 import InfoRow from '../../../components/infoRow';
+import styles from './index.module.scss';
+import PaidBillCard from '../../../components/paidBillsCard';
 
 const PayedDetails: FC = () => {
    const {
@@ -17,37 +18,42 @@ const PayedDetails: FC = () => {
    if (!selectedTradeCharge || !selectedTradeCharge.bills) return null;
 
    return (
-      <div>
-         <BackArrow
-            className={styles['back-arrow']}
-            onClick={() => {
-               if (!selectedTradeCharge.is_paid) {
-                  setShowPaymentHistory(false);
-               } else {
-                  resetChargeStates(
-                     setSelectedTradeCharge,
-                     setSelectedRenovationCharge,
-                     setShowPaymentHistory
-                  );
-               }
-            }}
-         />
-         <div className={styles['master-info']}>
-            <AddressSection
-               address={selectedTradeCharge.address}
-               className={`${styles['master-address']}`}
-            />
+      <div id={`${styles['paidTradeStyleWrapper']}`}>
+         <div id={`${styles['container']}`}>
+            <div id={`${styles['backArrowStyleWrapper']}`}>
+               <BackArrow
+                  className={styles['back-arrow']}
+                  onClick={() => {
+                     if (!selectedTradeCharge.is_paid) {
+                        setShowPaymentHistory(false);
+                     } else {
+                        resetChargeStates(
+                           setSelectedTradeCharge,
+                           setSelectedRenovationCharge,
+                           setShowPaymentHistory,
+                        );
+                     }
+                  }}
+               />
+            </div>
 
-            <InfoRow
-               title="مساحت ملک :"
-               value={selectedTradeCharge.shop_area.toString()}
-               className={`${styles['info-row']} ${styles['info-row--is-paid']}`}
-            />
+            <div id={styles['master-info']}>
+               <AddressSection
+                  address={selectedTradeCharge.address}
+                  className={`${styles['master-address']}`}
+               />
+
+               <InfoRow
+                  title="مساحت ملک :"
+                  value={selectedTradeCharge.shop_area.toString()}
+                  className={`${styles['info-row']} ${styles['info-row--is-paid']}`}
+               />
+            </div>
+            {selectedTradeCharge.bills &&
+               selectedTradeCharge.bills.map((charge: any) => (
+                  <PaidBillCard Bill={charge} />
+               ))}
          </div>
-         {selectedTradeCharge.bills &&
-            selectedTradeCharge.bills.map((charge: any) => (
-               <PayedBill charge={charge} />
-            ))}
       </div>
    );
 };
