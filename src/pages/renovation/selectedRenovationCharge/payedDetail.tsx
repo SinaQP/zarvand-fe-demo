@@ -20,8 +20,8 @@ const PayedDetails: FC = () => {
 
    if (!selectedRenovationCharge) return null;
    return (
-      <section className={styles['paidRenovationContainer']}>
-         {windowWidth === 'android' && (
+      <section id={styles['paidRenovationContainer']}>
+         <div id={styles['backArrowContainer']}>
             <BackArrow
                className={styles['back-arrow']}
                onClick={() =>
@@ -31,8 +31,9 @@ const PayedDetails: FC = () => {
                   )
                }
             />
-         )}
-         <div className={styles['master-info']}>
+         </div>
+
+         <div id={styles['master-info']}>
             <AddressSection
                address={selectedRenovationCharge.address}
                className={`${styles['master-address']}`}
@@ -53,7 +54,7 @@ const PayedDetails: FC = () => {
                </>
             ) : (
                <>
-                  <div className={styles['locationDetails']}>
+                  <div id={styles['locationDetails']}>
                      <CertificationNumberCard charge={selectedRenovationCharge}>
                         <div className={styles['square-footage']}>
                            <span>مساحت زمین:</span>
@@ -73,9 +74,11 @@ const PayedDetails: FC = () => {
                </>
             )}
          </div>
-         {selectedRenovationCharge.bills && selectedRenovationCharge.bills.map((bill: Bill) => (
-            <PaidBillCard Bill={bill} />
-         ))}
+         {selectedRenovationCharge.bills &&
+            selectedRenovationCharge.bills.map((bill: Bill) => (
+               <PaidBillCard Bill={bill} />
+            ))}
+         <PaidBillCard Bill={undefined} />
       </section>
    );
 };
