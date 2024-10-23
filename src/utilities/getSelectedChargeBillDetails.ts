@@ -46,7 +46,8 @@ async function getSelectedChargeBillDetails(
    } else {
       toast.error(responseBody.message);
    }
-   return charge;
+   if (billDetailsInfoResponse.status === 200) return charge;
+   return null;
 }
 
 export default getSelectedChargeBillDetails;

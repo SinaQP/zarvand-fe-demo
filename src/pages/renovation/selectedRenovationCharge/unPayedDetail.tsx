@@ -22,24 +22,7 @@ const UnPayedDetails: FC = () => {
       setRenovationCharges,
    } = useChargesContext();
    const { showPaymentHistory, setShowPaymentHistory } = useUserContext();
-   useEffect(() => {
-      async function fetchBillDetails() {
-         if (
-            selectedRenovationCharge &&
-            !selectedRenovationCharge.last_bill_details
-         ) {
-            const updatedCharge = await getSelectedChargeBillDetails(
-               token,
-               selectedRenovationCharge,
-               'Renovation',
-               setRenovationCharges,
-            );
-            setShowPaymentHistory(selectedRenovationCharge.is_paid);
-            setSelectedRenovationCharge(updatedCharge as RenovationCharge);
-         }
-      }
-      fetchBillDetails();
-   }, [selectedRenovationCharge]);
+
    if (!selectedRenovationCharge) return null;
    return (
       <div className={styles.unPayedDetails}>
@@ -59,6 +42,7 @@ const UnPayedDetails: FC = () => {
                   resetChargeStates(
                      setSelectedTradeCharge,
                      setSelectedRenovationCharge,
+                     setShowPaymentHistory,
                   );
                }
             }}
