@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, useContext, useEffect } from 'react';
 import BackArrow from '../../../components/backArrow';
 import styles from '../index.module.scss';
 import resetChargeStates from '../../../utilities/resetChargeStates';
@@ -15,27 +15,13 @@ import { TradeCharge } from '../../../interfaces/models.interface';
 
 const UnPayedDetails: FC = () => {
    const desktopBillInfo = useWindowWidth(<BillInfo />, null);
-   const { token, setShowPaymentHistory } = useUserContext();
    const {
       selectedTradeCharge,
       setSelectedTradeCharge,
       setSelectedRenovationCharge,
-      setTradeCharges,
    } = useChargesContext();
-   useEffect(() => {
-      async function fetchBillDetails() {
-         if (selectedTradeCharge && !selectedTradeCharge.last_bill_details) {
-            const updatedCharge = await getSelectedChargeBillDetails(
-               token,
-               selectedTradeCharge,
-               'Trade',
-               setTradeCharges,
-            );
-            setSelectedTradeCharge(updatedCharge as TradeCharge);
-         }
-      }
-      fetchBillDetails();
-   }, [selectedTradeCharge]);
+   const { setShowPaymentHistory } = useUserContext();
+
    if (!selectedTradeCharge) return null;
    return (
       <div className={styles.unPayedDetails}>
@@ -45,6 +31,7 @@ const UnPayedDetails: FC = () => {
                resetChargeStates(
                   setSelectedTradeCharge,
                   setSelectedRenovationCharge,
+                  setShowPaymentHistory,
                )
             }
          />

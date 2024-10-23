@@ -2,26 +2,15 @@ import { FC, useEffect } from 'react';
 import styles from './index.module.scss';
 import { getUserRenovationCharges } from './getUserRenovationCharges';
 import NoRenovationChargesMessage from './noRenovationChargeMessage';
-import getSelectedChargeBillDetails from '../../utilities/getSelectedChargeBillDetails';
 import { useLayoutContext } from '../../components/layout/layout.context';
 import { Bounce, ToastContainer } from 'react-toastify';
 import { useChargesContext, useUserContext } from '../../App.context';
 import ChargeCards from './chargeCards';
-import PaidBillCard from '../../components/paidBillsCard';
-import locMarkerIcon from '/src/assets/images/location-pin.svg';
-import InfoCard from '../../components/infoCard';
-import InfoCardTitle from './components/infoCardTitle';
-import InfoCardBody from './components/infoCardBody';
 
 const Renovation: FC = () => {
-   const {
-      selectedRenovationCharge,
-      renovationCharges,
-      setRenovationCharges,
-   } = useChargesContext();
+   const { renovationCharges, setRenovationCharges } = useChargesContext();
 
-   const { token, setShowPaymentHistory } =
-      useUserContext();
+   const { token } = useUserContext();
    const { setHeaderId } = useLayoutContext();
 
    useEffect(() => {

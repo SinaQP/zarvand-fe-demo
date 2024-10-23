@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useChargesContext } from '../../../App.context';
+import { useChargesContext, useUserContext } from '../../../App.context';
 import resetChargeStates from '../../../utilities/resetChargeStates';
 import { IconType } from './index.interface';
 import useWindowWidth from '../../../hooks/useWindowWidth';
@@ -12,7 +12,7 @@ const Footer = () => {
 
    const { setSelectedTradeCharge, setSelectedRenovationCharge } =
       useChargesContext();
-
+   const { setShowPaymentHistory } = useUserContext();
    const history = useNavigate();
    const location = useLocation();
    const isLoginPage = location.pathname === '/login';
@@ -21,7 +21,11 @@ const Footer = () => {
 
    const handleRedirect = (route: IconType['route'], id: number) => {
       setActiveIndex(id);
-      resetChargeStates(setSelectedTradeCharge, setSelectedRenovationCharge);
+      resetChargeStates(
+         setSelectedTradeCharge,
+         setSelectedRenovationCharge,
+         setShowPaymentHistory,
+      );
       history(route);
    };
 

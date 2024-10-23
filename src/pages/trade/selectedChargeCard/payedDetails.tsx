@@ -4,6 +4,8 @@ import styles from '../index.module.scss';
 import resetChargeStates from '../../../utilities/resetChargeStates';
 import PayedBill from './payedBill';
 import { useChargesContext, useUserContext } from '../../../App.context';
+import AddressSection from '../../../components/addressSection';
+import InfoRow from '../../../components/infoRow';
 
 const PayedDetails: FC = () => {
    const {
@@ -12,8 +14,7 @@ const PayedDetails: FC = () => {
       setSelectedRenovationCharge,
    } = useChargesContext();
    const { setShowPaymentHistory } = useUserContext();
-   if (!selectedTradeCharge || !selectedTradeCharge.bills)
-      return null;
+   if (!selectedTradeCharge || !selectedTradeCharge.bills) return null;
 
    return (
       <div>
@@ -26,13 +27,27 @@ const PayedDetails: FC = () => {
                   resetChargeStates(
                      setSelectedTradeCharge,
                      setSelectedRenovationCharge,
+                     setShowPaymentHistory
                   );
                }
             }}
          />
-         {selectedTradeCharge.bills && selectedTradeCharge.bills.map((charge: any) => (
-            <PayedBill charge={charge} />
-         ))}
+         <div className={styles['master-info']}>
+            <AddressSection
+               address={selectedTradeCharge.address}
+               className={`${styles['master-address']}`}
+            />
+
+            <InfoRow
+               title="مساحت ملک :"
+               value={selectedTradeCharge.shop_area.toString()}
+               className={`${styles['info-row']} ${styles['info-row--is-paid']}`}
+            />
+         </div>
+         {selectedTradeCharge.bills &&
+            selectedTradeCharge.bills.map((charge: any) => (
+               <PayedBill charge={charge} />
+            ))}
       </div>
    );
 };

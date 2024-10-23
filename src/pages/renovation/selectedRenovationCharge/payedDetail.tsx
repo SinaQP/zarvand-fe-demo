@@ -1,5 +1,5 @@
 import { FC } from 'react';
-import { useChargesContext } from '../../../App.context';
+import { useChargesContext, useUserContext } from '../../../App.context';
 import PaidBillCard from '../../../components/paidBillsCard';
 import InfoRow from '../../../components/infoRow';
 import styles from '../index.module.scss';
@@ -17,7 +17,7 @@ const PayedDetails: FC = () => {
       setSelectedRenovationCharge,
    } = useChargesContext();
    const windowWidth = useWindowWidth('desktop', 'android');
-
+   const { setShowPaymentHistory } = useUserContext();
    if (!selectedRenovationCharge) return null;
    return (
       <section id={styles['paidRenovationContainer']}>
@@ -28,6 +28,7 @@ const PayedDetails: FC = () => {
                   resetChargeStates(
                      setSelectedTradeCharge,
                      setSelectedRenovationCharge,
+                     setShowPaymentHistory,
                   )
                }
             />

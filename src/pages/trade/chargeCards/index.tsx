@@ -14,7 +14,7 @@ const ChargeCards: FC<{ tradeCharges: TradeCharge[] }> = ({ tradeCharges }) => {
       setSelectedTradeCharge,
       setSelectedRenovationCharge,
    } = useChargesContext();
-   const { showPaymentHistory } = useUserContext();
+   const { showPaymentHistory, setShowPaymentHistory } = useUserContext();
    const renderMasterCard = (charge: TradeCharge) => (
       <MasterCard
          key={charge.master_id}
@@ -42,6 +42,7 @@ const ChargeCards: FC<{ tradeCharges: TradeCharge[] }> = ({ tradeCharges }) => {
                resetChargeStates(
                   setSelectedTradeCharge,
                   setSelectedRenovationCharge,
+                  setShowPaymentHistory,
                );
                return tradeCharges.map(renderMasterCard);
             })()
