@@ -10,7 +10,7 @@ const handleSubmit = async (
    const nationalCode: string = nationalCodeArray.join('');
    const nationalCodeIsValid = nationalCode.length === 10;
    if (!nationalCodeIsValid) {
-      toast.error('کدملی خود را وارد کنید.');
+      toast.error('کدملی خود را وارد نمایید.');
       return false;
    }
    const response = await sendVerificationCode({ national_code: nationalCode });

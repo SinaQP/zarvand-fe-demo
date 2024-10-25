@@ -11,7 +11,7 @@ const PaymentResult: FC<PaymentResultProps> = ({ status }) => {
    const title = isSuccessful
       ? 'با موفقیت پرداخت انجام شد'
       : 'پرداخت موفقیت آمیز نبود';
-   const subTitle = 'برای ادامه روی دکمه زیر کلید کنید';
+   const subTitle = 'برای ادامه روی دکمه زیر کلید نمایید';
 
    return (
       <div

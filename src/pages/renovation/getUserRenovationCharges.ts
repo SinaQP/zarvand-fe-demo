@@ -6,62 +6,13 @@ import { toast } from 'react-toastify';
 export const getUserRenovationCharges = async (
    token: string,
    setState: Dispatch<SetStateAction<RenovationCharge[]>>,
+   setSelectedRenovationCharge: Dispatch<SetStateAction<RenovationCharge | null>>
 ) => {
    const response = await getPersonRenovationMastersApi(token);
    const responseBody = response.body;
-   // setState([
-   //    {
-   //       address: '1',
-   //       building_area: 20,
-   //       certificate_number: '10',
-   //       is_paid: false,
-   //       land_area: 20,
-   //       master_id: '10000',
-   //    },
-   //    {
-   //       address: '1',
-   //       building_area: 20,
-   //       certificate_number: '10',
-   //       is_paid: false,
-   //       land_area: 20,
-   //       master_id: '10000',
-   //    },
-   //    {
-   //       address: '1',
-   //       building_area: 20,
-   //       certificate_number: '10',
-   //       is_paid: false,
-   //       land_area: 20,
-   //       master_id: '10000',
-   //    },
-   //    {
-   //       address: '1',
-   //       building_area: 20,
-   //       certificate_number: '10',
-   //       is_paid: false,
-   //       land_area: 20,
-   //       master_id: '10000',
-   //    },
-   //    {
-   //       address: '1',
-   //       building_area: 20,
-   //       certificate_number: '10',
-   //       is_paid: false,
-   //       land_area: 20,
-   //       master_id: '10000',
-   //    },
-      
-   //    {
-   //       address: '1',
-   //       building_area: 20,
-   //       certificate_number: '10',
-   //       is_paid: false,
-   //       land_area: 20,
-   //       master_id: '10000',
-   //    },
-   // ]);
    if (response.status === 200) {
       setState(responseBody);
+      if (responseBody.length === 1) setSelectedRenovationCharge(responseBody[0]);
       return responseBody;
    } else {
       toast.error(responseBody.message);

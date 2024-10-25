@@ -8,14 +8,14 @@ import { useChargesContext, useUserContext } from '../../App.context';
 import ChargeCards from './chargeCards';
 
 const Renovation: FC = () => {
-   const { renovationCharges, setRenovationCharges } = useChargesContext();
+   const { renovationCharges, setRenovationCharges, setSelectedRenovationCharge } = useChargesContext();
 
    const { token } = useUserContext();
    const { setHeaderId } = useLayoutContext();
 
    useEffect(() => {
       !renovationCharges.length &&
-         getUserRenovationCharges(token, setRenovationCharges);
+         getUserRenovationCharges(token, setRenovationCharges, setSelectedRenovationCharge);
       setHeaderId?.(styles['header']);
    }, [token]);
 

@@ -28,7 +28,7 @@ const NationalCodeEntry: FC<Props> = ({
             showConfirmationForm && styles.hidden
          }`}
       >
-         <span>لطفا کد ملی خود را وارد کنید.</span>
+         <span>لطفا کد ملی خود را وارد نمایید.</span>
          <OtpInput
             otpClassName={styles['otp-input']}
             numberOfInputs={10}
