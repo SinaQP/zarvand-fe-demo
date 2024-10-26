@@ -28,6 +28,7 @@ const AndroidFooter: FC<{
                            width={isActive ? '3.4rem' : '2.4rem'}
                            height={isActive ? '3.4rem' : '2.4rem'}
                         />
+                        <span>{item.title}</span>
                      </li>
                   );
                })}

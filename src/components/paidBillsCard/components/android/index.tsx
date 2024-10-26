@@ -15,25 +15,26 @@ const AndroidRenovateCard: FC<{ Bill: Bill | undefined }> = ({ Bill }) => {
                <div className="innerCircle"></div>
             </div>
          </div>
+
          <div className="mainContent">
             <div className="createdAt">
                <span className="textDate">{`از سال ${
                   Bill?.from_year || '1300'
                }`}</span>
                <div className="icons">
-                  <img
+                  {/* <img
                      src={cloudIcon}
                      alt="cloud icon"
                      style={{ width: '2rem', height: '2rem' }}
-                  />
+                  /> */}
 
                   <CopyIcon color="#248094" />
 
-                  <img
+                  {/* <img
                      src={shareIcon}
                      alt="share icon"
                      style={{ width: '2rem', height: '2rem' }}
-                  />
+                  /> */}
                </div>
             </div>
 
@@ -51,7 +52,7 @@ const AndroidRenovateCard: FC<{ Bill: Bill | undefined }> = ({ Bill }) => {
                <div>
                   <span>قیمت</span>
                   <span>
-                     {`${Bill?.creditor.toLocaleString('fa-IR') || 0} تومان`}
+                     {`${Bill?.creditor.toLocaleString('fa-IR') || 0} ریال`}
                   </span>
                </div>
             </div>
