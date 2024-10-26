@@ -3,7 +3,8 @@ import detailIcon from '../../../assets/images/detail.svg';
 import payIcon from '../../../assets/images/pay.svg';
 import downloadIcon from '../../../assets/images/download.svg';
 import styles from '../index.module.scss';
-import { PrintBill } from '../../pdfs/trdChargePdf/index.interface';
+import { PrintBill as TradePrintBill } from '../../pdfs/trdChargePdf/index.interface';
+import { PrintBill as RnvPrintBill } from '../../pdfs/rnvChargePdf/index.interface';
 import {
    BillDetail,
    BillInfo,
@@ -27,7 +28,9 @@ const ButtonGroup: FC<{
       null,
    );
    const [isPrinting, setIsPrinting] = useState(false);
-   const [printBill, setPrintBill] = useState<PrintBill | null>(null);
+   const [printBill, setPrintBill] = useState<
+      TradePrintBill | RnvPrintBill | null
+   >(null);
 
    useEffect(() => {
       setChargeType('certificate_number' in charge ? 'Renovation' : 'Trade');
@@ -137,7 +140,7 @@ const ButtonGroup: FC<{
             charge={charge}
             chargeType={chargeType}
             isPrinting={isPrinting}
-            printBill={printBill}
+            printBill={printBill as TradePrintBill}
             printChargeBillDetails={
                charge.is_paid
                   ? charge.last_bill_details
@@ -150,7 +153,7 @@ const ButtonGroup: FC<{
             chargeType={chargeType}
             componentRef={componentRef}
             isPrinting={isPrinting}
-            printBill={printBill}
+            printBill={printBill as RnvPrintBill}
             printChargeBillDetails={charge.last_bill_details}
          />
       </div>

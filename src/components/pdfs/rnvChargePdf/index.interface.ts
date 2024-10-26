@@ -14,12 +14,7 @@ interface Person {
    mobile_Number: string;
    national_code: string;
 }
-export interface RnvChargePdfProps {
-   componentRef?: RefObject<HTMLDivElement>;
-   data: RnvCharge | undefined;
-   printBill: PrintBill;
-   onlyShow: boolean;
-}
+
 export interface PrintBill {
    bill_id: number;
    payment_no: string;
@@ -39,4 +34,10 @@ export interface PrintBill {
    reward: number;
    postal_code: string;
    bill_code: string;
+}
+export interface RnvChargePdfProps {
+   componentRef?: RefObject<HTMLDivElement>;
+   data: RnvCharge | undefined;
+   printBill: PrintBill;
+   onlyShow: boolean;
 }

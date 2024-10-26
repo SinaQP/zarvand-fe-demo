@@ -12,6 +12,7 @@ const isRenovationCharge = (
 ): charge is RenovationCharge => {
    return 'certificate_number' in charge;
 };
+
 const RenovationPrint: FC<RenovationPrintProps> = ({
    isPrinting,
    printChargeBillDetails,
