@@ -2,6 +2,7 @@ import { FC, ReactNode } from 'react';
 import InfoCard from '../infoCard';
 import { RenovationCharge } from '../../interfaces/models.interface';
 import styles from './index.module.scss';
+import { useUserContext } from '../../App.context';
 
 const CertificationNumberCard: FC<{
    charge: RenovationCharge;
@@ -22,13 +23,13 @@ const CertificationNumberCard: FC<{
       return result;
    };
    const segmentLengths = [3, 4, 7, 2, 3];
-
+   const { showPaymentHistory } = useUserContext();
    return (
       <InfoCard
          title={'شماره شناسنامه ملک'}
          containerClassName={styles['certification-number-section-wrapper']}
          className={styles['info-card__body']}
-         isPrimary={charge.is_paid}
+         isPrimary={showPaymentHistory ? true : charge.is_paid}
       >
          <div className={styles['certification-number-section']}>
             {['فرعی', 'ملک', 'بلوک', 'محله', 'منطقه'].map((item, index) => (

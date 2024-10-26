@@ -4,8 +4,9 @@ import { RnvChargePdfProps } from './index.interface';
 import toMoneyFormat from '../../../utilities/toMoneyFormat';
 import Barcode from 'react-barcode';
 import calcBarcode from '../../../utilities/calcBarcode';
+import { FC } from 'react';
 
-const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
+const RnvChargePdf: FC<RnvChargePdfProps> = ({
    componentRef,
    data,
    printBill,
@@ -26,13 +27,13 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                   <p style={{ fontWeight: 'bold' }}>
                      عوارض نوسازی(از سال{' '}
                      {convertNumberToPersian(
-                        data?.bill_details[0][0]?.toString() || '',
+                        data?.bill_details[0].from_year?.toString() || '',
                      )}{' '}
                      تا سال{' '}
                      {convertNumberToPersian(
                         data?.bill_details[
                            data?.bill_details.length - 1
-                        ][0]?.toString() || '',
+                        ].to_year?.toString() || '',
                      )}
                      )
                   </p>
@@ -58,7 +59,7 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                            <p>
                               کدپستی :{' '}
                               {convertNumberToPersian(
-                                 data?.postal_code ? data.postal_code : '',
+                                 printBill?.postal_code ? printBill?.postal_code : '',
                               )}
                            </p>
                         </div>
@@ -177,18 +178,18 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                                  {data?.bill_details
                                     .slice(0, 6)
                                     .map((item: any) => {
-                                       //if (item.to_year === null) return null;
+                                       //if (item.creditor === null) return null;
                                        return (
                                           <tr>
                                              <td>
                                                 {convertNumberToPersian(
-                                                   item[0]?.toString(),
+                                                   item.from_year.toString(),
                                                 )}
                                              </td>
                                              <td>
                                                 {convertNumberToPersian(
                                                    toMoneyFormat(
-                                                      item[1]?.toString(),
+                                                      item.creditor?.toString(),
                                                    ),
                                                 )}
                                              </td>
@@ -210,18 +211,18 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                                  {data.bill_details
                                     ?.slice(6, 12)
                                     .map((item) => {
-                                       //if (item.to_year === null) return null;
+                                       //if (item.creditor === null) return null;
                                        return (
                                           <tr>
                                              <td>
                                                 {convertNumberToPersian(
-                                                   item[0]?.toString(),
+                                                   item.from_year?.toString(),
                                                 )}
                                              </td>
                                              <td>
                                                 {convertNumberToPersian(
                                                    toMoneyFormat(
-                                                      item[1]?.toString(),
+                                                      item.creditor?.toString(),
                                                    ),
                                                 )}
                                              </td>
@@ -243,18 +244,18 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                                  {data.bill_details
                                     ?.slice(12, 18)
                                     .map((item) => {
-                                       //if (item.to_year === null) return null;
+                                       //if (item.creditor === null) return null;
                                        return (
                                           <tr>
                                              <td>
                                                 {convertNumberToPersian(
-                                                   item[0]?.toString(),
+                                                   item.from_year?.toString(),
                                                 )}
                                              </td>
                                              <td>
                                                 {convertNumberToPersian(
                                                    toMoneyFormat(
-                                                      item[1]?.toString(),
+                                                      item.creditor?.toString(),
                                                    ),
                                                 )}
                                              </td>
@@ -276,18 +277,18 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                                  {data.bill_details
                                     ?.slice(18, 24)
                                     .map((item) => {
-                                       //if (item.to_year === null) return null;
+                                       //if (item.creditor === null) return null;
                                        return (
                                           <tr>
                                              <td>
                                                 {convertNumberToPersian(
-                                                   item[0]?.toString(),
+                                                   item.from_year?.toString(),
                                                 )}
                                              </td>
                                              <td>
                                                 {convertNumberToPersian(
                                                    toMoneyFormat(
-                                                      item[1]?.toString(),
+                                                      item.creditor?.toString(),
                                                    ),
                                                 )}
                                              </td>
@@ -309,18 +310,18 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                                  {data.bill_details
                                     ?.slice(24, 30)
                                     .map((item) => {
-                                       //if (item.to_year === null) return null;
+                                       //if (item.creditor === null) return null;
                                        return (
                                           <tr>
                                              <td>
                                                 {convertNumberToPersian(
-                                                   item[0]?.toString(),
+                                                   item.from_year?.toString(),
                                                 )}
                                              </td>
                                              <td>
                                                 {convertNumberToPersian(
                                                    toMoneyFormat(
-                                                      item[1]?.toString(),
+                                                      item.creditor?.toString(),
                                                    ),
                                                 )}
                                              </td>
@@ -342,18 +343,18 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                                  {data.bill_details
                                     ?.slice(30, 36)
                                     .map((item) => {
-                                       //if (item.to_year === null) return null;
+                                       //if (item.creditor === null) return null;
                                        return (
                                           <tr>
                                              <td>
                                                 {convertNumberToPersian(
-                                                   item[0]?.toString(),
+                                                   item.from_year?.toString(),
                                                 )}
                                              </td>
                                              <td>
                                                 {convertNumberToPersian(
                                                    toMoneyFormat(
-                                                      item[1]?.toString(),
+                                                      item.creditor?.toString(),
                                                    ),
                                                 )}
                                              </td>
@@ -372,7 +373,7 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                         )} ریال - ${printBill?.total_amount_in_words} ریال`}
                         <p>
                            شماره قبض :{' '}
-                           {convertNumberToPersian(printBill?.bill_code)}                           
+                           {convertNumberToPersian(printBill?.bill_code)}
                         </p>
                         {printBill?.bill_no && printBill?.payment_no ? (
                            <Barcode
@@ -403,9 +404,9 @@ const RnvChargePdf: React.FC<RnvChargePdfProps> = ({
                      </>
                   ) : null}
                   <p>
-                     {convertNumberToPersian(
+                     {/* {convertNumberToPersian(
                         printBill?.income_unit_bill_subtitle,
-                     )}
+                     )} */}
                   </p>
                </div>
             </section>

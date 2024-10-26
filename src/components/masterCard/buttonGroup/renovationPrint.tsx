@@ -1,10 +1,18 @@
 import { FC } from 'react';
 import TrdChargePdf from '../../pdfs/trdChargePdf';
 import { useUserContext } from '../../../App.context';
-import { TradePrintProps } from './index.interface';
+import { RenovationPrintProps, TradePrintProps } from './index.interface';
 import RnvChargePdf from '../../pdfs/rnvChargePdf';
-
-const RenovationPrint: FC<TradePrintProps> = ({
+import {
+   RenovationCharge,
+   TradeCharge,
+} from '../../../interfaces/models.interface';
+const isRenovationCharge = (
+   charge: TradeCharge | RenovationCharge,
+): charge is RenovationCharge => {
+   return 'certificate_number' in charge;
+};
+const RenovationPrint: FC<RenovationPrintProps> = ({
    isPrinting,
    printChargeBillDetails,
    printBill,
@@ -13,11 +21,14 @@ const RenovationPrint: FC<TradePrintProps> = ({
    componentRef,
 }) => {
    const { user } = useUserContext();
+
    if (
       !isPrinting ||
+      !printBill ||
       !printChargeBillDetails ||
       chargeType !== 'Renovation' ||
-      !user
+      !user ||
+      !isRenovationCharge(charge)
    )
       return null;
    return (
@@ -30,7 +41,9 @@ const RenovationPrint: FC<TradePrintProps> = ({
                mobile_Number: user ? user.mobile_number : '',
                national_code: user ? user.national_code : '',
             },
-            place_address: charge.address,
+            address: charge.address,
+            certificate_number: charge.certificate_number,
+            id: charge.master_id,
          }}
          printBill={printBill}
          onlyShow={false}
