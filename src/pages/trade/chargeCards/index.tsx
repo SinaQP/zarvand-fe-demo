@@ -21,6 +21,7 @@ const ChargeCards: FC<{ tradeCharges: TradeCharge[] }> = ({ tradeCharges }) => {
          address={charge.address}
          isPayed={charge.is_paid}
          master={charge}
+         className={styles['master-card']}
       >
          {renderInfoCard(charge)}
          <InfoRow
