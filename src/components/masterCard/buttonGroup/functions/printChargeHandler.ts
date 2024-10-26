@@ -7,13 +7,14 @@ import {
 } from '../../../../interfaces/models.interface';
 import getSelectedChargeBillDetails from '../../../../utilities/getSelectedChargeBillDetails';
 import { getRnvPrintData } from '../../../../apis/renovation/print';
-import { PrintBill } from '../../../pdfs/trdChargePdf/index.interface';
+import { PrintBill as TradePrintBill } from '../../../pdfs/trdChargePdf/index.interface';
+import { PrintBill as RnvPrintBill } from '../../../pdfs/rnvChargePdf/index.interface';
 import { getTradePrintData } from '../../../../apis/trade/print';
 
 interface PrintChargeHandlerParams {
    charge: TradeCharge | RenovationCharge;
-   printBill: PrintBill | null;
-   setPrintBill: Dispatch<SetStateAction<PrintBill | null>>;
+   printBill: TradePrintBill | RnvPrintBill | null;
+   setPrintBill: Dispatch<SetStateAction<TradePrintBill | RnvPrintBill | null>>;
    chargeType: 'Trade' | 'Renovation' | null;
    token: string;
    handlePrint: () => void;

@@ -1,6 +1,4 @@
-import { Dispatch, ReactNode, RefObject, SetStateAction } from 'react';
-import { PrintBill } from '../pdfs/trdChargePdf/index.interface';
-import { BillPrintProps } from '../pdfs/rnvChargePdf/index.interface';
+import { ReactNode } from 'react';
 import {
    RenovationCharge,
    TradeCharge,
