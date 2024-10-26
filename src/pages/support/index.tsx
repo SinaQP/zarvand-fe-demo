@@ -6,12 +6,16 @@ import { useLayoutContext } from '../../components/layout/layout.context';
 
 const Support: FC = () => {
    const { setHeaderId } = useLayoutContext();
-   
+
    useEffect(() => {
       setHeaderId && setHeaderId(styles['header']);
    }, []);
 
-   return <ComingSoonText />;
+   return (
+      <div className={styles.supportStyleWrapper}>
+         <ComingSoonText />
+      </div>
+   );
 };
 
 export default Support;

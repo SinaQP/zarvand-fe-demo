@@ -28,7 +28,14 @@ const AndroidRenovateCard: FC<{ Bill: Bill | undefined }> = ({ Bill }) => {
                      style={{ width: '2rem', height: '2rem' }}
                   /> */}
 
-                  <CopyIcon color="#248094" />
+                  <CopyIcon
+                     color="#248094"
+                     data={`تاریخ پرداخت: ${
+                        Bill?.payment_date || '1400/12/30'
+                     }\nشناسه پرداخت: ${
+                        Bill?.payment_no || '0000000000'
+                     }\nقیمت: ${Bill?.creditor.toLocaleString('fa-IR') || 0}`}
+                  />
 
                   {/* <img
                      src={shareIcon}
