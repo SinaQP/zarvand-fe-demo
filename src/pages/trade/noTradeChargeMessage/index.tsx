@@ -11,7 +11,7 @@ const NoTradeChargesMessage: FC = () => {
          <img src={noTradeIconSrc} alt="There Is No Trade Charge" />
          <div className={styles['message-box']}>
             کسبی برای شما در سیستم ثبت نشده برای اطلاعات بیشتر به شهرداری مراجعه
-            کنید!
+            نمایید!
          </div>
       </div>
    );

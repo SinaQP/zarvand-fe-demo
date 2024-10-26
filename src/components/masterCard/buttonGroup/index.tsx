@@ -17,6 +17,7 @@ import { printChargeHandler } from './functions/printChargeHandler';
 import TrdChargePdf from '../../pdfs/trdChargePdf';
 import { useReactToPrint } from 'react-to-print';
 import getSelectedChargeBillDetails from '../../../utilities/getSelectedChargeBillDetails';
+import RenovationPrint from './renovationPrint';
 
 const ButtonGroup: FC<{
    isPayed?: boolean;
@@ -143,6 +144,14 @@ const ButtonGroup: FC<{
                   : charge.last_bill_details
             }
             componentRef={componentRef}
+         />
+         <RenovationPrint
+            charge={charge}
+            chargeType={chargeType}
+            componentRef={componentRef}
+            isPrinting={isPrinting}
+            printBill={printBill}
+            printChargeBillDetails={charge.last_bill_details}
          />
       </div>
    );

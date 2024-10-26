@@ -30,6 +30,10 @@ const Login: FC = () => {
       </h1>,
       null,
    );
+   const headerTitle = useWindowWidth(
+      'پرداخت آسان عوارض شهری بدون نیاز به مراجعه حضوری',
+      'سامانه هوشمند شهروندی',
+   );
    const blueSquare = useWindowWidth(
       <img src={blueSquareIcon} className={styles['blue-square']} />,
       null,
@@ -40,8 +44,7 @@ const Login: FC = () => {
    );
 
    useEffect(() => {
-      setHeaderText &&
-         setHeaderText('پرداخت آسان عوارض شهری بدون نیاز به مراجعه حضوری');
+      setHeaderText && setHeaderText(headerTitle);
       updateLayout({
          showConfirmationForm,
          setExtraHeaderContent,

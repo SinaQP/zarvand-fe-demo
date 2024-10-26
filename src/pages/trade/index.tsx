@@ -19,7 +19,7 @@ const Trade: FC = () => {
 
    useEffect(() => {
       setSelectedTradeCharge(null);
-      !tradeCharges.length && getUserTradeMasters(token, setTradeCharges);
+      !tradeCharges.length && getUserTradeMasters(token, setTradeCharges, setSelectedTradeCharge);
       setHeaderId?.(styles['header']);
    }, [token]);
 
