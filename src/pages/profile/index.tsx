@@ -1,12 +1,7 @@
-import { FC, useContext } from 'react';
+import { FC } from 'react';
 import './Profile.scss';
 import pfpIcon from '/src/assets/images/pfpIcon.svg';
-import nationalCodeIcon from '/src/assets/images/nationalCodeIcon.svg';
-import InfoCardHeader from './components/infoCardHeader';
-import smartphoneIcon from '/src/assets/images/smartphoneIcon.svg';
-import callenderIcon from '/src/assets/images/callenderIcon.svg';
 import { useUserContext } from '../../App.context';
-import InfoCardBody from './components/infoCardBody';
 import Button from '../../components/button';
 import exitIcon from '/src/assets/images/exitIcon.svg';
 import { useNavigate } from 'react-router-dom';

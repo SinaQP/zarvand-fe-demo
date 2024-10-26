@@ -79,7 +79,6 @@ const PayedDetails: FC = () => {
             selectedRenovationCharge.bills.map((bill: Bill) => (
                <PaidBillCard Bill={bill} />
             ))}
-         <PaidBillCard Bill={undefined} />
       </section>
    );
 };

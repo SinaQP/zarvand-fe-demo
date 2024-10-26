@@ -2,7 +2,7 @@
 
 .footer {
    position: sticky;
-   top: 20vh;
+   top: 15vw;
    height: 60rem;
    width: 10rem;
    background-color: $primary-color;
@@ -91,6 +91,7 @@
          height: 0.3rem;
          background-color: $secondary-color;
          transition: all 0.5s ease;
+         position: absolute;
 
          &:first-child {
             rotate: 45deg;

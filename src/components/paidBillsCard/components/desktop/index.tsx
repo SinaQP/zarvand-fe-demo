@@ -1,11 +1,6 @@
 import { FC } from 'react';
 import './RenovateDesktop.scss';
 import { props } from '../interface';
-import shareIcon from '/src/assets/images/shareIcon.svg';
-import cloudIcon from '/src/assets/images/cloudIcon.svg';
-import printerIcon from '/src/assets/images/printerIcon.svg';
-import InfoCard from '../../../infoCard';
-import InfoCardTitle from '../infoCardTitle';
 import DataPlaceholder from '../dataPlaceholder';
 
 const DesktopRenovateCard: FC<props> = ({ Bill }) => {
@@ -29,7 +24,7 @@ const DesktopRenovateCard: FC<props> = ({ Bill }) => {
                <div>
                   <DataPlaceholder
                      title="مبلغ کل(ریال)"
-                     data={Bill?.creditor || 0}
+                     data={Bill?.creditor.toLocaleString('fa-IR') || 0}
                   />
 
                   <DataPlaceholder
