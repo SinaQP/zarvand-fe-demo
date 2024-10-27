@@ -40,6 +40,7 @@ const OtpInput: FC<Props> = ({
             <input
                key={index}
                type="text"
+               autoComplete="one-time-code"
                inputMode="numeric"
                maxLength={1}
                value={data}
