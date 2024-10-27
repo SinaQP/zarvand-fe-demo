@@ -1,4 +1,4 @@
-import { FC, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { Props } from './props.interface';
 import { handleChange, handleKeyDown } from './handlers.function';
 import './_index.scss';
@@ -33,7 +33,9 @@ const OtpInput: FC<Props> = ({
          inputRefs.current[index]?.focus();
       }
    };
-
+   useEffect(() => {
+      inputRefs.current[0]?.focus();
+   }, []);
    return (
       <div className={`${otpClassName} otp-container `}>
          {otp.map((data, index) => (
