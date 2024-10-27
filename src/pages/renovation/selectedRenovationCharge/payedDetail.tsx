@@ -24,6 +24,8 @@ const PayedDetails: FC = () => {
          <div id={styles['backArrowContainer']}>
             <BackArrow
                className={styles['back-arrow']}
+               pageTitle="نوسازی"
+               status="paid"
                onClick={() =>
                   resetChargeStates(
                      setSelectedTradeCharge,
