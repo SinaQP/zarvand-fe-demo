@@ -6,8 +6,6 @@ import styles from '../index.module.scss';
 import { PrintBill as TradePrintBill } from '../../pdfs/trdChargePdf/index.interface';
 import { PrintBill as RnvPrintBill } from '../../pdfs/rnvChargePdf/index.interface';
 import {
-   BillDetail,
-   BillInfo,
    RenovationCharge,
    TradeCharge,
 } from '../../../interfaces/models.interface';
@@ -15,9 +13,7 @@ import { useChargesContext, useUserContext } from '../../../App.context';
 import TradePrint from './tradePrint';
 import ButtonList from './buttonList';
 import { printChargeHandler } from './functions/printChargeHandler';
-import TrdChargePdf from '../../pdfs/trdChargePdf';
 import { useReactToPrint } from 'react-to-print';
-import getSelectedChargeBillDetails from '../../../utilities/getSelectedChargeBillDetails';
 import RenovationPrint from './renovationPrint';
 
 const ButtonGroup: FC<{
@@ -106,6 +102,7 @@ const ButtonGroup: FC<{
          ? {
               label: 'سابقه پرداخت',
               icon: payIcon,
+
               alt: 'Payment History',
               onClick: () => {
                  setShowPaymentHistory(true);
@@ -142,9 +139,7 @@ const ButtonGroup: FC<{
             isPrinting={isPrinting}
             printBill={printBill as TradePrintBill}
             printChargeBillDetails={
-               charge.is_paid
-                  ? charge.last_bill_details
-                  : charge.last_bill_details
+               charge.is_paid ? charge.bills : charge.last_bill_details
             }
             componentRef={componentRef}
          />
@@ -154,7 +149,9 @@ const ButtonGroup: FC<{
             componentRef={componentRef}
             isPrinting={isPrinting}
             printBill={printBill as RnvPrintBill}
-            printChargeBillDetails={charge.last_bill_details}
+            printChargeBillDetails={
+               charge.is_paid ? charge.bills : charge.last_bill_details
+            }
          />
       </div>
    );
