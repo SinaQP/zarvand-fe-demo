@@ -34,7 +34,7 @@
       opacity: 0;
       animation: fadeIn 3s forwards;
       @media (min-width: $desktop) {
-         margin: auto 0;
+         height: 100%;
          animation: fadeIn 3s forwards;
       }
       @keyframes fadeIn {
@@ -54,7 +54,7 @@
       width: 75vw !important;
       align-items: flex-start;
       flex-direction: row;
-      
+
       h1 {
          width: 43rem;
          margin-right: 6rem;
