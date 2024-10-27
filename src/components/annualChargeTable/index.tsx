@@ -25,7 +25,7 @@ const AnnualChargeTable: FC<AnnualChargeTableProps> = ({ data, className }) => {
                      <div className={styles.tableCell}>{row.from_year}</div>
                      <div className={styles.tableCell}>{row.to_year}</div>
                      <div className={styles.tableCell}>
-                        {toMoneyFormat(row.creditor.toString())}
+                        {toMoneyFormat((row.creditor + row.penalty).toString())}
                      </div>
                      <div className={styles.tableCell}>{row.desc}</div>
                   </div>

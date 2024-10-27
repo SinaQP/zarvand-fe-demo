@@ -6,9 +6,11 @@ import handleConfirmationButton from './functions/submit';
 import { useNavigate } from 'react-router-dom';
 import { useLayoutContext } from '../../../components/layout/layout.context';
 import { useUserContext } from '../../../App.context';
+import useWindowWidth from '../../../hooks/useWindowWidth';
 
 const ConfirmationEntry: FC = () => {
    const navigate = useNavigate();
+   const isMobile = useWindowWidth(false, true);
    const [otpCode, setOtpCode] = useState<string[]>([]);
    const { setUser, setToken } = useUserContext();
    const {
@@ -55,46 +57,53 @@ const ConfirmationEntry: FC = () => {
    }, [setHeaderId]);
 
    return (
-      <form className={styles.form}>
-         <span>
-            لطفا کد ارسال شده به شماره
-            {` ${maskedPhoneNumber.slice(8)}****${maskedPhoneNumber.slice(
-               0,
-               4,
-            )}`}
-            را وارد نمایید
-         </span>
-         <OtpInput
-            numberOfInputs={6}
-            value={otpCode}
-            setValue={setOtpCode}
-            otpClassName={styles['otp-input']}
-            inputsClassName={styles.input}
-         />
-         <Button
-            className={styles['submit-button']}
-            haveLoading
-            ref={afterOtpRef}
-            id="otpButtonRef"
-            type="button"
-            onClick={async () =>
-               await handleConfirmationButton({
-                  verificationCode: otpCode.join(''),
-                  nationalCode: nationalCode.join(''),
-                  navigate,
-                  setToken,
-                  setUser,
-                  setHeaderId,
-                  setBadgeId,
-                  setExtraHeaderContent,
-                  setHeaderBadge,
-                  setHeaderText,
-               })
-            }
-         >
-            ورود
-         </Button>
-      </form>
+      <div className={styles['confirmation-entry']}>
+         {!isMobile && (
+            <span className={styles['confirmation-entry__title']}>
+               سامانه هوشمند شهروندی
+            </span>
+         )}
+         <form className={styles.form}>
+            <span>
+               لطفا کد ارسال شده به شماره
+               {` ${maskedPhoneNumber.slice(8)}****${maskedPhoneNumber.slice(
+                  0,
+                  4,
+               )}`}
+               را وارد نمایید
+            </span>
+            <OtpInput
+               numberOfInputs={6}
+               value={otpCode}
+               setValue={setOtpCode}
+               otpClassName={styles['otp-input']}
+               inputsClassName={styles.input}
+            />
+            <Button
+               className={styles['submit-button']}
+               haveLoading
+               ref={afterOtpRef}
+               id="otpButtonRef"
+               type="button"
+               onClick={async () =>
+                  await handleConfirmationButton({
+                     verificationCode: otpCode.join(''),
+                     nationalCode: nationalCode.join(''),
+                     navigate,
+                     setToken,
+                     setUser,
+                     setHeaderId,
+                     setBadgeId,
+                     setExtraHeaderContent,
+                     setHeaderBadge,
+                     setHeaderText,
+                  })
+               }
+            >
+               ورود
+            </Button>
+         </form>
+      </div>
    );
 };
 

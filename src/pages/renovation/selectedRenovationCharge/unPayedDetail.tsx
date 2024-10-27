@@ -46,6 +46,8 @@ const UnPayedDetails: FC = () => {
                   );
                }
             }}
+            status={'pending'}
+            pageTitle="نوسازی"
          />
          <MasterCard
             master={selectedRenovationCharge}

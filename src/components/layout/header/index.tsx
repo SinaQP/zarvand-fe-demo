@@ -27,9 +27,11 @@ const Header = () => {
          id={headerId}
       >
          <h1>{headerText ? headerText : 'سامانه هوشمند شهروندی'}</h1>
-         <div className={styles.extraContent}>
-            {extraHeaderContent && extraHeaderContent}
-         </div>
+         {extraHeaderContent && (
+            <div className={styles.extraContent}>
+               {extraHeaderContent}
+            </div>
+         )}
          {!headerBadge ? <HeaderBadge /> : headerBadge}
       </header>
    );

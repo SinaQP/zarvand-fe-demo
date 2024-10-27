@@ -34,6 +34,8 @@ const PayedDetails: FC = () => {
                         );
                      }
                   }}
+                  status={'paid'}
+                  pageTitle="کسب و پیشه"
                />
             </div>
 
@@ -45,7 +47,7 @@ const PayedDetails: FC = () => {
 
                <InfoRow
                   title="مساحت ملک :"
-                  value={selectedTradeCharge.shop_area.toString()}
+                  value={`${selectedTradeCharge.shop_area} متر مربع`}
                   className={`${styles['info-row']} ${styles['info-row--is-paid']}`}
                />
             </div>
