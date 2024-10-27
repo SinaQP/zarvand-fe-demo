@@ -2,7 +2,7 @@
 
 .national-code-entry {
   width: 89vw;
-  border: 2px solid $secondary-color;
+  border: 2.5px solid $secondary-color;
   box-shadow: $primary-box-shadow;
   border-radius: 1.5rem;
   margin: 19rem auto 0;
@@ -21,8 +21,7 @@
   @media (min-width: $desktop) {
     width: fit-content;
     padding: 9vh 3rem 7vh 3rem;
-    margin: 21.5rem auto 0;
-    margin-right: 70rem;
+    margin: 11.5rem auto 0;
   }
 
   span {

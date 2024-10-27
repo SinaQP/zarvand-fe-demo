@@ -53,12 +53,17 @@
    font-weight: 400;
    text-align: center;
    margin-top: 0.5vh;
-   position: fixed;
-   top: 0;
-   left: 50%;
-   transform: translateX(-50%);
 }
-
+.content {
+   @media (min-width: $desktop) {
+      display: flex;
+      height: 100vh;
+      flex-direction: column;
+      align-items: center;
+      width: fit-content;
+      margin-right: 70rem;
+   }
+}
 .title.expanded {
    color: $font-white-color;
 }

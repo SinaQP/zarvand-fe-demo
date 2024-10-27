@@ -61,11 +61,13 @@ const Login: FC = () => {
          {blueSquare}
          {whiteSquare}
          <CityAnimationCard />
-         {mainTitle}
-         <NationalCodeEntry
-            setShowConfirmationForm={setShowConfirmationForm}
-            showConfirmationForm={showConfirmationForm}
-         />
+         <div className={styles.content}>
+            {mainTitle}
+            <NationalCodeEntry
+               setShowConfirmationForm={setShowConfirmationForm}
+               showConfirmationForm={showConfirmationForm}
+            />
+         </div>
          <ToastContainer
             rtl
             position="bottom-center"
