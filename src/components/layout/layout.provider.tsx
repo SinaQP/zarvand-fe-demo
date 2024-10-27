@@ -11,6 +11,7 @@ export const LayoutProvider = ({ children }: { children: ReactNode }) => {
    const [className, setClassName] = useState<string>('');
    const [maskedPhoneNumber, setMaskedPhoneNumber] = useState<string>('');
    const [nationalCode, setNationalCode] = useState<string[]>([]);
+   const [headerSubtitle, setHeaderSubtitle] = useState<string>('');
    const [extraHeaderContent, setExtraHeaderContent] =
       useState<ReactNode>(null);
    const layoutContextValue = {
@@ -34,6 +35,8 @@ export const LayoutProvider = ({ children }: { children: ReactNode }) => {
       setNationalCode,
       maskedPhoneNumber,
       setMaskedPhoneNumber,
+      headerSubtitle,
+      setHeaderSubtitle,
    };
 
    return (

@@ -4,14 +4,14 @@ import MunicipalityLogo from '../../../assets/images/municipality-logo.png';
 import { useLayoutContext } from '../layout.context';
 
 const HeaderBadge: FC = () => {
-   const { badgeClassName, badgeId } = useLayoutContext();
+   const { badgeClassName, badgeId, headerSubtitle } = useLayoutContext();
    return (
       <div
          className={`${styles['header-badge']} ${badgeClassName}`}
          id={badgeId}
       >
          <img src={MunicipalityLogo} alt="Municipality Logo" />
-         <span className={styles['subtitle']}>پرداخت عوارض</span>
+         <span className={styles['subtitle']}>{headerSubtitle}</span>
       </div>
    );
 };

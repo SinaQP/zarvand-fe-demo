@@ -5,9 +5,10 @@ import ComingSoonText from '../../components/comingSoonText';
 import { useLayoutContext } from '../../components/layout/layout.context';
 
 const Support: FC = () => {
-   const { setHeaderId } = useLayoutContext();
+   const { setHeaderId, setHeaderSubtitle } = useLayoutContext();
 
    useEffect(() => {
+      setHeaderSubtitle('');
       setHeaderId && setHeaderId(styles['header']);
    }, []);
 

@@ -21,4 +21,6 @@ export interface LayoutContextProps {
    setMaskedPhoneNumber: Dispatch<SetStateAction<string>>;
    nationalCode: string[];
    setNationalCode: Dispatch<SetStateAction<string[]>>;
+   headerSubtitle: string;
+   setHeaderSubtitle: Dispatch<SetStateAction<string>>;
 }

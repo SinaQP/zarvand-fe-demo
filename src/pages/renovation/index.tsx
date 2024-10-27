@@ -8,14 +8,23 @@ import { useChargesContext, useUserContext } from '../../App.context';
 import ChargeCards from './chargeCards';
 
 const Renovation: FC = () => {
-   const { renovationCharges, setRenovationCharges, setSelectedRenovationCharge } = useChargesContext();
+   const {
+      renovationCharges,
+      setRenovationCharges,
+      setSelectedRenovationCharge,
+   } = useChargesContext();
 
    const { token } = useUserContext();
-   const { setHeaderId } = useLayoutContext();
+   const { setHeaderId, setHeaderSubtitle } = useLayoutContext();
 
    useEffect(() => {
+      setHeaderSubtitle('پرداخت عوارض');
       !renovationCharges.length &&
-         getUserRenovationCharges(token, setRenovationCharges, setSelectedRenovationCharge);
+         getUserRenovationCharges(
+            token,
+            setRenovationCharges,
+            setSelectedRenovationCharge,
+         );
       setHeaderId?.(styles['header']);
    }, [token]);
 

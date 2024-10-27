@@ -9,7 +9,7 @@ import { Bounce, ToastContainer } from 'react-toastify';
 import ChargeCards from './chargeCards';
 
 const Trade: FC = () => {
-   const { setHeaderId } = useLayoutContext();
+   const { setHeaderId, setHeaderSubtitle } = useLayoutContext();
    const { token } = useUserContext();
    const {
       setSelectedTradeCharge,
@@ -19,6 +19,7 @@ const Trade: FC = () => {
 
    useEffect(() => {
       setSelectedTradeCharge(null);
+      setHeaderSubtitle("پرداخت عوارض")
       !tradeCharges.length && getUserTradeMasters(token, setTradeCharges, setSelectedTradeCharge);
       setHeaderId?.(styles['header']);
    }, [token]);

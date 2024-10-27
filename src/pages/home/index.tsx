@@ -15,7 +15,7 @@ import shopIcon from '/src/assets/images/shopIcon.svg';
 import { useNavigate } from 'react-router-dom';
 
 const Home: FC = () => {
-   const { setHeaderId } = useLayoutContext();
+   const { setHeaderId, setHeaderSubtitle } = useLayoutContext();
    const { user } = useUserContext();
    const whiteSquares = useWindowWidth(
       <img src={whiteSquareIcon} className={'white-square'} />,
@@ -23,6 +23,7 @@ const Home: FC = () => {
    );
    const windowWidth = useWindowWidth('des', 'and');
    useEffect(() => {
+      setHeaderSubtitle('');
       setHeaderId && setHeaderId('header');
    }, []);
 

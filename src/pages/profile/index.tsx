@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import './Profile.scss';
 import pfpIcon from '/src/assets/images/pfpIcon.svg';
 import { useUserContext } from '../../App.context';
@@ -8,9 +8,11 @@ import { useNavigate } from 'react-router-dom';
 import useWindowWidth from '../../hooks/useWindowWidth';
 import ProfileAndroid from './components/profileAndroid';
 import ProfileDesktop from './components/profileDesktop';
+import { useLayoutContext } from '../../components/layout/layout.context';
 
 const Profile: FC = () => {
    const { user, setToken } = useUserContext();
+   const { setHeaderSubtitle } = useLayoutContext();
    const navigate = useNavigate();
    const userAgent = useWindowWidth('desktop', 'android');
 
@@ -18,7 +20,9 @@ const Profile: FC = () => {
       setToken('');
       navigate('/login');
    };
-
+   useEffect(() => {
+      setHeaderSubtitle('');
+   }, []);
    return (
       <div id="profileStyleWrapper">
          <div id="pfp">
