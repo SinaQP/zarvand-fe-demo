@@ -12,7 +12,6 @@
    gap: 1rem;
 
    @include default-layout;
-
    #container {
       width: 100%;
       display: flex;
@@ -161,7 +160,7 @@
    }
 
    @media (min-width: $desktop) {
-      width: 65%;
+      width: calc(100% - $desktop-footer-width);
       height: fit-content;
 
       #container {
@@ -184,7 +183,7 @@
             }
 
             .date {
-               font-size: calc(1rem + 2vw);
+               font-size: 4.5rem;
             }
          }
 
@@ -229,8 +228,8 @@
          bottom: 0;
          left: 0;
          rotate: -90deg;
-         width: 52rem;
-         height: 52rem;
+         width: 43rem;
+         height: 43rem;
       }
    }
 }
