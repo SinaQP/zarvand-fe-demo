@@ -34,6 +34,8 @@ const UnPayedDetails: FC = () => {
                   setShowPaymentHistory,
                )
             }
+            status={'pending'}
+            pageTitle="کسب و پیشه"
          />
          <MasterCard
             key={selectedTradeCharge.master_id}

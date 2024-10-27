@@ -1,10 +1,10 @@
 import { FC } from 'react';
-import './PaymentResult.scss';
 import { PaymentResultProps } from './interface';
 import whiteCheckIcon from '/src/assets/images/whiteCheckIcon.svg';
 import whiteXIcon from '/src/assets/images/whiteXIcon.svg';
 import playPauseIcon from '/src/assets/images/playPauseIcon.svg';
 import Button from '../../../../components/button';
+import styles from './PaymentResult.module.scss';
 
 const PaymentResult: FC<PaymentResultProps> = ({ status }) => {
    const isSuccessful = status === 'success';
@@ -15,21 +15,21 @@ const PaymentResult: FC<PaymentResultProps> = ({ status }) => {
 
    return (
       <div
-         id="PaymentResultStyleWrapper"
-         className={`${isSuccessful ? 'success' : 'fail'}`}
+         id={styles.PaymentResultStyleWrapper}
+         className={`${isSuccessful ? styles.success : styles.fail}`}
       >
-         <div id="resultStatTitle">
+         <div id={styles.resultStatTitle}>
             <img
                src={isSuccessful ? whiteCheckIcon : whiteXIcon}
                alt="paymentStatus"
             />
          </div>
 
-         <span id="title">{title}</span>
-         <span id="subTitle">{subTitle}</span>
+         <span id={styles.title}>{title}</span>
+         <span id={styles.subTitle}>{subTitle}</span>
 
-         <Button className="continueBtn">
-            <div className="content">
+         <Button className={styles.continueBtn}>
+            <div className={styles.content}>
                <span>ادامه</span>
                <img src={playPauseIcon} alt="exit to main page Icon" />
             </div>
