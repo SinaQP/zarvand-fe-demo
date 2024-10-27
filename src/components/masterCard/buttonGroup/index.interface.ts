@@ -9,7 +9,7 @@ import { PrintBill as RnvPrintBill } from '../../pdfs/rnvChargePdf/index.interfa
 
 export interface TradePrintProps {
    isPrinting: boolean;
-   printChargeBillDetails: BillDetail[] | null;
+   printChargeBillDetails: any[] | null;
    printBill: TradePrintBill | null;
    charge: TradeCharge | RenovationCharge;
    chargeType: 'Trade' | 'Renovation' | null;
@@ -18,7 +18,7 @@ export interface TradePrintProps {
 
 export interface RenovationPrintProps {
    isPrinting: boolean;
-   printChargeBillDetails: BillDetail[] | null;
+   printChargeBillDetails: any[] | null;
    printBill: RnvPrintBill | null;
    charge: TradeCharge | RenovationCharge;
    chargeType: 'Trade' | 'Renovation' | null;
