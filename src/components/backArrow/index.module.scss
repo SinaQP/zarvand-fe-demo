@@ -5,7 +5,7 @@
    align-items: center;
    gap: 1rem;
 
-   @include center-flex;
+   // @include center-flex;
    .arrow {
       border-radius: 50%;
       width: 3rem;
@@ -17,7 +17,7 @@
 
    span {
       font-weight: 500;
-      font-size: calc(1rem + 0.8vw);
+      font-size: calc(2rem + 0.8vw);
    }
 
    &.pending {
@@ -29,6 +29,22 @@
    &.paid {
       .arrow {
          background-color: $primary-color;
+      }
+   }
+
+   @media (min-width: $desktop) {
+      .arrow {
+         width: 5rem;
+         height: 5rem;
+
+         img {
+            width: 50%;
+            height: 50%;
+         }
+
+         &:hover {
+            cursor: pointer;
+         }
       }
    }
 }
