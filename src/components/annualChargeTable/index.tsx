@@ -31,7 +31,7 @@ const AnnualChargeTable: FC<AnnualChargeTableProps> = ({ data, className }) => {
                   </div>
                ))
             ) : (
-               <Loading />
+               <Loading className={styles.tableLoading}/>
             )}
          </div>
       </div>

@@ -22,17 +22,37 @@
 .tableBody {
    font-size: 1.5rem;
    max-height: 28vh;
-   overflow-y: auto;
+   overflow-y: scroll;
+   min-height: 8rem;
+   overflow-x: hidden;
+   .tableLoading {
+      width: 6rem;
+      height: 6rem;
+      margin-top: 1rem;
+   }
    @media (min-width: $desktop) {
       font-size: 2.5rem;
       max-height: 35vh;
    }
-   -ms-overflow-style: none;
-   scrollbar-width: none;
-
    &::-webkit-scrollbar {
-      display: none;
+      width: 12px;
    }
+
+   &::-webkit-scrollbar-track {
+      background: rgba(
+         $secondary-color,
+         0.2
+      ); // Light background for the scrollbar track
+   }
+
+   &::-webkit-scrollbar-thumb {
+      background-color: #e07d47; // Matches the orange theme
+      border-radius: 6px;
+      border: 3px solid rgba($secondary-color, 0.2); // Space around the thumb for a cleaner look
+   }
+
+   scrollbar-width: thin;
+   scrollbar-color: #e07d47 rgba($secondary-color, 0.2);
 
    .tableRow {
       display: grid;
@@ -60,8 +80,8 @@
 .tableCell {
    padding: 1rem 0.5rem;
    text-align: center;
-   border-left: 1.3px solid #FFFFFF;
-   @media ( min-width:$desktop) {
+   border-left: 1.3px solid #ffffff;
+   @media (min-width: $desktop) {
       padding: 0.5rem 0rem;
    }
 }
