@@ -36,6 +36,7 @@ const handleConfirmationButton: Function = async ({
    const responseBody = response.body;
    if (response.status === 200) {
       setToken(responseBody.token);
+      localStorage.setItem('zarToken', responseBody.refresh_token);
       setUser(responseBody.user);
       setHeaderId('');
       setBadgeId('');
