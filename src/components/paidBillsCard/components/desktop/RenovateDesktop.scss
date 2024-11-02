@@ -33,6 +33,11 @@
                height: 1.5rem;
                border-radius: inherit;
                border: 0.1rem solid $bg-color;
+               @media (min-width: $desktop) {
+                  width: 2rem;
+                  height: 2rem;
+                  border: 0.3rem solid $bg-color;
+               }
             }
          }
       }
@@ -73,8 +78,7 @@
          display: flex;
          flex-direction: column;
          justify-content: center;
-         gap: 4vw;
-
+         gap: 4rem;
          div {
             display: flex;
             justify-content: space-around;

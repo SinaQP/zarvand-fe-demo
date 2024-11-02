@@ -21,12 +21,12 @@
    #container {
       flex: 1;
       border-radius: 1rem 0 0 1rem;
-      background: #24809433;
+      background: #126f970d;
    }
 
    @media (min-width: $desktop) {
       width: 90%;
-      height: 37rem;
+      min-height: 28rem;
 
       #border {
          width: 2rem;
