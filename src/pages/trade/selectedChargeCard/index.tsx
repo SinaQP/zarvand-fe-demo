@@ -6,7 +6,7 @@ import getSelectedChargeBillDetails from '../../../utilities/getSelectedChargeBi
 import { TradeCharge } from '../../../interfaces/models.interface';
 
 const SelectedChargeCard: FC<{ isPayed: boolean }> = ({ isPayed }) => {
-   const { token, setShowPaymentHistory } = useUserContext();
+   const { token } = useUserContext();
    const { selectedTradeCharge, setTradeCharges, setSelectedTradeCharge } =
       useChargesContext();
    useEffect(() => {
@@ -23,6 +23,7 @@ const SelectedChargeCard: FC<{ isPayed: boolean }> = ({ isPayed }) => {
       }
       fetchBillDetails();
    }, [selectedTradeCharge]);
+   
    return isPayed ? <PayedDetails /> : <UnPayedDetails />;
 };
 

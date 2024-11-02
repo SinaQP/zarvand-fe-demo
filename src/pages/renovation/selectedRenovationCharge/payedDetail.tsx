@@ -9,6 +9,9 @@ import resetChargeStates from '../../../utilities/resetChargeStates';
 import { Bill } from '../../../interfaces/models.interface';
 import CertificationNumberCard from '../../../components/certificationNumberCard';
 import useWindowWidth from '../../../hooks/useWindowWidth';
+import MasterCard from '../../../components/masterCard';
+import InfoCard from '../../../components/infoCard';
+import InfoCardTitle from '../components/infoCardTitle';
 
 const PayedDetails: FC = () => {
    const {
@@ -20,68 +23,35 @@ const PayedDetails: FC = () => {
    const { setShowPaymentHistory } = useUserContext();
    if (!selectedRenovationCharge) return null;
    return (
-      <section id={styles['paidRenovationContainer']}>
-         <div id={styles['backArrowContainer']}>
-            <BackArrow
-               className={styles['back-arrow']}
-               pageTitle="نوسازی"
-               status="paid"
-               onClick={() =>
-                  resetChargeStates(
-                     setSelectedTradeCharge,
-                     setSelectedRenovationCharge,
-                     setShowPaymentHistory,
-                  )
-               }
+      <div className={styles['container']}>
+         <MasterCard
+            master={selectedRenovationCharge}
+            address={selectedRenovationCharge.address}
+            isPayed
+            className={styles['master-card']}
+         >
+            <InfoCard
+               title={<InfoCardTitle title="NIGA" />}
+               isPrimary
+               containerClassName={styles['master-card__info-card']}
+            ></InfoCard>
+            <InfoRow
+               title="مساحت ساختمان: "
+               value={`${selectedRenovationCharge.building_area} متر مربع`}
+               className={styles['master-card__info-row']}
             />
-         </div>
-
-         <div id={styles['master-info']}>
-            <AddressSection
-               address={selectedRenovationCharge.address}
-               className={`${styles['master-address']}`}
+            <InfoRow
+               title="مساحت زمین: "
+               value={`${selectedRenovationCharge.land_area} متر مربع`}
+               className={styles['master-card__info-row']}
             />
-
-            {windowWidth === 'android' ? (
-               <>
-                  <InfoRow
-                     title="مساحت ساختمان :"
-                     value={selectedRenovationCharge.building_area.toString()}
-                     className={`${styles['info-row']} ${styles['info-row--is-paid']}`}
-                  />
-                  <InfoRow
-                     title="مساحت زمین :"
-                     value={selectedRenovationCharge.land_area.toString()}
-                     className={`${styles['info-row']} ${styles['info-row--is-paid']}`}
-                  />
-               </>
-            ) : (
-               <>
-                  <div id={styles['locationDetails']}>
-                     <CertificationNumberCard charge={selectedRenovationCharge}>
-                        <div className={styles['square-footage']}>
-                           <span>مساحت زمین:</span>
-                           <span>{`${
-                              selectedRenovationCharge.land_area || 0
-                           } متر مربع`}</span>
-                        </div>
-
-                        <div className={styles['square-footage']}>
-                           <span>مساحت ساختمان:</span>
-                           <span>{`${
-                              selectedRenovationCharge.building_area || 0
-                           } متر مربع`}</span>
-                        </div>
-                     </CertificationNumberCard>
-                  </div>
-               </>
-            )}
-         </div>
-         {selectedRenovationCharge.bills &&
-            selectedRenovationCharge.bills.map((bill: Bill) => (
-               <PaidBillCard Bill={bill} />
-            ))}
-      </section>
+            <div className={styles['master-card__payment-bills']}>
+               {selectedRenovationCharge.bills.map((bill) => (
+                  <PaidBillCard Bill={bill} />
+               ))}
+            </div>
+         </MasterCard>
+      </div>
    );
 };
 

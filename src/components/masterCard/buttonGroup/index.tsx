@@ -75,6 +75,9 @@ const ButtonGroup: FC<{
       label: 'پرداخت',
       icon: payIcon,
       alt: 'Pay',
+      onClick: () => {
+         console.log("HERE")
+      }
    };
 
    const detailsButton =

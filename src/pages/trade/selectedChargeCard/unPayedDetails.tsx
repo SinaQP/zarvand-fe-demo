@@ -22,8 +22,7 @@ const UnPayedDetails: FC = () => {
    } = useChargesContext();
    const { setShowPaymentHistory } = useUserContext();
 
-   if (!selectedTradeCharge) return null;
-   return (
+   return selectedTradeCharge ? (
       <div className={styles.unPayedDetails}>
          <BackArrow
             className={styles['back-arrow']}
@@ -69,7 +68,7 @@ const UnPayedDetails: FC = () => {
             </div>
          </MasterCard>
       </div>
-   );
+   ) : null;
 };
 
 export default UnPayedDetails;
