@@ -9,6 +9,7 @@
    flex-direction: column;
    align-items: center;
    justify-content: center;
+   gap: 2rem;
    @include default-layout;
    .info-row {
       border-bottom: 1px solid $secondary-color;
@@ -19,25 +20,25 @@
          background-color: rgba($primary-color, 0.05);
       }
    }
+   #backArrowContainer {
+      width: 100%;
+      display: flex;
+
+      .back-arrow {
+         margin-top: -0.5rem;
+         margin-bottom: 1rem;
+         &--is-paid {
+            background-color: $primary-color;
+         }
+      }
+   }
+
    #paidRenovationContainer {
       width: 100%;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 2rem;
-
-      #backArrowContainer {
-         width: 100%;
-         display: flex;
-
-         .back-arrow {
-            margin-top: -0.5rem;
-            margin-bottom: 1rem;
-            &--is-paid {
-               background-color: $primary-color;
-            }
-         }
-      }
+      gap: 1.5rem;
 
       #master-info {
          width: 100%;
@@ -104,6 +105,7 @@
 
             .master-address {
                margin-bottom: 3rem;
+               width: 90%;
             }
 
             #locationDetails {
@@ -126,5 +128,4 @@
          }
       }
    }
-   
 }
