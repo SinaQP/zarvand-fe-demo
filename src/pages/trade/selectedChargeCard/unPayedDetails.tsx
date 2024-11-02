@@ -1,17 +1,14 @@
-import { FC, useContext, useEffect } from 'react';
+import { FC } from 'react';
 import BackArrow from '../../../components/backArrow';
 import styles from '../index.module.scss';
 import resetChargeStates from '../../../utilities/resetChargeStates';
 import MasterCard from '../../../components/masterCard';
 import InfoCard from '../../../components/infoCard';
 import InfoCardTitle from '../infoCardTitle';
-import Loading from '../../../components/loading/loading';
 import AnnualChargeTable from '../../../components/annualChargeTable';
 import BillInfo from './billInfo';
 import { useChargesContext, useUserContext } from '../../../App.context';
 import useWindowWidth from '../../../hooks/useWindowWidth';
-import getSelectedChargeBillDetails from '../../../utilities/getSelectedChargeBillDetails';
-import { TradeCharge } from '../../../interfaces/models.interface';
 
 const UnPayedDetails: FC = () => {
    const desktopBillInfo = useWindowWidth(<BillInfo />, null);

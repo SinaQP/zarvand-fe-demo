@@ -11,4 +11,5 @@ export interface Props {
    className?: string;
    addressSectionClassName?: string;
    master: TradeCharge | RenovationCharge;
+   showButtons?: boolean;
 }

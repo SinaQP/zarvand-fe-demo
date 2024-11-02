@@ -2,7 +2,7 @@ import { FC } from 'react';
 import { useChargesContext, useUserContext } from '../../../App.context';
 import PaidBillCard from '../../../components/paidBillsCard';
 import InfoRow from '../../../components/infoRow';
-import styles from '../index.module.scss';
+import styles from './index.module.scss';
 import AddressSection from '../../../components/addressSection';
 import BackArrow from '../../../components/backArrow';
 import resetChargeStates from '../../../utilities/resetChargeStates';
@@ -22,7 +22,7 @@ const PayedDetails: FC = () => {
    const windowWidth = useWindowWidth('desktop', 'android');
    const { setShowPaymentHistory } = useUserContext();
    if (!selectedRenovationCharge) return null;
-   return (
+   return selectedRenovationCharge ? (
       <div className={styles['container']}>
          <MasterCard
             master={selectedRenovationCharge}
@@ -30,11 +30,7 @@ const PayedDetails: FC = () => {
             isPayed
             className={styles['master-card']}
          >
-            <InfoCard
-               title={<InfoCardTitle title="NIGA" />}
-               isPrimary
-               containerClassName={styles['master-card__info-card']}
-            ></InfoCard>
+            <CertificationNumberCard charge={selectedRenovationCharge} />
             <InfoRow
                title="مساحت ساختمان: "
                value={`${selectedRenovationCharge.building_area} متر مربع`}
@@ -46,13 +42,14 @@ const PayedDetails: FC = () => {
                className={styles['master-card__info-row']}
             />
             <div className={styles['master-card__payment-bills']}>
-               {selectedRenovationCharge.bills.map((bill) => (
-                  <PaidBillCard Bill={bill} />
-               ))}
+               {selectedRenovationCharge.bills &&
+                  selectedRenovationCharge.bills.map((bill) => (
+                     <PaidBillCard Bill={bill} />
+                  ))}
             </div>
          </MasterCard>
       </div>
-   );
+   ) : null;
 };
 
 export default PayedDetails;

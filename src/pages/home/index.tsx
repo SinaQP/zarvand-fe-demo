@@ -74,7 +74,7 @@ const Home: FC = () => {
                <span className="date">{formattedDate}</span>
             </div>
 
-            <div className="citizenship-privilege-container">
+            {/* <div className="citizenship-privilege-container">
                <div className="title">
                   <span>امتیاز شهروندی شما</span>
                </div>
@@ -90,7 +90,7 @@ const Home: FC = () => {
                   <ActionBtn text={'توضیحات'} imageSrc={whiteClipboardIcon} />
                   <ActionBtn text={'افزایش'} imageSrc={lineChart} />
                </div>
-            </div>
+            </div> */}
 
             {windowWidth === 'and' && (
                <div className="services-container">

@@ -11,6 +11,7 @@ const MasterCard: FC<Props> = ({
    master,
    className,
    addressSectionClassName,
+   showButtons = true,
 }) => {
    const badgeText = isPayed ? 'پرداخت شده' : 'پرداخت نشده';
 
@@ -27,7 +28,7 @@ const MasterCard: FC<Props> = ({
 
          {children}
 
-         <ButtonGroup isPayed={isPayed} charge={master} />
+         {showButtons && <ButtonGroup isPayed={isPayed} charge={master} />}
 
          <div className={styles.badge}>{badgeText}</div>
       </div>
