@@ -15,6 +15,7 @@ export interface TradeCharge {
       payment_no: string;
       bill_no: string;
       value_to_pay: number;
+      bill_id: number;
    } | null;
    last_bill_details: BillDetail[];
    bills: Bill[];
@@ -31,6 +32,7 @@ export interface RenovationCharge {
       payment_no: string;
       bill_no: string;
       value_to_pay: number;
+      bill_id: number;
    } | null;
    last_bill_details: BillDetail[];
    bills: Bill[];

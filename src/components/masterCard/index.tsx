@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import styles from './index.module.scss';
 import { Props } from './index.interface';
 import ButtonGroup from './buttonGroup';
@@ -14,6 +14,7 @@ const MasterCard: FC<Props> = ({
    showButtons = true,
 }) => {
    const badgeText = isPayed ? 'پرداخت شده' : 'پرداخت نشده';
+   const [bankPortal, setBankPortal] = useState('');
 
    return (
       <div
@@ -25,10 +26,17 @@ const MasterCard: FC<Props> = ({
             address={address ? address : ''}
             className={addressSectionClassName}
          />
+         {bankPortal && (
+            <div dangerouslySetInnerHTML={{ __html: bankPortal }}></div>
+         )}
 
          {children}
 
-         {showButtons && <ButtonGroup isPayed={isPayed} charge={master} />}
+         {showButtons && <ButtonGroup
+            setBankPortal={setBankPortal}
+            isPayed={isPayed}
+            charge={master}
+         />}
 
          <div className={styles.badge}>{badgeText}</div>
       </div>
