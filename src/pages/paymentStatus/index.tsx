@@ -2,12 +2,7 @@ import Lottie from 'react-lottie';
 import PaymentResult from './components/PaymentResult';
 import paymentStatusAnimation from '../../assets/lottie/payment-status-animation.json';
 import styles from './PaymentStatus.module.scss';
-import {
-   useLocation,
-   useNavigate,
-   useParams,
-   useSearchParams,
-} from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useUserContext } from '../../App.context';
 import { useEffect } from 'react';
 import { postRefreshUserToken } from '../../apis/login/refresh-user-token';
