@@ -2,6 +2,7 @@ import Lottie from 'react-lottie';
 import PaymentResult from './components/PaymentResult';
 import paymentStatusAnimation from '../../assets/lottie/payment-status-animation.json';
 import styles from './PaymentStatus.module.scss';
+import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 
 const PaymentStatus = () => {
    const defaultOptions = (animationData: any) => ({
@@ -12,6 +13,9 @@ const PaymentStatus = () => {
          preserveAspectRatio: 'xMidYMid slice',
       },
    });
+   const location = useLocation();
+   const queryParams = new URLSearchParams(location.search);
+   const testVal = queryParams.get('test');
 
    return (
       <div id={styles.paymentStatusStyleWrapper}>

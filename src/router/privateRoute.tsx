@@ -24,7 +24,7 @@ const PrivateRoute: FC<{ element: ReactNode }> = ({ element }) => {
       !token && refreshUserToken();
    }, []);
 
-   return token ? element : <Navigate to="/login" />;
+   return true ? element : <Navigate to="/login" />;
 };
 
 export default PrivateRoute;

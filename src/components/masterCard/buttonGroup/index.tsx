@@ -15,6 +15,7 @@ import ButtonList from './buttonList';
 import { printChargeHandler } from './functions/printChargeHandler';
 import { useReactToPrint } from 'react-to-print';
 import RenovationPrint from './renovationPrint';
+import payCharges from './functions/payChargeHandler';
 
 const ButtonGroup: FC<{
    isPayed?: boolean;
@@ -75,8 +76,10 @@ const ButtonGroup: FC<{
       label: 'پرداخت',
       icon: payIcon,
       alt: 'Pay',
-      onclick: async () => {
-         console.log('test');
+      onClick: () => {
+         payCharges(charge, token);
+         // if (chargeType === 'Renovation') console.log('test ren');
+         // if (chargeType === 'Trade') console.log('test trade', charge);
       },
    };
 
