@@ -30,7 +30,7 @@ const PaymentStatus = () => {
 
          const result = await postRefreshUserToken({ refresh_token: zarToken });
          const { body, status } = result as FetchResult;
-         console.log('>>>', status);
+
          if (status === 200) {
             setToken(body.access_token);
          } else {

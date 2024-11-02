@@ -1,4 +1,11 @@
-import { FC, useEffect, useRef, useState } from 'react';
+import {
+   Dispatch,
+   FC,
+   SetStateAction,
+   useEffect,
+   useRef,
+   useState,
+} from 'react';
 import detailIcon from '../../../assets/images/detail.svg';
 import payIcon from '../../../assets/images/pay.svg';
 import downloadIcon from '../../../assets/images/download.svg';
@@ -20,7 +27,8 @@ import payCharges from './functions/payChargeHandler';
 const ButtonGroup: FC<{
    isPayed?: boolean;
    charge: TradeCharge | RenovationCharge;
-}> = ({ isPayed, charge }) => {
+   setBankPortal: Dispatch<SetStateAction<string>>;
+}> = ({ isPayed, charge, setBankPortal }) => {
    const [chargeType, setChargeType] = useState<'Trade' | 'Renovation' | null>(
       null,
    );
@@ -33,7 +41,7 @@ const ButtonGroup: FC<{
       setChargeType('certificate_number' in charge ? 'Renovation' : 'Trade');
    }, [charge]);
 
-   const { token, setShowPaymentHistory } = useUserContext();
+   const { token, setShowPaymentHistory, user } = useUserContext();
    const {
       setSelectedTradeCharge,
       setSelectedRenovationCharge,
@@ -72,14 +80,28 @@ const ButtonGroup: FC<{
       id: `${charge.master_id}-charge-pdf-button`,
    };
 
+   const getLastBillInfo = async () => {
+      if (chargeType === 'Renovation') {
+         setSelectedRenovationCharge(charge as RenovationCharge);
+      } else if (chargeType === 'Trade') {
+         setSelectedTradeCharge(charge as TradeCharge);
+      }
+      // setShowPaymentHistory(charge.is_paid);
+   };
+
    const payButton = !isPayed && {
       label: 'پرداخت',
       icon: payIcon,
       alt: 'Pay',
-      onClick: () => {
-         payCharges(charge, token);
-         // if (chargeType === 'Renovation') console.log('test ren');
-         // if (chargeType === 'Trade') console.log('test trade', charge);
+      onClick: async () => {
+         getLastBillInfo();
+         if (chargeType === 'Renovation') {
+            payCharges(charge as RenovationCharge, token);
+         } else if (chargeType === 'Trade') {
+            const result = await payCharges(charge as TradeCharge, token);
+            console.log('>>> after result', result);
+            setBankPortal(result);
+         }
       },
    };
 
@@ -89,14 +111,7 @@ const ButtonGroup: FC<{
               label: 'جزئیات',
               icon: detailIcon,
               alt: 'Detail',
-              onClick: async () => {
-                 if (chargeType === 'Renovation') {
-                    setSelectedRenovationCharge(charge as RenovationCharge);
-                 } else if (chargeType === 'Trade') {
-                    setSelectedTradeCharge(charge as TradeCharge);
-                 }
-                 setShowPaymentHistory(charge.is_paid);
-              },
+              onClick: getLastBillInfo,
            }
          : null;
 
@@ -120,7 +135,6 @@ const ButtonGroup: FC<{
               },
            }
          : null;
-   const { user } = useUserContext();
 
    const buttons = [
       downloadButton,
