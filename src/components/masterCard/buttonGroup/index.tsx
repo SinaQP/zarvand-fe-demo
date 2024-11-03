@@ -27,7 +27,7 @@ import payCharges from './functions/payChargeHandler';
 const ButtonGroup: FC<{
    isPayed?: boolean;
    charge: TradeCharge | RenovationCharge;
-   setBankPortal: Dispatch<SetStateAction<string>>;
+   setBankPortal: Dispatch<SetStateAction<string>> | null;
 }> = ({ isPayed, charge, setBankPortal }) => {
    const [chargeType, setChargeType] = useState<'Trade' | 'Renovation' | null>(
       null,
@@ -86,7 +86,7 @@ const ButtonGroup: FC<{
       } else if (chargeType === 'Trade') {
          setSelectedTradeCharge(charge as TradeCharge);
       }
-      // setShowPaymentHistory(charge.is_paid);
+      setShowPaymentHistory(charge.is_paid);
    };
 
    const payButton = !isPayed && {
@@ -100,7 +100,7 @@ const ButtonGroup: FC<{
          } else if (chargeType === 'Trade') {
             const result = await payCharges(charge as TradeCharge, token);
             console.log('>>> after result', result);
-            setBankPortal(result);
+            setBankPortal && setBankPortal(result);
          }
       },
    };

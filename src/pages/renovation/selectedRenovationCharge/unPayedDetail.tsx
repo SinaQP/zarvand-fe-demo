@@ -11,9 +11,11 @@ import BillInfo from './billInfo';
 import useWindowWidth from '../../../hooks/useWindowWidth';
 import getSelectedChargeBillDetails from '../../../utilities/getSelectedChargeBillDetails';
 import { RenovationCharge } from '../../../interfaces/models.interface';
+import ButtonGroup from '../../../components/masterCard/buttonGroup';
 
 const UnPayedDetails: FC = () => {
    const desktopBillInfo = useWindowWidth(<BillInfo />, null);
+   const isDesktop = useWindowWidth(true, false);
    const { token } = useUserContext();
    const {
       selectedRenovationCharge,
@@ -56,10 +58,17 @@ const UnPayedDetails: FC = () => {
             key={selectedRenovationCharge.master_id}
             className={styles['master-card']}
             addressSectionClassName={styles['address-section']}
+            showButtons={false}
          >
             <div className={styles['master-card__body']}>
                <CertificationNumberCard charge={selectedRenovationCharge}>
                   {desktopBillInfo}
+                  {isDesktop && (
+                  <ButtonGroup
+                     charge={selectedRenovationCharge}
+                     setBankPortal={null}
+                  />
+               )}
                </CertificationNumberCard>
 
                <AnnualChargeTable
@@ -72,6 +81,7 @@ const UnPayedDetails: FC = () => {
                />
 
                <BillInfo className={styles['bill-info']} />
+            
             </div>
          </MasterCard>
       </div>
