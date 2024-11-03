@@ -28,7 +28,8 @@ import { useNavigate } from 'react-router-dom';
 const ButtonGroup: FC<{
    isPayed?: boolean;
    charge: TradeCharge | RenovationCharge;
-}> = ({ isPayed, charge }) => {
+   setBankPortal: Dispatch<SetStateAction<string>> | null;
+}> = ({ isPayed, charge, setBankPortal }) => {
    const [chargeType, setChargeType] = useState<'Trade' | 'Renovation' | null>(
       null,
    );
@@ -96,11 +97,13 @@ const ButtonGroup: FC<{
       alt: 'Pay',
       onClick: async () => {
          getLastBillInfo();
-         const result = await payCharges(
-            charge as TradeCharge,
-            token,
-            navigate,
-         );
+         if (chargeType === 'Renovation') {
+            payCharges(charge as RenovationCharge, token);
+         } else if (chargeType === 'Trade') {
+            const result = await payCharges(charge as TradeCharge, token);
+            console.log('>>> after result', result);
+            setBankPortal && setBankPortal(result);
+         }
       },
    };
 
