@@ -23,12 +23,12 @@ import { printChargeHandler } from './functions/printChargeHandler';
 import { useReactToPrint } from 'react-to-print';
 import RenovationPrint from './renovationPrint';
 import payCharges from './functions/payChargeHandler';
+import { useNavigate } from 'react-router-dom';
 
 const ButtonGroup: FC<{
    isPayed?: boolean;
    charge: TradeCharge | RenovationCharge;
-   setBankPortal: Dispatch<SetStateAction<string>>;
-}> = ({ isPayed, charge, setBankPortal }) => {
+}> = ({ isPayed, charge }) => {
    const [chargeType, setChargeType] = useState<'Trade' | 'Renovation' | null>(
       null,
    );
@@ -36,6 +36,7 @@ const ButtonGroup: FC<{
    const [printBill, setPrintBill] = useState<
       TradePrintBill | RnvPrintBill | null
    >(null);
+   const navigate = useNavigate();
 
    useEffect(() => {
       setChargeType('certificate_number' in charge ? 'Renovation' : 'Trade');
@@ -86,7 +87,7 @@ const ButtonGroup: FC<{
       } else if (chargeType === 'Trade') {
          setSelectedTradeCharge(charge as TradeCharge);
       }
-      // setShowPaymentHistory(charge.is_paid);
+      setShowPaymentHistory(charge.is_paid);
    };
 
    const payButton = !isPayed && {
@@ -95,13 +96,11 @@ const ButtonGroup: FC<{
       alt: 'Pay',
       onClick: async () => {
          getLastBillInfo();
-         if (chargeType === 'Renovation') {
-            payCharges(charge as RenovationCharge, token);
-         } else if (chargeType === 'Trade') {
-            const result = await payCharges(charge as TradeCharge, token);
-            console.log('>>> after result', result);
-            setBankPortal(result);
-         }
+         const result = await payCharges(
+            charge as TradeCharge,
+            token,
+            navigate,
+         );
       },
    };
 

@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import SelectedChargeCard from '../selectedChargeCard';
 import resetChargeStates from '../../../utilities/resetChargeStates';
 import styles from '../index.module.scss';
