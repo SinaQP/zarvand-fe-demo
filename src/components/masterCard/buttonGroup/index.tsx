@@ -96,9 +96,11 @@ const ButtonGroup: FC<{
       icon: payIcon,
       alt: 'Pay',
       onClick: async () => {
-         const startBankProccess = async () => {
+         const startBankProccess = async (charge: any) => {
             const result = await payCharges(charge, token, navigate);
          };
+
+         if (charge.last_bill_info) return await startBankProccess(charge);
 
          if (chargeType === 'Trade') {
             const result = await getSelectedChargeBillDetails(
@@ -107,7 +109,8 @@ const ButtonGroup: FC<{
                chargeType,
                setTradeCharges,
             );
-            charge.last_bill_info && (await startBankProccess());
+            console.log('>>>', result);
+            await startBankProccess(result);
          } else if (chargeType === 'Renovation') {
             const result = await getSelectedChargeBillDetails(
                token,
@@ -115,8 +118,7 @@ const ButtonGroup: FC<{
                chargeType,
                setRenovationCharges,
             );
-            console.log('>>>', charge, result);
-            charge.last_bill_info && (await startBankProccess());
+            await startBankProccess(result);
          }
       },
    };
