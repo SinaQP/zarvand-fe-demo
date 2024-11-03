@@ -34,6 +34,7 @@ export interface PrintBill {
    reward: number;
    postal_code: string;
    bill_code: string;
+   bill_details: BillDetail[];
 }
 export interface RnvChargePdfProps {
    componentRef?: RefObject<HTMLDivElement>;

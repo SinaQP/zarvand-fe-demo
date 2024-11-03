@@ -11,14 +11,23 @@ const SelectedChargeCard: FC<{ isPayed: boolean }> = ({ isPayed }) => {
       useChargesContext();
    useEffect(() => {
       async function fetchBillDetails() {
-         if (selectedTradeCharge && !selectedTradeCharge.last_bill_info) {
+         if (   selectedRenovationCharge &&
+            !selectedRenovationCharge.last_bill_details) {
             const updatedCharge = await getSelectedChargeBillDetails(
                token,
                selectedTradeCharge,
                'Trade',
                setTradeCharges,
             );
-            setSelectedTradeCharge(updatedCharge as TradeCharge);
+            if (
+               selectedTradeCharge &&
+               updatedCharge &&
+               selectedTradeCharge.master_id === updatedCharge.master_id
+            ) {
+               setSelectedTradeCharge(updatedCharge as TradeCharge);
+            } else if (updatedCharge === null) {
+               setSelectedTradeCharge(null);
+            }
          }
       }
       fetchBillDetails();
