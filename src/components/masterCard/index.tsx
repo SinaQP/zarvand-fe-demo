@@ -28,7 +28,7 @@ const MasterCard: FC<Props> = ({
 
          {children}
 
-         {showButtons && <ButtonGroup isPayed={isPayed} charge={master} setBankPortal={null}/>}
+         {showButtons && <ButtonGroup isPayed={isPayed} charge={master} />}
 
          <div className={styles.badge}>{badgeText}</div>
       </div>
