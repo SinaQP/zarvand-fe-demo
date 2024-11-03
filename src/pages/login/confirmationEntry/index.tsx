@@ -24,33 +24,33 @@ const ConfirmationEntry: FC = () => {
    } = useLayoutContext();
    const afterOtpRef = useRef<HTMLButtonElement>(null);
 
-   // useEffect(() => {
-   //    const button = document.getElementById('otpButtonRef');
-   //    if (otpCode.length === 6) button?.click();
-   // });
-
    useEffect(() => {
-      if ('OTPCredential' in window) {
-         const ac = new AbortController();
+      const button = document.getElementById('otpButtonRef');
+      if (otpCode.length === 6) button?.click();
+   });
 
-         navigator.credentials
-            .get({
-               otp: { transport: ['sms'] },
-               signal: ac.signal,
-            } as CredentialRequestOptions)
-            .then((otp: any) => {
-               if (otp?.code) {
-                  const codeArray = otp.code.split('');
-                  setOtpCode(codeArray);
-               } else {
-                  console.log('Failed to retrieve OTP. Please try again.');
-               }
-            })
-            .catch((err) => {
-               console.log(err);
-            });
-      }
-   }, []);
+   // useEffect(() => {
+   //    if ('OTPCredential' in window) {
+   //       const ac = new AbortController();
+
+   //       navigator.credentials
+   //          .get({
+   //             otp: { transport: ['sms'] },
+   //             signal: ac.signal,
+   //          } as CredentialRequestOptions)
+   //          .then((otp: any) => {
+   //             if (otp?.code) {
+   //                const codeArray = otp.code.split('');
+   //                setOtpCode(codeArray);
+   //             } else {
+   //                console.log('Failed to retrieve OTP. Please try again.');
+   //             }
+   //          })
+   //          .catch((err) => {
+   //             console.log(err);
+   //          });
+   //    }
+   // }, []);
 
    useEffect(() => {
       setHeaderId?.(styles['header']);

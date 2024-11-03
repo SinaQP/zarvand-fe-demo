@@ -28,7 +28,10 @@ const Router = createBrowserRouter([
          },
          { path: '/login', element: <Login /> },
          { path: '/payment-status', element: <PaymentStatus /> },
-         { path: '/bank-portal', element: <BankPortal /> },
+         {
+            path: '/bank-portal',
+            element: <PrivateRoute element={<BankPortal />} />,
+         },
       ],
    },
 ]);

@@ -17,7 +17,6 @@ const PaymentStatus = () => {
          preserveAspectRatio: 'xMidYMid slice',
       },
    });
-   console.log('test');
    const { token, setToken } = useUserContext();
    const zarToken = localStorage.getItem('zarToken');
    const navigate = useNavigate();

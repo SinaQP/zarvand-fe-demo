@@ -1,0 +1,9 @@
+@import '/src/assets/scss/all';
+
+#header {
+   @include small-header;
+}
+
+#bank-portal {
+   @include default-layout;
+}
