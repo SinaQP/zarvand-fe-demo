@@ -10,6 +10,7 @@ import Trade from '../pages/trade';
 import Layout from '../components/layout';
 import PrivateRoute from './privateRoute';
 import PaymentStatus from '../pages/paymentStatus';
+import BankPortal from '../pages/bankPortal';
 
 const Router = createBrowserRouter([
    {
@@ -27,6 +28,7 @@ const Router = createBrowserRouter([
          },
          { path: '/login', element: <Login /> },
          { path: '/payment-status', element: <PaymentStatus /> },
+         { path: '/bank-portal', element: <BankPortal /> },
       ],
    },
 ]);

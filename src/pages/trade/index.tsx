@@ -11,16 +11,14 @@ import ChargeCards from './chargeCards';
 const Trade: FC = () => {
    const { setHeaderId, setHeaderSubtitle } = useLayoutContext();
    const { token } = useUserContext();
-   const {
-      setSelectedTradeCharge,
-      tradeCharges,
-      setTradeCharges,
-   } = useChargesContext();
+   const { setSelectedTradeCharge, tradeCharges, setTradeCharges } =
+      useChargesContext();
 
    useEffect(() => {
       setSelectedTradeCharge(null);
-      setHeaderSubtitle("پرداخت عوارض")
-      !tradeCharges.length && getUserTradeMasters(token, setTradeCharges, setSelectedTradeCharge);
+      setHeaderSubtitle('پرداخت عوارض');
+      !tradeCharges.length &&
+         getUserTradeMasters(token, setTradeCharges, setSelectedTradeCharge);
       setHeaderId?.(styles['header']);
    }, [token]);
 

@@ -17,12 +17,14 @@ const PaymentStatus = () => {
          preserveAspectRatio: 'xMidYMid slice',
       },
    });
-   const location = useLocation();
-   const queryParams = new URLSearchParams(location.search);
-   const testVal = queryParams.get('test');
+   console.log('test');
    const { token, setToken } = useUserContext();
    const zarToken = localStorage.getItem('zarToken');
    const navigate = useNavigate();
+
+   const location = useLocation();
+   const queryParams = new URLSearchParams(location.search);
+   const status = queryParams.get('status');
 
    useEffect(() => {
       const refreshUserToken = async () => {
@@ -45,7 +47,7 @@ const PaymentStatus = () => {
 
    return (
       <div id={styles.paymentStatusStyleWrapper}>
-         <PaymentResult status="success" />
+         <PaymentResult status={Number(status) === 0 ? 'fail' : 'success'} />
          <Lottie
             options={defaultOptions(paymentStatusAnimation)}
             speed={1}

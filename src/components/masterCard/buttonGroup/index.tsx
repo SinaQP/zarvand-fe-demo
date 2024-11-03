@@ -23,6 +23,7 @@ import { printChargeHandler } from './functions/printChargeHandler';
 import { useReactToPrint } from 'react-to-print';
 import RenovationPrint from './renovationPrint';
 import payCharges from './functions/payChargeHandler';
+import { useNavigate } from 'react-router-dom';
 
 const ButtonGroup: FC<{
    isPayed?: boolean;
@@ -36,6 +37,7 @@ const ButtonGroup: FC<{
    const [printBill, setPrintBill] = useState<
       TradePrintBill | RnvPrintBill | null
    >(null);
+   const navigate = useNavigate();
 
    useEffect(() => {
       setChargeType('certificate_number' in charge ? 'Renovation' : 'Trade');
