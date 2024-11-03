@@ -1,5 +1,3 @@
-import { Dispatch, SetStateAction } from 'react';
-import { FetchResult } from '../../../../apis/fetch.interface';
 import { postPayCharge } from '../../../../apis/trade/pay-charge';
 import {
    RenovationCharge,
