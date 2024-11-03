@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './index.module.scss';
 import { useChargesContext, useUserContext } from '../../App.context';
 import { getUserTradeMasters } from './functions/getPersonTradeMasters';
@@ -13,18 +13,23 @@ const Trade: FC = () => {
    const { token } = useUserContext();
    const { setSelectedTradeCharge, tradeCharges, setTradeCharges } =
       useChargesContext();
-
+   const [isLoaded, setIsLoaded] = useState(false);
    useEffect(() => {
       setSelectedTradeCharge(null);
       setHeaderSubtitle('پرداخت عوارض');
       !tradeCharges.length &&
-         getUserTradeMasters(token, setTradeCharges, setSelectedTradeCharge);
+         getUserTradeMasters(
+            token,
+            setTradeCharges,
+            setSelectedTradeCharge,
+            setIsLoaded,
+         );
       setHeaderId?.(styles['header']);
    }, [token]);
 
    return (
       <section className={styles.layout}>
-         {tradeCharges.length <= 0 ? (
+         {isLoaded && tradeCharges.length <= 0 ? (
             <NoTradeChargesMessage />
          ) : (
             <ChargeCards tradeCharges={tradeCharges} />

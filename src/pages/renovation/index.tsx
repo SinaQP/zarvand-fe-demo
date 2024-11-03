@@ -1,4 +1,4 @@
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useState } from 'react';
 import styles from './index.module.scss';
 import { getUserRenovationCharges } from './getUserRenovationCharges';
 import NoRenovationChargesMessage from './noRenovationChargeMessage';
@@ -16,7 +16,7 @@ const Renovation: FC = () => {
 
    const { token } = useUserContext();
    const { setHeaderId, setHeaderSubtitle } = useLayoutContext();
-
+   const [isLoaded, setIsLoaded] = useState(false);
    useEffect(() => {
       setHeaderSubtitle('پرداخت عوارض');
       !renovationCharges.length &&
@@ -24,13 +24,14 @@ const Renovation: FC = () => {
             token,
             setRenovationCharges,
             setSelectedRenovationCharge,
+            setIsLoaded,
          );
       setHeaderId?.(styles['header']);
    }, [token]);
 
    return (
       <section className={styles.layout}>
-         {renovationCharges.length <= 0 ? (
+         {isLoaded && renovationCharges.length <= 0 ? (
             <NoRenovationChargesMessage />
          ) : (
             <ChargeCards />

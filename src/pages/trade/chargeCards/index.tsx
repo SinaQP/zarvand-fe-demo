@@ -7,6 +7,7 @@ import { renderInfoCard } from './renderInfoCard';
 import { TradeCharge } from '../../../interfaces/models.interface';
 import { useChargesContext, useUserContext } from '../../../App.context';
 import InfoRow from '../../../components/infoRow';
+import toMoneyFormat from '../../../utilities/toMoneyFormat';
 
 const ChargeCards: FC<{ tradeCharges: TradeCharge[] }> = ({ tradeCharges }) => {
    const {

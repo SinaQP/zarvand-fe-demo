@@ -1,4 +1,5 @@
 import { RefObject } from 'react';
+import { BillDetail } from '../../../interfaces/models.interface';
 export interface GuildJobsDataModel {
    count: number;
    next: string;
@@ -77,4 +78,6 @@ export interface PrintBill {
    total_amount: number;
    total_amount_in_words: string;
    trade_type_name?: string;
+
+   bill_details: BillDetail[];
 }

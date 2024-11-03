@@ -7,15 +7,18 @@ export const getUserTradeMasters = async (
    token: string,
    setState: Dispatch<SetStateAction<TradeCharge[]>>,
    setSelectedTradeCharge: Dispatch<SetStateAction<TradeCharge | null>>,
+   setIsLoaded: Dispatch<SetStateAction<boolean>>,
 ) => {
    const response = await getPersonTradeMasters(token);
    const responseBody = response.body;
    if (response.status === 200) {
       setState(responseBody);
       if (responseBody.length === 1) setSelectedTradeCharge(responseBody[0]);
+      setIsLoaded(true);
       return responseBody;
    } else {
       toast.error(responseBody.message);
    }
+   setIsLoaded(true);
    return [];
 };
