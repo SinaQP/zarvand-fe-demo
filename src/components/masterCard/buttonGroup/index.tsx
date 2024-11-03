@@ -24,6 +24,7 @@ import { useReactToPrint } from 'react-to-print';
 import RenovationPrint from './renovationPrint';
 import payCharges from './functions/payChargeHandler';
 import { useNavigate } from 'react-router-dom';
+import getSelectedChargeBillDetails from '../../../utilities/getSelectedChargeBillDetails';
 
 const ButtonGroup: FC<{
    isPayed?: boolean;
@@ -95,12 +96,30 @@ const ButtonGroup: FC<{
       icon: payIcon,
       alt: 'Pay',
       onClick: async () => {
-         getLastBillInfo();
-         const result = await payCharges(
-            charge as TradeCharge,
-            token,
-            navigate,
-         );
+         const startBankProccess = async (charge: any) => {
+            const result = await payCharges(charge, token, navigate);
+         };
+
+         if (charge.last_bill_info) return await startBankProccess(charge);
+
+         if (chargeType === 'Trade') {
+            const result = await getSelectedChargeBillDetails(
+               token,
+               charge,
+               chargeType,
+               setTradeCharges,
+            );
+            console.log('>>>', result);
+            await startBankProccess(result);
+         } else if (chargeType === 'Renovation') {
+            const result = await getSelectedChargeBillDetails(
+               token,
+               charge,
+               chargeType,
+               setRenovationCharges,
+            );
+            await startBankProccess(result);
+         }
       },
    };
 
