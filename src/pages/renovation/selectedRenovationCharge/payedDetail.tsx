@@ -41,7 +41,7 @@ const PayedDetails: FC = () => {
                showButtons={isMobile}
             >
                <div className={styles['master-card__body']}>
-                  <CertificationNumberCard charge={selectedRenovationCharge} >
+                  <CertificationNumberCard charge={selectedRenovationCharge}>
                      {!isMobile && (
                         <>
                            <InfoRow
@@ -54,10 +54,7 @@ const PayedDetails: FC = () => {
                               value={`${selectedRenovationCharge.land_area} متر مربع`}
                               className={styles['master-card__info-row']}
                            />
-                           <ButtonGroup
-                              charge={selectedRenovationCharge}
-                              setBankPortal={null}
-                           />
+                           <ButtonGroup charge={selectedRenovationCharge} />
                         </>
                      )}
                   </CertificationNumberCard>

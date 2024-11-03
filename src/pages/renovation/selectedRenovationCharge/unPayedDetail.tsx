@@ -64,11 +64,8 @@ const UnPayedDetails: FC = () => {
                <CertificationNumberCard charge={selectedRenovationCharge}>
                   {desktopBillInfo}
                   {isDesktop && (
-                  <ButtonGroup
-                     charge={selectedRenovationCharge}
-                     setBankPortal={null}
-                  />
-               )}
+                     <ButtonGroup charge={selectedRenovationCharge} />
+                  )}
                </CertificationNumberCard>
 
                <AnnualChargeTable
@@ -81,7 +78,6 @@ const UnPayedDetails: FC = () => {
                />
 
                <BillInfo className={styles['bill-info']} />
-            
             </div>
          </MasterCard>
       </div>

@@ -56,7 +56,9 @@ const PayedDetails: FC = () => {
                            className={styles['master-card__info-row']}
                         />
                      )}
-                     {!isMobile && <ButtonGroup charge={selectedTradeCharge} isPayed setBankPortal={null}/>}
+                     {!isMobile && (
+                        <ButtonGroup charge={selectedTradeCharge} isPayed />
+                     )}
                   </InfoCard>
                   {isMobile && (
                      <InfoRow

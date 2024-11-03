@@ -53,12 +53,7 @@ const UnPayedDetails: FC = () => {
                >
                   {selectedTradeCharge.TradeType}
                   {desktopBillInfo}
-                  {!isMobile && (
-                     <ButtonGroup
-                        charge={selectedTradeCharge}
-                        setBankPortal={null}
-                     />
-                  )}
+                  {!isMobile && <ButtonGroup charge={selectedTradeCharge} />}
                </InfoCard>
 
                <AnnualChargeTable
