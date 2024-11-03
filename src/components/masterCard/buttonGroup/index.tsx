@@ -98,10 +98,9 @@ const ButtonGroup: FC<{
       onClick: async () => {
          getLastBillInfo();
          if (chargeType === 'Renovation') {
-            payCharges(charge as RenovationCharge, token);
+            payCharges(charge as RenovationCharge, token, navigate);
          } else if (chargeType === 'Trade') {
-            const result = await payCharges(charge as TradeCharge, token);
-            console.log('>>> after result', result);
+            const result = await payCharges(charge as TradeCharge, token, navigate);
             setBankPortal && setBankPortal(result);
          }
       },
