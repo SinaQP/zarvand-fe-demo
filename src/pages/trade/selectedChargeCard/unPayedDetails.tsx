@@ -9,9 +9,11 @@ import AnnualChargeTable from '../../../components/annualChargeTable';
 import BillInfo from './billInfo';
 import { useChargesContext, useUserContext } from '../../../App.context';
 import useWindowWidth from '../../../hooks/useWindowWidth';
+import ButtonGroup from '../../../components/masterCard/buttonGroup';
 
 const UnPayedDetails: FC = () => {
    const desktopBillInfo = useWindowWidth(<BillInfo />, null);
+   const isMobile = useWindowWidth(false, true);
    const {
       selectedTradeCharge,
       setSelectedTradeCharge,
@@ -40,6 +42,7 @@ const UnPayedDetails: FC = () => {
             master={selectedTradeCharge}
             className={styles['master-card']}
             addressSectionClassName={styles['address-section']}
+            showButtons={false}
          >
             <div className={styles['master-card__body']}>
                <InfoCard
@@ -50,6 +53,12 @@ const UnPayedDetails: FC = () => {
                >
                   {selectedTradeCharge.TradeType}
                   {desktopBillInfo}
+                  {!isMobile && (
+                     <ButtonGroup
+                        charge={selectedTradeCharge}
+                        setBankPortal={null}
+                     />
+                  )}
                </InfoCard>
 
                <AnnualChargeTable
