@@ -19,19 +19,28 @@ const UnPayedDetails: FC = () => {
       setSelectedTradeCharge,
       setSelectedRenovationCharge,
    } = useChargesContext();
-   const { setShowPaymentHistory } = useUserContext();
+   const { setShowPaymentHistory, showPaymentHistory } = useUserContext();
 
    return selectedTradeCharge ? (
       <div className={styles.unPayedDetails}>
          <BackArrow
             className={styles['back-arrow']}
-            onClick={() =>
-               resetChargeStates(
-                  setSelectedTradeCharge,
-                  setSelectedRenovationCharge,
-                  setShowPaymentHistory,
-               )
-            }
+            onClick={() => {
+               if (
+                  !selectedTradeCharge.is_paid &&
+                  selectedTradeCharge &&
+                  selectedTradeCharge.last_bill_info &&
+                  showPaymentHistory
+               ) {
+                  setShowPaymentHistory(false);
+               } else {
+                  resetChargeStates(
+                     setSelectedTradeCharge,
+                     setSelectedRenovationCharge,
+                     setShowPaymentHistory,
+                  );
+               }
+            }}
             status={'pending'}
             pageTitle="کسب و پیشه"
          />

@@ -49,6 +49,7 @@ export interface BillDetail {
    bill_code: string | null;
    bill_id: number;
    payment_date: string;
+   type_id: number;
 }
 
 export interface Bill {

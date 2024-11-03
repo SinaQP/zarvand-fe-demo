@@ -32,6 +32,8 @@ const SelectedRenovationCharge: FC<{ isPayed: boolean }> = ({ isPayed }) => {
                selectedRenovationCharge.master_id === updatedCharge.master_id
             ) {
                setSelectedRenovationCharge(updatedCharge as RenovationCharge);
+            } else if (updatedCharge === null) {
+               setSelectedRenovationCharge(null);
             }
          }
       }

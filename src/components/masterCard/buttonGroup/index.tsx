@@ -158,7 +158,11 @@ const ButtonGroup: FC<{
             isPrinting={isPrinting}
             printBill={printBill as TradePrintBill}
             printChargeBillDetails={
-               charge.is_paid ? charge.bills : charge.last_bill_details
+               charge.is_paid
+                  ? printBill?.bill_details
+                     ? printBill.bill_details
+                     : []
+                  : charge.last_bill_details
             }
             componentRef={componentRef}
          />
@@ -169,7 +173,11 @@ const ButtonGroup: FC<{
             isPrinting={isPrinting}
             printBill={printBill as RnvPrintBill}
             printChargeBillDetails={
-               charge.is_paid ? charge.bills : charge.last_bill_details
+               charge.is_paid
+                  ? printBill?.bill_details
+                     ? printBill.bill_details.filter((bd) => bd.type_id == 81)
+                     : []
+                  : charge.last_bill_details
             }
          />
       </div>
