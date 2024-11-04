@@ -23,6 +23,7 @@ const OtpInput: FC<Props> = ({
          .then((otp: any) => {
             alert(`got otp from client===>${otp.code}`);
             setOtp([...otp.code]);
+            setValue([...otp.code])
          })
          .catch((err) => {
             alert(`err: ${err}`);

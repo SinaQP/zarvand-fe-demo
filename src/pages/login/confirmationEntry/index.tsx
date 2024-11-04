@@ -25,10 +25,10 @@ const ConfirmationEntry: FC = () => {
    } = useLayoutContext();
    const afterOtpRef = useRef<HTMLButtonElement>(null);
 
-   // useEffect(() => {
-   //    const button = document.getElementById('otpButtonRef');
-   //    if (otpCode.length === 6) button?.click();
-   // });
+   useEffect(() => {
+      const button = document.getElementById('otpButtonRef');
+      if (otpCode.length === 6) button?.click();
+   });
 
    useEffect(() => {
       setHeaderId?.(styles['header']);
