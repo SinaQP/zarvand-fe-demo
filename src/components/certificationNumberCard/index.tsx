@@ -14,15 +14,15 @@ const CertificationNumberCard: FC<{
    ): string[] => {
       let result: string[] = [];
       let startIndex = 0;
-
       lengths.forEach((length) => {
          result.push(str.substr(startIndex, length));
          startIndex += length;
       });
 
+      result = result.reverse();
       return result;
    };
-   const segmentLengths = [3, 4, 7, 2, 3];
+   const segmentLengths = [3, 2, 7, 4, 3];
    const { showPaymentHistory } = useUserContext();
    return (
       <InfoCard
