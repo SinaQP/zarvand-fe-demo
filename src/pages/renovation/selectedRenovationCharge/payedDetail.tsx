@@ -77,14 +77,6 @@ const PayedDetails: FC = () => {
                         selectedRenovationCharge.bills.map((bill) => (
                            <PaidBillCard Bill={bill} />
                         ))}
-                     {selectedRenovationCharge.bills &&
-                        selectedRenovationCharge.bills.map((bill) => (
-                           <PaidBillCard Bill={bill} />
-                        ))}
-                     {selectedRenovationCharge.bills &&
-                        selectedRenovationCharge.bills.map((bill) => (
-                           <PaidBillCard Bill={bill} />
-                        ))}
                   </div>
                </div>
             </MasterCard>

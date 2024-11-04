@@ -25,19 +25,28 @@ const TrdChargePdf: FC<PrintProps> = ({
             ref={componentRef}
          >
             <section className={styles['municipality']}>
-               <div className={styles['top-header']}>
-                  <h2
-                     className={`${styles['minWidth']} ${styles['centeredText']}`}
-                  >
-                     شهرداری {printBill?.city}
-                  </h2>
-               </div>
-               <div className={styles['top-header']}>
-                  <p
-                     className={`${styles['minWidth']} ${styles['centeredText']} ${styles['bold']}`}
-                  >
-                     عوارض کسب و پیشه
-                  </p>
+               <div
+                  className={styles['title-date-container']}
+               >
+                  <div className={styles['top-header-container']}>
+                     <div className={styles['top-header']}>
+                        <h2
+                           className={`${styles['minWidth']} ${styles['centeredText']}`}
+                        >
+                           شهرداری {printBill?.city}
+                        </h2>
+                     </div>
+                     <div className={styles['top-header']}>
+                        <p
+                           className={`${styles['minWidth']} ${styles['centeredText']} ${styles['bold']}`}
+                        >
+                           عوارض کسب و پیشه
+                        </p>
+                     </div>
+                  </div>
+                  <div style={{ position: 'absolute', left: '0' }}>
+                     تاریخ صدور 1400/10/10
+                  </div>
                </div>
                <table className={styles['mainTable']}>
                   <tr>
@@ -229,6 +238,9 @@ const TrdChargePdf: FC<PrintProps> = ({
                      </tr>
                   ) : null}
                </table>
+               <h3 style={{ textAlign: 'center', marginTop: '1rem' }}>
+                  مهلت پرداخت این قبض، از زمان صدور یک ماه می باشد
+               </h3>
             </section>
          </div>
       </div>
