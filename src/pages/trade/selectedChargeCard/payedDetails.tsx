@@ -17,7 +17,7 @@ const PayedDetails: FC = () => {
       setSelectedTradeCharge,
       setSelectedRenovationCharge,
    } = useChargesContext();
-   const { setShowPaymentHistory } = useUserContext();
+   const { setShowPaymentHistory, showPaymentHistory } = useUserContext();
    const isMobile = useWindowWidth(false, true);
    return selectedTradeCharge ? (
       <div className={styles['container']}>
@@ -56,7 +56,7 @@ const PayedDetails: FC = () => {
                            className={styles['master-card__info-row']}
                         />
                      )}
-                     {!isMobile && (
+                     {!isMobile && !showPaymentHistory && (
                         <ButtonGroup charge={selectedTradeCharge} isPayed />
                      )}
                   </InfoCard>

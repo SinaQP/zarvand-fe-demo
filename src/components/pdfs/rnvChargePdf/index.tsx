@@ -30,10 +30,18 @@ const RnvChargePdf: FC<RnvChargePdfProps> = ({
                         </h2>
                      </div>
                      <div className={styles['top-header']}>
-                        <p
-                           className={`${styles['minWidth']} ${styles['centeredText']} ${styles['bold']}`}
-                        >
-                           عوارض نوسازی
+                        <p style={{ fontWeight: 'bold' }}>
+                           عوارض نوسازی(از سال{' '}
+                           {convertNumberToPersian(
+                              data?.bill_details[0].from_year?.toString() || '',
+                           )}{' '}
+                           تا سال{' '}
+                           {convertNumberToPersian(
+                              data?.bill_details[
+                                 data?.bill_details.length - 1
+                              ].to_year?.toString() || '',
+                           )}
+                           )
                         </p>
                      </div>
                   </div>
