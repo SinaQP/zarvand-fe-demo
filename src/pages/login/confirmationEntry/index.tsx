@@ -38,8 +38,8 @@ const ConfirmationEntry: FC = () => {
          } as CredentialRequestOptions)
          .then((otp:any) => {
             alert(`got otp from client===>${otp.code}`);
-            setOtpCode(otp.code) 
-            
+            setOtpCode([...otp.code]) 
+
          })
          .catch((err) => {
             alert(`err: ${err}`);
@@ -60,11 +60,9 @@ const ConfirmationEntry: FC = () => {
          {!isMobile && (
             <span className={styles['confirmation-entry__title']}>
                سامانه هوشمند شهروندی
-               {otpCode}
             </span>
          )}
          <form className={styles.form}>
-            {consoles}
             <span>
                لطفا کد ارسال شده به شماره
                {` ${maskedPhoneNumber.slice(8)}****${maskedPhoneNumber.slice(
@@ -81,7 +79,6 @@ const ConfirmationEntry: FC = () => {
                otpClassName={styles['otp-input']}
                inputsClassName={styles.input}
             />
-            {consoles}
             <Button
                className={styles['submit-button']}
                haveLoading
@@ -105,7 +102,6 @@ const ConfirmationEntry: FC = () => {
             >
                ورود
             </Button>
-            {consoles}
          </form>
       </div>
    );
