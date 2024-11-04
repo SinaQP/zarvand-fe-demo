@@ -66,10 +66,12 @@ const Home: FC = () => {
       <section id={'home-main'}>
          <div id="container">
             <div className={'welcome-text-container'}>
-               <span className="welcome-text">
-                  {user?.name || 'کاربر'} عزیز ! خوش آمدید. امیدواریم تجربه‌ای
-                  سریع و آسان در مدیریت عوارض شهری داشته باشید.
-               </span>
+               <div className='welcome-text__body'>
+                  <span className="welcome-text">
+                     {user?.name || 'کاربر'} عزیز ! خوش آمدید. امیدواریم
+                     تجربه‌ای سریع و آسان در مدیریت عوارض شهری داشته باشید.
+                  </span>
+               </div>
 
                <span className="date">{formattedDate}</span>
             </div>
