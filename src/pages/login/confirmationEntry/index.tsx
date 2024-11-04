@@ -37,7 +37,8 @@ const ConfirmationEntry: FC = () => {
             signal: ac.signal,
          } as CredentialRequestOptions)
          .then((otp) => {
-            alert(`got otp from client===>${otp}`);
+            alert(`got otp from client===>${otp?.id}`);
+            setConsole(otp ? otp?.type.toString(): "")
          })
          .catch((err) => {
             alert(`err: ${err}`);
@@ -45,7 +46,6 @@ const ConfirmationEntry: FC = () => {
    };
    useEffect(() => {
       if ('OTPCredential' in window) {
-         setConsole("N")
          handleOtpRetrieval()
       }
    }, []);
