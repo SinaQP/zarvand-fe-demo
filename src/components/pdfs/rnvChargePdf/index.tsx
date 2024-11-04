@@ -20,23 +20,26 @@ const RnvChargePdf: FC<RnvChargePdfProps> = ({
             ref={componentRef}
          >
             <section className={styles['municipality']}>
-               <div className={styles['top-header']}>
-                  <h2>شهرداری {printBill?.city}</h2>
-               </div>
-               <div className={styles['top-header']}>
-                  <p style={{ fontWeight: 'bold' }}>
-                     عوارض نوسازی(از سال{' '}
-                     {convertNumberToPersian(
-                        data?.bill_details[0].from_year?.toString() || '',
-                     )}{' '}
-                     تا سال{' '}
-                     {convertNumberToPersian(
-                        data?.bill_details[
-                           data?.bill_details.length - 1
-                        ].to_year?.toString() || '',
-                     )}
-                     )
-                  </p>
+            <div className={styles['title-date-container']}>
+                  <div className={styles['top-header-container']}>
+                     <div className={styles['top-header']}>
+                        <h2
+                           className={`${styles['minWidth']} ${styles['centeredText']}`}
+                        >
+                           شهرداری {printBill?.city}
+                        </h2>
+                     </div>
+                     <div className={styles['top-header']}>
+                        <p
+                           className={`${styles['minWidth']} ${styles['centeredText']} ${styles['bold']}`}
+                        >
+                           عوارض کسب و پیشه
+                        </p>
+                     </div>
+                  </div>
+                  <div style={{ position: 'absolute', left: '0' }}>
+                     تاریخ صدور {printBill?.issue_date.replaceAll('-', '/')}
+                  </div>
                </div>
                <table className={styles['mainTable']}>
                   <tr>
