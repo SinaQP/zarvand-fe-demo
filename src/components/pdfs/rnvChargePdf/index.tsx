@@ -20,7 +20,7 @@ const RnvChargePdf: FC<RnvChargePdfProps> = ({
             ref={componentRef}
          >
             <section className={styles['municipality']}>
-            <div className={styles['title-date-container']}>
+               <div className={styles['title-date-container']}>
                   <div className={styles['top-header-container']}>
                      <div className={styles['top-header']}>
                         <h2
@@ -33,7 +33,7 @@ const RnvChargePdf: FC<RnvChargePdfProps> = ({
                         <p
                            className={`${styles['minWidth']} ${styles['centeredText']} ${styles['bold']}`}
                         >
-                           عوارض کسب و پیشه
+                           عوارض نوسازی
                         </p>
                      </div>
                   </div>
@@ -62,7 +62,9 @@ const RnvChargePdf: FC<RnvChargePdfProps> = ({
                            <p>
                               کدپستی :{' '}
                               {convertNumberToPersian(
-                                 printBill?.postal_code ? printBill?.postal_code : '',
+                                 printBill?.postal_code
+                                    ? printBill?.postal_code
+                                    : '',
                               )}
                            </p>
                         </div>
@@ -412,6 +414,9 @@ const RnvChargePdf: FC<RnvChargePdfProps> = ({
                      )} */}
                   </p>
                </div>
+               <h3 style={{ textAlign: 'center', marginTop: '1rem' }}>
+                  مهلت پرداخت این قبض، از زمان صدور یک ماه می باشد
+               </h3>
             </section>
          </div>
       </div>
