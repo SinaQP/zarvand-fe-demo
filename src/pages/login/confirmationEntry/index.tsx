@@ -38,7 +38,8 @@ const ConfirmationEntry: FC = () => {
          } as CredentialRequestOptions)
          .then((otp:any) => {
             alert(`got otp from client===>${otp.code}`);
-            setOtpCode(otp.code)
+            setOtpCode(otp.code) 
+            
          })
          .catch((err) => {
             alert(`err: ${err}`);
