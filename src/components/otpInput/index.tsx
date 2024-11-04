@@ -36,6 +36,9 @@ const OtpInput: FC<Props> = ({
    useEffect(() => {
       inputRefs.current[0]?.focus();
    }, []);
+   useEffect(() => {
+      setOtp(value)
+   }, [value])
    return (
       <div className={`${otpClassName} otp-container `}>
          {otp.map((data, index) => (
