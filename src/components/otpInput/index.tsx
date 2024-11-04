@@ -21,7 +21,6 @@ const OtpInput: FC<Props> = ({
             signal: ac.signal,
          } as CredentialRequestOptions)
          .then((otp: any) => {
-            alert(`got otp from client===>${otp.code}`);
             setOtp([...otp.code]);
             setValue([...otp.code])
          })

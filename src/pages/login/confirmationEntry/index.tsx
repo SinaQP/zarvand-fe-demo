@@ -12,7 +12,6 @@ const ConfirmationEntry: FC = () => {
    const navigate = useNavigate();
    const isMobile = useWindowWidth(false, true);
    const [otpCode, setOtpCode] = useState<string[]>([]);
-   const [consoles, setConsole] = useState('');
    const { setUser, setToken } = useUserContext();
    const {
       maskedPhoneNumber,
@@ -50,7 +49,6 @@ const ConfirmationEntry: FC = () => {
                )}`}
                را وارد نمایید
             </span>
-            {otpCode}
             <OtpInput
                isOtp={isMobile}
                numberOfInputs={6}
