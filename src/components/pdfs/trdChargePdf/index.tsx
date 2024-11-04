@@ -25,9 +25,7 @@ const TrdChargePdf: FC<PrintProps> = ({
             ref={componentRef}
          >
             <section className={styles['municipality']}>
-               <div
-                  className={styles['title-date-container']}
-               >
+               <div className={styles['title-date-container']}>
                   <div className={styles['top-header-container']}>
                      <div className={styles['top-header']}>
                         <h2
@@ -45,7 +43,7 @@ const TrdChargePdf: FC<PrintProps> = ({
                      </div>
                   </div>
                   <div style={{ position: 'absolute', left: '0' }}>
-                     تاریخ صدور 1400/10/10
+                     تاریخ صدور {printBill?.issue_date.replaceAll('-', '/')}
                   </div>
                </div>
                <table className={styles['mainTable']}>
