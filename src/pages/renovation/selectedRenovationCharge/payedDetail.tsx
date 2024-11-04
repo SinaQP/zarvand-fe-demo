@@ -16,7 +16,7 @@ const PayedDetails: FC = () => {
       setSelectedRenovationCharge,
       selectedRenovationCharge,
    } = useChargesContext();
-   const { setShowPaymentHistory } = useUserContext();
+   const { setShowPaymentHistory, showPaymentHistory } = useUserContext();
    const isMobile = useWindowWidth(false, true);
    return selectedRenovationCharge ? (
       <div className={styles['container']}>
@@ -54,7 +54,9 @@ const PayedDetails: FC = () => {
                               value={`${selectedRenovationCharge.land_area} متر مربع`}
                               className={styles['master-card__info-row']}
                            />
-                           <ButtonGroup charge={selectedRenovationCharge} />
+                           {!showPaymentHistory && (
+                              <ButtonGroup charge={selectedRenovationCharge} />
+                           )}
                         </>
                      )}
                   </CertificationNumberCard>

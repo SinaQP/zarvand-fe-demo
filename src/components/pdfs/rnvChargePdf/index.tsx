@@ -20,7 +20,7 @@ const RnvChargePdf: FC<RnvChargePdfProps> = ({
             ref={componentRef}
          >
             <section className={styles['municipality']}>
-            <div className={styles['title-date-container']}>
+               <div className={styles['title-date-container']}>
                   <div className={styles['top-header-container']}>
                      <div className={styles['top-header']}>
                         <h2
@@ -30,10 +30,18 @@ const RnvChargePdf: FC<RnvChargePdfProps> = ({
                         </h2>
                      </div>
                      <div className={styles['top-header']}>
-                        <p
-                           className={`${styles['minWidth']} ${styles['centeredText']} ${styles['bold']}`}
-                        >
-                           عوارض کسب و پیشه
+                        <p style={{ fontWeight: 'bold' }}>
+                           عوارض نوسازی(از سال{' '}
+                           {convertNumberToPersian(
+                              data?.bill_details[0].from_year?.toString() || '',
+                           )}{' '}
+                           تا سال{' '}
+                           {convertNumberToPersian(
+                              data?.bill_details[
+                                 data?.bill_details.length - 1
+                              ].to_year?.toString() || '',
+                           )}
+                           )
                         </p>
                      </div>
                   </div>
@@ -62,7 +70,9 @@ const RnvChargePdf: FC<RnvChargePdfProps> = ({
                            <p>
                               کدپستی :{' '}
                               {convertNumberToPersian(
-                                 printBill?.postal_code ? printBill?.postal_code : '',
+                                 printBill?.postal_code
+                                    ? printBill?.postal_code
+                                    : '',
                               )}
                            </p>
                         </div>
@@ -412,6 +422,9 @@ const RnvChargePdf: FC<RnvChargePdfProps> = ({
                      )} */}
                   </p>
                </div>
+               <h3 style={{ textAlign: 'center', marginTop: '1rem' }}>
+                  مهلت پرداخت این قبض، از زمان صدور یک ماه می باشد
+               </h3>
             </section>
          </div>
       </div>
