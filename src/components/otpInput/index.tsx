@@ -9,10 +9,30 @@ const OtpInput: FC<Props> = ({
    value,
    setValue,
    otpClassName,
+   isOtp = false,
 }) => {
    const [otp, setOtp] = useState(new Array(numberOfInputs).fill(''));
    const inputRefs = useRef<HTMLInputElement[]>([]);
-
+   const handleOtpRetrieval = () => {
+      const ac = new AbortController();
+      navigator.credentials
+         .get({
+            otp: { transport: ['sms'] },
+            signal: ac.signal,
+         } as CredentialRequestOptions)
+         .then((otp: any) => {
+            alert(`got otp from client===>${otp.code}`);
+            setOtp([...otp.code]);
+         })
+         .catch((err) => {
+            alert(`err: ${err}`);
+         });
+   };
+   useEffect(() => {
+      if ('OTPCredential' in window && isOtp) {
+         handleOtpRetrieval();
+      }
+   }, []);
    const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
       const pasteData = e.clipboardData.getData('text');
       const newOtp = [...otp];
@@ -36,9 +56,7 @@ const OtpInput: FC<Props> = ({
    useEffect(() => {
       inputRefs.current[0]?.focus();
    }, []);
-   useEffect(() => {
-      setOtp(value)
-   }, [value])
+
    return (
       <div className={`${otpClassName} otp-container `}>
          {otp.map((data, index) => (

@@ -6,4 +6,5 @@ export interface Props {
    numberOfInputs: number;
    value: any[];
    setValue: Dispatch<SetStateAction<any[]>>;
+   isOtp?: boolean;
 }

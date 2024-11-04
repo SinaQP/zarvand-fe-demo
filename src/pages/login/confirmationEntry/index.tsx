@@ -29,27 +29,6 @@ const ConfirmationEntry: FC = () => {
    //    const button = document.getElementById('otpButtonRef');
    //    if (otpCode.length === 6) button?.click();
    // });
-   const handleOtpRetrieval = () => {
-      const ac = new AbortController();
-      navigator.credentials
-         .get({
-            otp: { transport: ['sms'] },
-            signal: ac.signal,
-         } as CredentialRequestOptions)
-         .then((otp:any) => {
-            alert(`got otp from client===>${otp.code}`);
-            setOtpCode([...otp.code]) 
-
-         })
-         .catch((err) => {
-            alert(`err: ${err}`);
-         });
-   };
-   useEffect(() => {
-      if ('OTPCredential' in window) {
-         handleOtpRetrieval()
-      }
-   }, []);
 
    useEffect(() => {
       setHeaderId?.(styles['header']);
@@ -73,6 +52,7 @@ const ConfirmationEntry: FC = () => {
             </span>
             {otpCode}
             <OtpInput
+               isOtp={isMobile}
                numberOfInputs={6}
                value={otpCode}
                setValue={setOtpCode}
