@@ -36,9 +36,9 @@ const ConfirmationEntry: FC = () => {
             otp: { transport: ['sms'] },
             signal: ac.signal,
          } as CredentialRequestOptions)
-         .then((otp) => {
-            alert(`got otp from client===>${otp?.id}`);
-            setConsole(otp ? otp?.type.toString(): "")
+         .then((otp:any) => {
+            alert(`got otp from client===>${otp?.code}`);
+            setConsole(otp ? otp?.code.toString(): "")
          })
          .catch((err) => {
             alert(`err: ${err}`);
