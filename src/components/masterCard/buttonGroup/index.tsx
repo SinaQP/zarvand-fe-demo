@@ -196,7 +196,9 @@ const ButtonGroup: FC<{
                   ? printBill?.bill_details
                      ? printBill.bill_details.filter((bd) => bd.type_id == 81)
                      : []
-                  : charge.last_bill_details
+                  : charge.last_bill_details && charge.last_bill_details.length
+                  ? charge.last_bill_details.filter((bd) => bd.type_id == 81)
+                  : []
             }
          />
       </div>
