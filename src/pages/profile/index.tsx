@@ -19,16 +19,20 @@ const Profile: FC = () => {
    const handleExit = () => {
       setToken('');
       navigate('/login');
+      location.reload();
    };
+
    useEffect(() => {
       setHeaderSubtitle('');
    }, []);
+
    return (
       <div id="profileStyleWrapper">
          <div id="pfp">
             <img src={pfpIcon} alt="profile picture icon" id="pfpImage" />
             <span id="username">{user?.name || 'نام کاربری'}</span>
          </div>
+
          <div id="dataSection">
             {userAgent === 'android' ? (
                <ProfileAndroid user={user} />
@@ -38,7 +42,7 @@ const Profile: FC = () => {
          </div>
 
          <Button>
-            <div className="buttons" onClick={handleExit}>
+            <div id="buttons" onClick={handleExit}>
                <span>خروج</span>
                <img src={exitIcon} alt="exit icon" />
             </div>
