@@ -5,6 +5,7 @@ import whiteXIcon from '/src/assets/images/whiteXIcon.svg';
 import playPauseIcon from '/src/assets/images/playPauseIcon.svg';
 import Button from '../../../../components/button';
 import styles from './PaymentResult.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 const PaymentResult: FC<PaymentResultProps> = ({ status }) => {
    const isSuccessful = status === 'success';
@@ -12,6 +13,11 @@ const PaymentResult: FC<PaymentResultProps> = ({ status }) => {
       ? 'با موفقیت پرداخت انجام شد'
       : 'پرداخت موفقیت آمیز نبود';
    const subTitle = 'برای ادامه روی دکمه زیر کلید نمایید';
+   const navigate = useNavigate();
+
+   const handleRedirectToHomeScreen = () => {
+      navigate('/');
+   };
 
    return (
       <div
@@ -28,7 +34,10 @@ const PaymentResult: FC<PaymentResultProps> = ({ status }) => {
          <span id={styles.title}>{title}</span>
          <span id={styles.subTitle}>{subTitle}</span>
 
-         <Button className={styles.continueBtn}>
+         <Button
+            className={styles.continueBtn}
+            onClick={handleRedirectToHomeScreen}
+         >
             <div className={styles.content}>
                <span>ادامه</span>
                <img src={playPauseIcon} alt="exit to main page Icon" />

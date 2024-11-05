@@ -18,7 +18,7 @@ const PaymentStatus = () => {
       },
    });
    const { token, setToken } = useUserContext();
-   const zarToken = localStorage.getItem('zarToken');
+   const zarToken = sessionStorage.getItem('zarToken');
    const navigate = useNavigate();
 
    const location = useLocation();
@@ -37,7 +37,7 @@ const PaymentStatus = () => {
          } else {
             setToken('');
             navigate('/login');
-            localStorage.removeItem('zarToken');
+            sessionStorage.removeItem('zarToken');
          }
       };
 
