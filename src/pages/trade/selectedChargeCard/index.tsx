@@ -11,8 +11,7 @@ const SelectedChargeCard: FC<{ isPayed: boolean }> = ({ isPayed }) => {
       useChargesContext();
    useEffect(() => {
       async function fetchBillDetails() {
-         if (   selectedTradeCharge &&
-            !selectedTradeCharge.last_bill_details) {
+         if (selectedTradeCharge && !selectedTradeCharge.last_bill_details) {
             const updatedCharge = await getSelectedChargeBillDetails(
                token,
                selectedTradeCharge,
@@ -31,8 +30,8 @@ const SelectedChargeCard: FC<{ isPayed: boolean }> = ({ isPayed }) => {
          }
       }
       fetchBillDetails();
-   }, [selectedTradeCharge]);
-   
+   }, [selectedTradeCharge?.master_id]);
+
    return isPayed ? <PayedDetails /> : <UnPayedDetails />;
 };
 

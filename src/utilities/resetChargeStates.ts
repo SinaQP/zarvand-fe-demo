@@ -6,15 +6,15 @@ import {
    TradeCharge,
 } from '../interfaces/models.interface';
 
-const resetChargeStates = (
+const resetChargeStates = async (
    setSelectedTradeCharge: Dispatch<SetStateAction<TradeCharge | null>>,
    setSelectedRenovationCharge: Dispatch<
       SetStateAction<RenovationCharge | null>
    >,
    setShowPaymentHistory: Dispatch<SetStateAction<boolean>>,
 ) => {
-   setSelectedTradeCharge(null);
-   setSelectedRenovationCharge(null);
-   setShowPaymentHistory(false);
+   await setSelectedTradeCharge(null);
+   await setSelectedRenovationCharge(null);
+   await setShowPaymentHistory(false);
 };
 export default resetChargeStates;

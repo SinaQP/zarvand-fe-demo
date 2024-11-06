@@ -18,12 +18,10 @@ const ChargeCards: FC = () => {
    } = useChargesContext();
    return (
       <>
-         {/* <StatusTab
-            statuses={[]}
-            title="ملک‌های زیر در سیستم برای شما ثبت شده است"
-         /> */}
          {selectedRenovationCharge ? (
-            <SelectedRenovationCharge isPayed={showPaymentHistory} />
+            <SelectedRenovationCharge
+               isPayed={selectedRenovationCharge.is_paid || showPaymentHistory}
+            />
          ) : (
             (() => {
                resetChargeStates(
@@ -31,6 +29,7 @@ const ChargeCards: FC = () => {
                   setSelectedRenovationCharge,
                   setShowPaymentHistory,
                );
+
                return renovationCharges.map((charge) => (
                   <MasterCard
                      master={charge}

@@ -58,7 +58,6 @@ const UnPayedDetails: FC = () => {
             key={selectedRenovationCharge.master_id}
             className={styles['master-card']}
             addressSectionClassName={styles['address-section']}
-            showButtons={false}
          >
             <div className={styles['master-card__body']}>
                <CertificationNumberCard charge={selectedRenovationCharge}>

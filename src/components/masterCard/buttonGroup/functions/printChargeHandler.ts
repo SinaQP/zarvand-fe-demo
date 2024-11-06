@@ -37,12 +37,13 @@ export const printChargeHandler = async ({
    if (charge && !printBill) {
       if (chargeType === 'Trade') {
          if (!charge.last_bill_info) {
-            await getSelectedChargeBillDetails(
+            const result = await getSelectedChargeBillDetails(
                token,
                charge as TradeCharge,
                'Trade',
                setCharges,
             );
+            if (result === null) return;
          }
          const { body, status } = await getTradePrintData(
             {
@@ -58,12 +59,13 @@ export const printChargeHandler = async ({
       }
       if (chargeType === 'Renovation') {
          if (!charge.last_bill_info) {
-            await getSelectedChargeBillDetails(
+            const result = await getSelectedChargeBillDetails(
                token,
                charge as RenovationCharge,
                'Renovation',
                setCharges,
             );
+            if (result === null) return;
          }
          const { body, status } = await getRnvPrintData(
             {

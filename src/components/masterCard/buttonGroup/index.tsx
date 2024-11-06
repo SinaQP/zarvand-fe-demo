@@ -43,7 +43,8 @@ const ButtonGroup: FC<{
       setChargeType('certificate_number' in charge ? 'Renovation' : 'Trade');
    }, [charge]);
 
-   const { token, setShowPaymentHistory, user } = useUserContext();
+   const { token, setShowPaymentHistory, showPaymentHistory } =
+      useUserContext();
    const {
       setSelectedTradeCharge,
       setSelectedRenovationCharge,
@@ -88,7 +89,7 @@ const ButtonGroup: FC<{
       } else if (chargeType === 'Trade') {
          setSelectedTradeCharge(charge as TradeCharge);
       }
-      setShowPaymentHistory(charge.is_paid);
+      // setShowPaymentHistory(charge.is_paid);
    };
 
    const payButton = !isPayed && {
@@ -137,6 +138,7 @@ const ButtonGroup: FC<{
       (selectedRenovationCharge || selectedTradeCharge) &&
       charge.last_bill_info &&
       charge.bills.length > 0 &&
+      showPaymentHistory &&
       !charge.is_paid
          ? {
               label: 'سابقه پرداخت',
