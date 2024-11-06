@@ -25,7 +25,7 @@ const UnPayedDetails: FC = () => {
       <div className={styles.unPayedDetails}>
          <BackArrow
             className={styles['back-arrow']}
-            onClick={() => {
+            onClick={async () => {
                if (
                   !selectedTradeCharge.is_paid &&
                   selectedTradeCharge &&
@@ -34,7 +34,7 @@ const UnPayedDetails: FC = () => {
                ) {
                   setShowPaymentHistory(false);
                } else {
-                  resetChargeStates(
+                  await resetChargeStates(
                      setSelectedTradeCharge,
                      setSelectedRenovationCharge,
                      setShowPaymentHistory,

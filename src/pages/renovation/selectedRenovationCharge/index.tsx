@@ -38,7 +38,7 @@ const SelectedRenovationCharge: FC<{ isPayed: boolean }> = ({ isPayed }) => {
          }
       }
       fetchBillDetails();
-   }, [selectedRenovationCharge]);
+   }, [selectedRenovationCharge.master_id]);
    return (
       <div style={{ width: '100%' }}>
          {isPayed ? <PayedDetails /> : <UnPayedDetails />}
