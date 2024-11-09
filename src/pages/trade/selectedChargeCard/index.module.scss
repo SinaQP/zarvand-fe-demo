@@ -52,20 +52,43 @@
             margin: 3rem 0;
          }
       }
-      &__payment-bills {
+      &__payment-bills-container {
          border: 0.6px solid $primary-color;
          border-radius: 1.5rem;
-         padding: 1rem;
+         @media (min-width: $desktop) {
+            flex: 1;
+            max-height: 36rem;
+            min-height: 36rem;
+         }
+      }
+      &__payment-bills {
+         width: 99%;
+         margin-top: 1rem;
+         height: 100%;
+         padding-right: 1%;
          padding-top: 2rem;
          max-height: 20rem;
          overflow-y: scroll;
          display: flex;
          flex-direction: column;
          align-items: center;
+
+         &::-webkit-scrollbar {
+            width: 1rem;
+         }
+
+         &::-webkit-scrollbar-track {
+            background: transparent;
+         }
+
+         &::-webkit-scrollbar-thumb {
+            background-color: transparent;
+            border: 1px solid #239e3f;
+            border-radius: 10px; /* Rounds the scrollbar */
+         }
          @media (min-width: $desktop) {
-            flex: 1;
-            max-height: 36rem;
-            min-height: 36rem;
+            height: 100%;
+            max-height: 34rem;
          }
       }
    }

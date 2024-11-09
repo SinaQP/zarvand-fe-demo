@@ -67,11 +67,15 @@ const PayedDetails: FC = () => {
                         className={styles['master-card__info-row']}
                      />
                   )}
-                  <div className={styles['master-card__payment-bills']}>
-                     {selectedTradeCharge.bills &&
-                        selectedTradeCharge.bills.map((bill) => (
-                           <PaidBillCard Bill={bill} />
-                        ))}
+                  <div
+                     className={styles['master-card__payment-bills-container']}
+                  >
+                     <div className={styles['master-card__payment-bills']}>
+                        {selectedTradeCharge.bills &&
+                           selectedTradeCharge.bills.map((bill) => (
+                              <PaidBillCard Bill={bill} />
+                           ))}
+                     </div>
                   </div>
                </div>
             </MasterCard>
