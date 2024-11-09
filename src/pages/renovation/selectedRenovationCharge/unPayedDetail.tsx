@@ -12,6 +12,7 @@ import useWindowWidth from '../../../hooks/useWindowWidth';
 import getSelectedChargeBillDetails from '../../../utilities/getSelectedChargeBillDetails';
 import { RenovationCharge } from '../../../interfaces/models.interface';
 import ButtonGroup from '../../../components/masterCard/buttonGroup';
+import { isMobile } from '../../../utilities/mobileUser';
 
 const UnPayedDetails: FC = () => {
    const desktopBillInfo = useWindowWidth(<BillInfo />, null);
@@ -58,6 +59,7 @@ const UnPayedDetails: FC = () => {
             key={selectedRenovationCharge.master_id}
             className={styles['master-card']}
             addressSectionClassName={styles['address-section']}
+            showButtons={isMobile}
          >
             <div className={styles['master-card__body']}>
                <CertificationNumberCard charge={selectedRenovationCharge}>

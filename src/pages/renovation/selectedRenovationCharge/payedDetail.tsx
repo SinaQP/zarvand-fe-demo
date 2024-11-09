@@ -42,23 +42,28 @@ const PayedDetails: FC = () => {
             >
                <div className={styles['master-card__body']}>
                   <CertificationNumberCard charge={selectedRenovationCharge}>
-                     {!isMobile && (
-                        <>
-                           <InfoRow
-                              title="مساحت ساختمان: "
-                              value={`${selectedRenovationCharge.building_area} متر مربع`}
-                              className={styles['master-card__info-row']}
-                           />
-                           <InfoRow
-                              title="مساحت زمین: "
-                              value={`${selectedRenovationCharge.land_area} متر مربع`}
-                              className={styles['master-card__info-row']}
-                           />
-                           {!showPaymentHistory && (
-                              <ButtonGroup charge={selectedRenovationCharge} />
-                           )}
-                        </>
-                     )}
+                     <div>
+                        {!isMobile && (
+                           <>
+                              <InfoRow
+                                 title="مساحت ساختمان: "
+                                 value={`${selectedRenovationCharge.building_area} متر مربع`}
+                                 className={styles['master-card__info-row']}
+                              />
+                              <InfoRow
+                                 title="مساحت زمین: "
+                                 value={`${selectedRenovationCharge.land_area} متر مربع`}
+                                 className={styles['master-card__info-row']}
+                              />
+                              {!showPaymentHistory && (
+                                 <ButtonGroup
+                                    charge={selectedRenovationCharge}
+                                    isPayed
+                                 />
+                              )}
+                           </>
+                        )}
+                     </div>
                   </CertificationNumberCard>
                   {isMobile && (
                      <>

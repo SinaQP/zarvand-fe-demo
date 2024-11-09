@@ -41,11 +41,9 @@ const Profile: FC = () => {
             )}
          </div>
 
-         <Button>
-            <div id="buttons" onClick={handleExit}>
-               <span>خروج</span>
-               <img src={exitIcon} alt="exit icon" />
-            </div>
+         <Button className="profileStyleWrapper__button">
+            <span>خروج</span>
+            <img src={exitIcon} alt="exit icon" />
          </Button>
       </div>
    );
