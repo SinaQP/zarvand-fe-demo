@@ -51,7 +51,7 @@ const UnPayedDetails: FC = () => {
             master={selectedTradeCharge}
             className={styles['master-card']}
             addressSectionClassName={styles['address-section']}
-            showButtons={false}
+            showButtons={isMobile}
          >
             <div className={styles['master-card__body']}>
                <InfoCard
