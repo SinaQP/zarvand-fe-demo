@@ -11,14 +11,11 @@ import ProfileDesktop from './components/profileDesktop';
 import { useLayoutContext } from '../../components/layout/layout.context';
 
 const Profile: FC = () => {
-   const { user, setToken } = useUserContext();
+   const { user } = useUserContext();
    const { setHeaderSubtitle } = useLayoutContext();
-   const navigate = useNavigate();
    const userAgent = useWindowWidth('desktop', 'android');
 
    const handleExit = () => {
-      setToken('');
-      navigate('/login');
       location.reload();
    };
 
@@ -41,7 +38,7 @@ const Profile: FC = () => {
             )}
          </div>
 
-         <Button className="profileStyleWrapper__button">
+         <Button className="profileStyleWrapper__button" onClick={handleExit}>
             <span>خروج</span>
             <img src={exitIcon} alt="exit icon" />
          </Button>

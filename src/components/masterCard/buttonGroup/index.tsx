@@ -138,12 +138,11 @@ const ButtonGroup: FC<{
       (selectedRenovationCharge || selectedTradeCharge) &&
       charge.last_bill_info &&
       charge.bills.length > 0 &&
-      showPaymentHistory &&
+      !showPaymentHistory &&
       !charge.is_paid
          ? {
               label: 'سابقه پرداخت',
               icon: payIcon,
-
               alt: 'Payment History',
               onClick: () => {
                  setShowPaymentHistory(true);

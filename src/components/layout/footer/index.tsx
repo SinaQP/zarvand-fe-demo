@@ -20,6 +20,9 @@ const Footer = () => {
    const [drawerActive, setDrawerActive] = useState(false);
 
    const handleRedirect = (route: IconType['route'], id: number) => {
+      if (route === '/login') {
+         window.location.reload();
+      }
       setActiveIndex(id);
       resetChargeStates(
          setSelectedTradeCharge,

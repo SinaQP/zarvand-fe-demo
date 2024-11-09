@@ -66,7 +66,6 @@
          margin-top: 1rem;
          height: 100%;
          padding-right: 1%;
-         padding-top: 2rem;
          max-height: 20rem;
          overflow-y: scroll;
          display: flex;
@@ -74,7 +73,7 @@
          align-items: center;
 
          &::-webkit-scrollbar {
-            width: 1rem;
+            width: 0.7rem;
          }
 
          &::-webkit-scrollbar-track {
@@ -83,12 +82,16 @@
 
          &::-webkit-scrollbar-thumb {
             background-color: transparent;
-            border: 1px solid #239e3f;
-            border-radius: 10px; /* Rounds the scrollbar */
+            border: 1px solid $primary-color;
+            border-radius: 10px;
          }
          @media (min-width: $desktop) {
             height: 100%;
             max-height: 34rem;
+            padding-top: 2rem;
+            &::-webkit-scrollbar {
+               width: 1rem;
+            }
          }
       }
    }
