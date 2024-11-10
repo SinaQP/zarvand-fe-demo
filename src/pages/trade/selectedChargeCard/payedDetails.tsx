@@ -75,18 +75,7 @@ const PayedDetails: FC = () => {
                            selectedTradeCharge.bills.map((bill) => (
                               <PaidBillCard Bill={bill} />
                            ))}
-                                    {selectedTradeCharge.bills &&
-                           selectedTradeCharge.bills.map((bill) => (
-                              <PaidBillCard Bill={bill} />
-                           ))}
-                                    {selectedTradeCharge.bills &&
-                           selectedTradeCharge.bills.map((bill) => (
-                              <PaidBillCard Bill={bill} />
-                           ))}
-                                    {selectedTradeCharge.bills &&
-                           selectedTradeCharge.bills.map((bill) => (
-                              <PaidBillCard Bill={bill} />
-                           ))}
+                                 
                            
                      </div>
                   </div>
