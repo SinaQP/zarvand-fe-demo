@@ -89,7 +89,7 @@ const ButtonGroup: FC<{
       } else if (chargeType === 'Trade') {
          setSelectedTradeCharge(charge as TradeCharge);
       }
-      // setShowPaymentHistory(charge.is_paid);
+      setShowPaymentHistory(charge.is_paid);
    };
 
    const payButton = !isPayed && {
@@ -110,7 +110,6 @@ const ButtonGroup: FC<{
                chargeType,
                setTradeCharges,
             );
-            console.log('>>>', result);
             await startBankProccess(result);
          } else if (chargeType === 'Renovation') {
             const result = await getSelectedChargeBillDetails(

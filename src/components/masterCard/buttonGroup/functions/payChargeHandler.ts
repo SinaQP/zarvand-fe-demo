@@ -1,3 +1,4 @@
+import { FetchResult } from '../../../../apis/fetch.interface';
 import { postPayCharge } from '../../../../apis/trade/pay-charge';
 import {
    RenovationCharge,
@@ -11,10 +12,15 @@ const payCharges = async (
    navigate: NavigateFunction,
 ) => {
    const result = await postPayCharge(charge, token);
-   const htmlContent = await new Response(result.body).text();
-   navigate('/bank-portal', { state: htmlContent });
+   const { body, status } = result as FetchResult;
 
-   return htmlContent;
+   if (status === 200) {
+      const htmlContent = await new Response(body).text();
+      navigate('/bank-portal', { state: htmlContent });
+      return htmlContent;
+   } else {
+      return null;
+   }
 };
 
 export default payCharges;
