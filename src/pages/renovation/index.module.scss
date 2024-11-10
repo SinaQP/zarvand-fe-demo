@@ -11,6 +11,9 @@
    justify-content: center;
    gap: 3rem;
    @include default-layout;
+   &__certification-number-card {
+      align-self: center;
+   }
    .info-row {
       border-bottom: 1px solid $secondary-color;
       background-color: rgba($secondary-color, 0.05);

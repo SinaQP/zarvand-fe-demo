@@ -19,13 +19,12 @@ const Renovation: FC = () => {
    const [isLoaded, setIsLoaded] = useState(false);
    useEffect(() => {
       setHeaderSubtitle('پرداخت عوارض');
-      !renovationCharges.length &&
-         getUserRenovationCharges(
-            token,
-            setRenovationCharges,
-            setSelectedRenovationCharge,
-            setIsLoaded,
-         );
+      getUserRenovationCharges(
+         token,
+         setRenovationCharges,
+         setSelectedRenovationCharge,
+         setIsLoaded,
+      );
       setHeaderId?.(styles['header']);
    }, [token]);
 

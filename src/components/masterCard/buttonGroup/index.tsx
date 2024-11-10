@@ -89,7 +89,7 @@ const ButtonGroup: FC<{
       } else if (chargeType === 'Trade') {
          setSelectedTradeCharge(charge as TradeCharge);
       }
-      setShowPaymentHistory(charge.is_paid);
+      setShowPaymentHistory(false);
    };
 
    const payButton = !isPayed && {

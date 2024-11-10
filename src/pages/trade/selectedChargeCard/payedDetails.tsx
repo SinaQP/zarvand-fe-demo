@@ -23,13 +23,15 @@ const PayedDetails: FC = () => {
       <div className={styles['container']}>
          <BackArrow
             className={styles['back-arrow']}
-            onClick={() =>
-               resetChargeStates(
-                  setSelectedTradeCharge,
-                  setSelectedRenovationCharge,
-                  setShowPaymentHistory,
-               )
-            }
+            onClick={() => {
+               if (!showPaymentHistory) {
+                  resetChargeStates(
+                     setSelectedTradeCharge,
+                     setSelectedRenovationCharge,
+                     setShowPaymentHistory,
+                  );
+               } else setShowPaymentHistory(false);
+            }}
             status={'paid'}
             pageTitle="کسب و پیشه"
          />
@@ -56,7 +58,7 @@ const PayedDetails: FC = () => {
                            className={styles['master-card__info-row']}
                         />
                      )}
-                     {!isMobile && (
+                     {!isMobile && !showPaymentHistory && (
                         <ButtonGroup charge={selectedTradeCharge} isPayed />
                      )}
                   </InfoCard>
@@ -75,8 +77,6 @@ const PayedDetails: FC = () => {
                            selectedTradeCharge.bills.map((bill) => (
                               <PaidBillCard Bill={bill} />
                            ))}
-                                 
-                           
                      </div>
                   </div>
                </div>

@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useUserContext } from '../../App.context';
 import { useEffect } from 'react';
 import welcomeBack from './func/welcomeBack';
+import { useLayoutContext } from '../../components/layout/layout.context';
 
 const PaymentStatus = () => {
    const defaultOptions = (animationData: any) => ({
@@ -17,6 +18,7 @@ const PaymentStatus = () => {
       },
    });
    const { token, setToken, setUser } = useUserContext();
+   const { setHeaderId } = useLayoutContext();
    const zarToken = sessionStorage.getItem('zarToken');
    const navigate = useNavigate();
 
@@ -25,6 +27,7 @@ const PaymentStatus = () => {
    const status = queryParams.get('status');
 
    useEffect(() => {
+      setHeaderId?.(styles['header']);
       !token && welcomeBack(navigate, zarToken, setToken, setUser);
    }, []);
 

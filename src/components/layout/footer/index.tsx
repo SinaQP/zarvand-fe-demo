@@ -22,14 +22,15 @@ const Footer = () => {
    const handleRedirect = (route: IconType['route'], id: number) => {
       if (route === '/login') {
          window.location.reload();
+      } else {
+         setActiveIndex(id);
+         resetChargeStates(
+            setSelectedTradeCharge,
+            setSelectedRenovationCharge,
+            setShowPaymentHistory,
+         );
+         history(route);
       }
-      setActiveIndex(id);
-      resetChargeStates(
-         setSelectedTradeCharge,
-         setSelectedRenovationCharge,
-         setShowPaymentHistory,
-      );
-      history(route);
    };
 
    const handleDrawer = () => {

@@ -17,13 +17,12 @@ const Trade: FC = () => {
    useEffect(() => {
       setSelectedTradeCharge(null);
       setHeaderSubtitle('پرداخت عوارض');
-      !tradeCharges.length &&
-         getUserTradeMasters(
-            token,
-            setTradeCharges,
-            setSelectedTradeCharge,
-            setIsLoaded,
-         );
+      getUserTradeMasters(
+         token,
+         setTradeCharges,
+         setSelectedTradeCharge,
+         setIsLoaded,
+      );
       setHeaderId?.(styles['header']);
    }, [token]);
 

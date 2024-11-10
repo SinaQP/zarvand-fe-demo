@@ -13,7 +13,6 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
-
       &__body {
          display: flex;
          flex-direction: column;
@@ -24,6 +23,10 @@
             margin: 2rem;
             gap: 6rem;
          }
+      }
+      &__certification-number-card {
+         align-self: center;
+         flex: 0.5;
       }
       &__info-card {
          font-size: 1.8rem !important;

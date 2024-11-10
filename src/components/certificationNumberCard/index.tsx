@@ -7,7 +7,8 @@ import { useUserContext } from '../../App.context';
 const CertificationNumberCard: FC<{
    charge: RenovationCharge;
    children?: ReactNode;
-}> = ({ charge, children }) => {
+   className?: string;
+}> = ({ charge, children, className }) => {
    const splitCertificateNumber = (
       str: string,
       lengths: number[],
@@ -27,7 +28,7 @@ const CertificationNumberCard: FC<{
    return (
       <InfoCard
          title={'شماره شناسنامه ملک'}
-         containerClassName={styles['certification-number-section-wrapper']}
+         containerClassName={`${styles['certification-number-section-wrapper']} ${className}`}
          className={styles['info-card__body']}
          isPrimary={showPaymentHistory ? true : charge.is_paid}
       >
