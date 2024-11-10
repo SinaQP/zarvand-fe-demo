@@ -62,7 +62,7 @@ const UnPayedDetails: FC = () => {
             showButtons={isMobile}
          >
             <div className={styles['master-card__body']}>
-               <CertificationNumberCard charge={selectedRenovationCharge}>
+               <CertificationNumberCard charge={selectedRenovationCharge} >
                   {desktopBillInfo}
                   {isDesktop && (
                      <ButtonGroup charge={selectedRenovationCharge} />

@@ -22,13 +22,15 @@ const PayedDetails: FC = () => {
       <div className={styles['container']}>
          <BackArrow
             className={styles['back-arrow']}
-            onClick={() =>
-               resetChargeStates(
-                  setSelectedTradeCharge,
-                  setSelectedRenovationCharge,
-                  setShowPaymentHistory,
-               )
-            }
+            onClick={() => {
+               if (!showPaymentHistory) {
+                  resetChargeStates(
+                     setSelectedTradeCharge,
+                     setSelectedRenovationCharge,
+                     setShowPaymentHistory,
+                  );
+               } else setShowPaymentHistory(false);
+            }}
             status={'paid'}
             pageTitle="نوسازی"
          />
@@ -41,7 +43,12 @@ const PayedDetails: FC = () => {
                showButtons={isMobile}
             >
                <div className={styles['master-card__body']}>
-                  <CertificationNumberCard charge={selectedRenovationCharge}>
+                  <CertificationNumberCard
+                     charge={selectedRenovationCharge}
+                     className={
+                        styles['master-card__certification-number-card']
+                     }
+                  >
                      <div>
                         {!isMobile && (
                            <>

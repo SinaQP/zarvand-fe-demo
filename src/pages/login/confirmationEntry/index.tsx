@@ -26,7 +26,7 @@ const ConfirmationEntry: FC = () => {
 
    useEffect(() => {
       const button = document.getElementById('otpButtonRef');
-      if (otpCode.length === 6) button?.click();
+      if (otpCode.join('').length === 6) button?.click();
    });
 
    useEffect(() => {

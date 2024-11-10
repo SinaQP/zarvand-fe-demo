@@ -38,7 +38,7 @@ const ChargeCards: FC<{ tradeCharges: TradeCharge[] }> = ({ tradeCharges }) => {
    return (
       <>
          {selectedTradeCharge ? (
-            <SelectedChargeCard isPayed={selectedTradeCharge.is_paid} />
+            <SelectedChargeCard isPayed={selectedTradeCharge.is_paid || showPaymentHistory} />
          ) : (
             (() => {
                resetChargeStates(

@@ -42,7 +42,7 @@ const Login: FC = () => {
       <img src={whiteSquareIcon} className={styles['white-square']} />,
       null,
    );
-
+   const toastPosition = useWindowWidth('bottom-center', 'top-center');
    useEffect(() => {
       setHeaderText && setHeaderText(headerTitle);
       updateLayout({
@@ -70,7 +70,7 @@ const Login: FC = () => {
          </div>
          <ToastContainer
             rtl
-            position="bottom-center"
+            position={toastPosition}
             autoClose={5000}
             hideProgressBar={false}
             closeOnClick
