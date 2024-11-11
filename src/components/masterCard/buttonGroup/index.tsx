@@ -25,6 +25,7 @@ import RenovationPrint from './renovationPrint';
 import payCharges from './functions/payChargeHandler';
 import { useNavigate } from 'react-router-dom';
 import getSelectedChargeBillDetails from '../../../utilities/getSelectedChargeBillDetails';
+import Loading from '../../loading/loading';
 
 const ButtonGroup: FC<{
    isPayed?: boolean;
@@ -33,6 +34,7 @@ const ButtonGroup: FC<{
    const [chargeType, setChargeType] = useState<'Trade' | 'Renovation' | null>(
       null,
    );
+   const [paymentIsLoading, setPaymentIsLoading] = useState(false);
    const [isPrinting, setIsPrinting] = useState(false);
    const [printBill, setPrintBill] = useState<
       TradePrintBill | RnvPrintBill | null
@@ -98,7 +100,12 @@ const ButtonGroup: FC<{
       alt: 'Pay',
       onClick: async () => {
          const startBankProccess = async (charge: any) => {
-            const result = await payCharges(charge, token, navigate);
+            const result = await payCharges(
+               charge,
+               token,
+               navigate,
+               setPaymentIsLoading,
+            );
          };
 
          if (charge.last_bill_info) return await startBankProccess(charge);
@@ -169,7 +176,9 @@ const ButtonGroup: FC<{
             visibleButtons.length === 1 ? styles.center : styles.spaceBetween
          }`}
       >
-         <ButtonList buttons={visibleButtons} />
+
+            <ButtonList buttons={visibleButtons} />
+   
 
          <TradePrint
             charge={charge}
