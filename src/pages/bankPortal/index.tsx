@@ -5,16 +5,20 @@ import styles from './index.module.scss';
 const BankPortal = () => {
    const location = useLocation();
    const data = `${location.state}`;
-   console.log('>>>', data);
    useEffect(() => {
-      console.log('>>>', document.getElementsByTagName('form')[0].submit());
+      const form = document.getElementsByTagName('form')[0];
+      form && form.submit();
    }, []);
 
    return (
-      <div
-         id={styles['bank-portal']}
-         dangerouslySetInnerHTML={{ __html: data }}
-      ></div>
+      <>
+         {data && (
+            <div
+               id={styles['bank-portal']}
+               dangerouslySetInnerHTML={{ __html: data }}
+            ></div>
+         )}
+      </>
    );
 };
 

@@ -15,7 +15,7 @@ const payCharges = async (
    const result = await postPayCharge(charge, token);
    const { body, status } = result as FetchResult;
    if (status === 200) {
-      const htmlContent = await new Response(body).text;
+      const htmlContent = await new Response(body).text();
       navigate('/bank-portal', { state: htmlContent });
       return htmlContent;
    } else {
