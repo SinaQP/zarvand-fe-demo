@@ -34,7 +34,7 @@ const AndroidRenovateCard: FC<{ Bill: Bill | undefined }> = ({ Bill }) => {
                         Bill?.payment_date || '1400/12/30'
                      }\nشناسه پرداخت: ${
                         Bill?.payment_no || '0000000000'
-                     }\nقیمت: ${Bill?.creditor.toLocaleString('fa-IR') || 0}`}
+                     }\مبلغ کل: ${Bill?.creditor.toLocaleString('fa-IR') || 0}`}
                   />
 
                   {/* <img
@@ -57,7 +57,7 @@ const AndroidRenovateCard: FC<{ Bill: Bill | undefined }> = ({ Bill }) => {
                </div>
 
                <div>
-                  <span>قیمت</span>
+                  <span>مبلغ کل</span>
                   <span>
                      {`${Bill?.creditor.toLocaleString('fa-IR') || 0} ریال`}
                   </span>

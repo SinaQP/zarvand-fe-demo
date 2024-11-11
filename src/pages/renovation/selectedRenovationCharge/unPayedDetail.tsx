@@ -3,16 +3,12 @@ import MasterCard from '../../../components/masterCard';
 import { useChargesContext, useUserContext } from '../../../App.context';
 import CertificationNumberCard from '../../../components/certificationNumberCard';
 import AnnualChargeTable from '../../../components/annualChargeTable';
-import Loading from '../../../components/loading/loading';
 import styles from '../index.module.scss';
 import BackArrow from '../../../components/backArrow';
 import resetChargeStates from '../../../utilities/resetChargeStates';
 import BillInfo from './billInfo';
 import useWindowWidth from '../../../hooks/useWindowWidth';
-import getSelectedChargeBillDetails from '../../../utilities/getSelectedChargeBillDetails';
-import { RenovationCharge } from '../../../interfaces/models.interface';
 import ButtonGroup from '../../../components/masterCard/buttonGroup';
-import { isMobile } from '../../../utilities/mobileUser';
 
 const UnPayedDetails: FC = () => {
    const desktopBillInfo = useWindowWidth(<BillInfo />, null);
@@ -59,7 +55,7 @@ const UnPayedDetails: FC = () => {
             key={selectedRenovationCharge.master_id}
             className={styles['master-card']}
             addressSectionClassName={styles['address-section']}
-            showButtons={isMobile}
+            showButtons={!isDesktop}
          >
             <div className={styles['master-card__body']}>
                <CertificationNumberCard charge={selectedRenovationCharge} >

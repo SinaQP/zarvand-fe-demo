@@ -34,7 +34,6 @@ const ButtonGroup: FC<{
    const [chargeType, setChargeType] = useState<'Trade' | 'Renovation' | null>(
       null,
    );
-   const [paymentIsLoading, setPaymentIsLoading] = useState(false);
    const [isPrinting, setIsPrinting] = useState(false);
    const [printBill, setPrintBill] = useState<
       TradePrintBill | RnvPrintBill | null
@@ -99,18 +98,11 @@ const ButtonGroup: FC<{
       icon: payIcon,
       alt: 'Pay',
       onClick: async () => {
-         setPaymentIsLoading(true);
          const startBankProccess = async (charge: any) => {
-            const result = await payCharges(
-               charge,
-               token,
-               navigate,
-               setPaymentIsLoading,
-            );
+            const result = await payCharges(charge, token, navigate);
          };
 
          if (charge.last_bill_info) {
-            setPaymentIsLoading(false);
             return await startBankProccess(charge);
          }
 
@@ -131,7 +123,6 @@ const ButtonGroup: FC<{
             );
             await startBankProccess(result);
          }
-         setPaymentIsLoading(false);
       },
    };
 
