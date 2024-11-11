@@ -12,9 +12,10 @@ interface ButtonProps {
 
 interface ButtonListProps {
    buttons: (ButtonProps | false)[];
+   isPayed?: boolean;
 }
 
-const ButtonList: FC<ButtonListProps> = ({ buttons }) => {
+const ButtonList: FC<ButtonListProps> = ({ buttons, isPayed }) => {
    return (
       <>
          {buttons.map(
@@ -26,6 +27,10 @@ const ButtonList: FC<ButtonListProps> = ({ buttons }) => {
                      onClick={button.onClick}
                      id={button.id}
                      haveLoading
+                     loadingClassName={styles.loading}
+                     loadingType={
+                        isPayed ? 'primaryToWhite' : 'secondaryToWhite'
+                     }
                   >
                      <span>{button.label}</span>
                      <img src={button.icon} alt={button.alt} />

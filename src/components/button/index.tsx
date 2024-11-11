@@ -13,7 +13,12 @@ const Button: FC<Props> = (props) => {
       setLoading(false);
    };
    if (loading) {
-      return <Loading className={styles['button-loading']} />;
+      return (
+         <Loading
+            className={`${styles['button-loading']} ${props.loadingClassName}`}
+            type={props.loadingType}
+         />
+      );
    }
    return (
       <button

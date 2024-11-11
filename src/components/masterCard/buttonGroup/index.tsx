@@ -181,7 +181,7 @@ const ButtonGroup: FC<{
             visibleButtons.length === 1 ? styles.center : styles.spaceBetween
          }`}
       >
-         <ButtonList buttons={visibleButtons} />
+         <ButtonList buttons={visibleButtons} isPayed={isPayed} />
 
          <TradePrint
             charge={charge}

@@ -8,4 +8,6 @@ export interface Props
    children?: ReactElement | ReactElement[] | string;
    className?: string;
    haveLoading?: boolean;
+   loadingClassName?: string;
+   loadingType?: 'primaryToWhite' | 'secondaryToWhite' | 'secondaryToBlack';
 }
