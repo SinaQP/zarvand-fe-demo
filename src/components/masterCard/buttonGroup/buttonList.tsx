@@ -25,6 +25,7 @@ const ButtonList: FC<ButtonListProps> = ({ buttons }) => {
                      className={styles.button}
                      onClick={button.onClick}
                      id={button.id}
+                     haveLoading
                   >
                      <span>{button.label}</span>
                      <img src={button.icon} alt={button.alt} />
