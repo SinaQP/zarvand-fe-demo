@@ -99,6 +99,7 @@ const ButtonGroup: FC<{
       icon: payIcon,
       alt: 'Pay',
       onClick: async () => {
+         setPaymentIsLoading(true);
          const startBankProccess = async (charge: any) => {
             const result = await payCharges(
                charge,
@@ -108,7 +109,10 @@ const ButtonGroup: FC<{
             );
          };
 
-         if (charge.last_bill_info) return await startBankProccess(charge);
+         if (charge.last_bill_info) {
+            setPaymentIsLoading(false);
+            return await startBankProccess(charge);
+         }
 
          if (chargeType === 'Trade') {
             const result = await getSelectedChargeBillDetails(
@@ -127,6 +131,7 @@ const ButtonGroup: FC<{
             );
             await startBankProccess(result);
          }
+         setPaymentIsLoading(false);
       },
    };
 
@@ -176,9 +181,11 @@ const ButtonGroup: FC<{
             visibleButtons.length === 1 ? styles.center : styles.spaceBetween
          }`}
       >
-
+         {!paymentIsLoading ? (
             <ButtonList buttons={visibleButtons} />
-   
+         ) : (
+            <Loading />
+         )}
 
          <TradePrint
             charge={charge}
