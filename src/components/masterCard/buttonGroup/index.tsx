@@ -181,11 +181,7 @@ const ButtonGroup: FC<{
             visibleButtons.length === 1 ? styles.center : styles.spaceBetween
          }`}
       >
-         {!paymentIsLoading ? (
-            <ButtonList buttons={visibleButtons} />
-         ) : (
-            <Loading />
-         )}
+         <ButtonList buttons={visibleButtons} />
 
          <TradePrint
             charge={charge}
