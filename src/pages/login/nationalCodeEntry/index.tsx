@@ -8,11 +8,13 @@ import { useLayoutContext } from '../../../components/layout/layout.context';
 interface Props {
    setShowConfirmationForm: Dispatch<SetStateAction<boolean>>;
    showConfirmationForm: boolean;
+   type: 'Person' | 'Organization';
 }
 
 const NationalCodeEntry: FC<Props> = ({
    setShowConfirmationForm,
    showConfirmationForm,
+   type,
 }) => {
    const { setMaskedPhoneNumber, nationalCode, setNationalCode } =
       useLayoutContext();
@@ -22,13 +24,21 @@ const NationalCodeEntry: FC<Props> = ({
       nationalCode.join('').length === 10 && loginBtn?.click();
    }, [nationalCode]);
 
+   const getHeadingText = () =>
+      type === 'Person'
+         ? 'لطفا کد ملی خود را وارد نمایید.'
+         : 'لطفا شناسه ملی  را وارد کنید';
+
    return (
       <div
          className={`${styles['national-code-entry']} ${
             showConfirmationForm && styles.hidden
+         } ${
+            type === 'Organization' &&
+            styles['national-code-entry--organization']
          }`}
       >
-         <span>لطفا کد ملی خود را وارد نمایید.</span>
+         <h4>{getHeadingText()}</h4>
          <OtpInput
             otpClassName={styles['otp-input']}
             numberOfInputs={10}
@@ -36,6 +46,15 @@ const NationalCodeEntry: FC<Props> = ({
             setValue={setNationalCode}
             inputsClassName={styles.input}
          />
+         {/* 
+            Organization Stage
+            <p className={styles['national-code-entry__link']}>
+               ورود به عنوان شخص حقوقی؟{' '}
+               <span className={styles['national-code-entry__text-link']}>
+                  اینجا کلیک کنید.
+               </span>
+            </p> 
+         */}
          <Button
             className={styles['submit-button']}
             haveLoading

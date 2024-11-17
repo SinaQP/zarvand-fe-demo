@@ -55,12 +55,12 @@
       @include center-flex;
       flex-direction: column;
       padding: 5vh 0;
-      margin-top: 10vh;
+      margin-top: 6vh;
       @media (min-width: $desktop) {
          width: 50rem;
          padding: 12vh 2.5rem 8vh 2.5rem;
       }
-      span {
+      h4 {
          font-family: BNazanin, sans-serif;
          font-size: 2.5rem;
          font-weight: 400;
@@ -73,10 +73,10 @@
 
       .otp-input {
          margin-top: 1.5rem;
-         margin-bottom: 3rem;
+         margin-bottom: 4rem;
          @media (min-width: $desktop) {
             margin-top: 8.5vh;
-            margin-bottom: 6.5vh;
+            margin-bottom: 6vh;
          }
       }
 
@@ -116,6 +116,23 @@
             width: 45%;
             font-size: 3.5rem;
          }
+      }
+   }
+   &__link {
+      font-size: 2rem;
+      font-weight: 400;
+      text-align: center;
+      margin-bottom: 3rem;
+      text-decoration: underline $font-white-color;
+      text-underline-offset: 1.3rem;
+      cursor: pointer;
+      @media (min-width: $desktop) {
+         font-size: 3rem;
+         margin-bottom: 3.5rem;
+      }
+
+      span {
+         color: $font-white-color;
       }
    }
 }

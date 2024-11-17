@@ -33,6 +33,7 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
       </UserContext.Provider>
    );
 };
+
 export const ChargesProvider: FC<{ children: ReactNode }> = ({ children }) => {
    const [renovationCharges, setRenovationCharges] = useState<
       RenovationCharge[]
@@ -59,6 +60,7 @@ export const ChargesProvider: FC<{ children: ReactNode }> = ({ children }) => {
       </ChargesContext.Provider>
    );
 };
+
 const AppProviders: FC<{ children: ReactNode }> = ({ children }) => {
    return (
       <UserProvider>
