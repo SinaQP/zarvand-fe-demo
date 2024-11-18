@@ -4,10 +4,12 @@ import Button from '../../../components/button';
 import OtpInput from '../../../components/otpInput';
 import handleSubmit from './functions/submit';
 import { useLayoutContext } from '../../../components/layout/layout.context';
+import { EntryType } from '../index.interface';
 
 interface Props {
    setShowConfirmationForm: Dispatch<SetStateAction<boolean>>;
    showConfirmationForm: boolean;
+   setSelectedEntry: Dispatch<SetStateAction<EntryType>>;
    type: 'Person' | 'Organization';
 }
 
@@ -15,6 +17,7 @@ const NationalCodeEntry: FC<Props> = ({
    setShowConfirmationForm,
    showConfirmationForm,
    type,
+   setSelectedEntry,
 }) => {
    const { setMaskedPhoneNumber, nationalCode, setNationalCode } =
       useLayoutContext();
@@ -63,6 +66,7 @@ const NationalCodeEntry: FC<Props> = ({
                await handleSubmit(
                   setShowConfirmationForm,
                   nationalCode,
+                  setSelectedEntry,
                   setMaskedPhoneNumber,
                )
             }

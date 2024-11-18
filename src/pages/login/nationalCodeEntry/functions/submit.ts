@@ -1,10 +1,12 @@
 import { Dispatch, SetStateAction } from 'react';
 import { sendVerificationCode } from '../../../../apis/login/send-verification-code';
 import { toast } from 'react-toastify';
+import { EntryType } from '../../index.interface';
 
 const handleSubmit = async (
    setShowConfirmationForm: Dispatch<SetStateAction<boolean>>,
    nationalCodeArray: string[],
+   setSelectedEntry: Dispatch<SetStateAction<EntryType>>,
    setPhoneNumber?: Dispatch<SetStateAction<string>>,
 ) => {
    const nationalCode: string = nationalCodeArray.join('');
@@ -20,6 +22,8 @@ const handleSubmit = async (
       const personPhoneNumber = responseBody.masked_mobile_number;
       setPhoneNumber && setPhoneNumber(personPhoneNumber);
       setShowConfirmationForm(true);
+   } else if (responseStatus === 422) {
+      setSelectedEntry(EntryType.INVALID_PHONE_NUMBER);
    } else {
       const responseBody = response.body;
       const message = responseBody.message;

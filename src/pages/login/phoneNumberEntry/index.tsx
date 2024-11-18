@@ -1,9 +1,18 @@
-import { FC, useState } from 'react';
+import { Dispatch, FC, SetStateAction, useState } from 'react';
 import Button from '../../../components/button';
 import OtpInput from '../../../components/otpInput';
 import styles from './index.module.scss';
+import { EntryType } from '../index.interface';
+import { useUserContext } from '../../../App.context';
+import { useLayoutContext } from '../../../components/layout/layout.context';
+import formSubmit from './submit.function';
 
-const PhoneNumberEntry: FC<{ headingText: string }> = ({ headingText }) => {
+const PhoneNumberEntry: FC<{
+   headingText: string;
+   setSelectedEntry: Dispatch<SetStateAction<EntryType>>;
+   setShowConfirmationForm: Dispatch<SetStateAction<boolean>>;
+}> = ({ headingText, setSelectedEntry, setShowConfirmationForm }) => {
+   const { nationalCode, setNationalCode } = useLayoutContext();
    const [phoneNumber, setPhoneNumber] = useState<string[]>([]);
    return (
       <div className={styles['phone-number-entry']}>
@@ -15,8 +24,26 @@ const PhoneNumberEntry: FC<{ headingText: string }> = ({ headingText }) => {
             otpClassName={styles['otp-input']}
             inputsClassName={styles.input}
          />
-         <span>تغییر کد ملی</span>
-         <Button className={styles['submit-button']}>تایید</Button>
+         <span
+            onClick={() => {
+               setNationalCode([]);
+               setSelectedEntry(EntryType.NATIONAL_CODE_ENTRY);
+            }}
+         >
+            تغییر کد ملی
+         </span>
+         <Button
+            className={styles['submit-button']}
+            onClick={() =>
+               formSubmit(
+                  phoneNumber.join(''),
+                  nationalCode.join(''),
+                  setShowConfirmationForm,
+               )
+            }
+         >
+            تایید
+         </Button>
       </div>
    );
 };
