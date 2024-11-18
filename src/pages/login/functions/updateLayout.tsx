@@ -2,6 +2,7 @@ import { Dispatch, ReactNode, SetStateAction } from 'react';
 import ConfirmationEntry from '../confirmationEntry';
 import CounterBadge from '../counter';
 import styles from '../index.module.scss';
+import { EntryType } from '../index.interface';
 
 interface UpdateLayoutProps {
    showConfirmationForm: boolean;
@@ -11,6 +12,7 @@ interface UpdateLayoutProps {
    setBadgeId?: (className: string) => void;
    setHeaderId?: (className: string) => void;
    headerClassName: string;
+   setSelectedEntry: Dispatch<SetStateAction<EntryType>>;
 }
 
 export const updateLayout = ({
@@ -21,10 +23,16 @@ export const updateLayout = ({
    setHeaderId,
    headerClassName,
    setShowConfirmationForm,
+   setSelectedEntry,
 }: UpdateLayoutProps) => {
    setExtraHeaderContent &&
       setExtraHeaderContent(
-         showConfirmationForm ? <ConfirmationEntry /> : null,
+         showConfirmationForm ? (
+            <ConfirmationEntry
+               setShowConfirmationForm={setShowConfirmationForm}
+               setSelectedEntry={setSelectedEntry}
+            />
+         ) : null,
       );
    setHeaderBadge &&
       setHeaderBadge(

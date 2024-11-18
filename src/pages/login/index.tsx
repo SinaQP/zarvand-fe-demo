@@ -8,7 +8,9 @@ import whiteSquareIcon from '../../assets/images/white.squares.svg';
 import CityAnimationCard from './cityAnimationCard';
 import { useLayoutContext } from '../../components/layout/layout.context';
 import { updateLayout } from './functions/updateLayout';
-import { Bounce, toast, ToastContainer } from 'react-toastify';
+import { Bounce, ToastContainer } from 'react-toastify';
+import { EntryType } from './index.interface';
+import PhoneNumberEntry from './phoneNumberEntry';
 
 const Login: FC = () => {
    const {
@@ -43,6 +45,7 @@ const Login: FC = () => {
       null,
    );
    const toastPosition = useWindowWidth('bottom-center', 'top-center');
+
    useEffect(() => {
       setHeaderText && setHeaderText(headerTitle);
       updateLayout({
@@ -53,9 +56,36 @@ const Login: FC = () => {
          setHeaderId,
          setBadgeId,
          headerClassName,
+         setSelectedEntry,
       });
    }, [showConfirmationForm]);
-
+   const [selectedEntry, setSelectedEntry] = useState<EntryType>(
+      EntryType.NATIONAL_CODE_ENTRY,
+   );
+   const MainEntries = {
+      NATIONAL_CODE_ENTRY: (
+         <NationalCodeEntry
+            setShowConfirmationForm={setShowConfirmationForm}
+            showConfirmationForm={showConfirmationForm}
+            setSelectedEntry={setSelectedEntry}
+            type="Person"
+         />
+      ),
+      CHANGE_PHONE_NUMBER: (
+         <PhoneNumberEntry
+            headingText="لطفا شماره تماس خود را وارد نمایید"
+            setSelectedEntry={setSelectedEntry}
+            setShowConfirmationForm={setShowConfirmationForm}
+         />
+      ),
+      INVALID_PHONE_NUMBER: (
+         <PhoneNumberEntry
+            headingText="برای کد ملی شما شماره‌ای در سیستم موجود نیست. لطفاً شماره تماس مرتبط با این کد ملی را وارد کنید."
+            setSelectedEntry={setSelectedEntry}
+            setShowConfirmationForm={setShowConfirmationForm}
+         />
+      ),
+   };
    return (
       <section>
          {blueSquare}
@@ -63,10 +93,7 @@ const Login: FC = () => {
          <CityAnimationCard />
          <div className={styles.content}>
             {mainTitle}
-            <NationalCodeEntry
-               setShowConfirmationForm={setShowConfirmationForm}
-               showConfirmationForm={showConfirmationForm}
-            />
+            {MainEntries[selectedEntry]}
          </div>
          <ToastContainer
             rtl

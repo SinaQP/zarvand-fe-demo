@@ -3,6 +3,7 @@ import { FetchResult } from '../fetch.interface';
 
 export async function sendVerificationCode(body: {
    national_code: string;
+   mobile_number?: string;
 }): Promise<any> {
    try {
       const backendUrl = import.meta.env.VITE_APP_BACKEND;
