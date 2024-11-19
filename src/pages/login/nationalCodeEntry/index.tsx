@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction, useEffect } from 'react';
+import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import styles from './index.module.scss';
 import Button from '../../../components/button';
 import OtpInput from '../../../components/otpInput';
@@ -21,6 +21,7 @@ const NationalCodeEntry: FC<Props> = ({
 }) => {
    const { setMaskedPhoneNumber, nationalCode, setNationalCode } =
       useLayoutContext();
+   const [organizationCode, setOrganizationCode] = useState<string[]>([]);
 
    useEffect(() => {
       const loginBtn = document.getElementById('loginBtn') as HTMLButtonElement;
@@ -42,22 +43,51 @@ const NationalCodeEntry: FC<Props> = ({
          }`}
       >
          <h4>{getHeadingText()}</h4>
-         <OtpInput
-            otpClassName={styles['otp-input']}
-            numberOfInputs={10}
-            value={nationalCode}
-            setValue={setNationalCode}
-            inputsClassName={styles.input}
-         />
-         {/* 
-            Organization Stage
+         {type === 'Person' && (
+            <OtpInput
+               otpClassName={styles['otp-input']}
+               numberOfInputs={10}
+               value={nationalCode}
+               setValue={setNationalCode}
+               inputsClassName={styles.input}
+            />
+         )}
+         {type === 'Organization' && (
+            <OtpInput
+               otpClassName={styles['otp-input']}
+               numberOfInputs={11}
+               value={organizationCode}
+               setValue={setOrganizationCode}
+               inputsClassName={styles.input}
+            />
+         )}
+         {/* Organization Stage */}
+         {/* {type === 'Person' ? (
             <p className={styles['national-code-entry__link']}>
                ورود به عنوان شخص حقوقی؟{' '}
-               <span className={styles['national-code-entry__text-link']}>
+               <span
+                  className={styles['national-code-entry__text-link']}
+                  onClick={() =>
+                     setSelectedEntry(EntryType.ORGANIZATION_CODE_ENTRY)
+                  }
+               >
                   اینجا کلیک کنید.
                </span>
-            </p> 
-         */}
+            </p>
+         ) : (
+            <p className={styles['national-code-entry__link']}>
+               ورود به عنوان شخص حقیقی{' '}
+               <span
+                  className={`${styles['national-code-entry__text-link']} ${styles['national-code-entry__text-link--organization']}`}
+                  onClick={() =>
+                     setSelectedEntry(EntryType.NATIONAL_CODE_ENTRY)
+                  }
+               >
+                  اینجا کلیک کنید.
+               </span>
+            </p>
+         )} */}
+
          <Button
             className={styles['submit-button']}
             haveLoading

@@ -75,7 +75,7 @@ const ConfirmationEntry: FC<{
                   setSelectedEntry(EntryType.CHANGE_PHONE_NUMBER);
                }}
             >
-               تغییر شماره تماس <span>!</span>
+               تغییر شماره تماس
             </p>
             <Button
                className={styles['submit-button']}
@@ -83,6 +83,7 @@ const ConfirmationEntry: FC<{
                ref={afterOtpRef}
                id="otpButtonRef"
                type="button"
+               loadingType="secondaryToBlack"
                onClick={async () =>
                   await handleConfirmationButton({
                      verificationCode: otpCode.join(''),

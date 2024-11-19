@@ -71,16 +71,24 @@ const Login: FC = () => {
             type="Person"
          />
       ),
+      ORGANIZATION_CODE_ENTRY: (
+         <NationalCodeEntry
+            setShowConfirmationForm={setShowConfirmationForm}
+            showConfirmationForm={showConfirmationForm}
+            setSelectedEntry={setSelectedEntry}
+            type="Organization"
+         />
+      ),
       CHANGE_PHONE_NUMBER: (
          <PhoneNumberEntry
-            headingText="لطفا شماره تماس خود را وارد نمایید"
+            headingText="برای کد ملی شما شماره‌ای در سیستم ثبت نشده است. لطفاً شماره تماس مرتبط با این کد ملی را وارد نمایید."
             setSelectedEntry={setSelectedEntry}
             setShowConfirmationForm={setShowConfirmationForm}
          />
       ),
       INVALID_PHONE_NUMBER: (
          <PhoneNumberEntry
-            headingText="برای کد ملی شما شماره‌ای در سیستم موجود نیست. لطفاً شماره تماس مرتبط با این کد ملی را وارد کنید."
+            headingText="برای کد ملی شما شماره‌ای در سیستم ثبت نشده است. لطفاً شماره تماس مرتبط با این کد ملی را وارد نمایید."
             setSelectedEntry={setSelectedEntry}
             setShowConfirmationForm={setShowConfirmationForm}
          />
