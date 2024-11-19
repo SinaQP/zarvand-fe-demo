@@ -12,7 +12,18 @@
    justify-content: center;
    transition: all 0.5s ease;
    user-select: none;
-
+   .active-indicator {
+      position: absolute;
+      top: 0rem;
+      transform: translateY(02.2rem);
+      background-color: white;
+      border-radius: 50%;
+      width: 6rem;
+      height: 6rem;
+      pointer-events: none;
+      z-index: -1;
+      transition: transform 0.2s ease-in-out;
+   }
    .navbar {
       height: 100%;
       width: 100%;
@@ -30,7 +41,6 @@
          display: flex;
          flex-direction: column;
          align-items: center;
-         justify-content: space-around;
          transition: all 0.5s ease;
 
          li {
@@ -39,7 +49,7 @@
             align-items: center;
             justify-content: center;
             width: 5rem;
-            height: 5rem;
+            height: 15rem;
             transition: all 0.5s ease;
 
             svg {
@@ -56,18 +66,27 @@
                transition: all 0.5s ease;
             }
 
-            &.active {
-               background-color: $bg-color;
-               border-radius: 3rem;
-
-               span {
-                  color: #333;
-               }
-            }
-
             &:hover {
                cursor: pointer;
             }
+         }
+         li:nth-child(1).active ~ .active-indicator {
+            transform: translateY(2.2rem + (10rem * 0));
+         }
+         li:nth-child(2).active ~ .active-indicator {
+            transform: translateY(2.2rem + (10rem * 1));
+         }
+         li:nth-child(3).active ~ .active-indicator {
+            transform: translateY(2.2rem + (10rem * 2));
+         }
+         li:nth-child(4).active ~ .active-indicator {
+            transform: translateY(2.2rem + (10rem * 3));
+         }
+         li:nth-child(5).active ~ .active-indicator {
+            transform: translateY(2.2rem + (10rem * 4));
+         }
+         li:nth-child(6).active ~ .active-indicator {
+            transform: translateY(2.2rem + (10rem * 5));
          }
       }
    }
@@ -122,11 +141,21 @@
 
       .navbar {
          ul {
+            .active-indicator {
+               width: 25rem;
+               height: 6rem;
+               border-radius: 3rem;
+            }
             li {
                width: 22rem;
-               height: 8rem;
+               height: 15rem;
                justify-content: space-between;
                padding: 0.5rem;
+            }
+            li.active {
+               span {
+                  color: black;
+               }
             }
          }
       }

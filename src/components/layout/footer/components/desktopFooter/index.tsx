@@ -2,6 +2,7 @@ import { Dispatch, FC, SetStateAction } from 'react';
 import { desktopIconOrder } from '../../func/footerIconsCorrectOrders';
 import './desktopFooter.scss';
 import { IconType } from '../../index.interface';
+import Drawer from './drawer';
 
 const DesktopFooter: FC<{
    drawerActive: boolean;
@@ -30,22 +31,10 @@ const DesktopFooter: FC<{
                      </li>
                   );
                })}
+               <div className="active-indicator"></div>
             </ul>
          </nav>
-         <div className="drawerClicker" onClick={handleDrawer}>
-            {drawerActive ? (
-               <>
-                  <div className="cross"></div>
-                  <div className="cross"></div>
-               </>
-            ) : (
-               <>
-                  <div className="line"></div>
-                  <div className="line"></div>
-                  <div className="line"></div>
-               </>
-            )}
-         </div>
+         <Drawer drawerActive={drawerActive} handleDrawer={handleDrawer} />
       </footer>
    );
 };
