@@ -84,6 +84,21 @@
       text-underline-offset: 0.6rem;
       cursor: pointer;
    }
+   &--organization {
+      border-color: $primary-color;
+      .input {
+         border-bottom: 0.5px solid $primary-color;
+         @media (min-width: $desktop) {
+            margin-right: 6.5px;
+         }
+      }
+      .submit-button {
+         background-color: $primary-color;
+      }
+      .national-code-entry__text-link--organization {
+         color: $secondary-color;  
+      }
+   }
 }
 
 .hidden {
