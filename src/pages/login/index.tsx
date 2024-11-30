@@ -81,7 +81,7 @@ const Login: FC = () => {
       ),
       CHANGE_PHONE_NUMBER: (
          <PhoneNumberEntry
-            headingText="برای کد ملی شما شماره‌ای در سیستم ثبت نشده است. لطفاً شماره تماس مرتبط با این کد ملی را وارد نمایید."
+            headingText="لطفا شماره تماس خود را وارد نمایید."
             setSelectedEntry={setSelectedEntry}
             setShowConfirmationForm={setShowConfirmationForm}
          />
