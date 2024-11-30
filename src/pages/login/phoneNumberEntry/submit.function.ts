@@ -6,6 +6,7 @@ const formSubmit = async (
    phoneNumber: string,
    nationalCode: string,
    setShowConfirmationForm: Dispatch<SetStateAction<boolean>>,
+   setMaskedPhoneNumber: Dispatch<SetStateAction<string>>,
 ) => {
    const isValidIranianPhone = /^09\d{9}$/.test(phoneNumber);
 
@@ -18,8 +19,11 @@ const formSubmit = async (
       national_code: nationalCode,
       mobile_number: phoneNumber,
    });
-   console.log(response)
+   console.log(response);
    if (response.status === 200) {
+      const responseBody = response.body;
+      const maskedPhoneNumber = responseBody.masked_mobile_number;
+      setMaskedPhoneNumber(maskedPhoneNumber);
       setShowConfirmationForm(true);
    } else {
       toast.error(response.body.message);

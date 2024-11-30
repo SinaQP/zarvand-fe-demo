@@ -12,7 +12,7 @@ const PhoneNumberEntry: FC<{
    setSelectedEntry: Dispatch<SetStateAction<EntryType>>;
    setShowConfirmationForm: Dispatch<SetStateAction<boolean>>;
 }> = ({ headingText, setSelectedEntry, setShowConfirmationForm }) => {
-   const { nationalCode, setNationalCode } = useLayoutContext();
+   const { nationalCode, setNationalCode, setMaskedPhoneNumber } = useLayoutContext();
    const [phoneNumber, setPhoneNumber] = useState<string[]>([]);
    return (
       <div className={styles['phone-number-entry']}>
@@ -39,6 +39,7 @@ const PhoneNumberEntry: FC<{
                   phoneNumber.join(''),
                   nationalCode.join(''),
                   setShowConfirmationForm,
+                  setMaskedPhoneNumber
                )
             }
          >
