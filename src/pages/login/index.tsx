@@ -47,6 +47,7 @@ const Login: FC = () => {
    const toastPosition = useWindowWidth('bottom-center', 'top-center');
 
    useEffect(() => {
+      console.log("Server Get's Updated")
       setHeaderText && setHeaderText(headerTitle);
       updateLayout({
          showConfirmationForm,
