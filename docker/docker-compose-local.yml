@@ -6,10 +6,10 @@ services:
       dockerfile: docker/Dockerfile.local
       args:
         EXTRA_HOST: "nexus.zaraamad.ir:192.168.174.4"
-    container_name: zarvand-fe-${PROJ}
+    container_name: zarvand-fe-project
     restart: always
     ports:
-      - ${LPORT}:80
+      - 80:80
     networks:
       - ProjectNet
     extra_hosts:
@@ -19,5 +19,5 @@ services:
 
 networks:
   ProjectNet:
-    name: ${PROJ}
+    name: test
     external: true
