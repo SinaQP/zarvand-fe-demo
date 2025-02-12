@@ -6,6 +6,7 @@ import { useLayoutContext } from '../../components/layout/layout.context';
 
 const Support: FC = () => {
    const { setHeaderId, setHeaderSubtitle } = useLayoutContext();
+   const supportNumber = import.meta.env.VITE_APP_SUPPORT_NUMBER || 'نامشخص';
 
    useEffect(() => {
       setHeaderSubtitle('');
@@ -14,7 +15,10 @@ const Support: FC = () => {
 
    return (
       <div className={styles.supportStyleWrapper}>
-         <ComingSoonText />
+         <div className={styles.infoCard}>
+            <h3>ارتباط با پشتیبانی</h3>
+            <span>شماره تماس: {supportNumber}</span>
+         </div>
       </div>
    );
 };

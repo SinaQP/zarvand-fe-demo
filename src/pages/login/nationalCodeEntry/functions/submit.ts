@@ -27,7 +27,11 @@ const handleSubmit = async (
    } else {
       const responseBody = response.body;
       const message = responseBody.message;
-      toast.error(message);
+      toast.error(
+         `${message} \n لطفاً در صورت بروز هرگونه مشکل یا مغایرت، با شماره پشتیبانی ${
+            import.meta.env.VITE_APP_SUPPORT_NUMBER
+         } تماس بگیرید.`,
+      );
    }
 };
 

@@ -39,7 +39,7 @@ const Renovation: FC = () => {
          <ToastContainer
             rtl
             position="bottom-center"
-            autoClose={2000}
+            autoClose={3000}
             hideProgressBar={false}
             closeOnClick
             pauseOnFocusLoss
@@ -48,6 +48,7 @@ const Renovation: FC = () => {
             theme="light"
             transition={Bounce}
             bodyStyle={{ fontFamily: 'BNazanin', fontSize: '2.5rem' }}
+            style={{ width: 'auto', maxWidth: '60rem' }}
          />
       </section>
    );

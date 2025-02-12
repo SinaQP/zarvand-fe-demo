@@ -47,7 +47,6 @@ const Login: FC = () => {
    const toastPosition = useWindowWidth('bottom-center', 'top-center');
 
    useEffect(() => {
-      console.log("Server Get's Updated")
       setHeaderText && setHeaderText(headerTitle);
       updateLayout({
          showConfirmationForm,
@@ -95,6 +94,7 @@ const Login: FC = () => {
          />
       ),
    };
+
    return (
       <section>
          {blueSquare}
@@ -107,7 +107,7 @@ const Login: FC = () => {
          <ToastContainer
             rtl
             position={toastPosition}
-            autoClose={5000}
+            autoClose={false}
             hideProgressBar={false}
             closeOnClick
             pauseOnFocusLoss
@@ -115,7 +115,11 @@ const Login: FC = () => {
             pauseOnHover
             theme="light"
             transition={Bounce}
-            bodyStyle={{ fontFamily: 'BNazanin', fontSize: '2.5rem' }}
+            bodyStyle={{
+               fontFamily: 'BNazanin',
+               fontSize: '2.5rem',
+            }}
+            style={{ width: 'auto' }}
          />
       </section>
    );
