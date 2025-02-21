@@ -8,6 +8,7 @@ import { TradeCharge } from '../../../interfaces/models.interface';
 import { useChargesContext, useUserContext } from '../../../App.context';
 import InfoRow from '../../../components/infoRow';
 import toMoneyFormat from '../../../utilities/toMoneyFormat';
+import showValidationToast from '../../../hooks/showChargesValidationToast';
 
 const ChargeCards: FC<{ tradeCharges: TradeCharge[] }> = ({ tradeCharges }) => {
    const {
@@ -16,6 +17,7 @@ const ChargeCards: FC<{ tradeCharges: TradeCharge[] }> = ({ tradeCharges }) => {
       setSelectedRenovationCharge,
    } = useChargesContext();
    const { showPaymentHistory, setShowPaymentHistory } = useUserContext();
+   showValidationToast();   
    const renderMasterCard = (charge: TradeCharge) => (
       <MasterCard
          key={charge.master_id}
@@ -38,7 +40,9 @@ const ChargeCards: FC<{ tradeCharges: TradeCharge[] }> = ({ tradeCharges }) => {
    return (
       <>
          {selectedTradeCharge ? (
-            <SelectedChargeCard isPayed={selectedTradeCharge.is_paid || showPaymentHistory} />
+            <SelectedChargeCard
+               isPayed={selectedTradeCharge.is_paid || showPaymentHistory}
+            />
          ) : (
             (() => {
                resetChargeStates(

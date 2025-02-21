@@ -1,4 +1,4 @@
-import { FC } from 'react';
+import { FC, useEffect, useState } from 'react';
 import SelectedRenovationCharge from '../selectedRenovationCharge';
 import { useChargesContext, useUserContext } from '../../../App.context';
 import MasterCard from '../../../components/masterCard';
@@ -7,6 +7,8 @@ import InfoRow from '../../../components/infoRow';
 import styles from '../index.module.scss';
 import StatusTab from '../../../components/statusTab';
 import resetChargeStates from '../../../utilities/resetChargeStates';
+import { toast } from 'react-toastify';
+import showValidationToast from '../../../hooks/showChargesValidationToast';
 
 const ChargeCards: FC = () => {
    const { showPaymentHistory, setShowPaymentHistory } = useUserContext();
@@ -16,6 +18,7 @@ const ChargeCards: FC = () => {
       setSelectedTradeCharge,
       setSelectedRenovationCharge,
    } = useChargesContext();
+   showValidationToast();
    return (
       <>
          {selectedRenovationCharge ? (

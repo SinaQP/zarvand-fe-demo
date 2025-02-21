@@ -14,17 +14,9 @@ const SelectedRenovationCharge: FC<{ isPayed: boolean }> = ({ isPayed }) => {
       setRenovationCharges,
    } = useChargesContext();
    const { setShowPaymentHistory } = useUserContext();
-   const [hasToastShown, setHasToastShown] = useState(false);
 
    if (!selectedRenovationCharge) return null;
    useEffect(() => {
-      if (!hasToastShown) {
-         toast.error(
-            'لطفا اطلاعات نمایش داده شده را با دقت برسی فرمایید. درصورت مشهده هرگونه مغایرت، به قسمت پشتیبانی مراجعه فرمایید. مسئولیت هرگونه مغایرت بر عهده شما خواهد بود.',
-            { autoClose: false },
-         );
-         setHasToastShown(true);
-      }
       async function fetchBillDetails() {
          if (
             selectedRenovationCharge &&
