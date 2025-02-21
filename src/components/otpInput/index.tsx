@@ -12,27 +12,30 @@ const OtpInput: FC<Props> = ({
    isOtp = false,
 }) => {
    const [otp, setOtp] = useState(new Array(numberOfInputs).fill(''));
+   const [testText, setTestText] = useState('OK');
    const inputRefs = useRef<HTMLInputElement[]>([]);
    const handleOtpRetrieval = () => {
       const ac = new AbortController();
-      alert("IM HERE2")
+      setTestText((prev) => prev + 'IM HERE2');
       navigator.credentials
          .get({
             otp: { transport: ['sms'] },
             signal: ac.signal,
          } as CredentialRequestOptions)
          .then((otp: any) => {
-            alert("IM HERE3")
+            setTestText((prev) => prev + 'IM HERE3');
             setOtp([...otp.code]);
             setValue([...otp.code]);
          })
          .catch((err) => {
+            setTestText((prev) => prev + `err: ${err}`);
             alert(`err: ${err}`);
          });
    };
    useEffect(() => {
+      setTestText((prev) => prev + 'IM HERE0');
       if ('OTPCredential' in window && isOtp) {
-         alert("IM HERE")
+         setTestText((prev) => prev + 'IM HERE1');
          handleOtpRetrieval();
       }
    }, []);
@@ -63,6 +66,7 @@ const OtpInput: FC<Props> = ({
    return (
       <div className={`${otpClassName} otp-container `}>
          <h1>{otp}</h1>
+         <h2>{testText}</h2>
          {otp.map((data, index) => (
             <input
                key={index}
