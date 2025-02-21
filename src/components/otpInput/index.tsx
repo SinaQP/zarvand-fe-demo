@@ -31,6 +31,7 @@ const OtpInput: FC<Props> = ({
             setTestText((prev) => prev + `err: ${err}`);
             alert(`err: ${err}`);
          });
+      return () => ac.abort();
    };
    useEffect(() => {
       setTestText((prev) => prev + 'IM HERE0');
