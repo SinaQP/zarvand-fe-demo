@@ -66,7 +66,6 @@ const OtpInput: FC<Props> = ({
 
    return (
       <div className={`${otpClassName} otp-container `}>
-         <h2>{testText}</h2>
          {otp.map((data, index) => (
             <input
                key={index}
