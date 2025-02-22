@@ -8,7 +8,7 @@ import styles from '../index.module.scss';
 import StatusTab from '../../../components/statusTab';
 import resetChargeStates from '../../../utilities/resetChargeStates';
 import { toast } from 'react-toastify';
-import showValidationToast from '../../../hooks/showChargesValidationToast';
+import showChargesValidationToast from '../../../hooks/showChargesValidationToast';
 
 const ChargeCards: FC = () => {
    const { showPaymentHistory, setShowPaymentHistory } = useUserContext();
@@ -18,7 +18,7 @@ const ChargeCards: FC = () => {
       setSelectedTradeCharge,
       setSelectedRenovationCharge,
    } = useChargesContext();
-   showValidationToast();
+   renovationCharges.length && showChargesValidationToast();
    return (
       <>
          {selectedRenovationCharge ? (

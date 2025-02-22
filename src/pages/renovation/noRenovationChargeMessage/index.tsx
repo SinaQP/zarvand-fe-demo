@@ -10,8 +10,7 @@ const NoRenovationChargesMessage: FC = () => {
       <div className={styles.container}>
          <img src={noRenovationIconSrc} alt="There Is No Renovation Charge" />
          <div className={styles['message-box']}>
-            ملکی برای شما در سیستم ثبت نشده برای اطلاعات بیشتر به شهرداری مراجعه
-            نمایید !
+            اطلاعاتی برای شما یافت نشد. در صورت مشاهده مغایرت، به قسمت پشتیبانی مراجعه فرمایید.
          </div>
       </div>
    );
