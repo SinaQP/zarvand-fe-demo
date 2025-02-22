@@ -46,6 +46,7 @@ const Trade: FC = () => {
             theme="light"
             transition={Bounce}
             bodyStyle={{ fontFamily: 'BNazanin', fontSize: '2.5rem' }}
+            style={{ width: 'auto', maxWidth: '60rem' }}
          />
       </section>
    );
