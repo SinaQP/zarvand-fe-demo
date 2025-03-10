@@ -25,21 +25,23 @@ const PaymentStatus = () => {
    const location = useLocation();
    const queryParams = new URLSearchParams(location.search);
    const status = queryParams.get('status');
-
+   const isSuccess = Number(status) === 0;
    useEffect(() => {
       setHeaderId?.(styles['header']);
-      !token && welcomeBack(navigate, zarToken, setToken, setUser);
+      // !token && welcomeBack(navigate, zarToken, setToken, setUser);
    }, []);
 
    return (
       <div id={styles.paymentStatusStyleWrapper}>
-         <PaymentResult status={Number(status) === 0 ? 'fail' : 'success'} />
-         <Lottie
-            options={defaultOptions(paymentStatusAnimation)}
-            speed={1}
-            width={250}
-            height={250}
-         />
+         <PaymentResult status={!isSuccess ? 'fail' : 'success'} />
+         {!isSuccess && (
+            <Lottie
+               options={defaultOptions(paymentStatusAnimation)}
+               speed={1}
+               width={250}
+               height={250}
+            />
+         )}
       </div>
    );
 };

@@ -6,6 +6,7 @@ import playPauseIcon from '/src/assets/images/playPauseIcon.svg';
 import Button from '../../../../components/button';
 import styles from './PaymentResult.module.scss';
 import { useNavigate } from 'react-router-dom';
+import PaymentDetail from '../paymentDetail';
 
 const PaymentResult: FC<PaymentResultProps> = ({ status }) => {
    const isSuccessful = status === 'success';
@@ -33,6 +34,7 @@ const PaymentResult: FC<PaymentResultProps> = ({ status }) => {
 
          <span id={styles.title}>{title}</span>
          <span id={styles.subTitle}>{subTitle}</span>
+         {isSuccessful && <PaymentDetail />}
 
          <Button
             className={styles.continueBtn}

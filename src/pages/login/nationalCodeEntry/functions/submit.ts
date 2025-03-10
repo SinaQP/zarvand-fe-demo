@@ -17,21 +17,23 @@ const handleSubmit = async (
    }
    const response = await sendVerificationCode({ national_code: nationalCode });
    const responseStatus = response.status;
+   const responseBody = response.body;
    if (responseStatus === 200) {
-      const responseBody = response.body;
       const personPhoneNumber = responseBody.masked_mobile_number;
       setPhoneNumber && setPhoneNumber(personPhoneNumber);
       setShowConfirmationForm(true);
    } else if (responseStatus === 422) {
       setSelectedEntry(EntryType.INVALID_PHONE_NUMBER);
-   } else {
-      const responseBody = response.body;
+   } else if (responseStatus === 404) {
       const message = responseBody.message;
       toast.error(
          `${message} \n لطفا با شماره پشتیبانی ${
             import.meta.env.VITE_APP_SUPPORT_NUMBER
          } تماس حاصل فرمایید.`,
       );
+   } else {
+      const message = responseBody.message;
+      toast.error(message);
    }
 };
 
