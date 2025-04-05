@@ -1,4 +1,4 @@
-@import '/src/assets/scss/all';
+@use '/src/assets/scss/constants/colors' as colors;
 
 .androidRenovateCardStyleWrapper {
    width: 100%;
@@ -17,7 +17,7 @@
          width: 1.5rem;
          height: 1.5rem;
          border-radius: 100%;
-         background-color: $primary-color;
+         background-color: colors.$primary-color;
 
          &:last-child {
             width: 2rem;
@@ -30,7 +30,7 @@
                width: 1rem;
                height: 1rem;
                border-radius: inherit;
-               border: 0.1rem solid $bg-color;
+               border: 0.1rem solid colors.$bg-color;
             }
          }
       }
@@ -38,7 +38,7 @@
       .line {
          flex: 1;
          width: 0.1rem;
-         background-color: $primary-color;
+         background-color: colors.$primary-color;
       }
    }
 

@@ -1,9 +1,10 @@
-@import '../../../assets/scss/all';
+@use '../../../assets/scss/constants/variables' as vars;
+@use '../../../assets/scss/constants/colors' as colors;
 
 .phone-number-entry {
    width: 89vw;
-   border: 2.5px solid $secondary-color;
-   box-shadow: $primary-box-shadow;
+   border: 2.5px solid colors.$secondary-color;
+   box-shadow: vars.$primary-box-shadow;
    border-radius: 1.5rem;
    margin: 19rem auto 0;
 
@@ -17,7 +18,7 @@
    padding: 5rem 0 2.5rem 0;
 
    min-height: 23rem;
-   @media (min-width: $desktop) {
+   @media (min-width: vars.$desktop) {
       width: fit-content;
       padding: 8vh 3rem 8vh 3rem;
       margin: 8rem auto 0;
@@ -29,7 +30,7 @@
       font-size: 2rem;
       font-weight: 400;
       width: 80%;
-      @media (min-width: $desktop) {
+      @media (min-width: vars.$desktop) {
          font-size: 3.4rem;
          width: 43rem;
          margin-bottom: 9.5vh;
@@ -38,7 +39,7 @@
 
    .otp-input {
       margin-bottom: 3rem;
-      @media (min-width: $desktop) {
+      @media (min-width: vars.$desktop) {
          margin-bottom: 9vh;
       }
    }
@@ -49,13 +50,13 @@
       font-weight: 400;
       text-align: center;
       border: none;
-      border-bottom: 0.5px solid $secondary-color;
+      border-bottom: 0.5px solid colors.$secondary-color;
       margin-right: 5px;
       width: 2rem;
       height: 2.5rem;
       background-color: transparent;
       padding: 0 !important;
-      @media (min-width: $desktop) {
+      @media (min-width: vars.$desktop) {
          font-size: 4.5rem;
          width: 3.5rem;
          height: 3.5rem;
@@ -65,7 +66,7 @@
 
    .submit-button {
       width: 56.25%;
-      @media (min-width: $desktop) {
+      @media (min-width: vars.$desktop) {
          width: 45%;
          font-size: 3.5rem;
       }
@@ -75,11 +76,11 @@
       font-size: 1.5rem;
       font-weight: 400;
       margin-bottom: 3rem;
-      color: $primary-color;
+      color: colors.$primary-color;
       text-decoration: underline;
       text-underline-offset: 1rem;
       cursor: pointer;
-      @media (min-width: $desktop) {
+      @media (min-width: vars.$desktop) {
          font-size: 2.5rem;
          margin-bottom: 3.5rem;
       }

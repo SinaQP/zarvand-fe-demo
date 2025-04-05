@@ -1,42 +1,44 @@
-@import '../../assets/scss/all';
+@use '../../assets/scss/constants/variables' as vars;
+@use '../../assets/scss/constants/colors' as colors;
+@use '../../assets/scss/mixin/common' as mixins;
 
 .card {
-   border: 2px solid $secondary-color;
+   border: 2px solid colors.$secondary-color;
    border-radius: 1.5rem;
-   box-shadow: $primary-box-shadow;
+   box-shadow: vars.$primary-box-shadow;
    padding: 1rem;
    position: relative;
    width: 100%;
 
-   @media (min-width: $desktop) {
+   @media (min-width: vars.$desktop) {
       width: 52rem;
       margin-left: 4rem;
    }
 
    // &:not(:last-of-type) {
-   //    margin-bottom: 2rem;
+   //    margin-bottom: 2rem;
    // }
 
    &.is-payed {
-      border: 2px solid $primary-color;
+      border: 2px solid colors.$primary-color;
 
       .certification-number-section {
          .certification-number-title {
-            border-color: $primary-color;
+            border-color: colors.$primary-color;
          }
 
-         border-color: $primary-color;
+         border-color: colors.$primary-color;
       }
 
       .badge {
-         background-color: $primary-color;
-         @media (min-width: $desktop) {
+         background-color: colors.$primary-color;
+         @media (min-width: vars.$desktop) {
             font-size: 2.4rem;
          }
       }
 
       .button {
-         background-color: $primary-color;
+         background-color: colors.$primary-color;
       }
    }
 
@@ -55,9 +57,9 @@
          width: 9rem;
          font-size: 1.2rem;
          border-radius: 1rem;
-         @include center-flex;
+         @include mixins.center-flex;
          justify-content: space-between;
-         @media (min-width: $desktop) {
+         @media (min-width: vars.$desktop) {
             width: 15rem;
             font-size: 2rem;
          }
@@ -67,8 +69,8 @@
    .badge {
       font-size: 1.3rem;
       font-family: SBaran, sans-serif;
-      background-color: $secondary-color;
-      color: $font-white-color;
+      background-color: colors.$secondary-color;
+      color: colors.$font-white-color;
       text-align: center;
       padding: 0.5rem 1rem;
 
@@ -77,7 +79,7 @@
       top: 3px;
       left: -14px;
       transform: rotate(-45deg);
-      @media (min-width: $desktop) {
+      @media (min-width: vars.$desktop) {
          font-size: 2.4rem;
          padding: 0.2rem 1rem;
       }
@@ -85,7 +87,7 @@
    .loading {
       width: 9rem;
 
-      @media (min-width: $desktop) {
+      @media (min-width: vars.$desktop) {
          width: 15rem;
       }
    }

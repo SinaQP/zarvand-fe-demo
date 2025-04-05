@@ -1,9 +1,9 @@
-@import '../../../../assets/scss/constants/colors';
+@use '../../../../assets/scss/constants/colors' as colors;
 
 .payment-detail__row {
-   width: 70%;
-   padding: 0 1rem;
-   background-color: rgba($primary-color, 0.051);
-   border-bottom: 1px solid $primary-color;
-   margin-bottom: 1rem;
+  width: 70%;
+  padding: 0 1rem;
+  background-color: rgba(colors.$primary-color, 0.051);
+  border-bottom: 1px solid colors.$primary-color;
+  margin-bottom: 1rem;
 }

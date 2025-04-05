@@ -1,4 +1,4 @@
-@import '/src/assets/scss/all';
+@use '/src/assets/scss/all' as styles;
 
 #RenovationInfoCardStyleWrapper {
    width: 55rem;
@@ -11,6 +11,6 @@
       width: 90%;
       height: 3rem;
       background: #2480940d;
-      border-bottom: 0.1rem solid $primary-color;
+      border-bottom: 0.1rem solid colors.$primary-color;
    }
 }

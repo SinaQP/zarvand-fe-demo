@@ -1,4 +1,4 @@
-@import '../../../assets/scss/all';
+@use '../../../assets/scss/constants/variables' as vars;
 
 .city-animation-card {
    position: fixed;
@@ -6,7 +6,7 @@
    left: 0;
    width: 100%;
    height: 12rem;
-   @media (min-width: $desktop) {
+   @media (min-width: vars.$desktop) {
       position: fixed;
       bottom: 0;
       left: 0;

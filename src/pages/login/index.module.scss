@@ -1,12 +1,13 @@
-@import '../../assets/scss/all';
+@use '../../assets/scss/constants/variables' as vars;
+@use '../../assets/scss/constants/colors' as colors;
 
 #header {
-   @media (min-width: $desktop) {
+   @media (min-width: vars.$desktop) {
       height: 100vh;
       background-color: orangered;
       border-radius: 1.5rem 0 0 1.5rem;
       right: 0;
-      background-color: $primary-color;
+      background-color: colors.$primary-color;
 
       width: 55rem;
       transition: width 0.5s ease-in-out;
@@ -55,7 +56,7 @@
    margin-top: 0.5vh;
 }
 .content {
-   @media (min-width: $desktop) {
+   @media (min-width: vars.$desktop) {
       display: flex;
       height: 100vh;
       flex-direction: column;
@@ -65,5 +66,5 @@
    }
 }
 .title.expanded {
-   color: $font-white-color;
+   color: colors.$font-white-color;
 }

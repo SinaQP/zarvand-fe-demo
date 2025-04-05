@@ -1,13 +1,4 @@
-// constants
-@import './constants/all';
-//base
-@import './base/base';
-
-// mixin
-@import './mixin/all';
-// utils
-@import './utills/all';
-//pages
-@import './pages/all';
-
-// components
+@use './constants/all' as const;
+@use './base/base' as base;
+@use './mixin/all' as mixin;
+@use './utills/all' as utills;

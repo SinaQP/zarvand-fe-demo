@@ -1,25 +1,27 @@
-@import '../../assets/scss/all';
+@use '../../assets/scss/constants/variables' as vars;
+@use '../../assets/scss/constants/colors' as colors;
+@use '../../assets/scss/mixin/common' as mixins;
 
 #header {
-   @include small-header;
+   @include mixins.small-header;
 }
 
 .supportStyleWrapper {
-   margin: 0 auto;
+   margin: 0 auto; 
 
    .infoCard {
-      background-color: $primary-color;
+      background-color: colors.$primary-color;
       padding: 1rem 3rem;
       border-radius: 5rem;
-      color: $font-white-color;
+      color: colors.$font-white-color;
       display: flex;
       flex-direction: column;
-      @media (min-width: $desktop) {
+      @media (min-width: vars.$desktop) {
          padding: 3rem;
       }
       h3 {
          font-size: 2rem;
-         @media (min-width: $desktop) {
+         @media (min-width: vars.$desktop) {
             font-size: 4rem;
          }
          font-family: 'SBaran';
@@ -29,15 +31,14 @@
          font-size: 1.6rem;
          margin-top: 0.5rem;
 
-         @media (min-width: $desktop) {
+         @media (min-width: vars.$desktop) {
             font-size: 3rem;
             margin-top: 2rem;
-
          }
       }
    }
-   @include default-layout;
-   @media (min-width: $desktop) {
+   @include mixins.small-header;
+   @media (min-width: vars.$desktop) {
       width: 50%;
    }
 }

@@ -1,15 +1,15 @@
-@import '/src/assets/scss/all';
+@use '/src/assets/scss/mixin/common' as mixins;
 
 #header {
-   @include small-header;
+  @include mixins.small-header;
 }
 
 #paymentStatusStyleWrapper {
-   width: 100%;
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   justify-content: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 
-   @include default-layout;
+  @include mixins.default-layout;
 }

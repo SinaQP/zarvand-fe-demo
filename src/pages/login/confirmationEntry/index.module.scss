@@ -1,11 +1,13 @@
-@import '../../../assets/scss/all';
+@use '../../../assets/scss/mixin/common' as mixins;
+@use '../../../assets/scss/constants/variables' as vars;
+@use '../../../assets/scss/constants/colors' as colors;
 #header {
-   @media (min-width: $desktop) {
+   @media (min-width: vars.$desktop) {
       height: 100vh;
       background-color: orangered;
       border-radius: 1.5rem 0 0 1.5rem;
       right: 0;
-      background-color: $primary-color;
+      background-color: colors.$primary-color;
 
       width: 55rem;
       transition: width 0.5s ease-in-out;
@@ -37,7 +39,7 @@
    display: flex;
    flex-direction: column;
    align-items: center;
-   @media (min-width: $desktop) {
+   @media (min-width: vars.$desktop) {
       margin-right: 13.5vw;
    }
    &__title {
@@ -45,18 +47,18 @@
       font-size: 6rem;
       font-weight: 400;
       text-align: center;
-      color: $font-white-color;
+      color: colors.$font-white-color;
    }
    .form {
       width: 89vw;
       border: 2px solid #ffffff;
-      box-shadow: $primary-box-shadow;
+      box-shadow: vars.$primary-box-shadow;
       border-radius: 1.5rem;
-      @include center-flex;
+      @include mixins.center-flex;
       flex-direction: column;
       padding: 5vh 0;
       margin-top: 6vh;
-      @media (min-width: $desktop) {
+      @media (min-width: vars.$desktop) {
          width: 50rem;
          padding: 12vh 2.5rem 8vh 2.5rem;
       }
@@ -65,8 +67,8 @@
          font-size: 2.5rem;
          font-weight: 400;
          text-align: center;
-         color: $font-white-color;
-         @media (min-width: $desktop) {
+         color: colors.$font-white-color;
+         @media (min-width: vars.$desktop) {
             font-size: 4rem;
          }
       }
@@ -74,7 +76,7 @@
       .otp-input {
          margin-top: 1.5rem;
          margin-bottom: 4rem;
-         @media (min-width: $desktop) {
+         @media (min-width: vars.$desktop) {
             margin-top: 8.5vh;
             margin-bottom: 6vh;
          }
@@ -85,7 +87,7 @@
          font-size: 2.5rem;
          font-weight: 400;
          text-align: center;
-         color: $font-white-color;
+         color: colors.$font-white-color;
          border: 1px solid #ffffff;
 
          border-radius: 0.5rem;
@@ -97,7 +99,7 @@
          &:not(:last-of-type) {
             margin-right: 1rem;
          }
-         @media (min-width: $desktop) {
+         @media (min-width: vars.$desktop) {
             font-size: 4.5rem;
             width: 4.5rem;
             height: 6rem;
@@ -112,7 +114,7 @@
          width: 56.25%;
          border: none;
 
-         @media (min-width: $desktop) {
+         @media (min-width: vars.$desktop) {
             width: 45%;
             font-size: 3.5rem;
          }
@@ -124,18 +126,18 @@
       text-align: center;
       margin-bottom: 3rem;
       margin-top: 1rem;
-      
+
       text-decoration: underline;
-      color: $font-white-color;
+      color: colors.$font-white-color;
       text-underline-offset: 1.3rem;
       cursor: pointer;
-      @media (min-width: $desktop) {
+      @media (min-width: vars.$desktop) {
          font-size: 2.5rem;
          margin-bottom: 3.5rem;
       }
 
       span {
-         color: $font-white-color;
+         color: colors.$font-white-color;
       }
    }
 }

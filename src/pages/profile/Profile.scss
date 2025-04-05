@@ -1,7 +1,8 @@
-@import '/src/assets/scss/all';
+@use '/src/assets/scss/mixin/common' as mixins;
+@use '/src/assets/scss/constants/variables' as vars;
 
 #header {
-   @include small-header;
+   @include mixins.small-header;
 }
 
 #profileStyleWrapper {
@@ -12,7 +13,7 @@
    align-items: center;
    gap: 0.5rem;
 
-   #pfp {
+   #pfp { 
       width: 80%;
       display: flex;
       align-items: center;
@@ -53,10 +54,10 @@
       }
    }
 
-   @media (min-width: $desktop) {
+   @media (min-width: vars.$desktop) {
       margin-top: 0;
       gap: 3rem;
-      @include default-layout;
+      @include mixins.small-header;
 
       #pfp {
          width: 100rem;
@@ -100,10 +101,10 @@
    justify-content: space-between;
    font-size: 2rem;
    margin-top: 2.5vh;
-   @media (min-width: $desktop) {
+   @media (min-width: vars.$desktop) {
       width: 20rem;
       font-size: 3.5rem;
       padding: 1rem 1.5rem;
    }
-   // padding: 2rem 4rem  ;
+   // padding: 2rem 4rem
 }
