@@ -8,10 +8,10 @@ import { FC } from 'react';
 
 const RnvChargePdf: FC<RnvChargePdfProps> = ({
    componentRef,
-   data,
-   printBill,
+   data, 
+   printBill,   
    onlyShow,
-}) => {
+}) => {  
    return (
       <div style={{ display: onlyShow ? '' : 'none' }}>
          <div
