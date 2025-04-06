@@ -12,7 +12,7 @@
    align-items: center;
    justify-content: center;
    gap: 3rem;
-   @include mixins.small-header;
+   @include mixins.default-layout;
    &__certification-number-card {
       align-self: center;
    }

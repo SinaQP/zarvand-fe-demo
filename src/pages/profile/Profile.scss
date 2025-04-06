@@ -57,7 +57,7 @@
    @media (min-width: vars.$desktop) {
       margin-top: 0;
       gap: 3rem;
-      @include mixins.small-header;
+      @include mixins.default-layout;
 
       #pfp {
          width: 100rem;

@@ -37,7 +37,7 @@
          }
       }
    }
-   @include mixins.small-header;
+   @include mixins.default-layout;
    @media (min-width: vars.$desktop) {
       width: 50%;
    }
