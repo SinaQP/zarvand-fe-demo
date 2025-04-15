@@ -1,12 +1,13 @@
-@import '/src/assets/scss/all';
+@use '/src/assets/scss/constants/variables' as vars;
+@use '/src/assets/scss/constants/colors' as colors;
 
 .footer {
    position: sticky;
    top: 13vw;
    height: 60rem;
-   width: $desktop-footer-width;
-   background-color: $primary-color;
-   border-radius: 1.5rem 0 0 1.5rem;
+   width: vars.$desktop-footer-width;
+   background-color: colors.$primary-color;
+   border-radius: 1.5rem 0 0 1.5rem; 
    display: flex;
    align-items: center;
    justify-content: center;
@@ -61,7 +62,7 @@
                font-weight: 400;
                line-height: 3rem;
                text-align: center;
-               color: $bg-color;
+               color: colors.$bg-color;
 
                transition: all 0.5s ease;
             }
@@ -95,8 +96,8 @@
       position: absolute;
       width: 7rem;
       height: 7rem;
-      background-color: $bg-color;
-      border: 2.5px $secondary-color solid;
+      background-color: colors.$bg-color;
+      border: 2.5px colors.$secondary-color solid;
       left: -4rem;
       border-radius: 100%;
 
@@ -108,7 +109,7 @@
       .cross {
          width: 70%;
          height: 0.3rem;
-         background-color: $secondary-color;
+         background-color: colors.$secondary-color;
          transition: all 0.5s ease;
          position: absolute;
 
@@ -123,7 +124,7 @@
       .line {
          width: 70%;
          height: 0.3rem;
-         background-color: $primary-color;
+         background-color: colors.$primary-color;
          transition: all 0.5s ease;
 
          &:nth-child(2) {

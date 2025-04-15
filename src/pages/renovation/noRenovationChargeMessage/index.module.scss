@@ -1,36 +1,37 @@
-@import '../../../assets/scss/all';
+@use '../../../assets/scss/constants/variables' as vars;
+@use '../../../assets/scss/constants/colors' as colors;
+@use '../../../assets/scss/mixin/common' as mixins;
 
 .container {
-  @media (min-width:$desktop) {
-    @include center-flex;
-    flex-direction: column;
-    margin: 0 auto;
-    align-self: flex-start;
-  }
-  .message-box {
-    @include center-flex;
-    flex-direction: column;
-
-    font-size: 1.5rem;
-    font-weight: 400;
-    text-align: center;
-    border-bottom: 2px solid $secondary-color;
-    padding-bottom: 0.5rem;
-    @media (min-width:$desktop) {
-      font-size: 2.5rem;
-      @include center-flex;
+   @media (min-width: vars.$desktop) { 
+      @include mixins.center-flex;
       flex-direction: column;
       margin: 0 auto;
-      margin-top: 1rem;
-    }
-  }
+      align-self: flex-start;
+   }
+   .message-box {
+      @include mixins.center-flex;
+      flex-direction: column;
 
-  img {
-    width: 100%;
-    @media (min-width:$desktop) {
-      width: 62.5vw;
-      height: 62.5vh;
-    }
-  }
+      font-size: 1.5rem;
+      font-weight: 400;
+      text-align: center;
+      border-bottom: 2px solid colors.$secondary-color;
+      padding-bottom: 0.5rem;
+      @media (min-width: vars.$desktop) {
+         font-size: 2.5rem;
+         @include mixins.center-flex;
+         flex-direction: column;
+         margin: 0 auto;
+         margin-top: 1rem;
+      }
+   }
+
+   img {
+      width: 100%;
+      @media (min-width: vars.$desktop) {
+         width: 62.5vw;
+         height: 62.5vh;
+      }
+   }
 }
-

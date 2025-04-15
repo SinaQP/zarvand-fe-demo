@@ -1,4 +1,4 @@
-@import "../../assets/scss/all";
+@use '../../assets/scss/constants/variables' as vars;
 
 .address-section {
    display: flex;
@@ -7,9 +7,8 @@
    span {
       font-size: 1.7rem;
       margin-right: 0.3rem;
-      @media (min-width: $desktop) {
+      @media (min-width: vars.$desktop) {
          font-size: 3rem;
       }
-   
    }
 }

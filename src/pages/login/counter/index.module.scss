@@ -1,15 +1,17 @@
-@import '../../../assets/scss/all';
+@use '../../../assets/scss/constants/colors' as colors;
+@use '../../../assets/scss/constants/variables' as vars;
+@use '../../../assets/scss/mixin/common' as mixins;
 
 $badge-height: 7rem;
 
 .badge {
    width: 7rem;
    height: $badge-height;
-   background-color: $bg-color;
+   background-color: colors.$bg-color;
    margin-bottom: calc(-1 * var(--badge-height) / 2);
-   border: 2px solid $primary-color;
+   border: 2px solid colors.$primary-color;
    border-radius: 50%;
-   @include center-flex;
+   @include mixins.center-flex;
 
    flex-direction: column;
    font-size: 2.5rem;
@@ -20,7 +22,7 @@ $badge-height: 7rem;
    opacity: 0;
    animation: fadeIn 0.3s 300ms forwards;
    margin-top: auto;
-   @media (min-width: $desktop) {
+   @media (min-width: vars.$desktop) {
       $badge-height: 20rem;
       font-size: 5rem;
       line-height: 5rem;

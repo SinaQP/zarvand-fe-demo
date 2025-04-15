@@ -1,14 +1,14 @@
-@import '../../assets/scss/all';
+@use '../../assets/scss/constants/variables' as vars;
+@use '../../assets/scss/constants/colors' as colors;
 
 .back-arrow {
    display: flex;
    align-items: center;
    gap: 1rem;
 
-   // @include center-flex;
    .arrow {
       border-radius: 50%;
-      width: 3rem;
+      width: 3rem; 
       height: 3rem;
       display: flex;
       align-items: center;
@@ -22,17 +22,17 @@
 
    &.pending {
       .arrow {
-         background-color: $secondary-color;
+         background-color: colors.$secondary-color;
       }
    }
 
    &.paid {
       .arrow {
-         background-color: $primary-color;
+         background-color: colors.$primary-color;
       }
    }
 
-   @media (min-width: $desktop) {
+   @media (min-width: vars.$desktop) {
       .arrow {
          width: 5rem;
          height: 5rem;

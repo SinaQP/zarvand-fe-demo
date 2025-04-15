@@ -1,9 +1,9 @@
-@import '/src/assets/scss/all';
+@use '/src/assets/scss/mixin/common' as mixins;
 
 #header {
-   @include small-header;
+  @include mixins.small-header;
 }
 
 #bank-portal {
-   @include default-layout;
+  @include mixins.default-layout;
 }

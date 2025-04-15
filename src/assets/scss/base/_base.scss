@@ -1,3 +1,5 @@
+@use '../constants/variables' as vars; 
+
 * {
   margin: 0;
   padding: 0;
@@ -8,12 +10,12 @@ $base-font-size: 62.5%;
 
 html {
   font-size: 62.5%;
-  @each $width, $size in $breakpoints {
-    @media (max-width: $width) {
+  @each $width, $size in vars.$breakpoints {
+    @media (max-width: $width) { 
       font-size: $size;
     }
   }
-  @media (max-width: $desktop) {
+  @media (max-width: vars.$desktop) {
     font-size: 62.5%;
   }
 
@@ -60,5 +62,5 @@ body {
   font-family: BNazanin, Kalameh, sans-serif;
   background-color: #F5F5F5;
 
-  direction: $direction;
+  direction: vars.$direction;
 }

@@ -1,3 +1,5 @@
+@use "../constants/variables" as vars;
+
 @mixin center-flex {
    display: flex;
    align-items: center;
@@ -10,7 +12,7 @@
    h1 {      
       margin-top: 1.5rem;
       margin-bottom: 0rem;
-      @media (min-width: $desktop) {
+      @media (min-width: vars.$desktop) {
          margin-top: 0;
       }
    }
@@ -18,10 +20,10 @@
 
 @mixin default-layout {
    margin-top: calc(var(--small-header-height) + 4rem);
-   margin-bottom: $footer-height;
+   margin-bottom: vars.$footer-height;
    padding: 2rem 2rem;
    overflow-y: scroll;
-   @media (min-width: $desktop) {
+   @media (min-width: vars.$desktop) {
       padding: 3rem 1rem;
       margin-top: calc(var(--small-header-height) + 8vh);
    }

@@ -1,5 +1,5 @@
-@import '../../assets/scss/all';
+@use '../../assets/scss/constants/variables' as vars;
 
 #header {
-  @include small-header;
+   @include mixins.small-header;
 }

@@ -1,20 +1,20 @@
-@import "../../assets/scss/all";
+@use '../../assets/scss/constants/colors' as colors;
 
 .button {
-  font-family: BNazanin, sans-serif;
-  font-size: 2.5rem;
-  font-weight: 400;
+   font-family: BNazanin, sans-serif;
+   font-size: 2.5rem;
+   font-weight: 400;
 
-  color: $font-white-color;
-  background-color: $secondary-color;
-  border: none;
-  border-radius: 1.5rem;
-  padding: 1rem;
+   color: colors.$font-white-color;
+   background-color: colors.$secondary-color;
+   border: none;
+   border-radius: 1.5rem;
+   padding: 1rem;
 
-  cursor: pointer;
-  transition: 450ms ease-in;
+   cursor: pointer;
+   transition: 450ms ease-in;
 }
 .button-loading {
-  width: 5rem;
-  height: 5rem;
+   width: 5rem;
+   height: 5rem;
 }

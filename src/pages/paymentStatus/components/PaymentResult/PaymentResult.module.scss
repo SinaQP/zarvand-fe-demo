@@ -1,4 +1,5 @@
-@import '/src/assets/scss/all';
+@use '/src/assets/scss/constants/colors' as colors;
+@use '/src/assets/scss/constants/variables' as vars;
 
 #PaymentResultStyleWrapper {
    width: 90%;
@@ -59,30 +60,30 @@
    }
 
    &.success {
-      border-color: $primary-color;
+      border-color: colors.$primary-color;
 
       #resultStatTitle {
-         background-color: $primary-color;
+         background-color: colors.$primary-color;
       }
 
       .continueBtn {
-         background-color: $primary-color;
+         background-color: colors.$primary-color;
       }
    }
 
    &.fail {
-      border-color: $secondary-color;
+      border-color: colors.$secondary-color;
 
       #resultStatTitle {
-         background-color: $secondary-color;
+         background-color: colors.$secondary-color;
       }
 
       .continueBtn {
-         background-color: $secondary-color;
+         background-color: colors.$secondary-color;
       }
    }
 
-   @media (min-width: $desktop) {
+   @media (min-width: vars.$desktop) {
       width: 35%;
 
       #title {
