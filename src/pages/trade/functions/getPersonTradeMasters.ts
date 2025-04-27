@@ -13,7 +13,7 @@ export const getUserTradeMasters = async (
    const responseBody = response.body;
    if (response.status === 200) {
       setState(responseBody);
-      if (responseBody.length === 1) setSelectedTradeCharge(responseBody[0]);
+      // if (responseBody.length === 1) setSelectedTradeCharge(responseBody[0]);
       setIsLoaded(true);
       return responseBody;
    } else {

@@ -25,10 +25,10 @@ const PaymentStatus = () => {
    const location = useLocation();
    const queryParams = new URLSearchParams(location.search);
    const status = queryParams.get('status');
-   const isSuccess = Number(status) === 0;
+   const isSuccess = Number(status) === 1;
    useEffect(() => {
       setHeaderId?.(styles['header']);
-      // !token && welcomeBack(navigate, zarToken, setToken, setUser);
+      !token && welcomeBack(navigate, zarToken, setToken, setUser);
    }, []);
 
    return (

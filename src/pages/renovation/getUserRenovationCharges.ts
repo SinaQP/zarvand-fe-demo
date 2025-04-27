@@ -15,8 +15,8 @@ export const getUserRenovationCharges = async (
    const responseBody = response.body;
    if (response.status === 200) {
       setState(responseBody);
-      if (responseBody.length === 1)
-         setSelectedRenovationCharge(responseBody[0]);
+      // if (responseBody.length === 1)
+      //    setSelectedRenovationCharge(responseBody[0]);
       setIsLoaded(true);
       return responseBody;
    } else {

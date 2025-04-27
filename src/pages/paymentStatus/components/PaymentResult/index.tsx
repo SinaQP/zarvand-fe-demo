@@ -17,7 +17,7 @@ const PaymentResult: FC<PaymentResultProps> = ({ status }) => {
    const navigate = useNavigate();
 
    const handleRedirectToHomeScreen = () => {
-      navigate('/');
+      navigate('/home');
    };
 
    return (

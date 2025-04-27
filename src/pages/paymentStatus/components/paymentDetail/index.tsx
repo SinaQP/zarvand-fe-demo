@@ -24,7 +24,7 @@ const PaymentDetail = () => {
          />
          <InfoRow
             title="مبلغ پرداخت شده:"
-            value={amount || '-'}
+            value={amount? `(ریال) ${amount}` : '-'}
             className={styles['payment-detail__row']}
          />
          <InfoRow
