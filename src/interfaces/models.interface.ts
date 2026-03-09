@@ -3,13 +3,21 @@ export interface User {
    national_code: string;
    mobile_number: string;
    birth_date: string;
+   city?: string;
+   region?: string;
+   address?: string;
+   citizen_id?: string;
+   property_id?: string;
+   vehicle_plate?: string;
+   email?: string;
+   postal_code?: string;
 }
 
 export interface TradeCharge {
    master_id: string;
    address: string;
    TradeType: string;
-   is_paid: false;
+   is_paid: boolean;
    shop_area: number;
    last_bill_info: {
       payment_no: string;

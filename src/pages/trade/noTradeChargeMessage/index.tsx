@@ -1,4 +1,4 @@
-import { FC } from 'react';
+﻿import { FC } from 'react';
 import NoTradeMobileIcon from '../../../assets/images/no-trade-mobile.svg';
 import NoTradeDesktopIcon from '../../../assets/images/no-trade-desktop.svg';
 import styles from './index.module.scss';

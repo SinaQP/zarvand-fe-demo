@@ -1,5 +1,7 @@
 import { Fetch } from '../fetch';
 import { FetchResult } from '../fetch.interface';
+import { IS_DEMO_MODE } from '../../config/env';
+import { getRenovationPrintDataDemo } from '../../demo/service';
 
 export async function getRnvPrintData(
    body: {
@@ -9,6 +11,9 @@ export async function getRnvPrintData(
    token: string,
 ): Promise<any> {
    try {
+      if (IS_DEMO_MODE) {
+         return await getRenovationPrintDataDemo(token, body.master_id);
+      }
       const backendUrl = import.meta.env.VITE_APP_BACKEND;
       const url: string = backendUrl + `/zarvand/renovation/print`;
 

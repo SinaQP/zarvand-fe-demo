@@ -1,5 +1,6 @@
-@use '/src/assets/scss/mixin/common' as mixins;
+﻿@use '/src/assets/scss/mixin/common' as mixins;
 @use '/src/assets/scss/constants/variables' as vars;
+@use '/src/assets/scss/constants/colors' as colors;
 
 #header {
    @include mixins.small-header;
@@ -11,13 +12,15 @@
    display: flex;
    flex-direction: column;
    align-items: center;
-   gap: 0.5rem;
+   gap: 1rem;
+   padding-bottom: 3rem;
 
-   #pfp { 
-      width: 80%;
+   #pfp {
+      width: 90%;
       display: flex;
       align-items: center;
-      gap: 2rem;
+      gap: 1.5rem;
+      flex-wrap: wrap;
 
       #pfpImage {
          width: 6rem;
@@ -25,38 +28,104 @@
       }
 
       #username {
-         font-size: 2rem;
+         font-size: 2.2rem;
          font-weight: 400;
          line-height: 2rem;
          text-align: center;
       }
+
+      .demo-badge {
+         padding: 0.2rem 0.8rem;
+         border-radius: 1rem;
+         background-color: colors.$secondary-color;
+         color: #fff;
+         font-size: 1.5rem;
+      }
    }
 
    #dataSection {
-      width: 28rem;
-
+      width: 30rem;
       display: flex;
       flex-direction: column;
       gap: 2rem;
    }
 
-   #buttons {
-      width: 10rem;
-      height: 4.5rem;
+   .profile-edit-card {
+      width: 90%;
+      max-width: 96rem;
+      border: 0.1rem solid colors.$secondary-color;
+      border-radius: 1.5rem;
+      background-color: #fff;
+      box-shadow: vars.$primary-box-shadow;
+      padding: 1.5rem;
       display: flex;
-      align-items: center;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 1.2rem;
 
-      span {
-         font-size: 2.5rem;
-         font-weight: 400;
-         text-align: center;
+      h3 {
+         font-size: 2.4rem;
+         font-family: 'SBaran';
+         color: colors.$primary-color;
+      }
+
+      .profile-edit-grid {
+         display: grid;
+         grid-template-columns: 1fr;
+         gap: 1rem;
+      }
+
+      .profile-input-row {
+         display: flex;
+         flex-direction: column;
+         gap: 0.4rem;
+
+         span {
+            font-size: 1.8rem;
+            color: #2d2d2d;
+         }
+
+         input,
+         textarea {
+            width: 100%;
+            border: 0.1rem solid rgba(36, 128, 148, 0.35);
+            border-radius: 1rem;
+            padding: 0.8rem 1rem;
+            font-size: 1.8rem;
+            font-family: BNazanin, sans-serif;
+            background-color: #fafafa;
+            color: #202020;
+            resize: none;
+         }
+      }
+
+      .profile-input-row--full {
+         grid-column: 1 / -1;
+      }
+
+      .profile-actions {
+         width: 100%;
+         display: flex;
+         flex-wrap: wrap;
+         gap: 1rem;
+         justify-content: flex-start;
+      }
+
+      .profile-action-button {
+         min-width: 18rem;
+         font-size: 1.9rem;
+         padding: 0.8rem 1.2rem;
+      }
+
+      .profile-action-button--secondary {
+         background-color: #fff;
+         border: 0.1rem solid colors.$secondary-color;
+         color: colors.$secondary-color;
       }
    }
 
    @media (min-width: vars.$desktop) {
       margin-top: 0;
-      gap: 3rem;
+      gap: 2rem;
       @include mixins.default-layout;
 
       #pfp {
@@ -70,9 +139,12 @@
 
          #username {
             font-size: 3rem;
-            font-weight: 400;
             line-height: 3rem;
-            text-align: center;
+         }
+
+         .demo-badge {
+            font-size: 2rem;
+            border-radius: 1.4rem;
          }
       }
 
@@ -80,19 +152,33 @@
          width: 95rem;
       }
 
-      #buttons {
-         width: 25rem;
-         height: 6.5rem;
+      .profile-edit-card {
+         width: 95rem;
+         padding: 2.2rem;
 
-         span {
-            font-size: 2.5rem;
-            font-weight: 400;
-            line-height: 2.5rem;
-            text-align: center;
+         .profile-edit-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            column-gap: 1.6rem;
+            row-gap: 1.2rem;
+         }
+
+         .profile-input-row span {
+            font-size: 2.2rem;
+         }
+
+         .profile-input-row input,
+         .profile-input-row textarea {
+            font-size: 2rem;
+         }
+
+         .profile-action-button {
+            min-width: 24rem;
+            font-size: 2.3rem;
          }
       }
    }
 }
+
 .profileStyleWrapper__button {
    width: 13rem;
    padding: 1rem;
@@ -100,11 +186,11 @@
    align-items: center;
    justify-content: space-between;
    font-size: 2rem;
-   margin-top: 2.5vh;
+   margin-top: 1.5vh;
+
    @media (min-width: vars.$desktop) {
       width: 20rem;
       font-size: 3.5rem;
       padding: 1rem 1.5rem;
    }
-   // padding: 2rem 4rem
 }

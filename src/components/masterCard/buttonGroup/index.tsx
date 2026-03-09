@@ -1,11 +1,4 @@
-import {
-   Dispatch,
-   FC,
-   SetStateAction,
-   useEffect,
-   useRef,
-   useState,
-} from 'react';
+﻿import { FC, useEffect, useRef, useState } from 'react';
 import detailIcon from '../../../assets/images/detail.svg';
 import payIcon from '../../../assets/images/pay.svg';
 import downloadIcon from '../../../assets/images/download.svg';
@@ -25,7 +18,7 @@ import RenovationPrint from './renovationPrint';
 import payCharges from './functions/payChargeHandler';
 import { useNavigate } from 'react-router-dom';
 import getSelectedChargeBillDetails from '../../../utilities/getSelectedChargeBillDetails';
-import Loading from '../../loading/loading';
+import { toast } from 'react-toastify';
 
 const ButtonGroup: FC<{
    isPayed?: boolean;
@@ -56,13 +49,17 @@ const ButtonGroup: FC<{
    } = useChargesContext();
 
    useEffect(() => {
-      const trdChargePdfButton = document.getElementById(
+      const chargePdfButton = document.getElementById(
          `${charge.master_id}-charge-pdf-button`,
-      )! as HTMLButtonElement;
-      if (isPrinting && trdChargePdfButton) {
-         trdChargePdfButton.click();
+      ) as HTMLButtonElement | null;
+
+      if (isPrinting && chargePdfButton) {
+         chargePdfButton.click();
       }
-   }, [isPrinting]);
+   }, [charge.master_id, isPrinting]);
+
+   const componentRef = useRef<HTMLDivElement>(null);
+   const handlePrint = useReactToPrint({ content: () => componentRef.current });
 
    const downloadButton = {
       label: 'دانلود',
@@ -78,7 +75,7 @@ const ButtonGroup: FC<{
             handlePrint,
             setIsPrinting,
             setCharges:
-               chargeType == 'Trade' ? setTradeCharges : setRenovationCharges,
+               chargeType === 'Trade' ? setTradeCharges : setRenovationCharges,
          });
       },
       id: `${charge.master_id}-charge-pdf-button`,
@@ -98,8 +95,53 @@ const ButtonGroup: FC<{
       icon: payIcon,
       alt: 'Pay',
       onClick: async () => {
-         const startBankProccess = async (charge: any) => {
-            const result = await payCharges(charge, token, navigate);
+         const startBankProccess = async (
+            selectedCharge: TradeCharge | RenovationCharge | null,
+         ) => {
+            if (!selectedCharge) return;
+
+            const result = await payCharges(selectedCharge, token, navigate);
+
+            if (result && typeof result === 'object' && 'status' in result) {
+               const demoResult = result as {
+                  status: number;
+                  body: {
+                     message?: string;
+                     trade_charges?: TradeCharge[];
+                     renovation_charges?: RenovationCharge[];
+                  };
+               };
+
+               if (demoResult.status !== 200) {
+                  toast.error(
+                     demoResult.body?.message || 'پرداخت با خطا مواجه شد.',
+                  );
+                  return;
+               }
+
+               if (demoResult.body.trade_charges) {
+                  setTradeCharges(demoResult.body.trade_charges);
+                  const updatedTradeCharge = demoResult.body.trade_charges.find(
+                     (item) => item.master_id === selectedCharge.master_id,
+                  );
+                  if (updatedTradeCharge) {
+                     setSelectedTradeCharge(updatedTradeCharge);
+                  }
+               }
+
+               if (demoResult.body.renovation_charges) {
+                  setRenovationCharges(demoResult.body.renovation_charges);
+                  const updatedRenovationCharge =
+                     demoResult.body.renovation_charges.find(
+                        (item) => item.master_id === selectedCharge.master_id,
+                     );
+                  if (updatedRenovationCharge) {
+                     setSelectedRenovationCharge(updatedRenovationCharge);
+                  }
+               }
+
+               setShowPaymentHistory(false);
+            }
          };
 
          if (charge.last_bill_info) {
@@ -113,7 +155,7 @@ const ButtonGroup: FC<{
                chargeType,
                setTradeCharges,
             );
-            await startBankProccess(result);
+            await startBankProccess(result as TradeCharge | null);
          } else if (chargeType === 'Renovation') {
             const result = await getSelectedChargeBillDetails(
                token,
@@ -121,7 +163,7 @@ const ButtonGroup: FC<{
                chargeType,
                setRenovationCharges,
             );
-            await startBankProccess(result);
+            await startBankProccess(result as RenovationCharge | null);
          }
       },
    };
@@ -164,8 +206,7 @@ const ButtonGroup: FC<{
       paymentHistoryButton,
    ];
    const visibleButtons = buttons.filter((button) => button !== null);
-   const componentRef = useRef<HTMLDivElement>(null);
-   const handlePrint = useReactToPrint({ content: () => componentRef.current });
+
    return (
       <div
          className={`${styles.buttons} ${
@@ -197,10 +238,10 @@ const ButtonGroup: FC<{
             printChargeBillDetails={
                charge.is_paid
                   ? printBill?.bill_details
-                     ? printBill.bill_details.filter((bd) => bd.type_id == 81)
+                     ? printBill.bill_details.filter((bd) => bd.type_id === 81)
                      : []
                   : charge.last_bill_details && charge.last_bill_details.length
-                  ? charge.last_bill_details.filter((bd) => bd.type_id == 81)
+                  ? charge.last_bill_details.filter((bd) => bd.type_id === 81)
                   : []
             }
          />

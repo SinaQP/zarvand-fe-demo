@@ -1,4 +1,4 @@
-import { FC } from 'react';
+﻿import { FC } from 'react';
 import { PaymentResultProps } from './interface';
 import whiteCheckIcon from '/src/assets/images/whiteCheckIcon.svg';
 import whiteXIcon from '/src/assets/images/whiteXIcon.svg';
@@ -11,9 +11,9 @@ import PaymentDetail from '../paymentDetail';
 const PaymentResult: FC<PaymentResultProps> = ({ status }) => {
    const isSuccessful = status === 'success';
    const title = isSuccessful
-      ? 'با موفقیت پرداخت انجام شد'
-      : 'پرداخت موفقیت آمیز نبود';
-   const subTitle = 'برای ادامه روی دکمه زیر کلید نمایید';
+      ? 'پرداخت با موفقیت انجام شد'
+      : 'پرداخت موفقیت‌آمیز نبود';
+   const subTitle = 'برای ادامه روی دکمه زیر کلیک نمایید';
    const navigate = useNavigate();
 
    const handleRedirectToHomeScreen = () => {

@@ -1,4 +1,4 @@
-import { toast } from 'react-toastify';
+﻿import { toast } from 'react-toastify';
 import { sendVerificationCode } from '../../../apis/login/send-verification-code';
 import { Dispatch, SetStateAction } from 'react';
 
@@ -19,16 +19,18 @@ const formSubmit = async (
       national_code: nationalCode,
       mobile_number: phoneNumber,
    });
-   console.log(response);
+
    if (response.status === 200) {
       const responseBody = response.body;
       const maskedPhoneNumber = responseBody.masked_mobile_number;
       setMaskedPhoneNumber(maskedPhoneNumber);
       setShowConfirmationForm(true);
-   } else {
-      toast.error(response.body.message);
+      toast.success('کد تایید ارسال شد. در نسخه نمایشی کد 1234 معتبر است.');
+      return true;
    }
-   return true;
+
+   toast.error(response.body.message || 'خطا در ثبت شماره تماس.');
+   return false;
 };
 
 export default formSubmit;

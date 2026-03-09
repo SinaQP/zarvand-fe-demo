@@ -1,5 +1,7 @@
 import { Fetch } from '../fetch';
 import { FetchResult } from '../fetch.interface';
+import { IS_DEMO_MODE } from '../../config/env';
+import { getRenovationBillDetailsInfoDemo } from '../../demo/service';
 
 export async function getRenovationBillDetailsInfo(
    body: {
@@ -8,6 +10,9 @@ export async function getRenovationBillDetailsInfo(
    token: string,
 ): Promise<any> {
    try {
+      if (IS_DEMO_MODE) {
+         return await getRenovationBillDetailsInfoDemo(token, body.master_id);
+      }
       const backendUrl = import.meta.env.VITE_APP_BACKEND;
       const url: string = backendUrl + `/zarvand/renovation-bill-details-info/`;
 

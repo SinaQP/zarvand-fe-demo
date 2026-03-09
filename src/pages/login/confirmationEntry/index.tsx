@@ -1,4 +1,4 @@
-import {
+﻿import {
    Dispatch,
    FC,
    SetStateAction,
@@ -15,6 +15,7 @@ import { useLayoutContext } from '../../../components/layout/layout.context';
 import { useUserContext } from '../../../App.context';
 import useWindowWidth from '../../../hooks/useWindowWidth';
 import { EntryType } from '../index.interface';
+import { IS_DEMO_MODE } from '../../../config/env';
 
 const ConfirmationEntry: FC<{
    setSelectedEntry: Dispatch<SetStateAction<EntryType>>;
@@ -37,8 +38,8 @@ const ConfirmationEntry: FC<{
 
    useEffect(() => {
       const button = document.getElementById('otpButtonRef');
-      if (otpCode.join('').length === 6) button?.click();
-   });
+      if (otpCode.join('').length === 4) button?.click();
+   }, [otpCode]);
 
    useEffect(() => {
       setHeaderId?.(styles['header']);
@@ -58,11 +59,16 @@ const ConfirmationEntry: FC<{
                   0,
                   4,
                )}`}
-               را وارد نمایید
+               را وارد نمایید.
             </h4>
+            {IS_DEMO_MODE && (
+               <p className={styles['confirmation-entry__demo-hint']}>
+                  کد نمایشی: 1234
+               </p>
+            )}
             <OtpInput
                isOtp={isMobile}
-               numberOfInputs={6}
+               numberOfInputs={4}
                value={otpCode}
                setValue={setOtpCode}
                otpClassName={styles['otp-input']}

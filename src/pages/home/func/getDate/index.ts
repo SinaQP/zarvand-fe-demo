@@ -1,4 +1,4 @@
-import { toJalaali } from 'jalaali-js';
+﻿import { toJalaali } from 'jalaali-js';
 
 export default function getPersianDate() {
    const currentDate = new Date();
@@ -23,7 +23,6 @@ export default function getPersianDate() {
       'اسفند',
    ];
 
-   // Map of Persian day names
    const persianWeekdays = [
       'یکشنبه',
       'دوشنبه',
@@ -34,9 +33,5 @@ export default function getPersianDate() {
       'شنبه',
    ];
    const persianWeekday = persianWeekdays[currentDate.getDay()];
-   const formattedDate = `${persianWeekday} ${jd} ${
-      persianMonths[jm - 1]
-   } ماه ${jy}`;
-
-   return formattedDate;
+   return `${persianWeekday} ${jd} ${persianMonths[jm - 1]} ${jy}`;
 }

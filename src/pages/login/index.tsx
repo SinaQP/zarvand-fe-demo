@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+﻿import { FC, useEffect, useState } from 'react';
 import NationalCodeEntry from './nationalCodeEntry';
 
 import styles from './index.module.scss';
@@ -11,6 +11,8 @@ import { updateLayout } from './functions/updateLayout';
 import { Bounce, ToastContainer } from 'react-toastify';
 import { EntryType } from './index.interface';
 import PhoneNumberEntry from './phoneNumberEntry';
+import { useUserContext } from '../../App.context';
+import { useNavigate } from 'react-router-dom';
 
 const Login: FC = () => {
    const {
@@ -20,6 +22,8 @@ const Login: FC = () => {
       setHeaderId,
       setHeaderText,
    } = useLayoutContext();
+   const { token } = useUserContext();
+   const navigate = useNavigate();
    const [showConfirmationForm, setShowConfirmationForm] = useState(false);
    const headerClassName = useWindowWidth(styles.header, '');
    const mainTitle = useWindowWidth(
@@ -37,14 +41,24 @@ const Login: FC = () => {
       'سامانه هوشمند شهروندی',
    );
    const blueSquare = useWindowWidth(
-      <img src={blueSquareIcon} className={styles['blue-square']} />,
+      <img src={blueSquareIcon} className={styles['blue-square']} alt="blue squares" />,
       null,
    );
    const whiteSquare = useWindowWidth(
-      <img src={whiteSquareIcon} className={styles['white-square']} />,
+      <img src={whiteSquareIcon} className={styles['white-square']} alt="white squares" />,
       null,
    );
    const toastPosition = useWindowWidth('bottom-center', 'top-center');
+
+   const [selectedEntry, setSelectedEntry] = useState<EntryType>(
+      EntryType.NATIONAL_CODE_ENTRY,
+   );
+
+   useEffect(() => {
+      if (token) {
+         navigate('/home');
+      }
+   }, [navigate, token]);
 
    useEffect(() => {
       setHeaderText && setHeaderText(headerTitle);
@@ -58,10 +72,18 @@ const Login: FC = () => {
          headerClassName,
          setSelectedEntry,
       });
-   }, [showConfirmationForm]);
-   const [selectedEntry, setSelectedEntry] = useState<EntryType>(
-      EntryType.NATIONAL_CODE_ENTRY,
-   );
+   }, [
+      headerClassName,
+      headerTitle,
+      setBadgeId,
+      setExtraHeaderContent,
+      setHeaderBadge,
+      setHeaderId,
+      setHeaderText,
+      setSelectedEntry,
+      showConfirmationForm,
+   ]);
+
    const MainEntries = {
       NATIONAL_CODE_ENTRY: (
          <NationalCodeEntry
@@ -88,7 +110,7 @@ const Login: FC = () => {
       ),
       INVALID_PHONE_NUMBER: (
          <PhoneNumberEntry
-            headingText="برای کد ملی شما شماره‌ای در سیستم ثبت نشده است. لطفاً شماره تماس مرتبط با این کد ملی را وارد نمایید."
+            headingText="برای کد ملی شما شماره‌ای در سیستم ثبت نشده است. لطفا شماره تماس مرتبط با این کد ملی را وارد نمایید."
             setSelectedEntry={setSelectedEntry}
             setShowConfirmationForm={setShowConfirmationForm}
          />
