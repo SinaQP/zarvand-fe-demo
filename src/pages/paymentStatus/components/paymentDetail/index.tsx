@@ -1,6 +1,7 @@
-import InfoRow from '../../../../components/infoRow';
+﻿import InfoRow from '../../../../components/infoRow';
 import styles from './index.module.scss';
 import { useSearchParams } from 'react-router-dom';
+
 const PaymentDetail = () => {
    const [searchParams] = useSearchParams();
 
@@ -24,7 +25,7 @@ const PaymentDetail = () => {
          />
          <InfoRow
             title="مبلغ پرداخت شده:"
-            value={amount? `(ریال) ${amount}` : '-'}
+            value={amount ? `(ریال) ${amount}` : '-'}
             className={styles['payment-detail__row']}
          />
          <InfoRow
@@ -33,7 +34,7 @@ const PaymentDetail = () => {
             className={styles['payment-detail__row']}
          />
          <InfoRow
-            title="کد پیگیری:"
+            title="کد رهگیری:"
             value={traceNo || '-'}
             className={styles['payment-detail__row']}
          />

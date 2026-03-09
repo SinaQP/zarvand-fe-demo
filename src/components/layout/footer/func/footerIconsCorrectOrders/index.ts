@@ -1,4 +1,4 @@
-import BrickWallsIcon from '../../components/brickWallsIcon';
+﻿import BrickWallsIcon from '../../components/brickWallsIcon';
 import ExitIcon from '../../components/exitIcon';
 import HomeIcon from '../../components/homeIcon';
 import OperatorIcon from '../../components/operatorIcon';

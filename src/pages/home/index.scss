@@ -1,4 +1,4 @@
-@use '../../assets/scss/constants/variables' as vars;
+﻿@use '../../assets/scss/constants/variables' as vars;
 @use '../../assets/scss/constants/colors' as colors;
 @use '../../assets/scss/mixin/common' as mixins;
 
@@ -7,13 +7,22 @@
 }
 
 #home-main {
-   padding: 0 1rem; 
+   padding: 0 1rem;
    display: flex;
    align-items: center;
    flex-direction: column;
    gap: 1rem;
 
    @include mixins.default-layout;
+
+   .homeLoading {
+      width: 100%;
+      min-height: 40vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+   }
+
    #container {
       width: 100%;
       display: flex;
@@ -26,141 +35,275 @@
          display: flex;
          justify-content: center;
          gap: 0.5rem;
-         height: 11.6rem;
+         min-height: 11.6rem;
          border-radius: 1rem;
          color: colors.$font-white-color;
+
          .welcome-text__body {
             width: 100%;
             background-color: colors.$primary-color;
             border-radius: 1rem;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
          }
-         .welcome-text {
-            padding: 1.7rem 0.5rem;
-            background-color: colors.$primary-color;
-            font-size: 1.7rem;
-            margin-bottom: 4rem;
-            width: 100%;
 
-            height: 100%;
-            border-radius: inherit;
+         .welcome-text {
+            font-size: 1.9rem;
+            width: 100%;
             display: flex;
             align-items: center;
-            justify-content: center;
             text-align: justify;
          }
 
+         .citizenId {
+            font-size: 1.5rem;
+            opacity: 0.95;
+         }
+
          .date {
-            padding: 1.7rem 0.5rem;
+            padding: 1rem 0.5rem;
             background-color: colors.$primary-color;
-            width: 20%;
-            height: 100%;
+            width: 30%;
             border-radius: inherit;
             text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            font-size: 1.4rem;
          }
       }
 
-      .citizenship-privilege-container {
+      .summaryCards {
          width: 100%;
-         height: 13rem;
-         border: 0.1rem solid colors.$secondary-color;
-         border-radius: 1.5rem;
-         padding: 1rem;
-         display: flex;
-         flex-direction: column;
-         justify-content: space-between;
-         pointer-events: none;
-         filter: grayscale(1);
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         gap: 0.7rem;
 
-         .title {
-            width: 100%;
-            font-size: 2rem;
-            font-weight: 400;
-            line-height: 2.5rem;
-            text-align: right;
-         }
-
-         .text {
-            font-size: 1.3rem;
-            font-weight: 400;
-            line-height: 1.5rem;
-         }
-
-         .actions {
-            width: 100%;
+         .summaryCard {
+            border-radius: 1.2rem;
+            padding: 1rem 0.8rem;
             display: flex;
-            justify-content: space-around;
+            flex-direction: column;
+            gap: 0.3rem;
+            background: #fff;
+            border: 0.1rem solid rgba(36, 128, 148, 0.25);
+            box-shadow: vars.$primary-box-shadow;
 
-            .actionBtns {
-               background-color: colors.$primary-color;
-               display: flex;
-               align-items: center;
-               justify-content: space-between;
-               width: 8rem;
-               height: 3rem;
-
-               .text {
-                  font-size: 1rem;
-                  font-weight: 400;
-                  line-height: 1rem;
-                  text-align: center;
-               }
+            .title {
+               font-size: 1.6rem;
+               color: colors.$primary-color;
             }
+
+            .value {
+               font-size: 1.8rem;
+               font-weight: 600;
+               color: colors.$secondary-color;
+            }
+         }
+
+         .danger {
+            border-right: 0.5rem solid #b84040;
+         }
+
+         .success {
+            border-right: 0.5rem solid #2f8f5c;
+         }
+
+         .warning {
+            border-right: 0.5rem solid #cf8423;
+         }
+
+         .info {
+            border-right: 0.5rem solid colors.$primary-color;
          }
       }
 
       .services-container {
          position: relative;
          width: 100%;
-         height: 10rem;
          border: 0.1rem solid colors.$secondary-color;
          border-radius: 1.5rem;
          padding: 1rem;
-
          display: flex;
-         align-items: center;
-         justify-content: center;
+         flex-direction: column;
+         gap: 1rem;
 
          .title {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
             width: 100%;
             font-size: 2rem;
-            font-weight: 400;
             line-height: 2.5rem;
             text-align: right;
          }
 
          .actions {
             width: 100%;
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 0.8rem;
 
             .serviceBtns {
                background-color: colors.$primary-color;
                display: flex;
                flex-direction: column;
                align-items: center;
-               justify-content: space-around;
-               width: 7rem;
-               height: 7rem;
+               justify-content: center;
+               gap: 0.4rem;
+               width: 100%;
+               min-height: 7rem;
 
                .text {
                   font-size: 1.2rem;
-                  font-weight: 400;
                   line-height: 1.4rem;
                   text-align: center;
                }
 
                img {
-                  width: 3.2rem;
-                  height: 3.2rem;
+                  width: 2.7rem;
+                  height: 2.7rem;
                }
+            }
+         }
+      }
+
+      .dashboardGrid {
+         width: 100%;
+         display: grid;
+         grid-template-columns: 1fr;
+         gap: 1rem;
+
+         .dashboardCard {
+            background-color: #fff;
+            border: 0.1rem solid rgba(36, 128, 148, 0.28);
+            border-radius: 1.2rem;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+
+            .cardHeader {
+               display: flex;
+               justify-content: space-between;
+               gap: 0.4rem;
+               align-items: center;
+
+               h3 {
+                  font-size: 2.2rem;
+                  color: colors.$primary-color;
+                  font-family: 'SBaran';
+               }
+
+               span {
+                  font-size: 1.5rem;
+                  color: #444;
+               }
+            }
+
+            .listRow,
+            .notificationRow {
+               border: 0.1rem solid rgba(211, 104, 43, 0.2);
+               border-radius: 1rem;
+               padding: 0.8rem;
+               display: flex;
+               justify-content: space-between;
+               align-items: flex-start;
+               gap: 0.8rem;
+            }
+
+            .rowTitle {
+               display: block;
+               font-size: 1.8rem;
+               color: #202020;
+            }
+
+            .rowSubTitle {
+               display: block;
+               margin-top: 0.2rem;
+               font-size: 1.4rem;
+               color: #4d4d4d;
+            }
+
+            .rowDate {
+               display: block;
+               font-size: 1.3rem;
+               color: #7c7c7c;
+               margin-top: 0.2rem;
+            }
+
+            .rowMeta {
+               display: flex;
+               flex-direction: column;
+               align-items: flex-end;
+               gap: 0.3rem;
+            }
+
+            .amount {
+               font-size: 1.5rem;
+               color: colors.$secondary-color;
+            }
+
+            .dateSmall {
+               font-size: 1.3rem;
+               color: #666;
+            }
+
+            .requestStatus {
+               font-size: 1.5rem;
+               color: colors.$primary-color;
+            }
+
+            .statusBadge {
+               border-radius: 99rem;
+               padding: 0.1rem 0.8rem;
+               font-size: 1.3rem;
+               border: 0.1rem solid transparent;
+            }
+
+            .badgePaid {
+               background-color: #effbf1;
+               border-color: #3f9f5c;
+               color: #2b6d40;
+            }
+
+            .badgePending {
+               background-color: #f4fbff;
+               border-color: #4f9bb0;
+               color: #1a677b;
+            }
+
+            .badgeOverdue {
+               background-color: #fff2f2;
+               border-color: #c66d6d;
+               color: #a13f3f;
+            }
+
+            .readToggle {
+               border-radius: 99rem;
+               border: 0.1rem solid;
+               background: #fff;
+               padding: 0.2rem 0.8rem;
+               font-family: BNazanin, sans-serif;
+               font-size: 1.4rem;
+               cursor: pointer;
+               height: fit-content;
+            }
+
+            .isUnread {
+               border-color: colors.$secondary-color;
+               color: colors.$secondary-color;
+            }
+
+            .isRead {
+               border-color: #7f7f7f;
+               color: #666;
+            }
+
+            .gotoSupport {
+               align-self: flex-start;
+               font-size: 1.6rem;
+               padding: 0.4rem 0.8rem;
             }
          }
       }
@@ -171,60 +314,100 @@
       height: fit-content;
 
       #container {
-         max-width: 97rem;
+         max-width: 102rem;
 
          .welcome-text-container {
-            width: 100%;
-            height: 30rem;
-            justify-content: center;
-            gap: 2rem;
+            min-height: 20rem;
+            gap: 1.2rem;
+
+            .welcome-text__body {
+               padding: 2rem;
+               justify-content: center;
+            }
 
             .welcome-text {
-               width: 60%;
-               margin: 0 auto;
-               font-size: 3.5rem;
-               text-align: center;
-               font-size: 3.7rem;
-               font-weight: 400;
-               line-height: 5rem;
+               font-size: 3.3rem;
+               line-height: 4.4rem;
+            }
+
+            .citizenId {
+               font-size: 2.1rem;
             }
 
             .date {
-               font-size: 4.5rem;
+               font-size: 2.6rem;
+               width: 25%;
             }
          }
 
-         .citizenship-privilege-container {
-            height: 17rem;
+         .summaryCards {
+            grid-template-columns: repeat(4, minmax(0, 1fr));
 
-            .title {
-               font-size: calc(1rem + 1vw);
-               font-weight: 400;
-               line-height: 2.5rem;
-               text-align: right;
+            .summaryCard {
+               min-height: 8rem;
+
+               .title {
+                  font-size: 2rem;
+               }
+
+               .value {
+                  font-size: 2.4rem;
+               }
             }
+         }
 
-            .text {
-               font-size: calc(1rem + 0.5vw);
-               line-height: normal;
+         .services-container {
+            .title {
+               font-size: 2.6rem;
             }
 
             .actions {
-               justify-content: left;
-               gap: 2rem;
-               padding-left: 5rem;
+               grid-template-columns: repeat(4, minmax(0, 1fr));
 
-               .actionBtns {
-                  width: 10rem;
-                  height: 5rem;
+               .serviceBtns {
+                  min-height: 9rem;
 
                   .text {
-                     font-size: 1.8rem;
+                     font-size: 1.7rem;
                   }
 
-                  &:last-child {
-                     background-color: colors.$secondary-color;
+                  img {
+                     width: 3.3rem;
+                     height: 3.3rem;
                   }
+               }
+            }
+         }
+
+         .dashboardGrid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+
+            .dashboardCard {
+               min-height: 28rem;
+
+               .cardHeader h3 {
+                  font-size: 3rem;
+               }
+
+               .cardHeader span {
+                  font-size: 1.8rem;
+               }
+
+               .rowTitle {
+                  font-size: 2.2rem;
+               }
+
+               .rowSubTitle,
+               .rowDate,
+               .dateSmall,
+               .requestStatus,
+               .amount {
+                  font-size: 1.8rem;
+               }
+
+               .statusBadge,
+               .readToggle {
+                  font-size: 1.7rem;
                }
             }
          }

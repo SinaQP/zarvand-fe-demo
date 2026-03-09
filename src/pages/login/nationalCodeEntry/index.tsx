@@ -1,4 +1,4 @@
-import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
+﻿import { Dispatch, FC, SetStateAction, useEffect, useState } from 'react';
 import styles from './index.module.scss';
 import Button from '../../../components/button';
 import OtpInput from '../../../components/otpInput';
@@ -25,13 +25,15 @@ const NationalCodeEntry: FC<Props> = ({
 
    useEffect(() => {
       const loginBtn = document.getElementById('loginBtn') as HTMLButtonElement;
-      nationalCode.join('').length === 10 && loginBtn?.click();
+      if (nationalCode.join('').length === 10) {
+         loginBtn?.click();
+      }
    }, [nationalCode]);
 
    const getHeadingText = () =>
       type === 'Person'
          ? 'لطفا کد ملی خود را وارد نمایید.'
-         : 'لطفا شناسه ملی  را وارد کنید';
+         : 'لطفا شناسه ملی را وارد کنید';
 
    return (
       <div
@@ -61,32 +63,6 @@ const NationalCodeEntry: FC<Props> = ({
                inputsClassName={styles.input}
             />
          )}
-         {/* Organization Stage */}
-         {/* {type === 'Person' ? (
-            <p className={styles['national-code-entry__link']}>
-               ورود به عنوان شخص حقوقی؟{' '}
-               <span
-                  className={styles['national-code-entry__text-link']}
-                  onClick={() =>
-                     setSelectedEntry(EntryType.ORGANIZATION_CODE_ENTRY)
-                  }
-               >
-                  اینجا کلیک کنید.
-               </span>
-            </p>
-         ) : (
-            <p className={styles['national-code-entry__link']}>
-               ورود به عنوان شخص حقیقی{' '}
-               <span
-                  className={`${styles['national-code-entry__text-link']} ${styles['national-code-entry__text-link--organization']}`}
-                  onClick={() =>
-                     setSelectedEntry(EntryType.NATIONAL_CODE_ENTRY)
-                  }
-               >
-                  اینجا کلیک کنید.
-               </span>
-            </p>
-         )} */}
 
          <Button
             className={styles['submit-button']}

@@ -6,13 +6,15 @@ import { IconType } from './index.interface';
 import useWindowWidth from '../../../hooks/useWindowWidth';
 import AndroidFooter from './components/androidFooter';
 import DesktopFooter from './components/desktopFooter';
+import { IS_DEMO_MODE } from '../../../config/env';
+import { logoutDemoSession } from '../../../demo/service';
 
 const Footer = () => {
    const windowWidth = useWindowWidth('desktop', 'mobile');
 
    const { setSelectedTradeCharge, setSelectedRenovationCharge } =
       useChargesContext();
-   const { setShowPaymentHistory } = useUserContext();
+   const { setShowPaymentHistory, setToken, setUser } = useUserContext();
    const history = useNavigate();
    const location = useLocation();
    const isLoginPage = location.pathname === '/login';
@@ -21,7 +23,18 @@ const Footer = () => {
 
    const handleRedirect = (route: IconType['route'], id: number) => {
       if (route === '/login') {
-         window.location.reload();
+         if (IS_DEMO_MODE) {
+            logoutDemoSession();
+         }
+         sessionStorage.removeItem('zarToken');
+         setToken('');
+         setUser(null);
+         resetChargeStates(
+            setSelectedTradeCharge,
+            setSelectedRenovationCharge,
+            setShowPaymentHistory,
+         );
+         history('/login');
       } else {
          setActiveIndex(id);
          resetChargeStates(

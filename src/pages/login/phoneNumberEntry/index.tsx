@@ -1,9 +1,8 @@
-import { Dispatch, FC, SetStateAction, useState } from 'react';
+﻿import { Dispatch, FC, SetStateAction, useState } from 'react';
 import Button from '../../../components/button';
 import OtpInput from '../../../components/otpInput';
 import styles from './index.module.scss';
 import { EntryType } from '../index.interface';
-import { useUserContext } from '../../../App.context';
 import { useLayoutContext } from '../../../components/layout/layout.context';
 import formSubmit from './submit.function';
 
@@ -12,8 +11,10 @@ const PhoneNumberEntry: FC<{
    setSelectedEntry: Dispatch<SetStateAction<EntryType>>;
    setShowConfirmationForm: Dispatch<SetStateAction<boolean>>;
 }> = ({ headingText, setSelectedEntry, setShowConfirmationForm }) => {
-   const { nationalCode, setNationalCode, setMaskedPhoneNumber } = useLayoutContext();
+   const { nationalCode, setNationalCode, setMaskedPhoneNumber } =
+      useLayoutContext();
    const [phoneNumber, setPhoneNumber] = useState<string[]>([]);
+
    return (
       <div className={styles['phone-number-entry']}>
          <h4>{headingText}</h4>
@@ -39,7 +40,7 @@ const PhoneNumberEntry: FC<{
                   phoneNumber.join(''),
                   nationalCode.join(''),
                   setShowConfirmationForm,
-                  setMaskedPhoneNumber
+                  setMaskedPhoneNumber,
                )
             }
          >
